@@ -41,5 +41,11 @@ plot(t, U)
 L = 0.1;
 theta = pi * [30 45 60] / 180;
 g = 9.82;
+start = [30, 45, 60];
 
-ode45(@(t, u) -g * sin(u) / L, [
+for i = (1:length(start))
+    subplot(length(start), 1, i);
+    y0 = [start(i) * pi / 180, 0];
+    ode45(@(t, y) [y(2); -g .* sin(y(1)) ./ L], [0 2], y0)
+end
+axis equal
