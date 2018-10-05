@@ -13,8 +13,9 @@ function sillouette
         coords = [coords; x y];
     end
     hold off
-    
-    [S, T] = meshgrid(linspace(0, 1, length(coords)), linspace(0, 2 * pi));
+
+    % [S, T] = meshgrid(linspace(0, 1, length(coords)), linspace(0, 2 * pi));
+    [S, T] = meshgrid(coords(:, 2), linspace(0, 2 * pi));
     x = coords(:, 1)' .* cos(T);
     y = coords(:, 1)' .* sin(T);
     z = S;
