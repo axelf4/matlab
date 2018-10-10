@@ -6,7 +6,7 @@ function sillouette
     coords = [];
     while true
         [x, y, button] = ginput(1);
-        if button ~= 1 break; end
+        if button ~= 1, break; end
         disp('got coord');
         plot(x, y, 'o');
         plot(-x, y, 'o');
