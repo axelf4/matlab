@@ -2,7 +2,7 @@ function gameoflife
 % GAMEOFLIFE Play as rattlesnake in this once in a lifetime puzzler
 % Nice game game of life by Mr Axel Forsman
 
-    n = 200;
+    n = 75;
 	m = zeros(n, 'logical');
     m(3, end - 4) = 1;
     m(4, end - 4) = 1;
