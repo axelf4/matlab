@@ -1,3 +1,5 @@
+% Lab 2 uppgift 2
+
 function sillouette
 %SILLOUETTE Summary of this function goes here
 %   Detailed explanation goes here

@@ -1,4 +1,4 @@
-%{
+%% Uppgift 4
 
 f = @(x) x .* sin(x);
 
@@ -14,7 +14,7 @@ fprintf('mittpunkt: %f\n', sum(h * f((x(1:n) + x(2:n + 1)) ./ 2)));
 
 fprintf('trapetsfan: %f\n', sum(h / 2 * (f(x(1:n)) + f(x(2:n + 1)))));
 
-% Uppgift 5
+%% Uppgift 5
 
 g = @(x) exp(-x.^2 / 2);
 h = @(x) x.^2 - 3 * x + 2;
@@ -29,14 +29,12 @@ a = fzero(f, 0.5)
 b = fzero(f, 2.1)
 q = integral(f, a, b)
 
-% Uppgift 6
+%% Uppgift 6
 
 [t, U] = ode45(@(t, u) cos(3 .* t) - sin(5 .* t) .* u, [0 15], 2)
 plot(t, U)
 
-%}
-
-% Uppgift 7
+%% Uppgift 7
 
 L = 0.1;
 theta = pi * [30 45 60] / 180;

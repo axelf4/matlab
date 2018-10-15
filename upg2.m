@@ -1,6 +1,6 @@
 r = @(x) (2 + sin(3 * x)) ./ sqrt(1 + exp(cos(x)));
 
-theta = linspace(-5, 5 * pi);
+theta = linspace(0, 2 * pi);
 x = r(theta) .* cos(theta);
 y = r(theta) .* sin(theta);
 hold on
@@ -15,6 +15,5 @@ while 1
 		break;
 	end
 	[theta, rho] = cart2pol(x, y);
-	theta
-	fzero(@(x) r(x) - 1, theta)
+	actualTheta = fzero(@(x) r(x) - 1, theta)
 end
