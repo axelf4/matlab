@@ -35,7 +35,7 @@ function gameoflife
 
     p = [1 1:n-1]; q = [2:n n];
 
-	FRAME_DURATION = 1 ./ 2;
+	FRAME_DURATION = 1 ./ 10;
 	MAX_FRAME_SKIP = 2;
 
 	playing = false;
