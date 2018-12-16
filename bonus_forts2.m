@@ -25,3 +25,16 @@ for i = 1 : length(initial)
 end
 
 hold off, axis([0 3 0 3] + 0.25 * [-1 1 -1 1])
+
+%%
+
+a = 1; b = 1;
+[x, y] = meshgrid(linspace(-1, 1), linspace(-1, 1));
+
+ellipticParaboloid = @(x, y) x.^2 / a^2 + y.^2 / b^2;
+hyperbolicParaboloid = @(x, y) x.^2 / a^2 - y.^2 / b^2;
+f = @(x, y) x ./ y ./ (x.^2 + y.^2);
+
+surf(x, y, ellipticParaboloid(x, y))
+surf(x, y, hyperbolicParaboloid(x, y))
+surf(x, y, f(x, y))
