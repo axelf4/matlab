@@ -1,1 +1,6 @@
 *.asv
+
+# Java files
+*.iml
+.idea
+target
