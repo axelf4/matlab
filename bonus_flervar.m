@@ -37,11 +37,10 @@ Z = f(X, Y);
 subplot(2, 1, 1), surf(X, Y, Z)
 subplot(2, 1, 2), contour(X, Y, Z)
 
-% Classifies all as minima?
-f2 = @(x) f(x(1), x(2));
-fminunc(f2, [-0.85 0.55])
-fminunc(f2, [-0.25 -0.65])
-fminunc(f2, [1.00 -0.20])
+f2 = @(x) f(x(1), x(2)); nf2 = @(x) -f2(x);
+fminunc(nf2, [-0.85 0.55])
+fminunc(f2, [-0.35 -0.55])
+fminunc(nf2, [0.96 -0.25])
 
 %% c) Evaluate double interal
 % D is {(x,y); 0 <= y <= 1 - x^2}
