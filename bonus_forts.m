@@ -41,7 +41,7 @@ a = 1; b = 1;
 
 ellipticParaboloid = @(x, y) x.^2 / a^2 + y.^2 / b^2;
 hyperbolicParaboloid = @(x, y) x.^2 / a^2 - y.^2 / b^2;
-f = @(x, y) x ./ y ./ (x.^2 + y.^2);
+f = @(x, y) x .* y ./ (x.^2 + y.^2);
 
 surf(x, y, ellipticParaboloid(x, y))
 surf(x, y, hyperbolicParaboloid(x, y))
