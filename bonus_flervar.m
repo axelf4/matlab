@@ -1,4 +1,5 @@
 % Bonusuppgift MVE035
+% http://www.math.chalmers.se/Math/Grundutb/CTH/Matlab/Bonusuppgifter/bonus_flervar_analys.pdf
 
 %% a) Solve non-linear system of equations
 c = 10;
