@@ -3,8 +3,7 @@ public class CounterModel {
     protected final int max;
 
     public CounterModel() {
-        value = 0;
-        max = 10;
+        this(0, 10);
     }
 
     public CounterModel(int init, int max) {
@@ -13,14 +12,14 @@ public class CounterModel {
     }
 
     /**
-     * Increments the value by one.
+     * Increments the value by one, wrapping if necessary.
      */
     public void increment() {
         value = (value + 1) % max;
     }
 
     /**
-     * Decrements the value by one.
+     * Decrements the value by one WITHOUT wrapping.
      */
     public void decrement() {
         --value;

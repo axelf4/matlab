@@ -12,7 +12,7 @@ public class CounterView extends JPanel {
 		setPreferredSize(new Dimension(190,130));
 		setBackground(Color.BLACK);
 		//setOpaque(true);
-		font = new Font(Font.MONOSPACED,Font.BOLD,140);
+		font = new Font(Font.MONOSPACED, Font.BOLD,140);
 	}
 
 	public void paintComponent(Graphics g) {
