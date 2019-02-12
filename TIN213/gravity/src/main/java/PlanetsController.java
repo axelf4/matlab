@@ -6,18 +6,13 @@ import java.awt.event.ActionListener;
 public class PlanetsController extends Panel {
     private PlanetsModel model;
     private static final double dt = 0.01;
-    private boolean running = false;
+    private boolean running = true;
 
     public PlanetsController(PlanetsModel model) {
         this.model = model;
 
-        Button startStopButton = new Button("Start / Stop");
-        startStopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                running = ! running;
-            }
-        });
+        Button startStopButton = new Button("Start / Stop"); // TODO move button to view where it goddamn should be
+        startStopButton.addActionListener(e -> running = !running);
         this.add(startStopButton);
     }
 

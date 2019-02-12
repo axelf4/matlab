@@ -1,8 +1,9 @@
 import java.awt.*;
 
 public class Planet {
-	private double x, y, vx, vy;
-	private final double mass;
+    // TODO public for now
+	public double x, y, vx, vy;
+	public final double mass;
 
 	private final int radius;
 	private final Color color;
@@ -31,13 +32,5 @@ public class Planet {
 
     public double getY() {
         return y;
-    }
-
-    public double getVX() {
-        return vx;
-    }
-
-    public double getVY() {
-        return vy;
     }
 }
