@@ -23,7 +23,7 @@ public class PlanetsModel {
     }
 
     /**
-     * Returns the instantaneous acceleration of \c planet1 wrt. the gravitational force of \c planet2.
+     * Returns the instantaneous acceleration of \c planet1 wrt the gravitational force of \c planet2.
      *
      * @param planet1 The planet to calculate the acceleration for.
      * @param planet2 The planet whose gravitational force we consider.
@@ -37,10 +37,10 @@ public class PlanetsModel {
     }
 
     /**
-     * Calculates the current acceleartions of the planets at the corresponding indices in the given array.
+     * Calculates the current accelerations of the planets at the corresponding indices in the given array.
      */
     private void calcAccelerations(Vector2 accelerations[]) {
-        assert accelerations.length == planets.size() : "Size mismatch between accelerations and planets.";
+        assert accelerations.length == planets.size() : "Size mismatch between accelerations and planets lists.";
 
         // Acceleration is applied linearly
         for (int i = 0; i < planets.size(); ++i) {

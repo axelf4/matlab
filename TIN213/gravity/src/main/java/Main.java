@@ -7,16 +7,16 @@ public class Main {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Newtonian Gravity Simulation");
-        Panel panel = new Panel();
-        frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         PlanetsModel model = new PlanetsModel();
+
         PlanetsView view = new PlanetsView(model);
         model.addObserver(view);
-        panel.add(view);
-        PlanetsController controller = new PlanetsController(model);
+        frame.getContentPane().add(view, BorderLayout.CENTER);
 
-        frame.add(controller, BorderLayout.SOUTH);
+        PlanetsController controller = new PlanetsController(model, view);
+
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
