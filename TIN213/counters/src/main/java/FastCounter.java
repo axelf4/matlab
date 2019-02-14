@@ -1,5 +1,7 @@
 public class FastCounter extends CounterModel {
-    /** The value by which to step by in a call. */
+    /**
+     * The value by which to step by in a call.
+     */
     private final int step;
 
     public FastCounter(int init, int max, int step) {
@@ -13,14 +15,25 @@ public class FastCounter extends CounterModel {
         step = 5;
     }
 
+    /**
+     * Increment `step` times.
+     */
     public void upMany() {
-        value = (value + step) % max;
+        for (int i = 0; i < step; ++i) increment();
     }
 
+    /**
+     * Decrement `step` times.
+     */
     public void downMany() {
-        value = (value + max - step) % max;
+        for (int i = 0; i < step; ++i) decrement();
     }
 
+    /**
+     * Returns the number of times this counter de-/increments when calling the *Many methods.
+     *
+     * @return The step size.
+     */
     public int getStep() {
         return step;
     }

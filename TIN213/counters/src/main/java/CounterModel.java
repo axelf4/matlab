@@ -1,11 +1,23 @@
 public class CounterModel {
-    protected int value;
+    /**
+     * The max value before wrapping around.
+     */
     protected final int max;
+    /**
+     * The current value of this counter.
+     */
+    private int value;
 
+    /**
+     * Creates a new CounterModel and initializes value to `0` and max to `10`.
+     */
     public CounterModel() {
         this(0, 10);
     }
 
+    /**
+     * Creates a new CounterModel with the specified parameters.
+     */
     public CounterModel(int init, int max) {
         value = init;
         this.max = max;
@@ -19,10 +31,12 @@ public class CounterModel {
     }
 
     /**
-     * Decrements the value by one WITHOUT wrapping.
+     * Decrements the value by one wrapping around if instead of going negative.
+     * <p>
+     * Contrary to the specification this implementation does wrapping.
      */
     public void decrement() {
-        --value;
+        value = (value + max - 1) % max;
     }
 
     /**
@@ -34,6 +48,7 @@ public class CounterModel {
 
     /**
      * Returns the value of this counter.
+     *
      * @return The value of this counter.
      */
     public int getValue() {

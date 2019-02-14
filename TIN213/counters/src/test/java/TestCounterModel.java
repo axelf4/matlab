@@ -5,20 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestCounterModel {
     
     @Test
-    void testNewCounter() {
+    public void testNewCounter() {
         CounterModel counter = new CounterModel();
         assertEquals(0, counter.getValue());
     }
     
     @Test
-    void testIncrement() {
+    public void testIncrement() {
         CounterModel counter = new CounterModel();
         counter.increment();
         assertEquals(1, counter.getValue());
     }
     
     @Test
-    void testDecrement() {
+    public void testDecrement() {
         CounterModel counter = new CounterModel();
         counter.increment();
         counter.decrement();
@@ -26,7 +26,7 @@ public class TestCounterModel {
     }
     
     @Test
-    void testReset() {
+    public void testReset() {
         CounterModel counter = new CounterModel();
         counter.increment();
         counter.increment();
@@ -36,7 +36,7 @@ public class TestCounterModel {
     
     // Different counters should have different values
     @Test
-    void testTwoCounters() {
+    public void testTwoCounters() {
         CounterModel counter1 = new CounterModel();
         CounterModel counter2 = new CounterModel();
         counter1.increment();
@@ -48,17 +48,23 @@ public class TestCounterModel {
 
     // A counter with a maximum of three incremented four times should wrap around once
     @Test
-    void testIncrementMaxThree() {
+    public void testIncrementMaxThree() {
         CounterModel counter = new CounterModel(0, 3);
         for (int i = 0; i < 4; ++i) counter.increment();
         assertEquals(1, counter.getValue());
     }
 
-    // A counter with a maximum of three decremented four times should wrap around once
+    // A counter with a maximum of three decremented should wrap around once
     @Test
-    void testDecrementNoWrap() {
+    public void testDecrementWrap() {
         CounterModel counter = new CounterModel(0, 3);
-         counter.decrement();
-        assertEquals(-1, counter.getValue());
+        counter.decrement();
+        assertEquals(2, counter.getValue());
+    }
+
+    @Test
+    public void testDefaultConsSetsMaxValue() {
+        CounterModel counter = new CounterModel();
+        assertEquals(10, counter.max);
     }
 }

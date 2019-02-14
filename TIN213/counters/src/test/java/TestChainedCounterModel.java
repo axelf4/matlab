@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestChainedCounterModel {
     @Test
-    void testCallNextAfterWrap() {
+    public void testCallNextAfterWrap() {
         CounterModel next = new CounterModel();
         ChainedCounterModel counter = new ChainedCounterModel(0, 1, next);
         counter.increment();
