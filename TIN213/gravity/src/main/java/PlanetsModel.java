@@ -1,5 +1,7 @@
-import java.util.*;
-import java.awt.Color;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PlanetsModel {
     /**
@@ -10,7 +12,7 @@ public class PlanetsModel {
     private final List<Observer> observers = new ArrayList<>();
     private final List<Planet> planets = new ArrayList<>();
     /**
-     * Pre-allocated array for the accelerations of the planets. WARNING: Not thread-safe!
+     * Pre-allocated array for the accelerations of the planets.
      */
     private final Vector2 accelerations[];
 
@@ -25,15 +27,14 @@ public class PlanetsModel {
     /**
      * Returns the instantaneous acceleration of \c planet1 wrt the gravitational force of \c planet2.
      *
-     * @param planet1 The planet to calculate the acceleration for.
-     * @param planet2 The planet whose gravitational force we consider.
+     * @param p1 The planet to calculate the acceleration for.
+     * @param p2 The planet whose gravitational force we consider.
      * @return The instantaneous acceleration of the specified planet.
      */
-    private static Vector2 calcAcceleration(Planet planet1, Planet planet2) {
-        Vector2 p1 = new Vector2(planet1.x, planet1.y), p2 = new Vector2(planet2.x, planet2.y);
-        Vector2 dp = p2.sub(p1);
+    private static Vector2 calcAcceleration(Planet p1, Planet p2) {
+        Vector2 dp = p2.pos.sub(p1.pos);
         double r2 = dp.dot(dp), r = Math.sqrt(r2);
-        return dp.mul(G * planet2.mass / (r * r2)); // Calculate acceleration using Newton's teachings
+        return dp.mul(G * p2.mass / (r * r2)); // Calculate acceleration using Newton's teachings
     }
 
     /**
@@ -54,25 +55,38 @@ public class PlanetsModel {
         }
     }
 
+    /** Steps forward the simulation by the specified delta time.
+     *
+     * WARNING: Not thread-safe! The current implementation uses the Verlet algorithm.
+     *
+     * @param dt The delta time to step forward by.
+     */
     public void update(double dt) {
         // Calculate the new positions and velocities of the planets using the Verlet algorithm
 
         calcAccelerations(accelerations);
+
+        // Decrease time step with the maximum of the accelerations of the planets
+        dt *= G * G / Arrays.stream(accelerations).mapToDouble(Vector2::length2).max().orElse(G * G);
+
         for (int i = 0, length = planets.size(); i < length; ++i) {
             Planet planet = planets.get(i);
             Vector2 a = accelerations[i];
-            planet.x += planet.vx * dt + .5 * a.x * dt * dt;
-            planet.y += planet.vy * dt + .5 * a.y * dt * dt;
-            planet.vx += .5 * a.x * dt;
-            planet.vy += .5 * a.y * dt;
+            planet.pos = planet.pos.add(planet.vel.mul(dt)).add(a.mul(.5 * dt * dt));
+            // planet.x += planet.vx * dt + .5 * a.x * dt * dt;
+            // planet.y += planet.vy * dt + .5 * a.y * dt * dt;
+            planet.vel = planet.vel.add(a.mul(.5 * dt));
+            // planet.vx += .5 * a.x * dt;
+            // planet.vy += .5 * a.y * dt;
         }
 
         calcAccelerations(accelerations);
         for (int i = 0, length = planets.size(); i < length; ++i) {
             Planet planet = planets.get(i);
             Vector2 a = accelerations[i];
-            planet.vx += .5 * a.x * dt;
-            planet.vy += .5 * a.y * dt;
+            planet.vel = planet.vel.add(a.mul(.5 * dt));
+            // planet.vx += .5 * a.x * dt;
+            // planet.vy += .5 * a.y * dt;
         }
 
         observers.forEach(Observer::update); // Notify observers

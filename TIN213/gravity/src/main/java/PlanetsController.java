@@ -1,11 +1,8 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PlanetsController {
-    private PlanetsModel model;
     private static final double dt = 0.01;
+    private final PlanetsModel model;
     private boolean running = true;
 
     public PlanetsController(PlanetsModel model, PlanetsView view) {
@@ -15,12 +12,13 @@ public class PlanetsController {
     }
 
     public void run() {
+        // FIXME Replace Timer with Thread.yield() in a loop
         Timer timer = new Timer(10, e -> {
-			// FIXME Find accurate delta time using System.nanoTime()
-			if (running) {
-				model.update(dt);
-			}
-		});
+            // FIXME Find accurate delta time using System.nanoTime()
+            if (running) {
+                model.update(dt);
+            }
+        });
         timer.start();
     }
 }
