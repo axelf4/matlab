@@ -4,7 +4,7 @@ public class Planet {
     public final double mass;
     private final int radius;
     private final Color color;
-    public Vector2 pos, vel;
+    private Vector2 pos, vel;
 
     public Planet(double x, double y, double vx, double vy, double mass, int radius, Color color) {
         pos = new Vector2(x, y);
@@ -22,11 +22,15 @@ public class Planet {
         return color;
     }
 
-    public double getX() {
-        return pos.x;
+    public Vector2 getPos() {
+        return pos;
     }
 
-    public double getY() {
-        return pos.y;
+    public void updateVelocity(Vector2 a, double dt) {
+        vel = vel.add(a.mul(dt));
+    }
+
+    public void updatePosition(double dt) {
+        pos = pos.add(vel.mul(dt));
     }
 }

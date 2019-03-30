@@ -51,7 +51,7 @@ public class PlanetsView extends JPanel implements PlanetsModel.Observer {
             addComponentListener(new ComponentAdapter() {
                 @Override
                 public void componentResized(ComponentEvent e) {
-                    image = null; // Force recreation of offscreen image
+                    image = null; // Force recreation of off-screen image
                     repaint();
                 }
             });
@@ -60,7 +60,7 @@ public class PlanetsView extends JPanel implements PlanetsModel.Observer {
         public void showPlanet(Graphics2D g, Planet p) {
             double diameter = p.getRadius() * 2;
             g.setColor(p.getColor());
-            double pixelX = PLOT_WIDTH * (p.getX() + 10) / 20, pixelY = PLOT_HEIGHT * (10 - p.getY()) / 20;
+            double pixelX = PLOT_WIDTH * (p.getPos().x + 10) / 20, pixelY = PLOT_HEIGHT * (10 - p.getPos().y) / 20;
             g.fill(new Ellipse2D.Double(pixelX - diameter / 2, pixelY - diameter / 2, diameter, diameter));
         }
 
@@ -101,6 +101,5 @@ public class PlanetsView extends JPanel implements PlanetsModel.Observer {
 
             Toolkit.getDefaultToolkit().sync();
         }
-
     }
 }

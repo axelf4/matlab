@@ -32,8 +32,8 @@ public class PlanetsModel {
      * @return The instantaneous acceleration of the specified planet.
      */
     private static Vector2 calcAcceleration(Planet p1, Planet p2) {
-        Vector2 dp = p2.pos.sub(p1.pos); // Vector from planet1 to planet2
-        double r2 = dp.dot(dp), r = Math.sqrt(r2); // r is distance, r2 is squared dist
+        Vector2 dp = p2.getPos().sub(p1.getPos()); // Vector from planet1 to planet2
+        double r2 = dp.dot(dp), r = Math.sqrt(r2); // r is distance, r2 is squared distance
         return dp.mul(G * p2.mass / (r * r2)); // Calculate acceleration using Newton's teachings
     }
 
@@ -55,33 +55,29 @@ public class PlanetsModel {
         }
     }
 
-    /** Steps forward the simulation by the specified delta time.
-     *
-     * WARNING: Not thread-safe! The current implementation uses the Verlet algorithm.
+    /**
+     * Steps forward the simulation by the specified delta time.
+     * <p>
+     * The current implementation uses the Verlet algorithm. WARNING: Not thread-safe!
      *
      * @param dt The delta time to step forward by.
      */
     public void update(double dt) {
-        // Calculate the new positions and velocities of the planets using the Verlet algorithm
-
         calcAccelerations(accelerations);
 
         // Decrease time step with the maximum of the accelerations of the planets
-        double maxacc = Arrays.stream(accelerations).mapToDouble(Vector2::length2).max().orElse(G * G);
-        if (maxacc != 0) dt *= G * G / maxacc;
+        dt *= G * G / Arrays.stream(accelerations).mapToDouble(Vector2::length2).filter(a -> a != 0).max().orElse(G * G);
 
         for (int i = 0, length = planets.size(); i < length; ++i) {
             Planet planet = planets.get(i);
-            Vector2 a = accelerations[i];
-            planet.pos = planet.pos.add(planet.vel.mul(dt)).add(a.mul(.5 * dt * dt));
-            planet.vel = planet.vel.add(a.mul(.5 * dt));
+            planet.updateVelocity(accelerations[i].mul(.5), dt);
+            planet.updatePosition(dt);
         }
 
         calcAccelerations(accelerations);
         for (int i = 0, length = planets.size(); i < length; ++i) {
             Planet planet = planets.get(i);
-            Vector2 a = accelerations[i];
-            planet.vel = planet.vel.add(a.mul(.5 * dt));
+            planet.updateVelocity(accelerations[i].mul(.5), dt);
         }
 
         observers.forEach(Observer::update); // Notify observers
