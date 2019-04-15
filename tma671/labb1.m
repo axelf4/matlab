@@ -1,4 +1,3 @@
-%{
 %% a)
 
 lambda = linspace(0, 3e-6);
@@ -32,7 +31,6 @@ disp(['x is ', num2str(x)])
 
 h=6.6256e-34;c=2.9979e8;k=1.3805e-23;
 b = h * c / (k * x) % Solve the fucker for b
-%}
 
 %% c)
 Me = @(T) 5.67e-8 * T.^4; % All light

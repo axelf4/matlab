@@ -15,22 +15,33 @@ options = optimoptions(@fmincon, 'Algorithm', 'Interior-point', ...
 nonlcon = @circlecon;
 x = fmincon(objfun, x0, [], [], [], [], -ones(size(x0)), ones(size(x0)), nonlcon, options)
 
-hold on
-drawsphere
-
-plot3(0, 0, 0, 'o')
-for i = 1:n
-    p = num2cell(x(:, i)');
-    plot3(p{:}, 'x')
-end
-grid on
-
 %% d)
-A = x * x';
-alpha = diagonalDominance(A)
+A = x * x'; % Mat.mul. is other way around since our points are the columns
+alpha = diagonalDominance(A);
 
 %% e)
 
+% Want to reflect all points through the hyperplane that is orthogonal to v
+v = 1/sqrt(2) * (x(:, 1) + [1 0 0]'); % v is vector between the two fuckers
+P = eye(3) - 2 * (v * v') / (v' * v);
+
+for i = 1:n
+    x(:, i) = P * x(:, i); % Transform all fuckers
+end
+
+ang = acos(dot(x(:, 2), [0 1 0])) * 180/pi; % Angle between fuck and y-axis
+R = rotx(ang); % Rotation around x-axis
+
+for i = 1:n
+    x(:, i) = R * x(:, i); % Rotate all fuckers
+end
+
+A = x * x'
+plotpoints(x)
+
+% Får rätt egenskaper pga varje rad i x är 
+
+%%
 
 function c = negDist(x)
 	% Loss function that computes distance between points in spherical coords
@@ -68,6 +79,18 @@ function drawsphere
     h = surfl(x, y, z); 
     set(h, 'FaceAlpha', 0.1)
     shading interp
+end
+
+function plotpoints(x)
+    n = size(x, 2); % Number of points
+    hold on, axis equal
+    drawsphere
+    plot3(0, 0, 0, 'o')
+    for i = 1:n
+        p = num2cell(x(:, i)');
+        plot3(p{:}, 'x')
+    end
+    grid on
 end
 
 function result = cartprod(x, y)
