@@ -1,0 +1,11 @@
+function [t, y] = eulerForward(A, b, t0, y0, h, N)
+    % h - step size
+    % N - number of points
+    t = linspace(t0, t0 + N * h, N);
+
+    y = zeros(N, 4);
+    y(1, :) = y0;
+    for i = 2:N
+        % y(i, :) = y(i - 1, :) + h * (A * y(i - 1, :) + b);
+        y(i, :) = ((h * A + eye(4)) * y(i - 1, :)')' + h * b';
+    end
