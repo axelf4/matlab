@@ -26,13 +26,27 @@ hold off
 xlim(1.5 * [-1 1])
 ylim(1.5 * [-1 1])
 
-%% c)
-h = 0.1; N = ceil(2 / h);
+%% c) Solve approximately using the following three methods:
+h = 0.4; N = ceil(2 / h);
 hold on
 
 [~, y] = eulerForward(A, b, 0, [1 0, -2, 0], h, N);
-
 plot(y(:, 1), y(:, 2), 'c')
+[~, y] = eulerBackward(A, b, 0, [1 0, -2, 0], h, N);
+plot(y(:, 1), y(:, 2), 'y')
+[~, y] = trapezoidal(A, b, 0, [1 0, -2, 0], h, N);
+plot(y(:, 1), y(:, 2), 'g')
+
+%% d) Discuss the accuracy of the above three methods
+
+% Lösningskurvorna för Eulermetoderna ser ut som de gör pga
+% - Framåtmetoden använder derivatorna i de första punkterna
+
+% Trapetsmetoden blir typ medelvärdet av de båda Eulermetoderna
+% -> Använder två funktionsvärden varje steg -> mest noggrann
+% De Eulermetoderna ungefär lika bra.
+
+%% e) 
 
 %% f) Determine u so that electron reaches (0,1)
 u = fsolve(@(u) fcost(u, A, b), -2);

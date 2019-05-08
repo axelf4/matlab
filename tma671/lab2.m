@@ -1,8 +1,8 @@
 n = 6; % Number of points
-m = 3; % Dimensionen av sfÃ¤ren
+m = 3; % Dimensionen av sfären
 
 % x0 is matrix with starting points for optim
-% kolonner Ã¤r punkterna
+% kolonner är punkterna
 x0 = [
     1 0 0 -1 0 0
     0 1 0 0 -1 0
@@ -30,7 +30,7 @@ for i = 1:n
 end
 
 ang = acos(dot(x(:, 2), [0 1 0])) * 180/pi; % Angle between fuck and y-axis
-R = rotx(ang); % Rotation around x-axis
+R = rotx(-ang); % Rotation around x-axis
 
 for i = 1:n
     x(:, i) = R * x(:, i); % Rotate all fuckers
@@ -39,7 +39,9 @@ end
 A = x * x'
 plotpoints(x)
 
-% FÃ¥r rÃ¤tt egenskaper pga varje rad i x Ã¤r 
+% Får rätt egenskaper pga kan dela upp x:s kolonner i delmatriser y_i
+% där dim(V(y)) = n = 3. Då är även dim(V(y^T)) = 3
+% Från hur A är def följer alltså att den får rätt egenskaper
 
 %%
 
@@ -83,14 +85,14 @@ end
 
 function plotpoints(x)
     n = size(x, 2); % Number of points
-    hold on, axis equal
+    axis equal
     drawsphere
-    plot3(0, 0, 0, 'o')
+    hold on, plot3(0, 0, 0, 'o')
     for i = 1:n
         p = num2cell(x(:, i)');
         plot3(p{:}, 'x')
     end
-    grid on
+    grid on, hold off
 end
 
 function result = cartprod(x, y)
