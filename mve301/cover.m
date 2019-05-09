@@ -1,8 +1,8 @@
-n = 1000; % The area of the square
+n = 10000; % The area of the square
 l = sqrt(n); % The length of the sides
 
-circles = {}; % List of circles
-% The items are { coord, Trail }
+circles = KDTree; % Container with circles
+circlesList = {}; % The items are { coord, Trail }
 
 clf
 axis equal, hold on
@@ -18,33 +18,27 @@ while true
     trail.TouchRight = c(1) >= l - 1;
     
     done = false;
-    
-    i = length(circles);
     isFirst = ~(trail.TouchLeft || trail.TouchRight);
     
-    % Find the first trail
+    % Find all intersecting circles
+    intersecting = circles.find(c, 2, @isCircleIntersection);
+    i = length(intersecting);
     while i > 0
-        circle = circles{i};
+        otherTrail = intersecting{i}.Data;
         
-        if isCircleIntersection(c, circle{1})
-            otherTrail = circle{2};
-            
-            if ~isFirst
-                done = otherTrail.addNext(trail);
-                if done
-                    break
-                end
-            end
-            
-            isFirst = false;
-            trail = otherTrail;
+        if ~isFirst
+            done = otherTrail.addNext(trail);
+            if done, break, end
         end
         
+        isFirst = false;
+        trail = otherTrail;
         i = i - 1; % Decrement i
     end
     
     circle = {c, trail};
-    circles{end + 1} = circle; % Append to list
+    circlesList{end + 1} = circle; % Append to list
+    circles.insert(c, trail);
     
     if done
         disp Done
@@ -52,6 +46,7 @@ while true
     end
 end
 
+circles = circlesList;
 fprintf("Required %i circles\n", length(circles))
 
 clf
@@ -60,8 +55,9 @@ xlim([0 l])
 ylim([0 l])
 for i = 1:length(circles)
     circle = circles{i};
-    c = circle{1};
-    trail = circle{2};
+    % c = circle.Coord;
+    % trail = circle.Data;
+    c = circle{1}; trail = circle{2};
     h = rectangle('Position', [c(1) - 1, c(2) - 1, 2, 2], 'Curvature', [1 1]);
     if trail.touchesLeft()
         h.EdgeColor = [1 0 0];

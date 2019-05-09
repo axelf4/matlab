@@ -2,6 +2,8 @@ classdef Trail < handle
     properties
         TouchLeft = false
         TouchRight = false
+    end
+    properties (Access = private)
         Id
         Next = Trail.empty
     end
