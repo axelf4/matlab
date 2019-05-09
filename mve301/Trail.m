@@ -14,33 +14,47 @@ classdef Trail < handle
         end
         function done = addNext(this, next)
             % Next has to be touching this trail
+            
             done = false;
             
-            % Cannot add itself to itself
-            if this == next, return, end
+            if this == next, return, end % Cannot add self to itself
+            % Newer trails have to traverse the older ones
             if this.Id > next.Id
                 done = next.addNext(this);
                 return
             end
             
-            if this.TouchLeft, next.TouchLeft = true; end
-            if this.TouchRight, next.TouchRight = true; end
+            if next.TouchLeft, this.TouchLeft = true; end
+            if next.TouchRight, this.TouchRight = true; end
             
-            if isempty(this.Next)
+            if this.TouchLeft && this.TouchRight
+                done = true;
+            elseif isempty(this.Next)
                 this.Next = next;
             else
                 done = this.Next.addNext(next);
             end
-            
-            if (this.TouchLeft && ~next.TouchLeft) || (this.TouchRight && ~next.TouchRight)
-                disp bad
+        end
+        
+        % The following two functions are only for visualization purposes
+        % and may be slow
+        
+        function y = touchesLeft(self)
+            if self.TouchLeft
+                y = true;
+            elseif isempty(self.Next)
+                y = false;
+            else
+                y = self.Next.touchesLeft();
             end
-            this.TouchLeft = next.TouchLeft;
-            this.TouchRight = next.TouchRight;
-            
-            if this.TouchLeft && this.TouchRight
-                done = true
-                return
+        end
+        function y = touchesRight(self)
+            if self.TouchRight
+                y = true;
+            elseif isempty(self.Next)
+                y = false;
+            else
+                y = self.Next.touchesRight();
             end
         end
     end
