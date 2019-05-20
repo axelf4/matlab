@@ -35,7 +35,7 @@ b = h * c / (k * x) % Solve the fucker for b
 %% c)
 Me = @(T) 5.67e-8 * T.^4; % All light
 
-Ms = @(T) quadl(@(lambda) planck(lambda, T), 4e-7, 7e-7); % Visible light
+Ms = @(T) quadl(@(lambda) planck(lambda, T), 4e-7, 7e-7); %#ok<DQUADL> Visible light
 q = @(T) Ms(T) ./ Me(T); % Le qvot
 T = linspace(100, 10000); plot(T, arrayfun(q, T))
 tic
