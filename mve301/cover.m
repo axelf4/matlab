@@ -82,7 +82,7 @@ end
 
 function b = triangleBase
     % Returns the side length of an equilateral triangle with area pi.
-    b = 2 * nthroot(pi^2 / 3, 4);
+    b = 2.693547374177197; % b = 2 * nthroot(pi^2 / 3, 4);
 end
 
 function h = triangleHeight
