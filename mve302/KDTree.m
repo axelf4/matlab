@@ -24,6 +24,10 @@ classdef KDTree < handle
             end
         end
         
+        function b = exists(self, c, d, filter)
+            b = ~isempty(self.Node) && self.Node.exists(c, d, filter);
+        end
+        
         function a = findAll(self)
             if ~isempty(self.Node)
                 a = self.Node.findAll();

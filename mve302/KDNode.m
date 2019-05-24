@@ -32,7 +32,7 @@ classdef KDNode < handle
         function a = find(self, c, d, filter)
             % Returns a cell array with all subnodes (and self) that
             % satisfy the filter.
-            % Only nodes inside the bounding box centered at c with sides 2*d
+            % Only subnodes inside the bounding box centered at c with sides 2*d
             % are considered.
             
             % If node satisfies the filter
@@ -47,6 +47,22 @@ classdef KDNode < handle
             if ~isempty(self.Right) && x <= c(self.Index) + d
                 a = [a, self.Right.find(c, d, filter)];
             end
+        end
+        
+        function b = exists(self, c, d, filter)
+            % Returns whether there exists a node in this subtree that satisfies the filter.
+            % Only subnodes inside the bounding box centered at c with sides 2*d
+            % are considered.
+            
+            x = self.Coord(self.Index);
+            % Test self last since later points are likelier to lie closer
+            b = ... % If in left subtree
+                (~isempty(self.Left) && x > c(self.Index) - d ...
+                && self.Left.exists(c, d, filter)) ...
+                ... % If in right subtree
+                || (~isempty(self.Right) && x <= c(self.Index) + d ...
+                && self.Right.exists(c, d, filter)) ...
+                || filter(self); % If this node satisfies
         end
         
         function a = findAll(self)
