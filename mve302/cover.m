@@ -2,7 +2,7 @@ n = 1000; % The area of the square
 l = sqrt(n); % The length of the sides
 
 circles = KDTree; % Container with circles
-circles2 = Grid(2 * 2, l);
+circles2 = Grid(2 * 1, l);
 
 points = {[0; 0], [l; 0], [0; l], [l; l]}; % Start with the corners
 nextShapeId = 0;
@@ -58,8 +58,8 @@ while true
         break
     end
     
-    % plotAll(l, circles, points)
-    % pause(0.5)
+    plotAll(l, circles, points)
+    pause(0.5)
 end
 
 plotAll(l, circles, points)

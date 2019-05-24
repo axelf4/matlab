@@ -1,6 +1,5 @@
-classdef GridNode < handle
+classdef GridNode
     properties
-        Next = GridNode.empty
         Coord
         Data
     end

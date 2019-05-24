@@ -16,8 +16,11 @@ classdef Grid < handle
             row = idivide(new.Coord(1), self.CellSize) + 1;
             col = idivide(new.Coord(2), self.CellSize) + 1;
             
-            new.Next = self.Data{row, col};
-            self.Data{row, col} = new;
+            if isempty(self.Data{row, col})
+                self.Data{row, col} = {new};
+            else
+                self.Data{row, col}{end + 1} = new;
+            end
         end
         
         function a = find(self, c, filter)
@@ -25,10 +28,11 @@ classdef Grid < handle
             col = idivide(c(2), self.CellSize, 'round');
             a = {};
             len = length(self.Data);
-            for i = max(row, 1):min(row + 1, len)
-                for j = max(col, 1):min(col + 1, len)
-                    if ~isempty(self.Data{i, j})
-                        a = [a, self.Data{i, j}.get(filter)];
+            for i = max(row - 1, 1):min(row + 2, len)
+                for j = max(col - 1, 1):min(col + 2, len)
+                    list = self.Data{i, j};
+                    if ~isempty(list)
+                        a = [a, list(cellfun(filter, list))];
                     end
                 end
             end
@@ -41,8 +45,8 @@ classdef Grid < handle
             len = length(self.Data);
             for i = max(row, 1):min(row + 1, len)
                 for j = max(col, 1):min(col + 1, len)
-                    if ~isempty(self.Data{i, j})
-                        if self.Data{i, j}.exists(filter)
+                    for node = self.Data{i, j}
+                        if filter(node{1})
                             b = true;
                             return
                         end
