@@ -9,22 +9,22 @@ axis equal, hold on
 xlim([0 l])
 ylim([0 l])
 
-% maxDist = 2; isIntersection = @isCircleIntersection; % With circles
-maxDist = triangleHeight; isIntersection = @isTriangleIntersection; % With triangles
+% width = 2; isIntersection = @isCircleIntersection; % With circles
+width = triangleBase; isIntersection = @isTriangleIntersection; % With triangles
 
 while true
     c = rand(2, 1) * l; % Uniformly distributed coordinate vector over the square
     % [x, y] = ginput(1); c = [x; y];
 
     trail = Trail();
-    trail.TouchLeft = c(1) <= 1;
-    trail.TouchRight = c(1) >= l - 1;
+    trail.TouchLeft = c(1) <= width/2;
+    trail.TouchRight = c(1) >= l - width/2;
 
     done = false;
     isFirst = ~(trail.TouchLeft || trail.TouchRight);
 
     % Find all intersecting circles
-    intersecting = circles.find(c, maxDist, isIntersection);
+    intersecting = circles.find(c, width, isIntersection);
     i = length(intersecting);
     while i > 0
         otherTrail = intersecting{i}.Data;
@@ -50,7 +50,7 @@ while true
 end
 
 circles = circlesList;
-fprintf("Required %i circles\n", length(circles))
+fprintf(1, "Required %i shapes\n", length(circles))
 
 clf
 axis equal, hold on
