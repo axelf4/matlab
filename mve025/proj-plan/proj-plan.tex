@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+\usepackage{amsmath}
+\usepackage{comment}
+\usepackage{tikz,tikz-3dplot}
+\usepackage{titlesec}
+
+\usetikzlibrary{calc}
+\titleformat{\section}[runin]{\normalfont\itshape}{\thesection}{1em}{}[:]
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\usetikzlibrary{3d}
+\makeatletter
+\tikzoption{canvas is xy plane at z}[]{%
+	\def\tikz@plane@origin{\pgfpointxyz{0}{0}{#1}}%
+	\def\tikz@plane@x{\pgfpointxyz{1}{0}{#1}}%
+	\def\tikz@plane@y{\pgfpointxyz{0}{1}{#1}}%
+	\tikz@canvas@is@plane}
+\makeatother
+
+\author{Axel Forsman}
+\title{Projektion på plan}
+
+\begin{document}
+\maketitle
+
+\section*{Problem}
+Givet två icke-parallella vektorer $\vec{a}$ och $\vec{b}$ i det
+tredimensionella rummet samt en godtycklig vektor $\vec{c}$,
+bestäm projektionen $\vec{c'}$ av $\vec{c}$
+på det plan som spänns av $\vec{a}$ och $\vec{b}$.
+Förenkla uttrycket så lång som möjligt.
+(Ledning: $\vec{c'}$ är den linjärkombination av $\vec{a}$ och $\vec{b}$
+som har samma skalärprodukter med dessa som $\vec{c}$ har.)
+
+\section*{Lösning}
+Per ledning: Ansätt
+
+$$ \vec{c'} = a \, \vec{a} + b \, \vec{b} $$
+
+
+$
+\hat{\vec{u}} = \frac{\vec{a} \times \vec{b}}
+	{\lvert \vec{a} \times \vec{b} \rvert}
+$
+är en enhetsvektor ortogonal mot planet som spänns upp av $\vec{a}$ och $\vec{b}$.
+Låt $\vec{c}_\perp = \hat{\vec{u}} \cdot \vec{c} \, \vec{c}$.
+$\vec{c}_\perp$ är $\vec{c}$ projektion på $\vec{c}_\perp$ och därmed vinkelrät
+mot planet.
+
+\begin{figure}[htbp]
+	\centering
+	\tdplotsetmaincoords{70}{20}
+	\begin{tikzpicture}[tdplot_main_coords]
+
+		\tdplotsetrotatedcoords{340}{350}{25}
+		\begin{scope}[tdplot_rotated_coords]
+			\begin{scope}[canvas is xy plane at z=0]
+				\fill[blue, fill opacity=0.1] (-2, -3) rectangle (2, 3);
+
+				\draw[blue, ->] (0,0) -- (0.3,2) node[anchor=south west]{$\vec{a}$};
+				\draw[blue, ->] (0,0) -- (1,0.2) node[anchor=west]{$\vec{b}$};
+
+				\coordinate (cprime) at (0.5, 0.5);
+			\end{scope}
+
+			\coordinate (uhat) at (0, 0, 0.3);
+			\coordinate (cperp) at (0, 0, 1.5);
+			\coordinate (c) at ($(cprime) + (cperp)$);
+		\end{scope}
+
+		\draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north west]{$x$};
+		\draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=south]{$y$};
+		\draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+
+		% Draw help lines
+		\draw[red, dotted, thin] (cperp) -- (c) -- (cprime);
+
+		\draw[green, ->] (0,0) -- (cprime) node[anchor=south west]{$\vec{c'}$};
+		\draw[green, ->] (0,0) -- (c) node[anchor=south west]{$\vec{c}$};
+		\draw[green, ->] (0,0) -- (cperp) node[anchor=south east]{$\vec{c}_\perp$};
+
+		\draw[->] (0,0,0) -- (uhat) node[anchor=south east]{$\hat{\vec{u}}$};
+	\end{tikzpicture}
+	\caption{Jävligt fin figur. \label{fig:fin}}
+\end{figure}
+
+\end{document}
