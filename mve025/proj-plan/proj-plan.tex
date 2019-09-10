@@ -4,8 +4,9 @@
 \usepackage[swedish]{babel}
 \usepackage{amsmath}
 \usepackage{comment}
-\usepackage{tikz,tikz-3dplot}
+\usepackage{tikz, tikz-3dplot}
 \usepackage{titlesec}
+\usepackage{lmodern, microtype}
 
 \usetikzlibrary{calc}
 \titleformat{\section}[runin]{\normalfont\itshape}{\thesection}{1em}{}[:]
@@ -22,7 +23,7 @@
 \makeatother
 
 \author{Axel Forsman}
-\title{Projektion på plan}
+\title{Projektion på ett plan}
 
 \begin{document}
 \maketitle
@@ -37,32 +38,30 @@ Förenkla uttrycket så lång som möjligt.
 som har samma skalärprodukter med dessa som $\vec{c}$ har.)
 
 \section*{Lösning}
-Per ledning: Ansätt
-
-$$ \vec{c'} = a \, \vec{a} + b \, \vec{b} $$
-
-
-$
-\hat{\vec{u}} = \frac{\vec{a} \times \vec{b}}
-	{\lvert \vec{a} \times \vec{b} \rvert}
-$
+$\vec{\hat{u}} = \frac{\vec{a} \times \vec{b}}{\lvert \vec{a} \times \vec{b} \rvert}$
 är en enhetsvektor ortogonal mot planet som spänns upp av $\vec{a}$ och $\vec{b}$.
-Låt $\vec{c}_\perp = \hat{\vec{u}} \cdot \vec{c} \, \vec{c}$.
-$\vec{c}_\perp$ är $\vec{c}$ projektion på $\vec{c}_\perp$ och därmed vinkelrät
-mot planet.
+Låt $\vec{c_\perp} = \text{projektionen av $\vec{c}$ på $\vec{\hat{u}}$}
+	= \vec{\hat{u}} \cdot \vec{c} \, \vec{\hat{u}}$.
+I och med ortogonal projektionens existens har vi $\vec{c} = \vec{c'} + \vec{c_\perp}$.
+Lösning för $\vec{c'}$ ger
+$$ \vec{c'} = \vec{c} - \left( \frac{\vec{a} \times \vec{b}}{\lvert \vec{a} \times \vec{b} \rvert^2}
+	\, \cdot \vec{c} \right) \, \vec{a} \times \vec{b} $$
 
-\begin{figure}[htbp]
-	\centering
+Per ledning ska $\vec{c'}$ ha samma skalärprodukter med $\vec{a}$ och $\vec{b}$ som $\vec{c}$,
+vilket man lätt kan försäkra sig om,
+och vara en linjärkombination av $\vec{a}$ och $\vec{b}$,
+vilket följer av att $\vec{c'} \cdot \vec{\hat{u}} = 0$.
+
+\begin{center}
 	\tdplotsetmaincoords{70}{20}
 	\begin{tikzpicture}[tdplot_main_coords]
-
 		\tdplotsetrotatedcoords{340}{350}{25}
 		\begin{scope}[tdplot_rotated_coords]
 			\begin{scope}[canvas is xy plane at z=0]
 				\fill[blue, fill opacity=0.1] (-2, -3) rectangle (2, 3);
 
-				\draw[blue, ->] (0,0) -- (0.3,2) node[anchor=south west]{$\vec{a}$};
-				\draw[blue, ->] (0,0) -- (1,0.2) node[anchor=west]{$\vec{b}$};
+				\draw[thick, blue, ->] (0,0) -- (0.3,2) node[anchor=south west]{$\vec{a}$};
+				\draw[thick, blue, ->] (0,0) -- (1,0.2) node[anchor=west]{$\vec{b}$};
 
 				\coordinate (cprime) at (0.5, 0.5);
 			\end{scope}
@@ -72,20 +71,14 @@ mot planet.
 			\coordinate (c) at ($(cprime) + (cperp)$);
 		\end{scope}
 
-		\draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north west]{$x$};
-		\draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=south]{$y$};
-		\draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
-
 		% Draw help lines
 		\draw[red, dotted, thin] (cperp) -- (c) -- (cprime);
 
-		\draw[green, ->] (0,0) -- (cprime) node[anchor=south west]{$\vec{c'}$};
-		\draw[green, ->] (0,0) -- (c) node[anchor=south west]{$\vec{c}$};
-		\draw[green, ->] (0,0) -- (cperp) node[anchor=south east]{$\vec{c}_\perp$};
+		\draw[red, ->] (0,0) -- (cprime) node[anchor=south west]{$\vec{c'}$};
+		\draw[thick, ->] (0,0) -- (c) node[anchor=south west]{$\vec{c}$};
+		\draw[->] (0,0) -- (cperp) node[anchor=south east]{$\vec{c_\perp}$};
 
-		\draw[->] (0,0,0) -- (uhat) node[anchor=south east]{$\hat{\vec{u}}$};
+		\draw[green, ->] (0,0,0) -- (uhat) node[anchor=south east]{$\vec{\hat{u}}$};
 	\end{tikzpicture}
-	\caption{Jävligt fin figur. \label{fig:fin}}
-\end{figure}
-
+\end{center}
 \end{document}
