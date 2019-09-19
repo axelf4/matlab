@@ -5,13 +5,21 @@ attach(howell)
 D <- howell[c("height", "age")]
 N <- nrow(howell) # Number of subjects
 n <- floor(0.7 * N) # Number of rows for the training data
+p <- 1:6
+
+# Dataset but with an outlier
+Dbad <- rbind(D, data.frame(age = 120, height = 200))
+
+# Plot Dbad vs D
+par(mfrow = c(2, 1))
+plot(x = D$age, y = D$height)
+plot(x = Dbad$age, y = Dbad$height)
 
 doPolyReg <- function(D) {
 	# Sample training and testing data
 	trainIndices <- sample.int(N, n)
 	Dtrain <- D[trainIndices,]; Dtest <- D[-trainIndices,]
 
-	p <- 1:6
 	pMSE <- sapply(p, function(p) {
 		# Fit yTrain using a polynomial of order p based on xTrain
 		m <- lm(height ~ poly(age, p, raw = TRUE), data = Dtrain)
@@ -41,11 +49,26 @@ out <- doPolyReg(D)
 plot(out$p, out$pMSE, type = "o")
 
 # ii)
-set.seed(123)
+samplePWins <- function(D) {
+	set.seed(123)
 
-foldRep(
-	n = 20,
-	expr = doPolyReg(D) %>% getBestP,
-	f = function(a,x) {a[[x]] <- a[[x]] + 1; a},
-	init = integer(6)
-)
+	# foldRep(
+	# 	n = 20,
+	# 	expr = doPolyReg(D) %>% getBestP,
+	# 	f = function(a,x) {a[[x]] <- a[[x]] + 1; a},
+	# 	init = integer(6)
+	# )
+
+	freq <- factor(replicate(2000, doPolyReg(D) %>% getBestP), levels = p)
+}
+
+freq <- samplePWins(D)
+print('Frequencies of best p')
+print(table(freq))
+
+# iii)
+freq <- samplePWins(Dbad)
+print('With outlier')
+print(table(freq))
+
+# iv)
