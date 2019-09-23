@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+\usepackage{amsmath}
+\usepackage{titlesec}
+% \usepackage{lmodern, microtype}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\author{Axel Forsman}
+\title{Dipolfältet}
+
+\begin{document}
+\maketitle
+
+\section*{Problem}
+Den elektriska potentialen från en dipol med styrka $\vec{p}$ placerad i Origo ges av
+$ \Phi(\vec r) = \frac1{4\pi\epsilon_0} \frac{\vec p \cdot \vec r}{\lvert \vec r \rvert^3} $.
+
+\begin{enumerate}
+	\item Utveckla potentialen $\Phi(\vec r)$ i Cartesiska koordinater.
+	\item Beräkna den elektriska fältstyrkan $\vec E(\vec r) = -\nabla \Phi(\vec r)$ i Cartesiska koordinater.
+	\item Ge ett koordinat-oberoende uttryck för $\vec E(\vec r)$ i termer av
+		$\vec p$ och $\vec r$.
+	\item Skissera ekvipotentialytorna och de elektriska fältlinjerna.
+\end{enumerate}
+
+\section*{Lösning}
+\begin{enumerate}
+	\item Med Cartesiska koordinater:
+
+		$$ \vec r = \vec r(x, y), \quad \vec p = \vec r(u, v) $$
+
+		Får alltså:
+
+		$$ \Phi(\vec r) = \frac1{4\pi\epsilon_0} \frac{ux + vy}{(\sqrt{x^2 + y^2})^3} $$
+
+	\item
+
+		\begin{equation*}
+		\begin{split}
+			\vec E(\vec r) &= -\nabla \Phi(\vec r) \\
+			&= -\frac1{4\pi\epsilon_0} \left(
+			\frac{u (x^2 + y^2)^\frac32 - (ux + vy) \frac32 2x (x^2 + y^2)^\frac12}{(x^2 + y^2)^\frac62} \vec{\hat{i}}
+			+ \frac{v (x^2 + y^2)^\frac32 - (ux + vy) \frac32 2y (x^2 + y^2)^\frac12}{(x^2 + y^2)^\frac62} \vec{\hat{j}}
+			\right) \\
+			&= -\frac1{4\pi\epsilon_0 (x^2 + y^2)^\frac52} \left(
+			(u (y^2 - 2x^2) - 3vxy) \vec{\hat{i}}
+			+ (v (x^2 - 2y^2) - 3uxy) \vec{\hat{j}}
+			\right)
+		\end{split}
+		\end{equation*}
+
+	\item Med godtyckligt ONHS $(u_1, u_2)$: $\vec r = \vec r(u_1, u_2)$, sätt
+
+		$$ h_i = \left\lvert \frac{\partial \vec r}{\partial \vec u_i} \right\rvert, \quad
+		\vec e_i = \frac1{h_i} \frac{\partial \vec r}{\partial u_i}, \quad i = 1, 2 $$
+
+		Har att
+
+		$$ \nabla \phi = \sum_{i=1}^2 \left(\frac1{h_i} \frac{\partial \phi}{\partial u_i}\right) \vec e_i $$
+
+		Får alltså att
+
+		$$ \Phi(\vec r) = $$
+\end{enumerate}
+
+\end{document}
