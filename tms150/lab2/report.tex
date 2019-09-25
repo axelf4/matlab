@@ -1,0 +1,83 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amssymb, amsmath, amsthm, mathtools}
+\usepackage[margin=2.5cm]{geometry}
+
+\title{Example of report structure, assignments 2/4/6 only}
+\author{Axel Forsman \footnote{and in this footnote goes the name of the person you may have sit/co-worked with.}}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Write a short introduction to the lab describing the whole lab with a few sentences, e.g. what are we doing and why. No need for long theoretical background here. \textbf{Remember: the report should not exceed 10 pages including figures and tables, but excluding the appendix.}
+
+\section{Assignment 1(i)}
+\subsection{Problem}
+State the task you are going to solve, using your own words.
+\subsection{Theory and implementation}
+\begin{itemize}
+\item Describe briefly the theory and concepts of the methods you are using. Either describing using words or formulas. \emph{e.g. test of distribution assumptions and independence}. Formulas can be written \textit{inline} by inserting maths within \verb|$|...\verb|$|, e.g. $E=mc^2$ (see the source code for this report example to see how I did it). But you can also use a \textit{displaymath} approach for longer formulas by writing the math within \verb|\[|...\verb|\]|, e.g.
+\[
+E=mc^2
+\]
+or
+\[
+\frac{\pi}{4}=\int_0^1 \sqrt{1-x^2}dx
+\]
+\item Describe how you implemented your solution, e.g. which R function you used.
+\item Include your code in the appendix, make sure that it is well structured and that you have made comments.
+\end{itemize}
+\subsection{Results and discussion}
+\begin{itemize}
+\item Show the results. General remarks: When including figures in a report, remember to include captions that describe briefly what is shown in the figure. Also, refer to each plot in the text, using \verb|\ref{}| instead of manually writing the number of the figure, which might change when you add more figures before or after. For example here I refer to Figure~\ref{myfigure}  without actually typing the number myself (see the source code for this report example to see how I did it).
+\item Think about rounding when you print values. Make sure interesting exactness isn't lost, but don't print several meaningless digits.
+\item Interpret and discuss the results: e.g. what conclusions can you draw from the way the plots look?
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=8cm,height=6cm]{s8e6.jpg}  % change height and width appropriately
+    \caption{Write a meaningful caption.}
+    \label{myfigure}  % you can change "myfigure" to whatever you like
+\end{figure}
+
+\section{Assignment 1(ii)}
+\subsection{Problem}
+State the task you are going to solve, using your own words.
+\subsection{Theory and implementation}
+As above.
+\subsection{Results and discussion}
+As above.
+
+\section{Assignment 2(i)}
+As above.
+
+\begin{equation}
+	\begin{split}
+		y = \exp\overbrace{\left(-\exp\left(-\frac{x-\mu}{\beta}\right)\right)}^{\in \left(0, \infty\right) \mathrlap{\implies y \in \left(0, 1\right)}} &\\
+		&\overset{\mathclap{\substack{\text{$\ln$ bijective} \\ \text{for values $>0$}}}}\Leftrightarrow \quad -\ln y = \exp\left(-\frac{x-\mu}{\beta}\right) \\
+		&\overset{\mathclap{\substack{\text{$-\ln y \in \left(0, \infty\right) \implies$} \\ \text{$\ln$ bijective}}}}\Leftrightarrow \quad x = \mu - \beta \ln \left(-\ln y\right)
+	\end{split}
+\end{equation}
+
+\newpage  % move to a new page
+
+\appendix  % command to start an appendix
+
+\section*{Appendix - R code}
+
+Organize your code in a neat and clean way as exemplified below. \textbf{This is essential to help us grade your project}.
+Paste your code within the \texttt{verbatim} environment (see the source code for this report example), so that it looks nicely formatted as computer code as shown below
+\begin{verbatim}
+# Question 1(i)
+model <- lm(y~x)   # and comments do not provide issues
+
+# Question 1(ii)
+...
+\end{verbatim}
+In fact in {\LaTeX} the symbols \# and $\sim$ would otherwise be misinterpreted if pasted outside the verbatim environment. If you paste the code within the verbatim environment there should be no issues.
+
+\end{document}

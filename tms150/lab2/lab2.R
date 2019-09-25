@@ -24,7 +24,7 @@ doPolyReg <- function(D) {
 		# Fit yTrain using a polynomial of order p based on xTrain
 		m <- lm(height ~ poly(age, p, raw = TRUE), data = Dtrain)
 		# Make predictions based on xTest covariates
-		pMSE <- mean((Dtest[["height"]] - predict(m, Dtest["age"]))^2)
+		pMSE <- mean((Dtest$height - predict(m, Dtest["age"]))^2)
 })
 	list(p = p, pMSE = pMSE)
 }
@@ -33,15 +33,6 @@ doPolyReg <- function(D) {
 getBestP <- function(reg) {
 	which.min(reg$pMSE + reg$p * 50)
 }
-
-# Replicates `expr`, `n` times, then folds using the function `f` and the initial value.
-foldRep <- function(n, expr, f, init) {
-	for (i in 1:n) init <- f(init, eval.parent(substitute(expr)))
-	init
-}
-
-# Simple forward pipe
-`%>%` <- function(x, f) f(x)
 
 # i) pMSE for polynomial regression with response height and covariate age, p=1:6
 set.seed(123)
@@ -52,14 +43,7 @@ plot(out$p, out$pMSE, type = "o")
 samplePWins <- function(D) {
 	set.seed(123)
 
-	# foldRep(
-	# 	n = 20,
-	# 	expr = doPolyReg(D) %>% getBestP,
-	# 	f = function(a,x) {a[[x]] <- a[[x]] + 1; a},
-	# 	init = integer(6)
-	# )
-
-	freq <- factor(replicate(2000, doPolyReg(D) %>% getBestP), levels = p)
+	freq <- factor(replicate(2000, getBestP(doPolyReg(D))), levels = p)
 }
 
 freq <- samplePWins(D)
@@ -72,3 +56,32 @@ print('With outlier')
 print(table(freq))
 
 # iv)
+age0 <- seq(min(Dbad$age), max(Dbad$age), length = 100)
+plotPredictions <- function(D) {
+	plot(x = D$age, y = D$height, xlim = c(age0[1], tail(age0, n = 1)), ylim = c(50, 200),
+		main = paste("Predictions by model with dataset", substitute(D)))
+	for (p in 1:6) lines(
+		x = age0,
+		y = predict(lm(height ~ poly(age, p, raw = TRUE), data = D), data.frame(age = age0)),
+		col = p
+	)
+	legend(40, 130, legend = sapply(1:6, function(x) paste("p =", x)), col = 1:6,
+		lty = 1, cex = 0.6)
+}
+par(mfrow = c(2, 1))
+plotPredictions(D); plotPredictions(Dbad)
+
+# Exercise 3:
+set.seed(123)
+B <- 2000 # Number of bootstrap samples
+alpha <- 1 - .95
+
+bHat <- replicate(B, {
+	bHat <- unname(lm(height ~ age,
+			data = D[sample.int(N, replace = TRUE), ])$coefficients)
+})
+percentileCI <- function(x) quantile(x, probs = c(alpha / 2, 1 - alpha / 2))
+bHat0CI <- percentileCI(bHat[1,]); bHat1CI <- percentileCI(bHat[2,])
+bHat0CI; bHat1CI
+
+confint(lm(height ~ age, data = D)) # Real values
