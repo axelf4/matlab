@@ -1,5 +1,4 @@
-# Load the data
-howell <- read.table("Howell.txt")
+howell <- read.table("Howell.txt") # Load the data
 # Includes height (cm), weight (kg), age (years) and gender (1 for male, 0 otherwise)
 attach(howell)
 D <- howell[c("height", "age")]
@@ -42,7 +41,6 @@ plot(out$p, out$pMSE, type = "o")
 # ii)
 samplePWins <- function(D) {
 	set.seed(123)
-
 	freq <- factor(replicate(2000, getBestP(doPolyReg(D))), levels = p)
 }
 
@@ -58,7 +56,7 @@ print(table(freq))
 # iv)
 age0 <- seq(min(Dbad$age), max(Dbad$age), length = 100)
 plotPredictions <- function(D) {
-	plot(x = D$age, y = D$height, xlim = c(age0[1], tail(age0, n = 1)), ylim = c(50, 200),
+	plot(x = D$age, y = D$height, xlab ="age", ylab = "height", xlim = c(age0[1], tail(age0, n = 1)), ylim = c(50, 200),
 		main = paste("Predictions by model with dataset", substitute(D)))
 	for (p in 1:6) lines(
 		x = age0,
@@ -68,18 +66,18 @@ plotPredictions <- function(D) {
 	legend(40, 130, legend = sapply(1:6, function(x) paste("p =", x)), col = 1:6,
 		lty = 1, cex = 0.6)
 }
+tikz("pred_plot.tex", width = 6, height = 7)
 par(mfrow = c(2, 1))
 plotPredictions(D); plotPredictions(Dbad)
+dev.off()
 
 # Exercise 3:
 set.seed(123)
 B <- 2000 # Number of bootstrap samples
 alpha <- 1 - .95
 
-bHat <- replicate(B, {
-	bHat <- unname(lm(height ~ age,
-			data = D[sample.int(N, replace = TRUE), ])$coefficients)
-})
+bHat <- replicate(B, unname(lm(height ~ age,
+			data = D[sample.int(N, replace = TRUE), ])$coefficients))
 percentileCI <- function(x) quantile(x, probs = c(alpha / 2, 1 - alpha / 2))
 bHat0CI <- percentileCI(bHat[1,]); bHat1CI <- percentileCI(bHat[2,])
 bHat0CI; bHat1CI

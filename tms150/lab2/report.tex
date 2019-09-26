@@ -1,9 +1,19 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[11pt, a4paper]{article}
 \usepackage{epsfig}
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{amssymb, amsmath, amsthm, mathtools}
 \usepackage[margin=2.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{pgfplots}
+
+\makeatletter
+\def\fps@figure{hbtp}
+\def\fps@table{hbtp}
+\makeatother
 
 \title{Example of report structure, assignments 2/4/6 only}
 \author{Axel Forsman \footnote{and in this footnote goes the name of the person you may have sit/co-worked with.}}
@@ -15,6 +25,257 @@
 Write a short introduction to the lab describing the whole lab with a few sentences, e.g. what are we doing and why. No need for long theoretical background here. \textbf{Remember: the report should not exceed 10 pages including figures and tables, but excluding the appendix.}
 
 \section{Assignment 1(i)}
+\subsection{Problem}
+With the \verb|Howell.txt| dataset, and \verb|n = floor(.7 * N)|,
+plot the pMSE of polynomial regressions with response \texttt{height} and covariate \texttt{age}
+against $p = 1, \ldots, 6$,
+and identify the best model while considering Occam's razor.
+
+\subsection{Theory and implementation}
+A polynomial regression model is of the form
+$$ \mathbb E(y \mid x) = \beta_0 + \beta_1 x + \cdots + \beta_p x^p, \quad p = 1, 2, \ldots $$
+Given a dataset split into \emph{training} and \emph{testing} data,
+$$ pMSE(p) = \frac1m \sum^m_{i=1} \left(y_i^{new} - \hat y_i(p)\right)^2$$
+is the \emph{prediction mean-squared-error} for the model
+obtained by fitting the training data,
+where $y_i^{new}$ are from the testing data and
+$\hat y_i$ are the corresponding predictions by the model.
+
+For sampling training and testing data the R function \texttt{sample.int} was used.
+
+\subsection{Results and discussion}
+The pMSE vs $p$ plot is shown in figure~\ref{fig:p_pMSE}.
+We see that the best pMSE is achieved by $p=4$, however $p=3$ is not far off.
+In the light of Occam's razor,
+we should favor the simplest out of two models with similar performance,
+and thus prefer $p=3$.
+
+\begin{figure}
+	\centering
+	\input{pMSE_plot.tex}
+	\caption{Plot of pMSE:s versus $p$. \label{fig:p_pMSE}}
+\end{figure}
+
+\section{Assignment 1(ii)}\label{sec:p_freq}
+\subsection{Problem}
+Collect the value of $p$ of the model that ``wins'' in \num{2e4} attempts,
+resampling the batches every time.
+\subsection{Theory and implementation}
+Since sampling the training and testing batches entails generation of random indices,
+the induced pMSE:s are expected to change with every attempt.
+\subsection{Results and discussion}
+The recorded frequencies are presented in table~\ref{tab:p_freq}.
+We see that not every attempt yielded the same winner - there is randomness at play.
+Most of the time model $p=3$ wins which seems intuitive. % TODO Expand
+
+\begin{table}
+	\parbox{.45\linewidth}{
+		\centering
+		\caption{Frequencies of ``winning'' models with $p = \text{\numrange{1}{6}}$ across \num{2e4} attemps. \label{tab:p_freq}}
+		\begin{tabular}{r@{\hskip 0.5in}r}\toprule
+			\centering p & \centering Frequency \tabularnewline \midrule
+			1 & 0 \\
+			2 & 5 \\
+			3 & 1995 \\
+			4 & 0 \\
+			5 & 0 \\
+			6 & 0 \\ \bottomrule
+		\end{tabular}
+		}
+		\hfill
+		\parbox{.45\linewidth}{
+			\centering
+			\caption{Same procedure as in table~\ref{tab:p_freq}, however with an added outlier in the dataset:
+			a 2 meters tall man at age 120. \label{tab:p_freq_outlier}}
+			\begin{tabular}{r@{\hskip 0.5in}r}\toprule
+				\centering p & \centering Frequency \tabularnewline \midrule
+				1 & 315 \\
+				2 & 1 \\
+				3 & 757 \\
+				4 & 15 \\
+				5 & 877 \\
+				6 & 35 \\ \bottomrule
+			\end{tabular}
+			}
+\end{table}
+
+\section{Assignment 1(iii)}
+\subsection{Problem}
+Repeat the work done in section~\ref{sec:p_freq} but with an added outlier:
+a 2 meters tall man at age 120.
+Why do the results differ?
+\subsection{Theory and implementation}
+\subsection{Results and discussion}
+The new frequencies are shown in table~\ref{tab:p_freq_outlier}.
+When the training data is sampled there is a chance the outlier is not included.
+Due to the way the testing data is constructed the outlier would then be in there instead,
+and vice versa.
+The pMSE calculation would then favor $p$:s whose polynomials are able to naturally
+incorporate the outlier,
+which seems to be odd values of $p$, looking at the results and figure~\ref{fig:predictions}.
+
+\section{Assignment 1(iv)}
+\subsection{Problem}
+Plot the data with the six fitted polynomials
+in both the case of the original data and with the outlier present.
+Should the outlier be kept?
+\subsection{Theory and implementation}
+\subsection{Results and discussion}
+The plots are given in figure~\ref{fig:predictions}.
+% TODO
+
+\begin{figure}
+	\centering
+	\input{pred_plot.tex}
+	\caption{Plots of data and predictions by the six fitted polynomials,
+	on the original dataset and with the added outlier. \label{fig:predictions}}
+\end{figure}
+
+% Start of bootstrap section
+
+\section{Assignment 2(a)}
+\subsection{Problem}
+Derive the formula for generating random Gumbel distribution draws using the inversion cdf method.
+\subsection{Theory and implementation}
+The Gumbel distribution has the cdf
+$$ F(x; \mu, \beta) = \exp\left(-\exp\left(-\frac{x-\mu}\beta\right)\right), \quad x \in \mathbb{R} $$
+
+The inverse cdf method states that if $U \sim Unif(0, 1)$ is a uniform random variable
+and $F$ is a distribution function, then $F^{-1}(U) \sim F$.
+\subsection{Results and discussion}
+With $y=F(x; \mu, \beta)$
+\begin{equation}
+	\begin{split}
+		y = \exp\overbrace{\left(-\exp\left(-\frac{x-\mu}{\beta}\right)\right)}^{\in \left(0, \infty\right) \mathrlap{\implies y \in \left(0, 1\right)}} &\\
+		&\overset{\mathclap{\substack{\text{$\ln$ bijective} \\ \text{for values $>0$}}}}\Leftrightarrow \quad -\ln y = \exp\left(-\frac{x-\mu}{\beta}\right) \\
+		&\overset{\mathclap{\substack{\text{$-\ln y \in \left(0, \infty\right)$} \\ \text{$\implies \ln$ bijective}}}}\Leftrightarrow \quad x = \mu - \beta \ln \left(-\ln y\right)
+	\end{split}
+\end{equation}
+Therefore $F^{-1}(y; \mu, \beta) = \mu - \beta \ln \left(-\ln y\right), \, y \in (0, 1)$.
+Thus according to the inverse cdf method, \verb|Finv(rand)|, if interpreted by MATLAB,
+would generate a random draw of the Gumbel distribution.
+
+\section{Assignment 2(b)}
+\subsection{Problem}
+Simulate a sample of Gumbel of size $n$,
+and use \texttt{qqplot} to check that the distributions of the \texttt{atlantic} and simulated data
+approximately agree.
+\subsection{Theory and implementation}
+The MATLAB function \texttt{qqplot} plots the quantiles of the two specified datasets
+against each other.
+If they come from the same distribution the points should therefore land on the diagonal,
+even if one dataset had been scaled and/or shifted.
+\subsection{Results and discussion}
+The q-q plot is shown in figure~\ref{fig:qqplot}.
+We see that it is approximately linear which means that the distributions
+of the two datasets agree.
+
+\begin{figure}
+	\centering
+	\input{atlantic_qqplot.tex}
+	\caption{A quantile-quantile plot of the \texttt{atlantic} and Gumbel sampled data.
+	The \texttt{atlantic} quantiles are on the X-axis. \label{fig:qqplot}}
+\end{figure}
+
+\section{Assignment 2(c)}\label{sec:atlantic_param_bootstrap}
+\subsection{Problem}
+Give parametric bootstrapped \SI{95}{\percent} confidence intervals for the parameters
+with the percentile method, using $B = \num{e4}$ simulations.
+\subsection{Theory and implementation}
+Bootstrap approximates distributions of functions of the data.
+If $X_1, \ldots, X_n$ are i.i.d. random variables, $X_1 \sim F$,
+with $x_1, \ldots, x_n$ being the corresponding sample,
+then the bootstrap tries to, even if $F$ is unknown, approximate $\hat F \approx F$ from data,
+and use $\hat F$ instead.
+Parametric bootstrap assumes the data is from a known distribution $F_\psi$
+with parameters $\psi$, where $\psi$ is estimated to $\hat\psi$.
+A new dataset $x^*$ is sampled from $F_{\hat\psi}$
+from which the parameter of interest $\theta$ is estimated to $\hat\theta^*_i$;
+repeat this $B$ times and take the empirical distribution $(\hat\theta^*_1, \hat\theta^*B)$
+as an approximation of the true distribution of $\hat\theta$.
+\subsection{Results and discussion}
+The confidence intervals yielded by the percentile method with bootstrap look like
+$$ \left[\hat\theta^*_{\alpha/2}, \hat\theta^*_{1-\alpha/2}\right] $$
+where $\alpha$ is the significance level and $\hat\theta^*_\alpha$ is the
+$\alpha$-quantile of the distribution of $\hat\theta^*$
+and can be approximated in MATLAB by the \texttt{prctile} function.
+\subsection{Results and discussion}
+The \SI{95}{\percent} confidence intervals constructed by the percentile method with bootstrap are
+\begin{equation}\label{eq:atlantic_param_ci}
+	\hat\beta \in [\num{1.3902}, \num{1.5800}], \quad \hat\mu \in [\num{4.0232}, \num{4.2750}]
+\end{equation}
+
+\section{Assignment 2(d)}\label{sec:return_value}
+\subsection{Problem}
+Give a parametric bootstrapped \SI{95}{\percent} confidence interval
+for the 100-year return value with the percentile method.
+\subsection{Theory and implementation}
+The largest expected significant-wave-height during a 100-year period
+is called the expected 100-year return value.
+The $T$th return value is given by $F^{-1}(1 - 1 / T; \mu, \beta)$;
+due to the frequence by which observations were collected in the dataset
+the 100-year return is given by $T = 3 \cdot 14 \cdot 100$, intuitively,
+since $F$ is an increasing function of significant-wave-height to probability.
+
+Re-using the intermediate result from section~\ref{sec:atlantic_param_bootstrap}
+of the estimated parameters of $F$,
+the empirical distribution of the 100-year return value can be calculated directly.
+\subsection{Results and discussion}
+The \SI{95}{\percent} confidence interval became
+$$ \text{100-year return value} \in [\num{15.6896}, \num{17.4056}] $$
+
+\section{Assignment 2(e)}
+\subsection{Problem}
+Based on section~\ref{sec:return_value}:
+If the \texttt{atlantic.txt} values were from a coastal area,
+how tall should a protective barrier be if built?
+\subsection{Theory and implementation}
+\subsection{Results and discussion}
+
+\section{Assignment 2(f)}
+\subsection{Problem}
+Repeat work in section~\ref{sec:atlantic_param_bootstrap} but with non-parametric bootstrap instead.
+\subsection{Theory and implementation}
+\subsection{Results and discussion}
+The resulting \SI{95}{\percent} confidence intervals were
+$$ \hat\beta \in [\num{1.3911}, \num{1.5806}], \quad
+	\hat\mu \in [\num{4.0242}, \num{4.2737}] $$
+We see that they are very close to the CI:s in equation~\ref{eq:atlantic_param_ci},
+thus if one method was especially time efficient it would be a good idea to use that one.
+
+\section{Assignment 3}
+\subsection{Problem}
+With the Howell data,
+able to calculate simple linear regression estimates and sample from the data with replacement,
+but unable to simulate observations from the linear regression model,
+set construct \SI{95}{\percent} bootstrap confidence intervals for $\beta_0$ and $\beta_1$,
+with $B = \num{2000}$ samples.
+Compare with \texttt{confint}.
+\subsection{Theory and implementation}
+Non-parametric bootstrap, works under the imposed restrictions, where
+new datasets $x^*$ are sampled with replacement
+(as if sampling from the empirical cdf $\hat F$)
+from which $\hat\theta^*_i$ estimates of $\theta$,
+to form the empirical distribution $(\hat\theta^*_1, \ldots, \hat\theta^*_B)$
+as an approximation of the true distribution of $\hat\theta$.
+
+Then the percentile method was used to get the confidence intervals.
+\subsection{Results and discussion}
+The \SI{95}{\percent} confidence intervals were
+\begin{align*}
+	\hat\beta_0 &\in [\num[round-mode = places]{108.0639}, \num[round-mode = places]{115.3013}] \\
+	\hat\beta_1 &\in [\num[round-mode = places]{0.8105299}, \num[round-mode = places]{1.0146466}]
+\end{align*}
+These are in contrast to the confidence intervals received from the \texttt{confint} function
+on the corresponding model:
+\begin{align*}
+	\hat\beta_0 &\in [\num[round-mode = places]{108.6285751}, \num[round-mode = places]{114.5149907}] \\
+	\hat\beta_1 &\in [\num[round-mode = places]{0.8276829}, \num[round-mode = places]{0.9915276}]
+\end{align*}
+We see that the bootstrapped CI:s are very much alike the ones derived from
+knowing the model.
+
+\section{Assignment 4(i)}
 \subsection{Problem}
 State the task you are going to solve, using your own words.
 \subsection{Theory and implementation}
@@ -37,13 +298,6 @@ or
 \item Interpret and discuss the results: e.g. what conclusions can you draw from the way the plots look?
 \end{itemize}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=8cm,height=6cm]{s8e6.jpg}  % change height and width appropriately
-    \caption{Write a meaningful caption.}
-    \label{myfigure}  % you can change "myfigure" to whatever you like
-\end{figure}
-
 \section{Assignment 1(ii)}
 \subsection{Problem}
 State the task you are going to solve, using your own words.
@@ -54,14 +308,6 @@ As above.
 
 \section{Assignment 2(i)}
 As above.
-
-\begin{equation}
-	\begin{split}
-		y = \exp\overbrace{\left(-\exp\left(-\frac{x-\mu}{\beta}\right)\right)}^{\in \left(0, \infty\right) \mathrlap{\implies y \in \left(0, 1\right)}} &\\
-		&\overset{\mathclap{\substack{\text{$\ln$ bijective} \\ \text{for values $>0$}}}}\Leftrightarrow \quad -\ln y = \exp\left(-\frac{x-\mu}{\beta}\right) \\
-		&\overset{\mathclap{\substack{\text{$-\ln y \in \left(0, \infty\right) \implies$} \\ \text{$\ln$ bijective}}}}\Leftrightarrow \quad x = \mu - \beta \ln \left(-\ln y\right)
-	\end{split}
-\end{equation}
 
 \newpage  % move to a new page
 
