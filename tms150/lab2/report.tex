@@ -9,20 +9,37 @@
 \usepackage{booktabs}
 \usepackage{caption}
 \usepackage{pgfplots}
+\usepackage{listings}
 
 \makeatletter
 \def\fps@figure{hbtp}
 \def\fps@table{hbtp}
 \makeatother
 
-\title{Example of report structure, assignments 2/4/6 only}
-\author{Axel Forsman \footnote{and in this footnote goes the name of the person you may have sit/co-worked with.}}
+\lstset{
+	breaklines=true,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+	}
+
+\DeclareSIUnit\year{yr}
+\DeclareMathOperator{\Length}{Length}
+
+\title{Assignment 2}
+\author{Axel Forsman}
 
 \begin{document}
 \maketitle
 
 \section{Introduction}
-Write a short introduction to the lab describing the whole lab with a few sentences, e.g. what are we doing and why. No need for long theoretical background here. \textbf{Remember: the report should not exceed 10 pages including figures and tables, but excluding the appendix.}
+This lab dabbles both in questions surrounding model complexity and the topic of bootstrap.
+Controlling the complexity of one's model is necessary to make sure it does not
+(a) over-fit, that is, capture patterns that do not portray the situation, or
+(b) under-fit, being unable to model the dynamics of the data.
+To first and foremost avoid under-fitting, the predicted MSE metric is used,
+along with Occam's razor.
+Bootstrap on the other hand is useful when analytical measures of accuracy of a distribution
+are impractical or impossible to get.
+Instead, bootstrap estimates them numerically.
 
 \section{Assignment 1(i)}
 \subsection{Problem}
@@ -44,7 +61,7 @@ $\hat y_i$ are the corresponding predictions by the model.
 For sampling training and testing data the R function \texttt{sample.int} was used.
 
 \subsection{Results and discussion}
-The pMSE vs $p$ plot is shown in figure~\ref{fig:p_pMSE}.
+The pMSE versus $p$ plot is shown in figure~\ref{fig:p_pMSE}.
 We see that the best pMSE is achieved by $p=4$, however $p=3$ is not far off.
 In the light of Occam's razor,
 we should favor the simplest out of two models with similar performance,
@@ -53,7 +70,7 @@ and thus prefer $p=3$.
 \begin{figure}
 	\centering
 	\input{pMSE_plot.tex}
-	\caption{Plot of pMSE:s versus $p$. \label{fig:p_pMSE}}
+	\caption{Plot of predicted MSE:s versus $p$. \label{fig:p_pMSE}}
 \end{figure}
 
 \section{Assignment 1(ii)}\label{sec:p_freq}
@@ -63,21 +80,30 @@ resampling the batches every time.
 \subsection{Theory and implementation}
 Since sampling the training and testing batches entails generation of random indices,
 the induced pMSE:s are expected to change with every attempt.
+
+In the spirit of Occam's razor,
+when evaluating the best model in terms of smallest pMSE,
+a small linear $p$ term is added to favor models with fewer assumptions.
+The R function becomes
+\begin{lstlisting}[language=R]
+getBestP <- function(p, pMSE) which.min(pMSE + 20 * p)
+\end{lstlisting}
+where \texttt{p} and \texttt{pMSE} are vectors whose values correspond to the models.
 \subsection{Results and discussion}
 The recorded frequencies are presented in table~\ref{tab:p_freq}.
 We see that not every attempt yielded the same winner - there is randomness at play.
-Most of the time model $p=3$ wins which seems intuitive. % TODO Expand
+Most of the time model $p=3$ wins - though the winning criteria are somewhat arbitrary.
 
 \begin{table}
 	\parbox{.45\linewidth}{
 		\centering
-		\caption{Frequencies of ``winning'' models with $p = \text{\numrange{1}{6}}$ across \num{2e4} attemps. \label{tab:p_freq}}
-		\begin{tabular}{r@{\hskip 0.5in}r}\toprule
+		\caption{Frequencies of ``winning'' models with $p = \text{\numrange{1}{6}}$ across \num{2e4} attempts. \label{tab:p_freq}}
+		\begin{tabular}{r@{\hskip 0.8in}r}\toprule
 			\centering p & \centering Frequency \tabularnewline \midrule
 			1 & 0 \\
-			2 & 5 \\
-			3 & 1995 \\
-			4 & 0 \\
+			2 & 0 \\
+			3 & 1947 \\
+			4 & 53 \\
 			5 & 0 \\
 			6 & 0 \\ \bottomrule
 		\end{tabular}
@@ -87,14 +113,14 @@ Most of the time model $p=3$ wins which seems intuitive. % TODO Expand
 			\centering
 			\caption{Same procedure as in table~\ref{tab:p_freq}, however with an added outlier in the dataset:
 			a 2 meters tall man at age 120. \label{tab:p_freq_outlier}}
-			\begin{tabular}{r@{\hskip 0.5in}r}\toprule
+			\begin{tabular}{r@{\hskip 0.8in}r}\toprule
 				\centering p & \centering Frequency \tabularnewline \midrule
-				1 & 315 \\
+				1 & 43 \\
 				2 & 1 \\
-				3 & 757 \\
-				4 & 15 \\
-				5 & 877 \\
-				6 & 35 \\ \bottomrule
+				3 & 646 \\
+				4 & 33 \\
+				5 & 1226 \\
+				6 & 52 \\ \bottomrule
 			\end{tabular}
 			}
 \end{table}
@@ -122,7 +148,13 @@ Should the outlier be kept?
 \subsection{Theory and implementation}
 \subsection{Results and discussion}
 The plots are given in figure~\ref{fig:predictions}.
-% TODO
+We see that the difference between the predictions on the two different datasets
+are not too drastic near the points of the original dataset:
+What really changes is how the higher-degree polynomials adapt to cover the new outlier point.
+The disparity between the outlier and the other data points at either
+there having been some error in the collection of the point,
+or that it represents some interesting fact about the dataset;
+this ultimately decides whether or not it should be kept.
 
 \begin{figure}
 	\centering
@@ -163,7 +195,7 @@ approximately agree.
 \subsection{Theory and implementation}
 The MATLAB function \texttt{qqplot} plots the quantiles of the two specified datasets
 against each other.
-If they come from the same distribution the points should therefore land on the diagonal,
+If they come from the same distribution the points should therefore land on a line,
 even if one dataset had been scaled and/or shifted.
 \subsection{Results and discussion}
 The q-q plot is shown in figure~\ref{fig:qqplot}.
@@ -193,7 +225,7 @@ A new dataset $x^*$ is sampled from $F_{\hat\psi}$
 from which the parameter of interest $\theta$ is estimated to $\hat\theta^*_i$;
 repeat this $B$ times and take the empirical distribution $(\hat\theta^*_1, \hat\theta^*B)$
 as an approximation of the true distribution of $\hat\theta$.
-\subsection{Results and discussion}
+
 The confidence intervals yielded by the percentile method with bootstrap look like
 $$ \left[\hat\theta^*_{\alpha/2}, \hat\theta^*_{1-\alpha/2}\right] $$
 where $\alpha$ is the significance level and $\hat\theta^*_\alpha$ is the
@@ -211,10 +243,10 @@ Give a parametric bootstrapped \SI{95}{\percent} confidence interval
 for the 100-year return value with the percentile method.
 \subsection{Theory and implementation}
 The largest expected significant-wave-height during a 100-year period
-is called the expected 100-year return value.
+is called the expected 100-year return value of the significant-wave-height.
 The $T$th return value is given by $F^{-1}(1 - 1 / T; \mu, \beta)$;
-due to the frequence by which observations were collected in the dataset
-the 100-year return is given by $T = 3 \cdot 14 \cdot 100$, intuitively,
+due to the frequency by which observations were collected into the dataset,
+$T = 3 \cdot 14 \cdot 100$ gives the 100-year return value - intuitively -
 since $F$ is an increasing function of significant-wave-height to probability.
 
 Re-using the intermediate result from section~\ref{sec:atlantic_param_bootstrap}
@@ -222,20 +254,35 @@ of the estimated parameters of $F$,
 the empirical distribution of the 100-year return value can be calculated directly.
 \subsection{Results and discussion}
 The \SI{95}{\percent} confidence interval became
-$$ \text{100-year return value} \in [\num{15.6896}, \num{17.4056}] $$
+\begin{equation}\label{eq:x100_year_return_value_ci}
+	\text{100-year return value} \in [\num{15.6896}, \num{17.4056}]
+\end{equation}
+The upper and lower bound are a little bit larger by the largest value
+in the \texttt{atlantic.txt} data file, which is \num[round-mode = places]{12.8780},
+but the recorded data only spans
+$\Length(\text{\texttt{atlantic.text}}) / (3 \cdot 14) \approx \SI{13}{\year}$,
+so it seems believable.
 
 \section{Assignment 2(e)}
 \subsection{Problem}
-Based on section~\ref{sec:return_value}:
+Continuing on the problem in section~\ref{sec:return_value}:
 If the \texttt{atlantic.txt} values were from a coastal area,
 how tall should a protective barrier be if built?
 \subsection{Theory and implementation}
 \subsection{Results and discussion}
+Well, when the confidence intervals was constructed there was a \SI{95}{\percent}
+chance the true 100-year return value would be enclosed within.
+Therefore it would seem like a good idea to build a barrier \num{17.4056} units tall,
+corresponding to the upper bound of the confidence interval
+presented in equation~\ref{eq:x100_year_return_value_ci}.
+Pertaining to the usual efficiency of communal operations, however,
+the barrier should be built only half as tall, yet cost twice as much.
 
 \section{Assignment 2(f)}
 \subsection{Problem}
 Repeat work in section~\ref{sec:atlantic_param_bootstrap} but with non-parametric bootstrap instead.
 \subsection{Theory and implementation}
+See section~\ref{sec:a3_non_param_bootstrap} for theory on non-parametric bootstrap.
 \subsection{Results and discussion}
 The resulting \SI{95}{\percent} confidence intervals were
 $$ \hat\beta \in [\num{1.3911}, \num{1.5806}], \quad
@@ -251,7 +298,7 @@ but unable to simulate observations from the linear regression model,
 set construct \SI{95}{\percent} bootstrap confidence intervals for $\beta_0$ and $\beta_1$,
 with $B = \num{2000}$ samples.
 Compare with \texttt{confint}.
-\subsection{Theory and implementation}
+\subsection{Theory and implementation}\label{sec:a3_non_param_bootstrap}
 Non-parametric bootstrap, works under the imposed restrictions, where
 new datasets $x^*$ are sampled with replacement
 (as if sampling from the empirical cdf $\hat F$)
@@ -273,57 +320,15 @@ on the corresponding model:
 	\hat\beta_1 &\in [\num[round-mode = places]{0.8276829}, \num[round-mode = places]{0.9915276}]
 \end{align*}
 We see that the bootstrapped CI:s are very much alike the ones derived from
-knowing the model.
+knowing the model and being able to give explicit formulas for the CI:s.
 
-\section{Assignment 4(i)}
-\subsection{Problem}
-State the task you are going to solve, using your own words.
-\subsection{Theory and implementation}
-\begin{itemize}
-\item Describe briefly the theory and concepts of the methods you are using. Either describing using words or formulas. \emph{e.g. test of distribution assumptions and independence}. Formulas can be written \textit{inline} by inserting maths within \verb|$|...\verb|$|, e.g. $E=mc^2$ (see the source code for this report example to see how I did it). But you can also use a \textit{displaymath} approach for longer formulas by writing the math within \verb|\[|...\verb|\]|, e.g.
-\[
-E=mc^2
-\]
-or
-\[
-\frac{\pi}{4}=\int_0^1 \sqrt{1-x^2}dx
-\]
-\item Describe how you implemented your solution, e.g. which R function you used.
-\item Include your code in the appendix, make sure that it is well structured and that you have made comments.
-\end{itemize}
-\subsection{Results and discussion}
-\begin{itemize}
-\item Show the results. General remarks: When including figures in a report, remember to include captions that describe briefly what is shown in the figure. Also, refer to each plot in the text, using \verb|\ref{}| instead of manually writing the number of the figure, which might change when you add more figures before or after. For example here I refer to Figure~\ref{myfigure}  without actually typing the number myself (see the source code for this report example to see how I did it).
-\item Think about rounding when you print values. Make sure interesting exactness isn't lost, but don't print several meaningless digits.
-\item Interpret and discuss the results: e.g. what conclusions can you draw from the way the plots look?
-\end{itemize}
+\clearpage
+\appendix % Start appendix sections
 
-\section{Assignment 1(ii)}
-\subsection{Problem}
-State the task you are going to solve, using your own words.
-\subsection{Theory and implementation}
-As above.
-\subsection{Results and discussion}
-As above.
+\section{R code}
+\lstinputlisting[language=R]{lab2.R}
 
-\section{Assignment 2(i)}
-As above.
-
-\newpage  % move to a new page
-
-\appendix  % command to start an appendix
-
-\section*{Appendix - R code}
-
-Organize your code in a neat and clean way as exemplified below. \textbf{This is essential to help us grade your project}.
-Paste your code within the \texttt{verbatim} environment (see the source code for this report example), so that it looks nicely formatted as computer code as shown below
-\begin{verbatim}
-# Question 1(i)
-model <- lm(y~x)   # and comments do not provide issues
-
-# Question 1(ii)
-...
-\end{verbatim}
-In fact in {\LaTeX} the symbols \# and $\sim$ would otherwise be misinterpreted if pasted outside the verbatim environment. If you paste the code within the verbatim environment there should be no issues.
+\section{MATLAB code}
+\lstinputlisting[language=MATLAB]{lab2_2.m}
 
 \end{document}

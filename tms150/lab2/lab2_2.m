@@ -16,15 +16,15 @@ rng(123) % For reproducibility
 B = 10000; % Number of simulations
 alpha = 1 - .95;
 
-deal2 = @(x) deal(x(1), x(2)); % To work around est_gumbel not returning two outputs
+deal2 = @(x) deal(x(1), x(2)); % Works around est_gumbel not returning two outputs
 [beta_star, mu_star] = arrayfun(@(x) deal2(est_gumbel(sample_Gumbel(n))), 1:B);
 
 beta_CI = prctile(beta_star, [100 * alpha / 2, 100 * (1 - alpha / 2)])
 mu_CI = prctile(mu_star, [100 * alpha / 2, 100 * (1 - alpha / 2)])
 
 %% d) Provide parametric bootstrapped 95% CIs for the 100-year return value using percentile method
-T = 3 * 14 * 100; % For 100th return value
 tthReturnValue = @(T, mu, beta) Finv(1 - 1 ./ T, mu, beta);
+T = 3 * 14 * 100; % For 100th return value
 
 x100yearReturnValue = arrayfun(@(mu, beta) tthReturnValue(T, mu, beta), mu_star, beta_star);
 x100yearReturnValue_CI = prctile(x100yearReturnValue, [100 * alpha / 2, 100 * (1 - alpha / 2)])

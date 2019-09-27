@@ -9,11 +9,6 @@ p <- 1:6
 # Dataset but with an outlier
 Dbad <- rbind(D, data.frame(age = 120, height = 200))
 
-# Plot Dbad vs D
-par(mfrow = c(2, 1))
-plot(x = D$age, y = D$height)
-plot(x = Dbad$age, y = Dbad$height)
-
 doPolyReg <- function(D) {
 	# Sample training and testing data
 	trainIndices <- sample.int(N, n)
@@ -24,19 +19,18 @@ doPolyReg <- function(D) {
 		m <- lm(height ~ poly(age, p, raw = TRUE), data = Dtrain)
 		# Make predictions based on xTest covariates
 		pMSE <- mean((Dtest$height - predict(m, Dtest["age"]))^2)
-})
+	})
 	list(p = p, pMSE = pMSE)
 }
 
 # Given the polynomial regression from doPolyReg returns the best p.
-getBestP <- function(reg) {
-	which.min(reg$pMSE + reg$p * 50)
-}
+getBestP <- function(reg) which.min(reg$pMSE + 20 * reg$p)
 
 # i) pMSE for polynomial regression with response height and covariate age, p=1:6
 set.seed(123)
 out <- doPolyReg(D)
-plot(out$p, out$pMSE, type = "o")
+plot(out$p, out$pMSE, type = "b",
+	xlab = "polynomial degree", ylab = "predicted MSE")
 
 # ii)
 samplePWins <- function(D) {
@@ -66,10 +60,8 @@ plotPredictions <- function(D) {
 	legend(40, 130, legend = sapply(1:6, function(x) paste("p =", x)), col = 1:6,
 		lty = 1, cex = 0.6)
 }
-tikz("pred_plot.tex", width = 6, height = 7)
 par(mfrow = c(2, 1))
 plotPredictions(D); plotPredictions(Dbad)
-dev.off()
 
 # Exercise 3:
 set.seed(123)
