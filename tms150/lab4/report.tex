@@ -1,0 +1,67 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amssymb, amsmath, amsthm, mathtools}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{pgfplots}
+\usepackage{listings}
+
+\makeatletter
+\def\fps@figure{hbtp}
+\def\fps@table{hbtp}
+\makeatother
+
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+\lstset{
+	breaklines=true,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+	}
+
+\title{Assignment 4}
+\author{Axel Forsman}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\section{Assignment 1(a)}
+\subsection{Problem}
+Prove that $\mathbb E[u(t)]$ is maximized as a function of
+$\mu$ and $\sigma^2$ when $\mu - k\sigma^2/2$ is maximized.
+\subsection{Theory and implementation}
+\subsection{Results and discussion}
+\begin{align*}
+	\mathbb E[u(t)] &= \int_\infty^\infty \frac{1 - e^{-yk}}k \frac1{\sqrt{2\pi\sigma^2}}
+		\exp\left(-\frac1{2\sigma^2} (y - \mu)^2\right) \, dy \\
+		&= \frac1k \left(\underbrace{\int_\infty^\infty \frac1{\sqrt{2\pi\sigma^2}} \exp\left(-\frac1{2\sigma^2} (y - \mu)^2\right) \, dy}_{=1, \, \text{for integral of pdf of normal distribution}}
+		- \int_\infty^\infty e^{-yk} \frac1{\sqrt{2\pi\sigma^2}} \exp\left(-\frac1{2\sigma^2} (y - \mu)^2\right) \, dy\right) \\
+		&= \frac1k \left(1 - \int_\infty^\infty \frac1{\sqrt{2\pi\sigma^2}}
+			\exp\left(\underbrace{-yk - \frac1{2\sigma^2} (y - \mu)^2}_{\begin{subarray}{1}
+				= y^2 - 2y(\mu - \sigma^2k) + \mu^2 \\
+				= (y - (\mu - \sigma^2k))^2 + 2\sigma^2k\mu - (\sigma^2k)^2
+			\end{subarray}}\right) \, dy\right) \\
+		&= \frac1k \left(1 - \exp\left(-\frac{2\sigma^2k\mu - (\sigma^2k)^2}{2\sigma^2}\right)
+			\int_\infty^\infty \frac1{\sqrt{2\pi\sigma^2}} \exp\left(-\frac1{2\sigma^2} (y - (\mu - \sigma^2k))^2\right) \, dy\right) \\
+		&= \frac1k \left(1 - \exp\left(-k \left(\mu - \frac{k\sigma^2}2\right)\right)\right)
+\end{align*}
+which is maximized when $\mu - k\sigma^2/2$ is maximized, since
+$\left(1 - \exp\left(-k x\right)\right) / k$
+is an increasing function of $x$, regardless of $k \ne 0$.
+
+\clearpage
+\appendix % Start appendix sections
+
+\section{R code}
+% \lstinputlisting[language=R]{lab4.R}
+
+\end{document}
