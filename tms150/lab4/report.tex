@@ -58,6 +58,17 @@ which is maximized when $\mu - k\sigma^2/2$ is maximized, since
 $\left(1 - \exp\left(-k x\right)\right) / k$
 is an increasing function of $x$, regardless of $k \ne 0$.
 
+\section{Assignment 2(a)}
+\subsection{Problem}
+Fit a logistic regression to the data, by numerical maximum likelihood
+given parameters $a$ and $b$.
+\subsection{Theory and implementation}
+There are two reports
+$$ \text{reports} = \left\{\underbrace{\text{mature}}_1, \underbrace{\text{immature}}_0\right\} $$
+Our model is
+$$ y \sim Bernoulli(f_1(x)), \quad f_1(x) = \frac{\exp\left(a + b (x - 18)\right)}{1 + \exp\left(a + b (x - 18)\right)} $$
+\subsection{Results and discussion}
+
 \clearpage
 \appendix % Start appendix sections
 
