@@ -10,6 +10,7 @@
 \usepackage{caption}
 \usepackage{pgfplots}
 \usepackage{listings}
+\usepackage{caption}
 
 \makeatletter
 \def\fps@figure{hbtp}
@@ -62,9 +63,17 @@ is an increasing function of $x$, regardless of $k \ne 0$.
 \subsection{Problem}
 \subsection{Theory and implementation}
 \subsection{Results and discussion}
+See figure~\ref{fig:stock_weights}.
 We see that $w_1$ ratio decreases with $k$
 which should imply that \texttt{Comp1} is more instable.
 It is also the case that $var(Comp1) > var(Comp2)$.
+
+\begin{figure}
+	\centering
+	\input{stock_weights.tex}
+	\caption{Plot of the optimized stock weight.
+	The ratio that should be invested in \texttt{Comp1} is shown against the value of $k$. \label{fig:stock_weights}}
+\end{figure}
 
 \section{Assignment 2(a)}
 \subsection{Problem}
@@ -76,6 +85,39 @@ $$ \text{reports} = \left\{\underbrace{\text{mature}}_1, \underbrace{\text{immat
 Our model is
 $$ y \sim Bernoulli(f_1(x)), \quad f_1(x) = \frac{\exp\left(a + b (x - 18)\right)}{1 + \exp\left(a + b (x - 18)\right)} $$
 \subsection{Results and discussion}
+The fitted logistic regression curve is shown in figure~\ref{fig:logistic_regression}.
+We see that the result seems plausible since the curve somewhat mimics the
+
+\begin{figure}
+	\centering
+	\input{logistic_regression.tex}
+	\caption{Plot of the data together with the obtained logistic regression curve. \label{fig:logistic_regression}}
+\end{figure}
+
+\section{Assignment 2(b)}
+\subsection{Problem}
+\subsection{Theory and implementation}
+\subsection{Results and discussion}
+
+\begin{figure}
+	\centering
+	\input{posterior.tex}
+	\caption{Posterior. \label{fig:posterior}}
+\end{figure}
+
+\section{Assignment 2(c)}
+
+\begin{figure}
+	\centering
+	\input{optimal_decision_c.tex}
+	\caption{Grid of $\mu$ and $\alpha$ where the optimal decision is to.}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\input{optimal_decision_d.tex}
+	\caption{Grid of $\mu$ and $\alpha$ where the optimal decision is to.}
+\end{figure}
 
 \clearpage
 \appendix % Start appendix sections
