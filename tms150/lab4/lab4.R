@@ -76,25 +76,23 @@ mu_min <- 15; mu_max <- 25; alpha_min <- 2; alpha_max <- 9; grid_length <- 31
 Mu <- seq(mu_min, mu_max, length.out = grid_length);
 Alpha <- seq(alpha_min, alpha_max, length.out = grid_length)
 
-opt_mature_adults <- outer(Mu, Alpha, FUN = Vectorize(function(mu, alpha) {
-		f <- function(x) dtrueages(x, mu, alpha) * f_1(x, a, b) * c_1(x)
-		C_c <- integrate(f, lower = 18, upper = Inf)$value
-		C_a <- integrate(f, lower = 0, upper = 18)$value
-		C_c > C_a # Whether optimal to classify as adult
+calc_opt_mature_adults <- function(integrate_fun, c) {
+	opt_mature_adults <- outer(Mu, Alpha, FUN = Vectorize(function(mu, alpha) {
+			f <- function(x, a, b) dtrueages(x, mu, alpha) * f_1(x, a, b) * c(x)
+			C_c <- integrate_fun(f, lower = 18, upper = Inf)
+			C_a <- integrate_fun(f, lower = 0, upper = 18)
+			C_c > C_a # Whether optimal to classify as adult
 }))
-image(Mu, Alpha, opt_mature_adults) # Red is TRUE
+	image(Mu, Alpha, opt_mature_adults, xlab = "$\\mu$", ylab="$\\alpha$") # Red is TRUE
+	opt_mature_adults
+}
+
+opt_mature_adults_c1 <- calc_opt_mature_adults(function(f, ...) integrate(f, ..., a, b)$value, c_1)
+opt_mature_adults_c2 <- calc_opt_mature_adults(function(f, ...) integrate(f, ..., a, b)$value, c_2)
 
 # d) Same as c) but sum over the uncertainty in the parameters a and b
-opt_mature_adults2 <- outer(Mu, Alpha, FUN = Vectorize(function(mu, alpha) {
-		integrate_out_ab_comp_C <- function(lower, upper) {
-			abmap <- outer(A, B, FUN = Vectorize(function(a, b) {
-					f <- function(x) dtrueages(x, mu, alpha) * f_1(x, a, b) * c_1(x)
-					integrate(f, lower, upper)$value
-			}))
-			sum(posterior * abmap)
-		}
-		C_c <- integrate_out_ab_comp_C(lower = 18, upper = Inf)
-		C_a <- integrate_out_ab_comp_C(lower = 0, upper = 18)
-		C_c > C_a # Whether optimal to classify as adult
-}))
-image(Mu, Alpha, opt_mature_adults2) # Red is TRUE
+uncertainty_int_fun <- function(f, ...)
+	sum(posterior * outer(A, B, FUN = Vectorize(function(a, b) integrate(f, ..., a, b)$value)))
+
+opt_mature_adults_d1 <- calc_opt_mature_adults(uncertainty_int_fun, c_1)
+opt_mature_adults_d2 <- calc_opt_mature_adults(uncertainty_int_fun, c_2)

@@ -1,7 +1,6 @@
 \documentclass[11pt, a4paper]{article}
 \usepackage{epsfig}
 \usepackage{graphicx}
-\usepackage{subfigure}
 \usepackage{amssymb, amsmath, amsthm, mathtools}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{tikz}
@@ -10,7 +9,8 @@
 \usepackage{caption}
 \usepackage{pgfplots}
 \usepackage{listings}
-\usepackage{caption}
+\usepackage{caption, subcaption}
+\usepackage{lmodern, microtype}
 
 \makeatletter
 \def\fps@figure{hbtp}
@@ -40,6 +40,13 @@
 \maketitle
 
 \section{Introduction}
+This laboration covers logistic regression and decision theory with Bayesian statistics.
+In order to look at the relationship between maturity of knees and age,
+logistic regression is employed.
+Meanwhile, decision theory can be applied to everything
+where one can define a cost function,
+describing the relative \emph{badness} of the different possible actions,
+but in this lab it is used for stock optimization.
 
 \section{Assignment 1(a)}\label{sec:max_proof}
 \subsection{Problem}
@@ -148,7 +155,7 @@ the posterior,
 given a uniform prior.
 \subsection{Theory and implementation}
 Bayes formula for probability mass functions looks like
-$$ \pi(x \bar y) = \frac{\pi(y \bar x) \pi(x)}{\pi(y)} $$
+$$ \pi(x \mid y) = \frac{\pi(y \mid x) \pi(x)}{\pi(y)} $$
 
 The posterior on the grid is visualized with the \texttt{image} R function.
 \subsection{Results and discussion}
@@ -165,7 +172,7 @@ That is to say there exists some uncertainty.
 	\label{fig:posterior}}
 \end{figure}
 
-\section{Assignment 2(c)}
+\section{Assignment 2(c)}\label{sec:optimal_decision}
 \subsection{Problem}
 With the ML estimates of $a$ and $b$,
 for each cost function, $c_1$; $c_2$,
@@ -184,35 +191,59 @@ c_2(x) = \begin{cases} B (18 - x), & x \le 18 \\ x - 18, & x > 18 \end{cases} $$
 where $B$ is fixed to $B = 10$.
 They represent the cost of misclassifying someone whose true age is $x$ years.
 Now
-$$ C_c = \int_{18}^\infty \pi(x; \mu, \alpha) f_k(x) c(x) \, dx, \quad C_a = \int_0^{18} \pi(x; \mu, \alpha) f_k(x) c(x) \, dx $$
+\begin{equation}\label{eq:costs}
+C_c = \int_{18}^\infty \pi(x; \mu, \alpha) f_k(x) c(x) \, dx, \quad C_a = \int_0^{18} \pi(x; \mu, \alpha) f_k(x) c(x) \, dx
+\end{equation}
 give the expected cost of misclassification
 if one classifies as child or adult respectively.
 Therefore if $C_c < C_a$ on should classify as children, otherwise as adults.
 
-The optimal decision is queried over a grid of $\mu$ and $\alpha$
+The optimal decision is queried over a grid of reasonable $\mu$ and $\alpha$ values
 from $15, 2$ to $25, 9$ and the result is visualized.
 \subsection{Results and discussion}
-The optimal decision over the grid is shown in figure~\ref{fig:optimal_c}.
+The optimal decision over the grid is shown in figure~\ref{fig:optimal_decision}.
 
 \begin{figure}
 	\centering
-	\input{optimal_decision_c.tex}
+	\begin{subfigure}[b]{0.4\textwidth}
+		\input{optimal_decision_c1.tex}
+		\caption{$c = c_1$}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.4\textwidth}
+		\input{optimal_decision_c2.tex}
+		\caption{$c = c_2$}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.4\textwidth}
+		\input{optimal_decision_d1.tex}
+		\caption{$c = c_1$, uncertainty integrated out}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.4\textwidth}
+		\input{optimal_decision_d2.tex}
+		\caption{$c = c_2$, uncertainty integrated out}
+	\end{subfigure}
+
 	\caption{The optimal decision for persons with mature knees visualized on
 		the grid of $\mu$ and $\alpha$.
 		Red signifies that the decision is to classify as adults, and white, as children.
-	\label{fig:optimal_c}}
+		\label{fig:optimal_decision}}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\input{optimal_decision_d.tex}
-	\caption{Grid of $\mu$ and $\alpha$ where the optimal decision is to.}
-\end{figure}
+\section{Assignment 2(d)}
+\subsection{Problem}
+Re-do the problem in section~\ref{sec:optimal_decision},
+but integrate over the uncertainty when computing the costs in equation~\ref{eq:costs}.
+\subsection{Theory and implementation}
+\subsection{Results and discussion}
+The optimal decision over the grid is shown in figure~\ref{fig:optimal_decision}.
+We see that the results are identical to the ones from section~\ref{sec:optimal_decision}.
 
 \clearpage
 \appendix % Start appendix sections
 
 \section{R code}
-% \lstinputlisting[language=R]{lab4.R}
+\lstinputlisting[language=R]{lab4.R}
 
 \end{document}
