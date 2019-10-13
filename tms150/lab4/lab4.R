@@ -31,10 +31,10 @@ f_1 <- function(x, a, b) 1 - 1 / (1 + exp(a + b * (x - 18)))
 f_0 <- function(...) 1 - f_1(...)
 
 # Likelihood function
-L <- function(a = 1, b = 1) prod(f_1(matureKnee, a, b)) * prod(f_0(immatureKnee, a, b))
-l <- function(a = 1, b = 1) sum(log(f_1(matureKnee, a, b))) + sum(log(f_0(immatureKnee, a, b)))
+L <- function(a = 1, b = 1.5) prod(f_1(matureKnee, a, b)) * prod(f_0(immatureKnee, a, b))
+l <- function(a = 1, b = 1.5) sum(log(f_1(matureKnee, a, b))) + sum(log(f_0(immatureKnee, a, b)))
 
-res <- optim(par = formals(l), fn = l,
+res <- optim(par = formals(l), fn = function(x) L(x[["a"]], x[["b"]]),
 	control = list(fnscale = -1) # Maximize instead of minimize
 )
 a <- res$par[["a"]]; b <- res$par[["b"]]

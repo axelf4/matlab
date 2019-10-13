@@ -22,6 +22,12 @@
 \renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
 \renewcommand{\right}{\aftergroup\egroup\originalright}
 
+\DeclareMathOperator{\Normal}{Normal}
+\DeclareMathOperator{\GammaD}{Gamma}
+\DeclareMathOperator{\Bernoulli}{Bernoulli}
+\DeclareMathOperator{\mean}{mean}
+\DeclareMathOperator{\var}{var}
+
 \lstset{
 	breaklines=true,
 	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
@@ -35,11 +41,16 @@
 
 \section{Introduction}
 
-\section{Assignment 1(a)}
+\section{Assignment 1(a)}\label{sec:max_proof}
 \subsection{Problem}
 Prove that $\mathbb E[u(t)]$ is maximized as a function of
 $\mu$ and $\sigma^2$ when $\mu - k\sigma^2/2$ is maximized.
 \subsection{Theory and implementation}
+The utility function $u$ is defined as
+\begin{equation}\label{eq:utility}
+u(x) = \frac{1 - (x / K)^{-k}}k
+\end{equation}
+where $k \neq 0$ is a parameter and $K$ is the amount invested.
 \subsection{Results and discussion}
 \begin{align*}
 	\mathbb E[u(t)] &= \int_\infty^\infty \frac{1 - e^{-yk}}k \frac1{\sqrt{2\pi\sigma^2}}
@@ -61,18 +72,50 @@ is an increasing function of $x$, regardless of $k \ne 0$.
 
 \section{Assignment 1(b)}
 \subsection{Problem}
+Optimize the weights in the case of two stocks,
+using the utility function from equation~\ref{eq:utility}.
 \subsection{Theory and implementation}
+With $X_{ij}$ as the closing price of stock $i$ after day $j$ we define
+$$ Z_{ij} \coloneqq \log\left(\frac{X_{ij}}{X_{i,j-1}}\right) $$
+as the relative change in stock price from day to day,
+we say that the vectors $Z_j$ are independent and
+$$ Z_j \sim \Normal(\gamma, \Sigma) $$
+for some vector $\gamma$ and covariance matrix $\Sigma$.
+Choosing a set of weights $w = (w_1, \ldots, w_k), \quad \sum_{i=1}^k w_i = 1$,
+we define
+$$ T = K \prod_{i=1}^k \exp(w_i n Z_i) = K \exp\left(\sum_{i=1}^k w_i n Z_i\right)
+	= K \exp(n w^T Z) = K \exp(Y) $$
+where $T$ is the total amount after $n$ days, given an amount $K$ invested,
+and $Y \coloneqq n w^T Z$.
+Now
+$$ Y \sim \Normal(n w^T \gamma, n w^T \Sigma w) = \Normal(\gamma, \sigma^2) $$
+with the added notation
+$\gamma \coloneqq n w^T \gamma$ and $\sigma^2 \coloneqq n w^T \Sigma w$.
+
+Decision theory tells us that we should pick the weights $w$ so that
+$\mathbb E[u(T)]$ is maximized.
+But in section~\ref{sec:max_proof} we saw that this is equivalent to maximizing
+$$ F(w) = \mu - k \sigma^2 / 2 $$
+
+The R function \texttt{optim} is used to maximize.
 \subsection{Results and discussion}
-See figure~\ref{fig:stock_weights}.
-We see that $w_1$ ratio decreases with $k$
-which should imply that \texttt{Comp1} is more instable.
-It is also the case that $var(Comp1) > var(Comp2)$.
+The optimized stock weight is shown in figure~\ref{fig:stock_weights}.
+We see that the \texttt{Comp1} ratio decreases with $k$,
+which should imply that \texttt{Comp1} is more instable
+- it is also the case that
+$\num{553.2989} = \var(\text{\texttt{Comp1}}) > \var(\text{\texttt{Comp2}}) = \num{382.5174}$.
+Expanding $F(w) = n w^T \gamma - k n w^T \Sigma w / 2$
+we see that the second term is conserned with variability,
+while the first term rewards weighting stocks with higher mean change more heavily.
+Thus \texttt{Comp1} is favored more overall for the observed values of $k$
+since $\num{0.0005275481} = \mean(Z_{1,:}) > \mean(Z_{2,:}) = \num{0.0001782805}$.
 
 \begin{figure}
 	\centering
 	\input{stock_weights.tex}
-	\caption{Plot of the optimized stock weight.
-	The ratio that should be invested in \texttt{Comp1} is shown against the value of $k$. \label{fig:stock_weights}}
+	\caption{Plot of the optimized stock weight,
+		that is the ratio that should be invested in \texttt{Comp1},
+	for different values of $k$. \label{fig:stock_weights}}
 \end{figure}
 
 \section{Assignment 2(a)}
@@ -83,10 +126,14 @@ given parameters $a$ and $b$.
 There are two reports
 $$ \text{reports} = \left\{\underbrace{\text{mature}}_1, \underbrace{\text{immature}}_0\right\} $$
 Our model is
-$$ y \sim Bernoulli(f_1(x)), \quad f_1(x) = \frac{\exp\left(a + b (x - 18)\right)}{1 + \exp\left(a + b (x - 18)\right)} $$
+$$ y \sim \Bernoulli(f_1(x)), \quad f_1(x) = \frac{\exp\left(a + b (x - 18)\right)}{1 + \exp\left(a + b (x - 18)\right)} $$
+$a, b \in \mathbb R$.
+The likelihood is given by
+$$ \mathcal L(a, b) = \prod_{\text{mature}} f_1(x) \prod_{\text{immature}} f_0(x) $$
 \subsection{Results and discussion}
 The fitted logistic regression curve is shown in figure~\ref{fig:logistic_regression}.
-We see that the result seems plausible since the curve somewhat mimics the
+We see that the result seems plausible since the location where the curve
+changes from $0$ to $1$ happens in the middle of the two datasets.
 
 \begin{figure}
 	\centering
@@ -96,21 +143,64 @@ We see that the result seems plausible since the curve somewhat mimics the
 
 \section{Assignment 2(b)}
 \subsection{Problem}
+On a $100 \times 100$ evenly spaced grid of $a$ and $b$ compute and plot
+the posterior,
+given a uniform prior.
 \subsection{Theory and implementation}
+Bayes formula for probability mass functions looks like
+$$ \pi(x \bar y) = \frac{\pi(y \bar x) \pi(x)}{\pi(y)} $$
+
+The posterior on the grid is visualized with the \texttt{image} R function.
 \subsection{Results and discussion}
+The posterior on the grid is given in figure~\ref{fig:posterior}.
+We see that there is an area, not too small,
+where values of $a$ and $b$ are approximately equally likely.
+That is to say there exists some uncertainty.
 
 \begin{figure}
 	\centering
 	\input{posterior.tex}
-	\caption{Posterior. \label{fig:posterior}}
+	\caption{The posterior on the $a, b$ grid from $-0.4, 0.9$ to $2.1, 3.1$.
+		The whiter areas contain smaller densities, while the redder contain larger.
+	\label{fig:posterior}}
 \end{figure}
 
 \section{Assignment 2(c)}
+\subsection{Problem}
+With the ML estimates of $a$ and $b$,
+for each cost function, $c_1$; $c_2$,
+find $\gamma$ and $\alpha$ in the distribution of true ages so that
+the optimal decision is to classify those with mature knees as adults.
+\subsection{Theory and implementation}
+Given $\alpha, \mu > 0$ the true age probablity density is assumed to be given by
+$$ \pi(x; \mu, \alpha) = \begin{cases}
+	0, & x < 14 \\
+	\GammaD(x - 14; \alpha, \alpha / (\mu - 14)), & x \ge 14
+\end{cases} $$
+The two cost functions in question are defined as
+$$ c_1(x) = \begin{cases} B, & x \le 18 \\ 1, & x > 18 \end{cases}
+\quad \text{and} \quad
+c_2(x) = \begin{cases} B (18 - x), & x \le 18 \\ x - 18, & x > 18 \end{cases} $$
+where $B$ is fixed to $B = 10$.
+They represent the cost of misclassifying someone whose true age is $x$ years.
+Now
+$$ C_c = \int_{18}^\infty \pi(x; \mu, \alpha) f_k(x) c(x) \, dx, \quad C_a = \int_0^{18} \pi(x; \mu, \alpha) f_k(x) c(x) \, dx $$
+give the expected cost of misclassification
+if one classifies as child or adult respectively.
+Therefore if $C_c < C_a$ on should classify as children, otherwise as adults.
+
+The optimal decision is queried over a grid of $\mu$ and $\alpha$
+from $15, 2$ to $25, 9$ and the result is visualized.
+\subsection{Results and discussion}
+The optimal decision over the grid is shown in figure~\ref{fig:optimal_c}.
 
 \begin{figure}
 	\centering
 	\input{optimal_decision_c.tex}
-	\caption{Grid of $\mu$ and $\alpha$ where the optimal decision is to.}
+	\caption{The optimal decision for persons with mature knees visualized on
+		the grid of $\mu$ and $\alpha$.
+		Red signifies that the decision is to classify as adults, and white, as children.
+	\label{fig:optimal_c}}
 \end{figure}
 
 \begin{figure}
