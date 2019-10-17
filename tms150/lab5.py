@@ -32,11 +32,17 @@ for mc in [crude_mc, hit_and_miss_mc]:
     print(f'rMSE for {mc.__name__}:\n\tanalytical: {mc.error(M)}\n\tnumerical: {rMSE}')
 
 # 6.
+M_values = list(map(lambda i: 2**i, range(1, 21)))
+reference = ((M, 1 / sqrt(M)) for M in M_values)
+plt.loglog(*zip(*reference), 'r-')
 for mc in [crude_mc, hit_and_miss_mc]:
-    estimates = ((M, mc(g, M)) for M in map(lambda i: 2**i, range(1, 21)))
-    errors = ((M, log(y)) for M, y in estimates)
-    plt.plot(*zip(*errors))
-    plt.show()
+    estimates = ((M, mc(g, M)) for M in M_values)
+    errors = ((M, sqrt((theta - y)**2)) for M, y in estimates)
+    plt.loglog(*zip(*errors), '-', label = mc.__name__)
+    analytical_errors = ((M, mc.error(M)) for M in M_values)
+    plt.loglog(*zip(*analytical_errors), 'o--', label = f'{mc.__name__} (analytical)')
+plt.legend()
+plt.show()
 
 # 7. Estimate rMSE with Monte Carlo, N = 10
 N = 10
