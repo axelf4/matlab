@@ -31,7 +31,7 @@ for mc in [crude_mc, hit_and_miss_mc]:
     rMSE = sqrt(sum((theta - mc(g, M))**2 for _ in range(N)) / N)
     print(f'rMSE for {mc.__name__}:\n\tanalytical: {mc.error(M)}\n\tnumerical: {rMSE}')
 
-# 6.
+# 6. Plot analytical and empirical errors based on one estimate
 M_values = list(map(lambda i: 2**i, range(1, 21)))
 reference = ((M, 1 / sqrt(M)) for M in M_values)
 plt.loglog(*zip(*reference), 'r-')
@@ -46,6 +46,11 @@ plt.show()
 
 # 7. Estimate rMSE with Monte Carlo, N = 10
 N = 10
+fig, ax = plt.subplots()
 for mc in [crude_mc, hit_and_miss_mc]:
-    rMSE = sqrt(sum(abs(mc(g, M) - theta)**2 for _ in range(N)) / N)
-    print(f'MC estimate of rMSE for {mc.__name__}: {rMSE}')
+    rMSE = [sqrt(sum(abs(mc(g, M) - theta)**2 for _ in range(N)) / N) for M in M_values]
+    plt.loglog(M_values, rMSE, label = f'{mc.__name__}')
+plt.title('Monte Carlo estimates of rMSE')
+ax.set(xlabel = 'M', ylabel = 'rMSE')
+plt.legend()
+plt.show()
