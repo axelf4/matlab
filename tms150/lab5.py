@@ -8,19 +8,19 @@ g : [0,1] -> [0,1], x |-> f(2x - 1)
 
 θ := int_0^1 g(x) dx = 1/2 * [x^3/3]_{-1}^1 = 1/2 * 2/3 = 1/3
 """
-theta = 1/3
+theta = 2/3
 
-g = lambda x: (2 * x - 1)**2
+def g(x): return (2 * x - 1)**2
 
 # 2. Estimate θ by crude Monte Carlo for fixed sample size M
 def crude_mc(f, M: float) -> float:
-    return sum(f(random()) for _ in range(M)) / M
-crude_mc.error = lambda M: sqrt(4/45 / M)
+    return 2 * sum(f(random()) for _ in range(M)) / M
+crude_mc.error = lambda M: sqrt(4 * 4/45 / M)
 
 # 3. Estimate θ by hit and miss Monte Carlo for fixed sample size M
 def hit_and_miss_mc(f, M: float) -> float:
-    return sum(random() <= f(random()) for _ in range(M)) / M
-hit_and_miss_mc.error = lambda M: sqrt(10/45 / M)
+    return 2 * sum(random() <= f(random()) for _ in range(M)) / M
+hit_and_miss_mc.error = lambda M: sqrt(4 * 10/45 / M)
 
 print(crude_mc(g, 10000))
 print(hit_and_miss_mc(g, 10000))
@@ -32,7 +32,7 @@ for mc in [crude_mc, hit_and_miss_mc]:
     print(f'rMSE for {mc.__name__}:\n\tanalytical: {mc.error(M)}\n\tnumerical: {rMSE}')
 
 # 6. Plot analytical and empirical errors based on one estimate
-M_values = list(map(lambda i: 2**i, range(1, 21)))
+M_values = [2**i for i in range(1, 21)]
 reference = ((M, 1 / sqrt(M)) for M in M_values)
 plt.loglog(*zip(*reference), 'r-')
 for mc in [crude_mc, hit_and_miss_mc]:
