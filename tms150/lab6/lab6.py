@@ -27,7 +27,7 @@ def gen_W_10():
     """Return lists t, W for the case of h = 1 / 2**10."""
     N = 2**10 # Number of intervals
     h = 1 / N
-    η = (normalvariate(0, h) for _ in repeat(0))
+    η = (normalvariate(0, sqrt(h)) for _ in repeat(0))
     W = list(islice(chain((0,), accumulate(η)), N + 1))
     t = [n * h for n, w in enumerate(W)]
     return t, W
