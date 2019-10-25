@@ -1,0 +1,165 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amssymb, amsmath, amsthm, mathtools}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{pgfplots}
+\usepackage{listings}
+\usepackage{caption, subcaption}
+% \usepackage{lmodern, microtype}
+\usepackage{fontspec}
+\usepackage[Latin,Greek]{ucharclasses}
+
+\newfontfamily\substitutefont{FreeSerif}
+\setTransitionsForGreek{\begingroup\substitutefont}{\endgroup}
+
+\makeatletter
+\def\fps@figure{hbtp}
+\def\fps@table{hbtp}
+\makeatother
+
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+\DeclareMathOperator{\Normal}{Normal}
+\DeclareMathOperator{\GammaD}{Gamma}
+\DeclareMathOperator{\Bernoulli}{Bernoulli}
+\DeclareMathOperator{\mean}{mean}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\Id}{Id}
+
+\lstset{
+	breaklines=true,
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+	}
+
+\title{Assignment 6}
+\author{Axel Forsman}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\section{Assignment 1}
+\subsection{Problem}
+Plot a sample path of a Brownian motion for all $h_i = 2^{-i}, i = 1, \ldots, 10$
+using the same noise throughout.
+\subsection{Theory and implementation}
+A \emph{stochastic process} $X \coloneqq (X(t), t \in \mathbb T \subset \mathbb R)$
+is a collection of random variables indexed by $\mathbb T$.
+Its \emph{sample path} is plot of $X(\omega, t)$ for a fixed $\omega \in \Omega$.
+Moreover,
+a \emph{Brownian motion} $W$ is a stochastic process given by
+$$ W(t_n) \coloneqq W(t_{n-1}) + \eta^{(n)} $$
+where $t_0, \ldots, t_N$ is a partition of $\mathbb T = [0, T]$,
+$W(t_0) \coloneqq 0$ and $\eta \sim \mathcal N(0, h), h \coloneqq N^{-1}$.
+
+To have the sample paths at the different resolutions use the same noise,
+we generate $W_{h_{10}}$ and let
+$$ \eta_{h_i}^{(n)} \coloneqq \eta_{h_{i+1}}^{(n)} + \eta_{h_{i+1}}^{(n+1)} \sim \mathcal N(0, 2h_{i+1})
+	= \mathcal N(0, h_i) $$
+That is, we can sum two finer increments to get the coarser increment.
+\subsection{Results and discussion}
+The sample path is shown in figure~\ref{fig:brownian_motion}.
+We see that the paths become more and more jittery as we get to the finer resolutions,
+as a result of the increments having an equal chance of being positive or negative.
+Additionally, between every two adjacent endpoints of a path for a coarser resolution
+there is one point of the immediately finer resolution,
+that represents the further detail.
+
+\begin{figure}
+	\centering
+	\input{brownian_motion.pgf}
+	\caption{Sample path of a Brownian motion for $h_i = 2^{-1}, i = 1, \ldots, 10$. \label{fig:brownian_motion}}
+\end{figure}
+
+\section{Assignment 2}
+\subsection{Problem}
+Plot sample paths of $X$ and $X_{h_i}, i = 1, \ldots, 10$ based on the same noise,
+where
+$$ X : \Omega \times [0, 1] \to \mathbb R, \, t \mapsto \exp\left(\left(\mu - \frac{\sigma^2}2\right) t + \sigma W(t)\right), \quad \mu \coloneqq 1 \eqqcolon \sigma $$
+and $X_h$ are approximations of $X$ given by
+$$ X_h(t_n) = (1 + h \mu) X_h(t_{n-1}) + \sigma X_h(t_{n-1}) (W(t_n) - W(t_{n-1})) $$
+with $X_h(0) = 1$.
+\subsection{Theory and implementation}
+\subsection{Results and discussion}
+The sample paths in question are visible in figure~\ref{fig:x_sample_path}.
+As $i$ increases and, subsequently, $h_i$ gets smaller,
+we see that the approximations $X_{h_i}$ seemingly look to converge toward $X$.
+The plot is visually alike the Brownian motion one in figure~\ref{fig:brownian_motion},
+but dampened and amplified for negative and positive $y$ respectively,
+as one would expect from the exponential function used in the definition of $X$.
+
+\begin{figure}
+	\centering
+	\input{x_sample_path.pgf}
+	\caption{The sample paths of $X$ and $X_{h_i}, i = 1, \ldots, 10$. \label{fig:x_sample_path}}
+\end{figure}
+
+\section{Assignment 3}
+\subsection{Problem}
+With Monte Carlo, $M = 1000$, estimate the strong error for all $h_i, i = 1, \ldots, 10$.
+Plot $h$ versus the strong error in a log-log plot with the added reference slope $h^{1/2}$.
+\subsection{Theory and implementation}
+The \emph{strong error}, $L^2$, can be approximated with a Monte Carlo simulation by
+$$ L^2 \coloneqq \mathbb E\left[(X(T) - X_h(T))^2\right]^{1/2}
+	\approx \left(\frac1M \sum_{m=1}^M (X(T)^{(m)} - X_h(T)^{(m)})^2\right)^{1/2} $$
+for a large $M \in \mathbb N$.
+The family $X_h, h \in (0, 1]$ of approximations converges at the \emph{rate} $\gamma$
+if $\exists C, H$ such that $\forall h < H: \; L^2 \le Ch^\gamma$.
+\subsection{Results and discussion}
+The strong error Monte Carlo estimates are shown in figure~\ref{fig:strong_error}
+together with the reference slope $h^{1/2}$.
+We see that the graph of the strong error is approximately parallel to the
+reference slope $h^{1/2}$ meaning, in the context of the log-log plot,
+that the strong error can be written as $Ch^{1/2}$ for some $C$.
+From this follows that $X_h$ converges at the rate $1/2$.
+
+\begin{figure}
+	\centering
+	\input{strong_error.pgf}
+	\caption{Log-log plot of the Monte Carlo estimate of the strong error for different $h_i, i = 1, \ldots, 10$,
+	with the added reference slope $h^{1/2}$. \label{fig:strong_error}}
+\end{figure}
+
+\section{Assignment 3}
+\subsection{Problem}
+With Monte Carlo, $M = 1000$, estimate the weak error,
+with the test function $\phi = \mathrm{Id}$,
+for all $h_i, i = 1, \ldots, 10$.
+Plot $h$ versus the weak error in a log-log plot with the added reference slope $h$.
+\subsection{Theory and implementation}
+For a suitable test function $\phi: \mathbb R \to \mathbb R$,
+the \emph{weak error} is given by
+\def\weakerror{\left|\mathbb E[\phi(X(T))] - \mathbb E[\phi(X_h(T))]\right|}
+$$ \weakerror $$
+The family $X_h$ converges at the \emph{rate} $\gamma$
+if $\exists C, H$ such that $\forall h < H: \; \weakerror \le Ch^\gamma$.
+It can be approximated with a Monte Carlo simulation by
+$$ \weakerror \approx \left|\mathbb E[\phi(X(T))] - \frac1M \sum_{m=1}^M \phi(X_h(T))^{(m)}\right| $$
+for a large $M \in \mathbb N$,
+where we know $\mathbb E[\Id(X_h(T))] = \exp(\mu)$.
+\subsection{Results and discussion}
+The plot of the weak error is found in figure~\ref{fig:weak_error}.
+
+\begin{figure}
+	\centering
+	\input{weak_error.pgf}
+	\caption{Log-log plot of the Monte Carlo estimate of the weak error for different $h_i, i = 1, \ldots, 10$,
+	with the added reference slope $h$. \label{fig:weak_error}}
+\end{figure}
+
+\clearpage
+\appendix % Start appendix sections
+
+\section{R code}
+\lstinputlisting[language=R]{lab6.py}
+
+\end{document}
