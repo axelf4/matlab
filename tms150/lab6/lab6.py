@@ -45,7 +45,7 @@ plt.show()
 
 # 2.
 X = lambda t, W: (exp((μ - σ**2 / 2) * t + σ * w) for t, w in zip(t, W))
-plt.plot(t, list(X(t, W)), label = '$X$')
+plt.plot(t, list(X(t, W)), 'k', label = '$X$')
 
 def X_h(W, i):
     h = 1 / 2**i
@@ -73,11 +73,13 @@ def diff_X_and_X_h(i):
     t, W = gen_W_10()
     return last(X(t, W)) - last(X_h(W, i))
 
+fig, ax = plt.subplots()
 plt.loglog(H, [sqrt(h) for h in H], label = 'Reference slope $h^{1/2}$')
 strong_errors = [sqrt(sum(diff_X_and_X_h(i)**2 for _ in range(M)) / M)
         for i in range(1, 11)]
-plt.loglog(H, strong_errors, label = 'Strong error Monte Carlo estimate')
+plt.loglog(H, strong_errors, 'o-', label = 'Monte Carlo estimate')
 plt.legend()
+ax.set(xlabel = '$h$', ylabel = '$L^2$')
 plt.title('Strong error for different $h$')
 plt.show()
 
@@ -85,10 +87,12 @@ plt.show()
 M = 1000
 def φ(x): return x # The test function in question
 expectation_X_1 = exp(μ)
+fig, ax = plt.subplots()
 plt.loglog(H, [h for h in H], label = 'Reference slope $h$')
 weak_errors = [abs(expectation_X_1 - sum(φ(last(X_h(gen_W_10()[1], i))) for _ in range(M)) / M)
     for i in range(1, 11)]
-plt.loglog(H, weak_errors, label = 'Weak error Monte Carlo estimate')
+plt.loglog(H, weak_errors, 'o-', label = 'MC estimate, M = 1000')
 plt.legend()
-plt.title('Weak error of $|E[X(1)] - E[X_h(1)]|$')
+ax.set(xlabel = '$h$', ylabel = 'Weak error')
+plt.title('Weak error for different $h$')
 plt.show()

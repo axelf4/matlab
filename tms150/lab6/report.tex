@@ -3,7 +3,6 @@
 \usepackage{graphicx}
 \usepackage{amssymb, amsmath, amsthm, mathtools}
 \usepackage[margin=2.5cm]{geometry}
-\usepackage{tikz}
 \usepackage{siunitx}
 \usepackage{booktabs}
 \usepackage{caption}
@@ -16,6 +15,8 @@
 
 \newfontfamily\substitutefont{FreeSerif}
 \setTransitionsForGreek{\begingroup\substitutefont}{\endgroup}
+
+\pgfplotsset{compat=newest}
 
 \makeatletter
 \def\fps@figure{hbtp}
@@ -46,8 +47,15 @@
 \maketitle
 
 \section{Introduction}
+This laboration is concerned with stochastic processes,
+which, simply said, are stochastic variables with a time parameter.
+We first look at Brownian motions from physics.
+Then we construct a new stochastic process based on the Brownian motion,
+and try to approximate it using a cheaper recursive formula.
+This leads to the question of how \emph{good} the approximation is.
+Two measures of convergence are introduced for that purpose.
 
-\section{Assignment 1}
+\section{Assignment 1}\label{sec:brownian_motion}
 \subsection{Problem}
 Plot a sample path of a Brownian motion for all $h_i = 2^{-i}, i = 1, \ldots, 10$
 using the same noise throughout.
@@ -59,7 +67,7 @@ Moreover,
 a \emph{Brownian motion} $W$ is a stochastic process given by
 $$ W(t_n) \coloneqq W(t_{n-1}) + \eta^{(n)} $$
 where $t_0, \ldots, t_N$ is a partition of $\mathbb T = [0, T]$,
-$W(t_0) \coloneqq 0$ and $\eta \sim \mathcal N(0, h), h \coloneqq N^{-1}$.
+$W(t_0) \coloneqq 0$ and $\eta \sim \mathcal N(0, h), \, h \coloneqq N^{-1}$.
 
 To have the sample paths at the different resolutions use the same noise,
 we generate $W_{h_{10}}$ and let
@@ -69,7 +77,8 @@ That is, we can sum two finer increments to get the coarser increment.
 \subsection{Results and discussion}
 The sample path is shown in figure~\ref{fig:brownian_motion}.
 We see that the paths become more and more jittery as we get to the finer resolutions,
-as a result of the increments having an equal chance of being positive or negative.
+as a result of the increased number of increments
+each having an equal chance of being positive or negative.
 Additionally, between every two adjacent endpoints of a path for a coarser resolution
 there is one point of the immediately finer resolution,
 that represents the further detail.
@@ -77,18 +86,20 @@ that represents the further detail.
 \begin{figure}
 	\centering
 	\input{brownian_motion.pgf}
-	\caption{Sample path of a Brownian motion for $h_i = 2^{-1}, i = 1, \ldots, 10$. \label{fig:brownian_motion}}
+	\caption{Sample path of a Brownian motion for $h_i = 2^{-1}, \, i = 1, \ldots, 10$. \label{fig:brownian_motion}}
 \end{figure}
 
 \section{Assignment 2}
 \subsection{Problem}
-Plot sample paths of $X$ and $X_{h_i}, i = 1, \ldots, 10$ based on the same noise,
+Plot sample paths of $X$ and $X_{h_i}, \, i = 1, \ldots, 10$ based on the same noise,
 where
 $$ X : \Omega \times [0, 1] \to \mathbb R, \, t \mapsto \exp\left(\left(\mu - \frac{\sigma^2}2\right) t + \sigma W(t)\right), \quad \mu \coloneqq 1 \eqqcolon \sigma $$
 and $X_h$ are approximations of $X$ given by
 $$ X_h(t_n) = (1 + h \mu) X_h(t_{n-1}) + \sigma X_h(t_{n-1}) (W(t_n) - W(t_{n-1})) $$
 with $X_h(0) = 1$.
 \subsection{Theory and implementation}
+Both $X$ and $X_h$ were computed directly based on $W$ from section~\ref{sec:brownian_motion},
+where $X$ used the finest resolution.
 \subsection{Results and discussion}
 The sample paths in question are visible in figure~\ref{fig:x_sample_path}.
 As $i$ increases and, subsequently, $h_i$ gets smaller,
@@ -100,19 +111,21 @@ as one would expect from the exponential function used in the definition of $X$.
 \begin{figure}
 	\centering
 	\input{x_sample_path.pgf}
-	\caption{The sample paths of $X$ and $X_{h_i}, i = 1, \ldots, 10$. \label{fig:x_sample_path}}
+	\caption{The sample paths of $X$ and $X_{h_i}, \, i = 1, \ldots, 10$. \label{fig:x_sample_path}}
 \end{figure}
 
-\section{Assignment 3}
+\section{Assignment 3}\label{sec:strong_error}
 \subsection{Problem}
-With Monte Carlo, $M = 1000$, estimate the strong error for all $h_i, i = 1, \ldots, 10$.
+With Monte Carlo, $M = 1000$, estimate the strong error for all $h_i, \, i = 1, \ldots, 10$.
 Plot $h$ versus the strong error in a log-log plot with the added reference slope $h^{1/2}$.
 \subsection{Theory and implementation}
 The \emph{strong error}, $L^2$, can be approximated with a Monte Carlo simulation by
 $$ L^2 \coloneqq \mathbb E\left[(X(T) - X_h(T))^2\right]^{1/2}
 	\approx \left(\frac1M \sum_{m=1}^M (X(T)^{(m)} - X_h(T)^{(m)})^2\right)^{1/2} $$
 for a large $M \in \mathbb N$.
-The family $X_h, h \in (0, 1]$ of approximations converges at the \emph{rate} $\gamma$
+The family $X_h, h \in (0, 1]$ of approximations \emph{converges strongly} to X if
+$$ L^2 \xrightarrow[h \to 0]{} 0 $$
+and at the \emph{rate} $\gamma$
 if $\exists C, H$ such that $\forall h < H: \; L^2 \le Ch^\gamma$.
 \subsection{Results and discussion}
 The strong error Monte Carlo estimates are shown in figure~\ref{fig:strong_error}
@@ -120,16 +133,17 @@ together with the reference slope $h^{1/2}$.
 We see that the graph of the strong error is approximately parallel to the
 reference slope $h^{1/2}$ meaning, in the context of the log-log plot,
 that the strong error can be written as $Ch^{1/2}$ for some $C$.
-From this follows that $X_h$ converges at the rate $1/2$.
+From this follows that, if we assume $X_h$ converges strongly,
+then it would do so at the rate $1/2$.
 
 \begin{figure}
 	\centering
 	\input{strong_error.pgf}
-	\caption{Log-log plot of the Monte Carlo estimate of the strong error for different $h_i, i = 1, \ldots, 10$,
+	\caption{Log-log plot of the Monte Carlo estimate of the strong error for different $h_i, \, i = 1, \ldots, 10$,
 	with the added reference slope $h^{1/2}$. \label{fig:strong_error}}
 \end{figure}
 
-\section{Assignment 3}
+\section{Assignment 4}
 \subsection{Problem}
 With Monte Carlo, $M = 1000$, estimate the weak error,
 with the test function $\phi = \mathrm{Id}$,
@@ -140,14 +154,30 @@ For a suitable test function $\phi: \mathbb R \to \mathbb R$,
 the \emph{weak error} is given by
 \def\weakerror{\left|\mathbb E[\phi(X(T))] - \mathbb E[\phi(X_h(T))]\right|}
 $$ \weakerror $$
-The family $X_h$ converges at the \emph{rate} $\gamma$
+The family $X_h$ \emph{converges weakly} to $X$ if
+$$ \weakerror \xrightarrow[h \to 0]{} 0 \quad \forall \text{test functions} \; \phi $$
+and at the \emph{rate} $\gamma$
 if $\exists C, H$ such that $\forall h < H: \; \weakerror \le Ch^\gamma$.
 It can be approximated with a Monte Carlo simulation by
 $$ \weakerror \approx \left|\mathbb E[\phi(X(T))] - \frac1M \sum_{m=1}^M \phi(X_h(T))^{(m)}\right| $$
 for a large $M \in \mathbb N$,
 where we know $\mathbb E[\Id(X_h(T))] = \exp(\mu)$.
+
+The Monte Carlo simulation of the error is sensitive to the value of $M$.
+It behaves additively; the total error is
+$$ \frac1{\sqrt M} + h^\gamma $$
 \subsection{Results and discussion}
 The plot of the weak error is found in figure~\ref{fig:weak_error}.
+We see that for the larger values of $h$ the Monte Carlo estimates
+of the weak error mostly seem to follow the reference slope $h$,
+while for the smaller values of $h$ the weak error is larger.
+This can be explained by the Monte Carlo error dominating the total error
+when $h$ is small -
+we see that increasing $M$ consistently decreases the total error.
+Repeating the argument in section~\ref{sec:strong_error}, then,
+$X_h$ would converge weakly to $X$ with the rate $1$.
+This is in line with the general heuristic that
+the weak rate of convergence should be twice that of the strong one.
 
 \begin{figure}
 	\centering
@@ -159,7 +189,7 @@ The plot of the weak error is found in figure~\ref{fig:weak_error}.
 \clearpage
 \appendix % Start appendix sections
 
-\section{R code}
-\lstinputlisting[language=R]{lab6.py}
+\section{Python code}
+\lstinputlisting[language=Python]{lab6.py}
 
 \end{document}

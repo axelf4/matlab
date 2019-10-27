@@ -1,2570 +1,2114 @@
-%% Creator: Matplotlib, PGF backend
-%%
-%% To include the figure in your LaTeX document, write
-%%   \input{<filename>.pgf}
-%%
-%% Make sure the required packages are loaded in your preamble
-%%   \usepackage{pgf}
-%%
-%% Figures using additional raster images can only be included by \input if
-%% they are in the same directory as the main LaTeX file. For loading figures
-%% from other directories you can use the `import` package
-%%   \usepackage{import}
-%% and then include the figures with
-%%   \import{<path to file>}{<filename>.pgf}
-%%
-%% Matplotlib used the following preamble
-%%   \usepackage{fontspec}
-%%   \setmainfont{DejaVuSerif.ttf}[Path=/home/axel/.local/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf/]
-%%   \setsansfont{DejaVuSans.ttf}[Path=/home/axel/.local/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf/]
-%%   \setmonofont{DejaVuSansMono.ttf}[Path=/home/axel/.local/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf/]
-%%
-\begingroup%
-\makeatletter%
-\begin{pgfpicture}%
-\pgfpathrectangle{\pgfpointorigin}{\pgfqpoint{6.400000in}{4.800000in}}%
-\pgfusepath{use as bounding box, clip}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetmiterjoin%
-\definecolor{currentfill}{rgb}{1.000000,1.000000,1.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.000000pt}%
-\definecolor{currentstroke}{rgb}{1.000000,1.000000,1.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{6.400000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{6.400000in}{4.800000in}}%
-\pgfpathlineto{\pgfqpoint{0.000000in}{4.800000in}}%
-\pgfpathclose%
-\pgfusepath{fill}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetmiterjoin%
-\definecolor{currentfill}{rgb}{1.000000,1.000000,1.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.000000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetstrokeopacity{0.000000}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{0.800000in}{0.528000in}}%
-\pgfpathlineto{\pgfqpoint{5.760000in}{0.528000in}}%
-\pgfpathlineto{\pgfqpoint{5.760000in}{4.224000in}}%
-\pgfpathlineto{\pgfqpoint{0.800000in}{4.224000in}}%
-\pgfpathclose%
-\pgfusepath{fill}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{-0.048611in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{0.000000in}{-0.048611in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{1.025455in}{0.528000in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=1.025455in,y=0.430778in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont 0.0}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{-0.048611in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{0.000000in}{-0.048611in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{1.927273in}{0.528000in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=1.927273in,y=0.430778in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont 0.2}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{-0.048611in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{0.000000in}{-0.048611in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{2.829091in}{0.528000in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=2.829091in,y=0.430778in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont 0.4}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{-0.048611in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{0.000000in}{-0.048611in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{3.730909in}{0.528000in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=3.730909in,y=0.430778in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont 0.6}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{-0.048611in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{0.000000in}{-0.048611in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{4.632727in}{0.528000in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=4.632727in,y=0.430778in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont 0.8}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{-0.048611in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{0.000000in}{-0.048611in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{5.534545in}{0.528000in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=5.534545in,y=0.430778in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont 1.0}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=3.280000in,y=0.240809in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle t\)}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{-0.048611in}{0.000000in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{-0.048611in}{0.000000in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{0.800000in}{0.695969in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=0.365525in,y=0.643208in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont −0.8}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{-0.048611in}{0.000000in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{-0.048611in}{0.000000in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{0.800000in}{1.128486in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=0.365525in,y=1.075725in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont −0.6}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{-0.048611in}{0.000000in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{-0.048611in}{0.000000in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{0.800000in}{1.561003in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=0.365525in,y=1.508242in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont −0.4}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{-0.048611in}{0.000000in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{-0.048611in}{0.000000in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{0.800000in}{1.993520in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=0.365525in,y=1.940759in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont −0.2}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{-0.048611in}{0.000000in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{-0.048611in}{0.000000in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{0.800000in}{2.426037in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=0.481898in,y=2.373276in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont 0.0}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{-0.048611in}{0.000000in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{-0.048611in}{0.000000in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{0.800000in}{2.858554in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=0.481898in,y=2.805793in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont 0.2}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{-0.048611in}{0.000000in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{-0.048611in}{0.000000in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{0.800000in}{3.291071in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=0.481898in,y=3.238310in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont 0.4}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{-0.048611in}{0.000000in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{-0.048611in}{0.000000in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{0.800000in}{3.723588in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=0.481898in,y=3.670827in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont 0.6}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{-0.048611in}{0.000000in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{-0.048611in}{0.000000in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{0.800000in}{4.156105in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=0.481898in,y=4.103344in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont 0.8}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-\pgftext[x=0.309969in,y=2.376000in,,bottom,rotate=90.000000]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle W(t)\)}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfpathrectangle{\pgfqpoint{0.800000in}{0.528000in}}{\pgfqpoint{4.960000in}{3.696000in}}%
-\pgfusepath{clip}%
-\pgfsetrectcap%
-\pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.121569,0.466667,0.705882}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.025455in}{2.426037in}}%
-\pgfpathlineto{\pgfqpoint{3.280000in}{3.811226in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfpathrectangle{\pgfqpoint{0.800000in}{0.528000in}}{\pgfqpoint{4.960000in}{3.696000in}}%
-\pgfusepath{clip}%
-\pgfsetrectcap%
-\pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{1.000000,0.498039,0.054902}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.025455in}{2.426037in}}%
-\pgfpathlineto{\pgfqpoint{2.152727in}{1.326066in}}%
-\pgfpathlineto{\pgfqpoint{3.280000in}{3.811226in}}%
-\pgfpathlineto{\pgfqpoint{4.407273in}{3.106206in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfpathrectangle{\pgfqpoint{0.800000in}{0.528000in}}{\pgfqpoint{4.960000in}{3.696000in}}%
-\pgfusepath{clip}%
-\pgfsetrectcap%
-\pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.172549,0.627451,0.172549}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.025455in}{2.426037in}}%
-\pgfpathlineto{\pgfqpoint{1.589091in}{0.856015in}}%
-\pgfpathlineto{\pgfqpoint{2.152727in}{1.326066in}}%
-\pgfpathlineto{\pgfqpoint{2.716364in}{2.306608in}}%
-\pgfpathlineto{\pgfqpoint{3.280000in}{3.811226in}}%
-\pgfpathlineto{\pgfqpoint{3.843636in}{3.117704in}}%
-\pgfpathlineto{\pgfqpoint{4.407273in}{3.106206in}}%
-\pgfpathlineto{\pgfqpoint{4.970909in}{2.997940in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfpathrectangle{\pgfqpoint{0.800000in}{0.528000in}}{\pgfqpoint{4.960000in}{3.696000in}}%
-\pgfusepath{clip}%
-\pgfsetrectcap%
-\pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.839216,0.152941,0.156863}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.025455in}{2.426037in}}%
-\pgfpathlineto{\pgfqpoint{1.307273in}{1.780800in}}%
-\pgfpathlineto{\pgfqpoint{1.589091in}{0.856015in}}%
-\pgfpathlineto{\pgfqpoint{1.870909in}{1.198556in}}%
-\pgfpathlineto{\pgfqpoint{2.152727in}{1.326066in}}%
-\pgfpathlineto{\pgfqpoint{2.434545in}{1.390322in}}%
-\pgfpathlineto{\pgfqpoint{2.716364in}{2.306608in}}%
-\pgfpathlineto{\pgfqpoint{2.998182in}{2.550792in}}%
-\pgfpathlineto{\pgfqpoint{3.280000in}{3.811226in}}%
-\pgfpathlineto{\pgfqpoint{3.561818in}{3.744786in}}%
-\pgfpathlineto{\pgfqpoint{3.843636in}{3.117704in}}%
-\pgfpathlineto{\pgfqpoint{4.125455in}{3.481879in}}%
-\pgfpathlineto{\pgfqpoint{4.407273in}{3.106206in}}%
-\pgfpathlineto{\pgfqpoint{4.689091in}{3.055471in}}%
-\pgfpathlineto{\pgfqpoint{4.970909in}{2.997940in}}%
-\pgfpathlineto{\pgfqpoint{5.252727in}{2.939374in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfpathrectangle{\pgfqpoint{0.800000in}{0.528000in}}{\pgfqpoint{4.960000in}{3.696000in}}%
-\pgfusepath{clip}%
-\pgfsetrectcap%
-\pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.580392,0.403922,0.741176}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.025455in}{2.426037in}}%
-\pgfpathlineto{\pgfqpoint{1.166364in}{1.787817in}}%
-\pgfpathlineto{\pgfqpoint{1.307273in}{1.780800in}}%
-\pgfpathlineto{\pgfqpoint{1.448182in}{0.774593in}}%
-\pgfpathlineto{\pgfqpoint{1.589091in}{0.856015in}}%
-\pgfpathlineto{\pgfqpoint{1.730000in}{1.341241in}}%
-\pgfpathlineto{\pgfqpoint{1.870909in}{1.198556in}}%
-\pgfpathlineto{\pgfqpoint{2.011818in}{1.257320in}}%
-\pgfpathlineto{\pgfqpoint{2.152727in}{1.326066in}}%
-\pgfpathlineto{\pgfqpoint{2.293636in}{1.587042in}}%
-\pgfpathlineto{\pgfqpoint{2.434545in}{1.390322in}}%
-\pgfpathlineto{\pgfqpoint{2.575455in}{1.755533in}}%
-\pgfpathlineto{\pgfqpoint{2.716364in}{2.306608in}}%
-\pgfpathlineto{\pgfqpoint{2.857273in}{2.179368in}}%
-\pgfpathlineto{\pgfqpoint{2.998182in}{2.550792in}}%
-\pgfpathlineto{\pgfqpoint{3.139091in}{3.035896in}}%
-\pgfpathlineto{\pgfqpoint{3.280000in}{3.811226in}}%
-\pgfpathlineto{\pgfqpoint{3.420909in}{3.791103in}}%
-\pgfpathlineto{\pgfqpoint{3.561818in}{3.744786in}}%
-\pgfpathlineto{\pgfqpoint{3.702727in}{3.962039in}}%
-\pgfpathlineto{\pgfqpoint{3.843636in}{3.117704in}}%
-\pgfpathlineto{\pgfqpoint{3.984545in}{3.489147in}}%
-\pgfpathlineto{\pgfqpoint{4.125455in}{3.481879in}}%
-\pgfpathlineto{\pgfqpoint{4.266364in}{3.484197in}}%
-\pgfpathlineto{\pgfqpoint{4.407273in}{3.106206in}}%
-\pgfpathlineto{\pgfqpoint{4.548182in}{3.450934in}}%
-\pgfpathlineto{\pgfqpoint{4.689091in}{3.055471in}}%
-\pgfpathlineto{\pgfqpoint{4.830000in}{3.149764in}}%
-\pgfpathlineto{\pgfqpoint{4.970909in}{2.997940in}}%
-\pgfpathlineto{\pgfqpoint{5.111818in}{3.120831in}}%
-\pgfpathlineto{\pgfqpoint{5.252727in}{2.939374in}}%
-\pgfpathlineto{\pgfqpoint{5.393636in}{3.131539in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfpathrectangle{\pgfqpoint{0.800000in}{0.528000in}}{\pgfqpoint{4.960000in}{3.696000in}}%
-\pgfusepath{clip}%
-\pgfsetrectcap%
-\pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.549020,0.337255,0.294118}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.025455in}{2.426037in}}%
-\pgfpathlineto{\pgfqpoint{1.095909in}{2.279622in}}%
-\pgfpathlineto{\pgfqpoint{1.166364in}{1.787817in}}%
-\pgfpathlineto{\pgfqpoint{1.236818in}{1.823819in}}%
-\pgfpathlineto{\pgfqpoint{1.307273in}{1.780800in}}%
-\pgfpathlineto{\pgfqpoint{1.377727in}{1.178535in}}%
-\pgfpathlineto{\pgfqpoint{1.448182in}{0.774593in}}%
-\pgfpathlineto{\pgfqpoint{1.518636in}{1.068236in}}%
-\pgfpathlineto{\pgfqpoint{1.589091in}{0.856015in}}%
-\pgfpathlineto{\pgfqpoint{1.659545in}{0.952071in}}%
-\pgfpathlineto{\pgfqpoint{1.730000in}{1.341241in}}%
-\pgfpathlineto{\pgfqpoint{1.800455in}{1.094392in}}%
-\pgfpathlineto{\pgfqpoint{1.870909in}{1.198556in}}%
-\pgfpathlineto{\pgfqpoint{1.941364in}{0.940536in}}%
-\pgfpathlineto{\pgfqpoint{2.011818in}{1.257320in}}%
-\pgfpathlineto{\pgfqpoint{2.082273in}{1.036228in}}%
-\pgfpathlineto{\pgfqpoint{2.152727in}{1.326066in}}%
-\pgfpathlineto{\pgfqpoint{2.223182in}{1.590009in}}%
-\pgfpathlineto{\pgfqpoint{2.293636in}{1.587042in}}%
-\pgfpathlineto{\pgfqpoint{2.364091in}{1.218710in}}%
-\pgfpathlineto{\pgfqpoint{2.434545in}{1.390322in}}%
-\pgfpathlineto{\pgfqpoint{2.505000in}{1.492625in}}%
-\pgfpathlineto{\pgfqpoint{2.575455in}{1.755533in}}%
-\pgfpathlineto{\pgfqpoint{2.645909in}{1.772659in}}%
-\pgfpathlineto{\pgfqpoint{2.716364in}{2.306608in}}%
-\pgfpathlineto{\pgfqpoint{2.786818in}{2.302697in}}%
-\pgfpathlineto{\pgfqpoint{2.857273in}{2.179368in}}%
-\pgfpathlineto{\pgfqpoint{2.927727in}{2.122085in}}%
-\pgfpathlineto{\pgfqpoint{2.998182in}{2.550792in}}%
-\pgfpathlineto{\pgfqpoint{3.068636in}{2.649382in}}%
-\pgfpathlineto{\pgfqpoint{3.139091in}{3.035896in}}%
-\pgfpathlineto{\pgfqpoint{3.209545in}{3.584488in}}%
-\pgfpathlineto{\pgfqpoint{3.280000in}{3.811226in}}%
-\pgfpathlineto{\pgfqpoint{3.350455in}{4.034123in}}%
-\pgfpathlineto{\pgfqpoint{3.420909in}{3.791103in}}%
-\pgfpathlineto{\pgfqpoint{3.491364in}{3.900865in}}%
-\pgfpathlineto{\pgfqpoint{3.561818in}{3.744786in}}%
-\pgfpathlineto{\pgfqpoint{3.632273in}{3.910315in}}%
-\pgfpathlineto{\pgfqpoint{3.702727in}{3.962039in}}%
-\pgfpathlineto{\pgfqpoint{3.773182in}{3.382947in}}%
-\pgfpathlineto{\pgfqpoint{3.843636in}{3.117704in}}%
-\pgfpathlineto{\pgfqpoint{3.914091in}{3.171772in}}%
-\pgfpathlineto{\pgfqpoint{3.984545in}{3.489147in}}%
-\pgfpathlineto{\pgfqpoint{4.055000in}{3.172991in}}%
-\pgfpathlineto{\pgfqpoint{4.125455in}{3.481879in}}%
-\pgfpathlineto{\pgfqpoint{4.195909in}{3.525636in}}%
-\pgfpathlineto{\pgfqpoint{4.266364in}{3.484197in}}%
-\pgfpathlineto{\pgfqpoint{4.336818in}{3.020085in}}%
-\pgfpathlineto{\pgfqpoint{4.407273in}{3.106206in}}%
-\pgfpathlineto{\pgfqpoint{4.477727in}{3.352605in}}%
-\pgfpathlineto{\pgfqpoint{4.548182in}{3.450934in}}%
-\pgfpathlineto{\pgfqpoint{4.618636in}{3.279243in}}%
-\pgfpathlineto{\pgfqpoint{4.689091in}{3.055471in}}%
-\pgfpathlineto{\pgfqpoint{4.759545in}{2.918875in}}%
-\pgfpathlineto{\pgfqpoint{4.830000in}{3.149764in}}%
-\pgfpathlineto{\pgfqpoint{4.900455in}{3.403923in}}%
-\pgfpathlineto{\pgfqpoint{4.970909in}{2.997940in}}%
-\pgfpathlineto{\pgfqpoint{5.041364in}{2.899194in}}%
-\pgfpathlineto{\pgfqpoint{5.111818in}{3.120831in}}%
-\pgfpathlineto{\pgfqpoint{5.182273in}{2.800267in}}%
-\pgfpathlineto{\pgfqpoint{5.252727in}{2.939374in}}%
-\pgfpathlineto{\pgfqpoint{5.323182in}{2.884516in}}%
-\pgfpathlineto{\pgfqpoint{5.393636in}{3.131539in}}%
-\pgfpathlineto{\pgfqpoint{5.464091in}{3.327654in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfpathrectangle{\pgfqpoint{0.800000in}{0.528000in}}{\pgfqpoint{4.960000in}{3.696000in}}%
-\pgfusepath{clip}%
-\pgfsetrectcap%
-\pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.890196,0.466667,0.760784}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.025455in}{2.426037in}}%
-\pgfpathlineto{\pgfqpoint{1.060682in}{2.403506in}}%
-\pgfpathlineto{\pgfqpoint{1.095909in}{2.279622in}}%
-\pgfpathlineto{\pgfqpoint{1.131136in}{1.899422in}}%
-\pgfpathlineto{\pgfqpoint{1.166364in}{1.787817in}}%
-\pgfpathlineto{\pgfqpoint{1.201591in}{1.868628in}}%
-\pgfpathlineto{\pgfqpoint{1.236818in}{1.823819in}}%
-\pgfpathlineto{\pgfqpoint{1.272045in}{1.924577in}}%
-\pgfpathlineto{\pgfqpoint{1.307273in}{1.780800in}}%
-\pgfpathlineto{\pgfqpoint{1.342500in}{1.407742in}}%
-\pgfpathlineto{\pgfqpoint{1.377727in}{1.178535in}}%
-\pgfpathlineto{\pgfqpoint{1.412955in}{1.171191in}}%
-\pgfpathlineto{\pgfqpoint{1.448182in}{0.774593in}}%
-\pgfpathlineto{\pgfqpoint{1.483409in}{0.868668in}}%
-\pgfpathlineto{\pgfqpoint{1.518636in}{1.068236in}}%
-\pgfpathlineto{\pgfqpoint{1.553864in}{0.875103in}}%
-\pgfpathlineto{\pgfqpoint{1.589091in}{0.856015in}}%
-\pgfpathlineto{\pgfqpoint{1.624318in}{0.807400in}}%
-\pgfpathlineto{\pgfqpoint{1.659545in}{0.952071in}}%
-\pgfpathlineto{\pgfqpoint{1.694773in}{1.139794in}}%
-\pgfpathlineto{\pgfqpoint{1.730000in}{1.341241in}}%
-\pgfpathlineto{\pgfqpoint{1.765227in}{1.139275in}}%
-\pgfpathlineto{\pgfqpoint{1.800455in}{1.094392in}}%
-\pgfpathlineto{\pgfqpoint{1.835682in}{1.229857in}}%
-\pgfpathlineto{\pgfqpoint{1.870909in}{1.198556in}}%
-\pgfpathlineto{\pgfqpoint{1.906136in}{1.248292in}}%
-\pgfpathlineto{\pgfqpoint{1.941364in}{0.940536in}}%
-\pgfpathlineto{\pgfqpoint{1.976591in}{1.038242in}}%
-\pgfpathlineto{\pgfqpoint{2.011818in}{1.257320in}}%
-\pgfpathlineto{\pgfqpoint{2.047045in}{1.217573in}}%
-\pgfpathlineto{\pgfqpoint{2.082273in}{1.036228in}}%
-\pgfpathlineto{\pgfqpoint{2.117500in}{1.267347in}}%
-\pgfpathlineto{\pgfqpoint{2.152727in}{1.326066in}}%
-\pgfpathlineto{\pgfqpoint{2.187955in}{1.485708in}}%
-\pgfpathlineto{\pgfqpoint{2.223182in}{1.590009in}}%
-\pgfpathlineto{\pgfqpoint{2.258409in}{1.388087in}}%
-\pgfpathlineto{\pgfqpoint{2.293636in}{1.587042in}}%
-\pgfpathlineto{\pgfqpoint{2.328864in}{1.553990in}}%
-\pgfpathlineto{\pgfqpoint{2.364091in}{1.218710in}}%
-\pgfpathlineto{\pgfqpoint{2.399318in}{1.306053in}}%
-\pgfpathlineto{\pgfqpoint{2.434545in}{1.390322in}}%
-\pgfpathlineto{\pgfqpoint{2.469773in}{1.694071in}}%
-\pgfpathlineto{\pgfqpoint{2.505000in}{1.492625in}}%
-\pgfpathlineto{\pgfqpoint{2.540227in}{1.392727in}}%
-\pgfpathlineto{\pgfqpoint{2.575455in}{1.755533in}}%
-\pgfpathlineto{\pgfqpoint{2.610682in}{1.719948in}}%
-\pgfpathlineto{\pgfqpoint{2.645909in}{1.772659in}}%
-\pgfpathlineto{\pgfqpoint{2.681136in}{1.799277in}}%
-\pgfpathlineto{\pgfqpoint{2.716364in}{2.306608in}}%
-\pgfpathlineto{\pgfqpoint{2.751591in}{2.252378in}}%
-\pgfpathlineto{\pgfqpoint{2.786818in}{2.302697in}}%
-\pgfpathlineto{\pgfqpoint{2.822045in}{2.343521in}}%
-\pgfpathlineto{\pgfqpoint{2.857273in}{2.179368in}}%
-\pgfpathlineto{\pgfqpoint{2.892500in}{1.995662in}}%
-\pgfpathlineto{\pgfqpoint{2.927727in}{2.122085in}}%
-\pgfpathlineto{\pgfqpoint{2.962955in}{2.029149in}}%
-\pgfpathlineto{\pgfqpoint{2.998182in}{2.550792in}}%
-\pgfpathlineto{\pgfqpoint{3.033409in}{2.639417in}}%
-\pgfpathlineto{\pgfqpoint{3.068636in}{2.649382in}}%
-\pgfpathlineto{\pgfqpoint{3.103864in}{2.857292in}}%
-\pgfpathlineto{\pgfqpoint{3.139091in}{3.035896in}}%
-\pgfpathlineto{\pgfqpoint{3.174318in}{3.449880in}}%
-\pgfpathlineto{\pgfqpoint{3.209545in}{3.584488in}}%
-\pgfpathlineto{\pgfqpoint{3.244773in}{3.820056in}}%
-\pgfpathlineto{\pgfqpoint{3.280000in}{3.811226in}}%
-\pgfpathlineto{\pgfqpoint{3.315227in}{3.943956in}}%
-\pgfpathlineto{\pgfqpoint{3.350455in}{4.034123in}}%
-\pgfpathlineto{\pgfqpoint{3.385682in}{3.804363in}}%
-\pgfpathlineto{\pgfqpoint{3.420909in}{3.791103in}}%
-\pgfpathlineto{\pgfqpoint{3.456136in}{4.004107in}}%
-\pgfpathlineto{\pgfqpoint{3.491364in}{3.900865in}}%
-\pgfpathlineto{\pgfqpoint{3.526591in}{4.029574in}}%
-\pgfpathlineto{\pgfqpoint{3.561818in}{3.744786in}}%
-\pgfpathlineto{\pgfqpoint{3.597045in}{3.880160in}}%
-\pgfpathlineto{\pgfqpoint{3.632273in}{3.910315in}}%
-\pgfpathlineto{\pgfqpoint{3.667500in}{3.688766in}}%
-\pgfpathlineto{\pgfqpoint{3.702727in}{3.962039in}}%
-\pgfpathlineto{\pgfqpoint{3.737955in}{3.643117in}}%
-\pgfpathlineto{\pgfqpoint{3.773182in}{3.382947in}}%
-\pgfpathlineto{\pgfqpoint{3.808409in}{3.294027in}}%
-\pgfpathlineto{\pgfqpoint{3.843636in}{3.117704in}}%
-\pgfpathlineto{\pgfqpoint{3.878864in}{3.259378in}}%
-\pgfpathlineto{\pgfqpoint{3.914091in}{3.171772in}}%
-\pgfpathlineto{\pgfqpoint{3.949318in}{3.566135in}}%
-\pgfpathlineto{\pgfqpoint{3.984545in}{3.489147in}}%
-\pgfpathlineto{\pgfqpoint{4.019773in}{3.527927in}}%
-\pgfpathlineto{\pgfqpoint{4.055000in}{3.172991in}}%
-\pgfpathlineto{\pgfqpoint{4.090227in}{3.447084in}}%
-\pgfpathlineto{\pgfqpoint{4.125455in}{3.481879in}}%
-\pgfpathlineto{\pgfqpoint{4.160682in}{3.365088in}}%
-\pgfpathlineto{\pgfqpoint{4.195909in}{3.525636in}}%
-\pgfpathlineto{\pgfqpoint{4.231136in}{3.514439in}}%
-\pgfpathlineto{\pgfqpoint{4.266364in}{3.484197in}}%
-\pgfpathlineto{\pgfqpoint{4.301591in}{3.281506in}}%
-\pgfpathlineto{\pgfqpoint{4.336818in}{3.020085in}}%
-\pgfpathlineto{\pgfqpoint{4.372045in}{3.209100in}}%
-\pgfpathlineto{\pgfqpoint{4.407273in}{3.106206in}}%
-\pgfpathlineto{\pgfqpoint{4.442500in}{3.185030in}}%
-\pgfpathlineto{\pgfqpoint{4.477727in}{3.352605in}}%
-\pgfpathlineto{\pgfqpoint{4.512955in}{3.397425in}}%
-\pgfpathlineto{\pgfqpoint{4.548182in}{3.450934in}}%
-\pgfpathlineto{\pgfqpoint{4.583409in}{3.310697in}}%
-\pgfpathlineto{\pgfqpoint{4.618636in}{3.279243in}}%
-\pgfpathlineto{\pgfqpoint{4.653864in}{3.286128in}}%
-\pgfpathlineto{\pgfqpoint{4.689091in}{3.055471in}}%
-\pgfpathlineto{\pgfqpoint{4.724318in}{3.257204in}}%
-\pgfpathlineto{\pgfqpoint{4.759545in}{2.918875in}}%
-\pgfpathlineto{\pgfqpoint{4.794773in}{3.103153in}}%
-\pgfpathlineto{\pgfqpoint{4.830000in}{3.149764in}}%
-\pgfpathlineto{\pgfqpoint{4.865227in}{3.178648in}}%
-\pgfpathlineto{\pgfqpoint{4.900455in}{3.403923in}}%
-\pgfpathlineto{\pgfqpoint{4.970909in}{2.997940in}}%
-\pgfpathlineto{\pgfqpoint{5.006136in}{2.980995in}}%
-\pgfpathlineto{\pgfqpoint{5.041364in}{2.899194in}}%
-\pgfpathlineto{\pgfqpoint{5.076591in}{2.838205in}}%
-\pgfpathlineto{\pgfqpoint{5.111818in}{3.120831in}}%
-\pgfpathlineto{\pgfqpoint{5.147045in}{3.132639in}}%
-\pgfpathlineto{\pgfqpoint{5.182273in}{2.800267in}}%
-\pgfpathlineto{\pgfqpoint{5.217500in}{2.854958in}}%
-\pgfpathlineto{\pgfqpoint{5.252727in}{2.939374in}}%
-\pgfpathlineto{\pgfqpoint{5.287955in}{2.936602in}}%
-\pgfpathlineto{\pgfqpoint{5.323182in}{2.884516in}}%
-\pgfpathlineto{\pgfqpoint{5.358409in}{2.985329in}}%
-\pgfpathlineto{\pgfqpoint{5.393636in}{3.131539in}}%
-\pgfpathlineto{\pgfqpoint{5.428864in}{3.383239in}}%
-\pgfpathlineto{\pgfqpoint{5.464091in}{3.327654in}}%
-\pgfpathlineto{\pgfqpoint{5.499318in}{3.670232in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfpathrectangle{\pgfqpoint{0.800000in}{0.528000in}}{\pgfqpoint{4.960000in}{3.696000in}}%
-\pgfusepath{clip}%
-\pgfsetrectcap%
-\pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.498039,0.498039,0.498039}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.025455in}{2.426037in}}%
-\pgfpathlineto{\pgfqpoint{1.043068in}{2.222178in}}%
-\pgfpathlineto{\pgfqpoint{1.060682in}{2.403506in}}%
-\pgfpathlineto{\pgfqpoint{1.078295in}{2.194343in}}%
-\pgfpathlineto{\pgfqpoint{1.095909in}{2.279622in}}%
-\pgfpathlineto{\pgfqpoint{1.131136in}{1.899422in}}%
-\pgfpathlineto{\pgfqpoint{1.148750in}{1.774645in}}%
-\pgfpathlineto{\pgfqpoint{1.166364in}{1.787817in}}%
-\pgfpathlineto{\pgfqpoint{1.183977in}{1.842666in}}%
-\pgfpathlineto{\pgfqpoint{1.201591in}{1.868628in}}%
-\pgfpathlineto{\pgfqpoint{1.219205in}{1.778253in}}%
-\pgfpathlineto{\pgfqpoint{1.236818in}{1.823819in}}%
-\pgfpathlineto{\pgfqpoint{1.254432in}{1.769457in}}%
-\pgfpathlineto{\pgfqpoint{1.272045in}{1.924577in}}%
-\pgfpathlineto{\pgfqpoint{1.289659in}{1.910213in}}%
-\pgfpathlineto{\pgfqpoint{1.307273in}{1.780800in}}%
-\pgfpathlineto{\pgfqpoint{1.324886in}{1.507578in}}%
-\pgfpathlineto{\pgfqpoint{1.342500in}{1.407742in}}%
-\pgfpathlineto{\pgfqpoint{1.360114in}{1.202545in}}%
-\pgfpathlineto{\pgfqpoint{1.377727in}{1.178535in}}%
-\pgfpathlineto{\pgfqpoint{1.395341in}{1.034447in}}%
-\pgfpathlineto{\pgfqpoint{1.412955in}{1.171191in}}%
-\pgfpathlineto{\pgfqpoint{1.430568in}{1.137458in}}%
-\pgfpathlineto{\pgfqpoint{1.448182in}{0.774593in}}%
-\pgfpathlineto{\pgfqpoint{1.465795in}{0.720660in}}%
-\pgfpathlineto{\pgfqpoint{1.483409in}{0.868668in}}%
-\pgfpathlineto{\pgfqpoint{1.501023in}{0.807600in}}%
-\pgfpathlineto{\pgfqpoint{1.518636in}{1.068236in}}%
-\pgfpathlineto{\pgfqpoint{1.536250in}{0.917333in}}%
-\pgfpathlineto{\pgfqpoint{1.553864in}{0.875103in}}%
-\pgfpathlineto{\pgfqpoint{1.571477in}{0.750614in}}%
-\pgfpathlineto{\pgfqpoint{1.589091in}{0.856015in}}%
-\pgfpathlineto{\pgfqpoint{1.606705in}{0.719718in}}%
-\pgfpathlineto{\pgfqpoint{1.624318in}{0.807400in}}%
-\pgfpathlineto{\pgfqpoint{1.641932in}{0.908045in}}%
-\pgfpathlineto{\pgfqpoint{1.659545in}{0.952071in}}%
-\pgfpathlineto{\pgfqpoint{1.677159in}{1.065497in}}%
-\pgfpathlineto{\pgfqpoint{1.694773in}{1.139794in}}%
-\pgfpathlineto{\pgfqpoint{1.712386in}{1.236763in}}%
-\pgfpathlineto{\pgfqpoint{1.730000in}{1.341241in}}%
-\pgfpathlineto{\pgfqpoint{1.747614in}{1.084309in}}%
-\pgfpathlineto{\pgfqpoint{1.765227in}{1.139275in}}%
-\pgfpathlineto{\pgfqpoint{1.782841in}{1.310633in}}%
-\pgfpathlineto{\pgfqpoint{1.800455in}{1.094392in}}%
-\pgfpathlineto{\pgfqpoint{1.818068in}{1.107550in}}%
-\pgfpathlineto{\pgfqpoint{1.835682in}{1.229857in}}%
-\pgfpathlineto{\pgfqpoint{1.853295in}{1.260220in}}%
-\pgfpathlineto{\pgfqpoint{1.870909in}{1.198556in}}%
-\pgfpathlineto{\pgfqpoint{1.888523in}{1.086806in}}%
-\pgfpathlineto{\pgfqpoint{1.906136in}{1.248292in}}%
-\pgfpathlineto{\pgfqpoint{1.923750in}{0.962003in}}%
-\pgfpathlineto{\pgfqpoint{1.941364in}{0.940536in}}%
-\pgfpathlineto{\pgfqpoint{1.958977in}{1.023064in}}%
-\pgfpathlineto{\pgfqpoint{1.976591in}{1.038242in}}%
-\pgfpathlineto{\pgfqpoint{1.994205in}{1.250428in}}%
-\pgfpathlineto{\pgfqpoint{2.011818in}{1.257320in}}%
-\pgfpathlineto{\pgfqpoint{2.029432in}{1.194126in}}%
-\pgfpathlineto{\pgfqpoint{2.047045in}{1.217573in}}%
-\pgfpathlineto{\pgfqpoint{2.064659in}{0.989640in}}%
-\pgfpathlineto{\pgfqpoint{2.082273in}{1.036228in}}%
-\pgfpathlineto{\pgfqpoint{2.099886in}{1.073815in}}%
-\pgfpathlineto{\pgfqpoint{2.117500in}{1.267347in}}%
-\pgfpathlineto{\pgfqpoint{2.135114in}{1.211329in}}%
-\pgfpathlineto{\pgfqpoint{2.152727in}{1.326066in}}%
-\pgfpathlineto{\pgfqpoint{2.170341in}{1.529650in}}%
-\pgfpathlineto{\pgfqpoint{2.187955in}{1.485708in}}%
-\pgfpathlineto{\pgfqpoint{2.205568in}{1.400370in}}%
-\pgfpathlineto{\pgfqpoint{2.223182in}{1.590009in}}%
-\pgfpathlineto{\pgfqpoint{2.240795in}{1.510854in}}%
-\pgfpathlineto{\pgfqpoint{2.258409in}{1.388087in}}%
-\pgfpathlineto{\pgfqpoint{2.276023in}{1.418886in}}%
-\pgfpathlineto{\pgfqpoint{2.293636in}{1.587042in}}%
-\pgfpathlineto{\pgfqpoint{2.311250in}{1.492875in}}%
-\pgfpathlineto{\pgfqpoint{2.328864in}{1.553990in}}%
-\pgfpathlineto{\pgfqpoint{2.346477in}{1.228417in}}%
-\pgfpathlineto{\pgfqpoint{2.364091in}{1.218710in}}%
-\pgfpathlineto{\pgfqpoint{2.381705in}{1.188379in}}%
-\pgfpathlineto{\pgfqpoint{2.399318in}{1.306053in}}%
-\pgfpathlineto{\pgfqpoint{2.416932in}{1.393306in}}%
-\pgfpathlineto{\pgfqpoint{2.434545in}{1.390322in}}%
-\pgfpathlineto{\pgfqpoint{2.452159in}{1.588499in}}%
-\pgfpathlineto{\pgfqpoint{2.469773in}{1.694071in}}%
-\pgfpathlineto{\pgfqpoint{2.487386in}{1.472533in}}%
-\pgfpathlineto{\pgfqpoint{2.505000in}{1.492625in}}%
-\pgfpathlineto{\pgfqpoint{2.522614in}{1.407230in}}%
-\pgfpathlineto{\pgfqpoint{2.540227in}{1.392727in}}%
-\pgfpathlineto{\pgfqpoint{2.575455in}{1.755533in}}%
-\pgfpathlineto{\pgfqpoint{2.593068in}{1.752716in}}%
-\pgfpathlineto{\pgfqpoint{2.610682in}{1.719948in}}%
-\pgfpathlineto{\pgfqpoint{2.628295in}{1.740696in}}%
-\pgfpathlineto{\pgfqpoint{2.645909in}{1.772659in}}%
-\pgfpathlineto{\pgfqpoint{2.663523in}{1.794733in}}%
-\pgfpathlineto{\pgfqpoint{2.681136in}{1.799277in}}%
-\pgfpathlineto{\pgfqpoint{2.698750in}{2.084929in}}%
-\pgfpathlineto{\pgfqpoint{2.716364in}{2.306608in}}%
-\pgfpathlineto{\pgfqpoint{2.733977in}{2.153082in}}%
-\pgfpathlineto{\pgfqpoint{2.751591in}{2.252378in}}%
-\pgfpathlineto{\pgfqpoint{2.769205in}{2.220044in}}%
-\pgfpathlineto{\pgfqpoint{2.786818in}{2.302697in}}%
-\pgfpathlineto{\pgfqpoint{2.804432in}{2.416505in}}%
-\pgfpathlineto{\pgfqpoint{2.822045in}{2.343521in}}%
-\pgfpathlineto{\pgfqpoint{2.839659in}{2.160965in}}%
-\pgfpathlineto{\pgfqpoint{2.857273in}{2.179368in}}%
-\pgfpathlineto{\pgfqpoint{2.874886in}{1.963286in}}%
-\pgfpathlineto{\pgfqpoint{2.892500in}{1.995662in}}%
-\pgfpathlineto{\pgfqpoint{2.910114in}{1.869577in}}%
-\pgfpathlineto{\pgfqpoint{2.927727in}{2.122085in}}%
-\pgfpathlineto{\pgfqpoint{2.945341in}{1.862254in}}%
-\pgfpathlineto{\pgfqpoint{2.962955in}{2.029149in}}%
-\pgfpathlineto{\pgfqpoint{2.980568in}{2.320051in}}%
-\pgfpathlineto{\pgfqpoint{2.998182in}{2.550792in}}%
-\pgfpathlineto{\pgfqpoint{3.015795in}{2.442895in}}%
-\pgfpathlineto{\pgfqpoint{3.033409in}{2.639417in}}%
-\pgfpathlineto{\pgfqpoint{3.051023in}{2.704957in}}%
-\pgfpathlineto{\pgfqpoint{3.068636in}{2.649382in}}%
-\pgfpathlineto{\pgfqpoint{3.086250in}{2.851524in}}%
-\pgfpathlineto{\pgfqpoint{3.103864in}{2.857292in}}%
-\pgfpathlineto{\pgfqpoint{3.121477in}{2.907709in}}%
-\pgfpathlineto{\pgfqpoint{3.139091in}{3.035896in}}%
-\pgfpathlineto{\pgfqpoint{3.156705in}{3.113608in}}%
-\pgfpathlineto{\pgfqpoint{3.174318in}{3.449880in}}%
-\pgfpathlineto{\pgfqpoint{3.191932in}{3.440163in}}%
-\pgfpathlineto{\pgfqpoint{3.209545in}{3.584488in}}%
-\pgfpathlineto{\pgfqpoint{3.227159in}{3.707349in}}%
-\pgfpathlineto{\pgfqpoint{3.244773in}{3.820056in}}%
-\pgfpathlineto{\pgfqpoint{3.262386in}{3.816765in}}%
-\pgfpathlineto{\pgfqpoint{3.280000in}{3.811226in}}%
-\pgfpathlineto{\pgfqpoint{3.297614in}{3.991896in}}%
-\pgfpathlineto{\pgfqpoint{3.315227in}{3.943956in}}%
-\pgfpathlineto{\pgfqpoint{3.332841in}{3.952052in}}%
-\pgfpathlineto{\pgfqpoint{3.350455in}{4.034123in}}%
-\pgfpathlineto{\pgfqpoint{3.368068in}{4.017802in}}%
-\pgfpathlineto{\pgfqpoint{3.385682in}{3.804363in}}%
-\pgfpathlineto{\pgfqpoint{3.403295in}{3.839691in}}%
-\pgfpathlineto{\pgfqpoint{3.420909in}{3.791103in}}%
-\pgfpathlineto{\pgfqpoint{3.438523in}{3.833300in}}%
-\pgfpathlineto{\pgfqpoint{3.456136in}{4.004107in}}%
-\pgfpathlineto{\pgfqpoint{3.473750in}{3.988565in}}%
-\pgfpathlineto{\pgfqpoint{3.491364in}{3.900865in}}%
-\pgfpathlineto{\pgfqpoint{3.508977in}{3.982471in}}%
-\pgfpathlineto{\pgfqpoint{3.526591in}{4.029574in}}%
-\pgfpathlineto{\pgfqpoint{3.544205in}{3.836992in}}%
-\pgfpathlineto{\pgfqpoint{3.561818in}{3.744786in}}%
-\pgfpathlineto{\pgfqpoint{3.579432in}{3.895029in}}%
-\pgfpathlineto{\pgfqpoint{3.597045in}{3.880160in}}%
-\pgfpathlineto{\pgfqpoint{3.614659in}{4.025302in}}%
-\pgfpathlineto{\pgfqpoint{3.632273in}{3.910315in}}%
-\pgfpathlineto{\pgfqpoint{3.649886in}{3.907125in}}%
-\pgfpathlineto{\pgfqpoint{3.667500in}{3.688766in}}%
-\pgfpathlineto{\pgfqpoint{3.685114in}{3.778328in}}%
-\pgfpathlineto{\pgfqpoint{3.702727in}{3.962039in}}%
-\pgfpathlineto{\pgfqpoint{3.720341in}{3.938361in}}%
-\pgfpathlineto{\pgfqpoint{3.755568in}{3.339223in}}%
-\pgfpathlineto{\pgfqpoint{3.773182in}{3.382947in}}%
-\pgfpathlineto{\pgfqpoint{3.790795in}{3.395878in}}%
-\pgfpathlineto{\pgfqpoint{3.808409in}{3.294027in}}%
-\pgfpathlineto{\pgfqpoint{3.826023in}{3.160161in}}%
-\pgfpathlineto{\pgfqpoint{3.843636in}{3.117704in}}%
-\pgfpathlineto{\pgfqpoint{3.861250in}{3.246256in}}%
-\pgfpathlineto{\pgfqpoint{3.878864in}{3.259378in}}%
-\pgfpathlineto{\pgfqpoint{3.896477in}{3.179531in}}%
-\pgfpathlineto{\pgfqpoint{3.914091in}{3.171772in}}%
-\pgfpathlineto{\pgfqpoint{3.931705in}{3.436378in}}%
-\pgfpathlineto{\pgfqpoint{3.949318in}{3.566135in}}%
-\pgfpathlineto{\pgfqpoint{3.966932in}{3.738430in}}%
-\pgfpathlineto{\pgfqpoint{3.984545in}{3.489147in}}%
-\pgfpathlineto{\pgfqpoint{4.002159in}{3.354246in}}%
-\pgfpathlineto{\pgfqpoint{4.019773in}{3.527927in}}%
-\pgfpathlineto{\pgfqpoint{4.037386in}{3.360349in}}%
-\pgfpathlineto{\pgfqpoint{4.055000in}{3.172991in}}%
-\pgfpathlineto{\pgfqpoint{4.072614in}{3.251138in}}%
-\pgfpathlineto{\pgfqpoint{4.090227in}{3.447084in}}%
-\pgfpathlineto{\pgfqpoint{4.107841in}{3.370407in}}%
-\pgfpathlineto{\pgfqpoint{4.125455in}{3.481879in}}%
-\pgfpathlineto{\pgfqpoint{4.143068in}{3.297513in}}%
-\pgfpathlineto{\pgfqpoint{4.160682in}{3.365088in}}%
-\pgfpathlineto{\pgfqpoint{4.178295in}{3.494227in}}%
-\pgfpathlineto{\pgfqpoint{4.195909in}{3.525636in}}%
-\pgfpathlineto{\pgfqpoint{4.213523in}{3.496736in}}%
-\pgfpathlineto{\pgfqpoint{4.231136in}{3.514439in}}%
-\pgfpathlineto{\pgfqpoint{4.248750in}{3.379485in}}%
-\pgfpathlineto{\pgfqpoint{4.266364in}{3.484197in}}%
-\pgfpathlineto{\pgfqpoint{4.283977in}{3.333743in}}%
-\pgfpathlineto{\pgfqpoint{4.301591in}{3.281506in}}%
-\pgfpathlineto{\pgfqpoint{4.319205in}{3.224690in}}%
-\pgfpathlineto{\pgfqpoint{4.336818in}{3.020085in}}%
-\pgfpathlineto{\pgfqpoint{4.354432in}{3.094927in}}%
-\pgfpathlineto{\pgfqpoint{4.372045in}{3.209100in}}%
-\pgfpathlineto{\pgfqpoint{4.389659in}{3.088295in}}%
-\pgfpathlineto{\pgfqpoint{4.407273in}{3.106206in}}%
-\pgfpathlineto{\pgfqpoint{4.424886in}{3.151287in}}%
-\pgfpathlineto{\pgfqpoint{4.442500in}{3.185030in}}%
-\pgfpathlineto{\pgfqpoint{4.460114in}{3.100306in}}%
-\pgfpathlineto{\pgfqpoint{4.477727in}{3.352605in}}%
-\pgfpathlineto{\pgfqpoint{4.495341in}{3.419028in}}%
-\pgfpathlineto{\pgfqpoint{4.512955in}{3.397425in}}%
-\pgfpathlineto{\pgfqpoint{4.530568in}{3.560568in}}%
-\pgfpathlineto{\pgfqpoint{4.548182in}{3.450934in}}%
-\pgfpathlineto{\pgfqpoint{4.565795in}{3.475158in}}%
-\pgfpathlineto{\pgfqpoint{4.583409in}{3.310697in}}%
-\pgfpathlineto{\pgfqpoint{4.601023in}{3.189782in}}%
-\pgfpathlineto{\pgfqpoint{4.618636in}{3.279243in}}%
-\pgfpathlineto{\pgfqpoint{4.636250in}{3.398932in}}%
-\pgfpathlineto{\pgfqpoint{4.653864in}{3.286128in}}%
-\pgfpathlineto{\pgfqpoint{4.671477in}{3.253570in}}%
-\pgfpathlineto{\pgfqpoint{4.689091in}{3.055471in}}%
-\pgfpathlineto{\pgfqpoint{4.706705in}{2.959656in}}%
-\pgfpathlineto{\pgfqpoint{4.724318in}{3.257204in}}%
-\pgfpathlineto{\pgfqpoint{4.741932in}{3.180189in}}%
-\pgfpathlineto{\pgfqpoint{4.759545in}{2.918875in}}%
-\pgfpathlineto{\pgfqpoint{4.777159in}{2.987794in}}%
-\pgfpathlineto{\pgfqpoint{4.794773in}{3.103153in}}%
-\pgfpathlineto{\pgfqpoint{4.812386in}{3.137017in}}%
-\pgfpathlineto{\pgfqpoint{4.830000in}{3.149764in}}%
-\pgfpathlineto{\pgfqpoint{4.847614in}{3.142940in}}%
-\pgfpathlineto{\pgfqpoint{4.865227in}{3.178648in}}%
-\pgfpathlineto{\pgfqpoint{4.882841in}{3.081425in}}%
-\pgfpathlineto{\pgfqpoint{4.900455in}{3.403923in}}%
-\pgfpathlineto{\pgfqpoint{4.918068in}{3.341246in}}%
-\pgfpathlineto{\pgfqpoint{4.935682in}{3.199311in}}%
-\pgfpathlineto{\pgfqpoint{4.953295in}{3.169109in}}%
-\pgfpathlineto{\pgfqpoint{4.970909in}{2.997940in}}%
-\pgfpathlineto{\pgfqpoint{4.988523in}{3.010343in}}%
-\pgfpathlineto{\pgfqpoint{5.006136in}{2.980995in}}%
-\pgfpathlineto{\pgfqpoint{5.023750in}{2.963144in}}%
-\pgfpathlineto{\pgfqpoint{5.041364in}{2.899194in}}%
-\pgfpathlineto{\pgfqpoint{5.058977in}{2.723229in}}%
-\pgfpathlineto{\pgfqpoint{5.094205in}{2.958828in}}%
-\pgfpathlineto{\pgfqpoint{5.111818in}{3.120831in}}%
-\pgfpathlineto{\pgfqpoint{5.129432in}{3.098732in}}%
-\pgfpathlineto{\pgfqpoint{5.147045in}{3.132639in}}%
-\pgfpathlineto{\pgfqpoint{5.164659in}{2.910783in}}%
-\pgfpathlineto{\pgfqpoint{5.182273in}{2.800267in}}%
-\pgfpathlineto{\pgfqpoint{5.199886in}{2.811271in}}%
-\pgfpathlineto{\pgfqpoint{5.217500in}{2.854958in}}%
-\pgfpathlineto{\pgfqpoint{5.235114in}{3.057875in}}%
-\pgfpathlineto{\pgfqpoint{5.252727in}{2.939374in}}%
-\pgfpathlineto{\pgfqpoint{5.270341in}{3.067549in}}%
-\pgfpathlineto{\pgfqpoint{5.287955in}{2.936602in}}%
-\pgfpathlineto{\pgfqpoint{5.305568in}{2.845293in}}%
-\pgfpathlineto{\pgfqpoint{5.323182in}{2.884516in}}%
-\pgfpathlineto{\pgfqpoint{5.340795in}{2.989803in}}%
-\pgfpathlineto{\pgfqpoint{5.358409in}{2.985329in}}%
-\pgfpathlineto{\pgfqpoint{5.376023in}{2.828378in}}%
-\pgfpathlineto{\pgfqpoint{5.393636in}{3.131539in}}%
-\pgfpathlineto{\pgfqpoint{5.411250in}{3.195252in}}%
-\pgfpathlineto{\pgfqpoint{5.428864in}{3.383239in}}%
-\pgfpathlineto{\pgfqpoint{5.446477in}{3.347578in}}%
-\pgfpathlineto{\pgfqpoint{5.464091in}{3.327654in}}%
-\pgfpathlineto{\pgfqpoint{5.481705in}{3.612779in}}%
-\pgfpathlineto{\pgfqpoint{5.499318in}{3.670232in}}%
-\pgfpathlineto{\pgfqpoint{5.516932in}{3.864616in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfpathrectangle{\pgfqpoint{0.800000in}{0.528000in}}{\pgfqpoint{4.960000in}{3.696000in}}%
-\pgfusepath{clip}%
-\pgfsetrectcap%
-\pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.737255,0.741176,0.133333}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.025455in}{2.426037in}}%
-\pgfpathlineto{\pgfqpoint{1.034261in}{2.306448in}}%
-\pgfpathlineto{\pgfqpoint{1.043068in}{2.222178in}}%
-\pgfpathlineto{\pgfqpoint{1.051875in}{2.276692in}}%
-\pgfpathlineto{\pgfqpoint{1.060682in}{2.403506in}}%
-\pgfpathlineto{\pgfqpoint{1.069489in}{2.317005in}}%
-\pgfpathlineto{\pgfqpoint{1.078295in}{2.194343in}}%
-\pgfpathlineto{\pgfqpoint{1.087102in}{2.188177in}}%
-\pgfpathlineto{\pgfqpoint{1.095909in}{2.279622in}}%
-\pgfpathlineto{\pgfqpoint{1.113523in}{2.084805in}}%
-\pgfpathlineto{\pgfqpoint{1.122330in}{2.057509in}}%
-\pgfpathlineto{\pgfqpoint{1.131136in}{1.899422in}}%
-\pgfpathlineto{\pgfqpoint{1.139943in}{1.761344in}}%
-\pgfpathlineto{\pgfqpoint{1.148750in}{1.774645in}}%
-\pgfpathlineto{\pgfqpoint{1.157557in}{1.663769in}}%
-\pgfpathlineto{\pgfqpoint{1.175170in}{1.919121in}}%
-\pgfpathlineto{\pgfqpoint{1.183977in}{1.842666in}}%
-\pgfpathlineto{\pgfqpoint{1.192784in}{1.941156in}}%
-\pgfpathlineto{\pgfqpoint{1.201591in}{1.868628in}}%
-\pgfpathlineto{\pgfqpoint{1.210398in}{1.819716in}}%
-\pgfpathlineto{\pgfqpoint{1.219205in}{1.778253in}}%
-\pgfpathlineto{\pgfqpoint{1.228011in}{1.867922in}}%
-\pgfpathlineto{\pgfqpoint{1.236818in}{1.823819in}}%
-\pgfpathlineto{\pgfqpoint{1.245625in}{1.942489in}}%
-\pgfpathlineto{\pgfqpoint{1.254432in}{1.769457in}}%
-\pgfpathlineto{\pgfqpoint{1.263239in}{1.780162in}}%
-\pgfpathlineto{\pgfqpoint{1.272045in}{1.924577in}}%
-\pgfpathlineto{\pgfqpoint{1.280852in}{1.914534in}}%
-\pgfpathlineto{\pgfqpoint{1.289659in}{1.910213in}}%
-\pgfpathlineto{\pgfqpoint{1.298466in}{1.804952in}}%
-\pgfpathlineto{\pgfqpoint{1.307273in}{1.780800in}}%
-\pgfpathlineto{\pgfqpoint{1.316080in}{1.571788in}}%
-\pgfpathlineto{\pgfqpoint{1.324886in}{1.507578in}}%
-\pgfpathlineto{\pgfqpoint{1.333693in}{1.391932in}}%
-\pgfpathlineto{\pgfqpoint{1.342500in}{1.407742in}}%
-\pgfpathlineto{\pgfqpoint{1.351307in}{1.159002in}}%
-\pgfpathlineto{\pgfqpoint{1.360114in}{1.202545in}}%
-\pgfpathlineto{\pgfqpoint{1.368920in}{1.225858in}}%
-\pgfpathlineto{\pgfqpoint{1.377727in}{1.178535in}}%
-\pgfpathlineto{\pgfqpoint{1.386534in}{1.074118in}}%
-\pgfpathlineto{\pgfqpoint{1.395341in}{1.034447in}}%
-\pgfpathlineto{\pgfqpoint{1.404148in}{1.159033in}}%
-\pgfpathlineto{\pgfqpoint{1.412955in}{1.171191in}}%
-\pgfpathlineto{\pgfqpoint{1.421761in}{1.215309in}}%
-\pgfpathlineto{\pgfqpoint{1.430568in}{1.137458in}}%
-\pgfpathlineto{\pgfqpoint{1.439375in}{0.835519in}}%
-\pgfpathlineto{\pgfqpoint{1.448182in}{0.774593in}}%
-\pgfpathlineto{\pgfqpoint{1.456989in}{0.742580in}}%
-\pgfpathlineto{\pgfqpoint{1.465795in}{0.720660in}}%
-\pgfpathlineto{\pgfqpoint{1.474602in}{0.870178in}}%
-\pgfpathlineto{\pgfqpoint{1.483409in}{0.868668in}}%
-\pgfpathlineto{\pgfqpoint{1.492216in}{0.826418in}}%
-\pgfpathlineto{\pgfqpoint{1.501023in}{0.807600in}}%
-\pgfpathlineto{\pgfqpoint{1.509830in}{0.884276in}}%
-\pgfpathlineto{\pgfqpoint{1.518636in}{1.068236in}}%
-\pgfpathlineto{\pgfqpoint{1.527443in}{1.118280in}}%
-\pgfpathlineto{\pgfqpoint{1.536250in}{0.917333in}}%
-\pgfpathlineto{\pgfqpoint{1.545057in}{0.917960in}}%
-\pgfpathlineto{\pgfqpoint{1.553864in}{0.875103in}}%
-\pgfpathlineto{\pgfqpoint{1.562670in}{0.782675in}}%
-\pgfpathlineto{\pgfqpoint{1.580284in}{0.718238in}}%
-\pgfpathlineto{\pgfqpoint{1.589091in}{0.856015in}}%
-\pgfpathlineto{\pgfqpoint{1.597898in}{0.741830in}}%
-\pgfpathlineto{\pgfqpoint{1.606705in}{0.719718in}}%
-\pgfpathlineto{\pgfqpoint{1.615511in}{0.849200in}}%
-\pgfpathlineto{\pgfqpoint{1.624318in}{0.807400in}}%
-\pgfpathlineto{\pgfqpoint{1.633125in}{0.918022in}}%
-\pgfpathlineto{\pgfqpoint{1.641932in}{0.908045in}}%
-\pgfpathlineto{\pgfqpoint{1.650739in}{1.016725in}}%
-\pgfpathlineto{\pgfqpoint{1.659545in}{0.952071in}}%
-\pgfpathlineto{\pgfqpoint{1.668352in}{1.071420in}}%
-\pgfpathlineto{\pgfqpoint{1.677159in}{1.065497in}}%
-\pgfpathlineto{\pgfqpoint{1.685966in}{1.076361in}}%
-\pgfpathlineto{\pgfqpoint{1.694773in}{1.139794in}}%
-\pgfpathlineto{\pgfqpoint{1.703580in}{1.268951in}}%
-\pgfpathlineto{\pgfqpoint{1.712386in}{1.236763in}}%
-\pgfpathlineto{\pgfqpoint{1.721193in}{1.245325in}}%
-\pgfpathlineto{\pgfqpoint{1.730000in}{1.341241in}}%
-\pgfpathlineto{\pgfqpoint{1.738807in}{1.323640in}}%
-\pgfpathlineto{\pgfqpoint{1.747614in}{1.084309in}}%
-\pgfpathlineto{\pgfqpoint{1.756420in}{1.056950in}}%
-\pgfpathlineto{\pgfqpoint{1.765227in}{1.139275in}}%
-\pgfpathlineto{\pgfqpoint{1.774034in}{1.191170in}}%
-\pgfpathlineto{\pgfqpoint{1.782841in}{1.310633in}}%
-\pgfpathlineto{\pgfqpoint{1.791648in}{1.283929in}}%
-\pgfpathlineto{\pgfqpoint{1.800455in}{1.094392in}}%
-\pgfpathlineto{\pgfqpoint{1.809261in}{1.040134in}}%
-\pgfpathlineto{\pgfqpoint{1.818068in}{1.107550in}}%
-\pgfpathlineto{\pgfqpoint{1.826875in}{1.247058in}}%
-\pgfpathlineto{\pgfqpoint{1.835682in}{1.229857in}}%
-\pgfpathlineto{\pgfqpoint{1.844489in}{1.157620in}}%
-\pgfpathlineto{\pgfqpoint{1.853295in}{1.260220in}}%
-\pgfpathlineto{\pgfqpoint{1.862102in}{1.241210in}}%
-\pgfpathlineto{\pgfqpoint{1.870909in}{1.198556in}}%
-\pgfpathlineto{\pgfqpoint{1.879716in}{1.294083in}}%
-\pgfpathlineto{\pgfqpoint{1.888523in}{1.086806in}}%
-\pgfpathlineto{\pgfqpoint{1.897330in}{1.228979in}}%
-\pgfpathlineto{\pgfqpoint{1.906136in}{1.248292in}}%
-\pgfpathlineto{\pgfqpoint{1.914943in}{1.174304in}}%
-\pgfpathlineto{\pgfqpoint{1.923750in}{0.962003in}}%
-\pgfpathlineto{\pgfqpoint{1.932557in}{0.883274in}}%
-\pgfpathlineto{\pgfqpoint{1.941364in}{0.940536in}}%
-\pgfpathlineto{\pgfqpoint{1.950170in}{0.960726in}}%
-\pgfpathlineto{\pgfqpoint{1.958977in}{1.023064in}}%
-\pgfpathlineto{\pgfqpoint{1.967784in}{1.028233in}}%
-\pgfpathlineto{\pgfqpoint{1.976591in}{1.038242in}}%
-\pgfpathlineto{\pgfqpoint{1.985398in}{1.199442in}}%
-\pgfpathlineto{\pgfqpoint{1.994205in}{1.250428in}}%
-\pgfpathlineto{\pgfqpoint{2.003011in}{1.238765in}}%
-\pgfpathlineto{\pgfqpoint{2.011818in}{1.257320in}}%
-\pgfpathlineto{\pgfqpoint{2.020625in}{1.336029in}}%
-\pgfpathlineto{\pgfqpoint{2.029432in}{1.194126in}}%
-\pgfpathlineto{\pgfqpoint{2.038239in}{1.202159in}}%
-\pgfpathlineto{\pgfqpoint{2.047045in}{1.217573in}}%
-\pgfpathlineto{\pgfqpoint{2.055852in}{1.077217in}}%
-\pgfpathlineto{\pgfqpoint{2.064659in}{0.989640in}}%
-\pgfpathlineto{\pgfqpoint{2.073466in}{1.090714in}}%
-\pgfpathlineto{\pgfqpoint{2.082273in}{1.036228in}}%
-\pgfpathlineto{\pgfqpoint{2.091080in}{1.023776in}}%
-\pgfpathlineto{\pgfqpoint{2.099886in}{1.073815in}}%
-\pgfpathlineto{\pgfqpoint{2.117500in}{1.267347in}}%
-\pgfpathlineto{\pgfqpoint{2.126307in}{1.253862in}}%
-\pgfpathlineto{\pgfqpoint{2.135114in}{1.211329in}}%
-\pgfpathlineto{\pgfqpoint{2.143920in}{1.235893in}}%
-\pgfpathlineto{\pgfqpoint{2.152727in}{1.326066in}}%
-\pgfpathlineto{\pgfqpoint{2.161534in}{1.501479in}}%
-\pgfpathlineto{\pgfqpoint{2.170341in}{1.529650in}}%
-\pgfpathlineto{\pgfqpoint{2.179148in}{1.475777in}}%
-\pgfpathlineto{\pgfqpoint{2.187955in}{1.485708in}}%
-\pgfpathlineto{\pgfqpoint{2.196761in}{1.515754in}}%
-\pgfpathlineto{\pgfqpoint{2.205568in}{1.400370in}}%
-\pgfpathlineto{\pgfqpoint{2.214375in}{1.463411in}}%
-\pgfpathlineto{\pgfqpoint{2.223182in}{1.590009in}}%
-\pgfpathlineto{\pgfqpoint{2.231989in}{1.532704in}}%
-\pgfpathlineto{\pgfqpoint{2.240795in}{1.510854in}}%
-\pgfpathlineto{\pgfqpoint{2.249602in}{1.538445in}}%
-\pgfpathlineto{\pgfqpoint{2.258409in}{1.388087in}}%
-\pgfpathlineto{\pgfqpoint{2.267216in}{1.449276in}}%
-\pgfpathlineto{\pgfqpoint{2.276023in}{1.418886in}}%
-\pgfpathlineto{\pgfqpoint{2.284830in}{1.492704in}}%
-\pgfpathlineto{\pgfqpoint{2.293636in}{1.587042in}}%
-\pgfpathlineto{\pgfqpoint{2.302443in}{1.499545in}}%
-\pgfpathlineto{\pgfqpoint{2.311250in}{1.492875in}}%
-\pgfpathlineto{\pgfqpoint{2.320057in}{1.559185in}}%
-\pgfpathlineto{\pgfqpoint{2.328864in}{1.553990in}}%
-\pgfpathlineto{\pgfqpoint{2.337670in}{1.600866in}}%
-\pgfpathlineto{\pgfqpoint{2.346477in}{1.228417in}}%
-\pgfpathlineto{\pgfqpoint{2.355284in}{1.261048in}}%
-\pgfpathlineto{\pgfqpoint{2.364091in}{1.218710in}}%
-\pgfpathlineto{\pgfqpoint{2.372898in}{1.110114in}}%
-\pgfpathlineto{\pgfqpoint{2.381705in}{1.188379in}}%
-\pgfpathlineto{\pgfqpoint{2.390511in}{1.142677in}}%
-\pgfpathlineto{\pgfqpoint{2.399318in}{1.306053in}}%
-\pgfpathlineto{\pgfqpoint{2.408125in}{1.391316in}}%
-\pgfpathlineto{\pgfqpoint{2.416932in}{1.393306in}}%
-\pgfpathlineto{\pgfqpoint{2.425739in}{1.499881in}}%
-\pgfpathlineto{\pgfqpoint{2.434545in}{1.390322in}}%
-\pgfpathlineto{\pgfqpoint{2.443352in}{1.547012in}}%
-\pgfpathlineto{\pgfqpoint{2.452159in}{1.588499in}}%
-\pgfpathlineto{\pgfqpoint{2.460966in}{1.577762in}}%
-\pgfpathlineto{\pgfqpoint{2.469773in}{1.694071in}}%
-\pgfpathlineto{\pgfqpoint{2.478580in}{1.653920in}}%
-\pgfpathlineto{\pgfqpoint{2.487386in}{1.472533in}}%
-\pgfpathlineto{\pgfqpoint{2.496193in}{1.457480in}}%
-\pgfpathlineto{\pgfqpoint{2.505000in}{1.492625in}}%
-\pgfpathlineto{\pgfqpoint{2.513807in}{1.463559in}}%
-\pgfpathlineto{\pgfqpoint{2.522614in}{1.407230in}}%
-\pgfpathlineto{\pgfqpoint{2.531420in}{1.437827in}}%
-\pgfpathlineto{\pgfqpoint{2.540227in}{1.392727in}}%
-\pgfpathlineto{\pgfqpoint{2.549034in}{1.463847in}}%
-\pgfpathlineto{\pgfqpoint{2.557841in}{1.575887in}}%
-\pgfpathlineto{\pgfqpoint{2.566648in}{1.644997in}}%
-\pgfpathlineto{\pgfqpoint{2.575455in}{1.755533in}}%
-\pgfpathlineto{\pgfqpoint{2.584261in}{1.680107in}}%
-\pgfpathlineto{\pgfqpoint{2.593068in}{1.752716in}}%
-\pgfpathlineto{\pgfqpoint{2.601875in}{1.746812in}}%
-\pgfpathlineto{\pgfqpoint{2.610682in}{1.719948in}}%
-\pgfpathlineto{\pgfqpoint{2.619489in}{1.713949in}}%
-\pgfpathlineto{\pgfqpoint{2.628295in}{1.740696in}}%
-\pgfpathlineto{\pgfqpoint{2.637102in}{1.840393in}}%
-\pgfpathlineto{\pgfqpoint{2.645909in}{1.772659in}}%
-\pgfpathlineto{\pgfqpoint{2.654716in}{1.793319in}}%
-\pgfpathlineto{\pgfqpoint{2.663523in}{1.794733in}}%
-\pgfpathlineto{\pgfqpoint{2.672330in}{1.735920in}}%
-\pgfpathlineto{\pgfqpoint{2.681136in}{1.799277in}}%
-\pgfpathlineto{\pgfqpoint{2.689943in}{1.922452in}}%
-\pgfpathlineto{\pgfqpoint{2.698750in}{2.084929in}}%
-\pgfpathlineto{\pgfqpoint{2.707557in}{2.168735in}}%
-\pgfpathlineto{\pgfqpoint{2.716364in}{2.306608in}}%
-\pgfpathlineto{\pgfqpoint{2.725170in}{2.259508in}}%
-\pgfpathlineto{\pgfqpoint{2.733977in}{2.153082in}}%
-\pgfpathlineto{\pgfqpoint{2.742784in}{2.249544in}}%
-\pgfpathlineto{\pgfqpoint{2.751591in}{2.252378in}}%
-\pgfpathlineto{\pgfqpoint{2.760398in}{2.323469in}}%
-\pgfpathlineto{\pgfqpoint{2.769205in}{2.220044in}}%
-\pgfpathlineto{\pgfqpoint{2.778011in}{2.177115in}}%
-\pgfpathlineto{\pgfqpoint{2.786818in}{2.302697in}}%
-\pgfpathlineto{\pgfqpoint{2.795625in}{2.334181in}}%
-\pgfpathlineto{\pgfqpoint{2.804432in}{2.416505in}}%
-\pgfpathlineto{\pgfqpoint{2.813239in}{2.341146in}}%
-\pgfpathlineto{\pgfqpoint{2.822045in}{2.343521in}}%
-\pgfpathlineto{\pgfqpoint{2.830852in}{2.295289in}}%
-\pgfpathlineto{\pgfqpoint{2.839659in}{2.160965in}}%
-\pgfpathlineto{\pgfqpoint{2.848466in}{2.226599in}}%
-\pgfpathlineto{\pgfqpoint{2.857273in}{2.179368in}}%
-\pgfpathlineto{\pgfqpoint{2.866080in}{2.048362in}}%
-\pgfpathlineto{\pgfqpoint{2.874886in}{1.963286in}}%
-\pgfpathlineto{\pgfqpoint{2.883693in}{1.944468in}}%
-\pgfpathlineto{\pgfqpoint{2.892500in}{1.995662in}}%
-\pgfpathlineto{\pgfqpoint{2.901307in}{2.021190in}}%
-\pgfpathlineto{\pgfqpoint{2.910114in}{1.869577in}}%
-\pgfpathlineto{\pgfqpoint{2.918920in}{2.039609in}}%
-\pgfpathlineto{\pgfqpoint{2.927727in}{2.122085in}}%
-\pgfpathlineto{\pgfqpoint{2.936534in}{2.073426in}}%
-\pgfpathlineto{\pgfqpoint{2.945341in}{1.862254in}}%
-\pgfpathlineto{\pgfqpoint{2.954148in}{1.937023in}}%
-\pgfpathlineto{\pgfqpoint{2.962955in}{2.029149in}}%
-\pgfpathlineto{\pgfqpoint{2.980568in}{2.320051in}}%
-\pgfpathlineto{\pgfqpoint{2.989375in}{2.522714in}}%
-\pgfpathlineto{\pgfqpoint{2.998182in}{2.550792in}}%
-\pgfpathlineto{\pgfqpoint{3.006989in}{2.529565in}}%
-\pgfpathlineto{\pgfqpoint{3.015795in}{2.442895in}}%
-\pgfpathlineto{\pgfqpoint{3.024602in}{2.476471in}}%
-\pgfpathlineto{\pgfqpoint{3.033409in}{2.639417in}}%
-\pgfpathlineto{\pgfqpoint{3.042216in}{2.686060in}}%
-\pgfpathlineto{\pgfqpoint{3.051023in}{2.704957in}}%
-\pgfpathlineto{\pgfqpoint{3.059830in}{2.843160in}}%
-\pgfpathlineto{\pgfqpoint{3.068636in}{2.649382in}}%
-\pgfpathlineto{\pgfqpoint{3.077443in}{2.728098in}}%
-\pgfpathlineto{\pgfqpoint{3.086250in}{2.851524in}}%
-\pgfpathlineto{\pgfqpoint{3.095057in}{2.838651in}}%
-\pgfpathlineto{\pgfqpoint{3.103864in}{2.857292in}}%
-\pgfpathlineto{\pgfqpoint{3.112670in}{2.893174in}}%
-\pgfpathlineto{\pgfqpoint{3.121477in}{2.907709in}}%
-\pgfpathlineto{\pgfqpoint{3.130284in}{2.912542in}}%
-\pgfpathlineto{\pgfqpoint{3.139091in}{3.035896in}}%
-\pgfpathlineto{\pgfqpoint{3.147898in}{3.118536in}}%
-\pgfpathlineto{\pgfqpoint{3.156705in}{3.113608in}}%
-\pgfpathlineto{\pgfqpoint{3.165511in}{3.371005in}}%
-\pgfpathlineto{\pgfqpoint{3.174318in}{3.449880in}}%
-\pgfpathlineto{\pgfqpoint{3.183125in}{3.384622in}}%
-\pgfpathlineto{\pgfqpoint{3.200739in}{3.490911in}}%
-\pgfpathlineto{\pgfqpoint{3.209545in}{3.584488in}}%
-\pgfpathlineto{\pgfqpoint{3.244773in}{3.820056in}}%
-\pgfpathlineto{\pgfqpoint{3.253580in}{3.802686in}}%
-\pgfpathlineto{\pgfqpoint{3.262386in}{3.816765in}}%
-\pgfpathlineto{\pgfqpoint{3.271193in}{3.839875in}}%
-\pgfpathlineto{\pgfqpoint{3.280000in}{3.811226in}}%
-\pgfpathlineto{\pgfqpoint{3.288807in}{3.973518in}}%
-\pgfpathlineto{\pgfqpoint{3.297614in}{3.991896in}}%
-\pgfpathlineto{\pgfqpoint{3.306420in}{3.809487in}}%
-\pgfpathlineto{\pgfqpoint{3.315227in}{3.943956in}}%
-\pgfpathlineto{\pgfqpoint{3.324034in}{3.982967in}}%
-\pgfpathlineto{\pgfqpoint{3.341648in}{3.920159in}}%
-\pgfpathlineto{\pgfqpoint{3.350455in}{4.034123in}}%
-\pgfpathlineto{\pgfqpoint{3.359261in}{3.877788in}}%
-\pgfpathlineto{\pgfqpoint{3.368068in}{4.017802in}}%
-\pgfpathlineto{\pgfqpoint{3.376875in}{3.998486in}}%
-\pgfpathlineto{\pgfqpoint{3.385682in}{3.804363in}}%
-\pgfpathlineto{\pgfqpoint{3.394489in}{3.758257in}}%
-\pgfpathlineto{\pgfqpoint{3.403295in}{3.839691in}}%
-\pgfpathlineto{\pgfqpoint{3.412102in}{3.749870in}}%
-\pgfpathlineto{\pgfqpoint{3.420909in}{3.791103in}}%
-\pgfpathlineto{\pgfqpoint{3.429716in}{3.820036in}}%
-\pgfpathlineto{\pgfqpoint{3.438523in}{3.833300in}}%
-\pgfpathlineto{\pgfqpoint{3.447330in}{3.785903in}}%
-\pgfpathlineto{\pgfqpoint{3.456136in}{4.004107in}}%
-\pgfpathlineto{\pgfqpoint{3.464943in}{4.056000in}}%
-\pgfpathlineto{\pgfqpoint{3.473750in}{3.988565in}}%
-\pgfpathlineto{\pgfqpoint{3.482557in}{3.933599in}}%
-\pgfpathlineto{\pgfqpoint{3.491364in}{3.900865in}}%
-\pgfpathlineto{\pgfqpoint{3.500170in}{3.901166in}}%
-\pgfpathlineto{\pgfqpoint{3.508977in}{3.982471in}}%
-\pgfpathlineto{\pgfqpoint{3.517784in}{4.034906in}}%
-\pgfpathlineto{\pgfqpoint{3.526591in}{4.029574in}}%
-\pgfpathlineto{\pgfqpoint{3.535398in}{3.920759in}}%
-\pgfpathlineto{\pgfqpoint{3.544205in}{3.836992in}}%
-\pgfpathlineto{\pgfqpoint{3.553011in}{3.871162in}}%
-\pgfpathlineto{\pgfqpoint{3.561818in}{3.744786in}}%
-\pgfpathlineto{\pgfqpoint{3.570625in}{3.844394in}}%
-\pgfpathlineto{\pgfqpoint{3.579432in}{3.895029in}}%
-\pgfpathlineto{\pgfqpoint{3.588239in}{3.918221in}}%
-\pgfpathlineto{\pgfqpoint{3.597045in}{3.880160in}}%
-\pgfpathlineto{\pgfqpoint{3.605852in}{3.878564in}}%
-\pgfpathlineto{\pgfqpoint{3.614659in}{4.025302in}}%
-\pgfpathlineto{\pgfqpoint{3.623466in}{3.993636in}}%
-\pgfpathlineto{\pgfqpoint{3.632273in}{3.910315in}}%
-\pgfpathlineto{\pgfqpoint{3.641080in}{3.967794in}}%
-\pgfpathlineto{\pgfqpoint{3.649886in}{3.907125in}}%
-\pgfpathlineto{\pgfqpoint{3.658693in}{3.858022in}}%
-\pgfpathlineto{\pgfqpoint{3.667500in}{3.688766in}}%
-\pgfpathlineto{\pgfqpoint{3.676307in}{3.789908in}}%
-\pgfpathlineto{\pgfqpoint{3.685114in}{3.778328in}}%
-\pgfpathlineto{\pgfqpoint{3.702727in}{3.962039in}}%
-\pgfpathlineto{\pgfqpoint{3.711534in}{3.894010in}}%
-\pgfpathlineto{\pgfqpoint{3.720341in}{3.938361in}}%
-\pgfpathlineto{\pgfqpoint{3.729148in}{3.695714in}}%
-\pgfpathlineto{\pgfqpoint{3.737955in}{3.643117in}}%
-\pgfpathlineto{\pgfqpoint{3.746761in}{3.479236in}}%
-\pgfpathlineto{\pgfqpoint{3.755568in}{3.339223in}}%
-\pgfpathlineto{\pgfqpoint{3.764375in}{3.443742in}}%
-\pgfpathlineto{\pgfqpoint{3.773182in}{3.382947in}}%
-\pgfpathlineto{\pgfqpoint{3.781989in}{3.400057in}}%
-\pgfpathlineto{\pgfqpoint{3.790795in}{3.395878in}}%
-\pgfpathlineto{\pgfqpoint{3.799602in}{3.282466in}}%
-\pgfpathlineto{\pgfqpoint{3.808409in}{3.294027in}}%
-\pgfpathlineto{\pgfqpoint{3.817216in}{3.174753in}}%
-\pgfpathlineto{\pgfqpoint{3.826023in}{3.160161in}}%
-\pgfpathlineto{\pgfqpoint{3.834830in}{3.022036in}}%
-\pgfpathlineto{\pgfqpoint{3.843636in}{3.117704in}}%
-\pgfpathlineto{\pgfqpoint{3.852443in}{3.283313in}}%
-\pgfpathlineto{\pgfqpoint{3.861250in}{3.246256in}}%
-\pgfpathlineto{\pgfqpoint{3.870057in}{3.154820in}}%
-\pgfpathlineto{\pgfqpoint{3.878864in}{3.259378in}}%
-\pgfpathlineto{\pgfqpoint{3.887670in}{3.314537in}}%
-\pgfpathlineto{\pgfqpoint{3.896477in}{3.179531in}}%
-\pgfpathlineto{\pgfqpoint{3.905284in}{3.123401in}}%
-\pgfpathlineto{\pgfqpoint{3.914091in}{3.171772in}}%
-\pgfpathlineto{\pgfqpoint{3.922898in}{3.346688in}}%
-\pgfpathlineto{\pgfqpoint{3.931705in}{3.436378in}}%
-\pgfpathlineto{\pgfqpoint{3.940511in}{3.510248in}}%
-\pgfpathlineto{\pgfqpoint{3.949318in}{3.566135in}}%
-\pgfpathlineto{\pgfqpoint{3.958125in}{3.639378in}}%
-\pgfpathlineto{\pgfqpoint{3.966932in}{3.738430in}}%
-\pgfpathlineto{\pgfqpoint{3.975739in}{3.706017in}}%
-\pgfpathlineto{\pgfqpoint{3.984545in}{3.489147in}}%
-\pgfpathlineto{\pgfqpoint{3.993352in}{3.348086in}}%
-\pgfpathlineto{\pgfqpoint{4.002159in}{3.354246in}}%
-\pgfpathlineto{\pgfqpoint{4.010966in}{3.298802in}}%
-\pgfpathlineto{\pgfqpoint{4.019773in}{3.527927in}}%
-\pgfpathlineto{\pgfqpoint{4.028580in}{3.502947in}}%
-\pgfpathlineto{\pgfqpoint{4.037386in}{3.360349in}}%
-\pgfpathlineto{\pgfqpoint{4.055000in}{3.172991in}}%
-\pgfpathlineto{\pgfqpoint{4.063807in}{3.183680in}}%
-\pgfpathlineto{\pgfqpoint{4.072614in}{3.251138in}}%
-\pgfpathlineto{\pgfqpoint{4.081420in}{3.388972in}}%
-\pgfpathlineto{\pgfqpoint{4.090227in}{3.447084in}}%
-\pgfpathlineto{\pgfqpoint{4.099034in}{3.454458in}}%
-\pgfpathlineto{\pgfqpoint{4.107841in}{3.370407in}}%
-\pgfpathlineto{\pgfqpoint{4.116648in}{3.447533in}}%
-\pgfpathlineto{\pgfqpoint{4.125455in}{3.481879in}}%
-\pgfpathlineto{\pgfqpoint{4.134261in}{3.412753in}}%
-\pgfpathlineto{\pgfqpoint{4.143068in}{3.297513in}}%
-\pgfpathlineto{\pgfqpoint{4.151875in}{3.403832in}}%
-\pgfpathlineto{\pgfqpoint{4.160682in}{3.365088in}}%
-\pgfpathlineto{\pgfqpoint{4.169489in}{3.613595in}}%
-\pgfpathlineto{\pgfqpoint{4.178295in}{3.494227in}}%
-\pgfpathlineto{\pgfqpoint{4.195909in}{3.525636in}}%
-\pgfpathlineto{\pgfqpoint{4.204716in}{3.422808in}}%
-\pgfpathlineto{\pgfqpoint{4.213523in}{3.496736in}}%
-\pgfpathlineto{\pgfqpoint{4.222330in}{3.521870in}}%
-\pgfpathlineto{\pgfqpoint{4.231136in}{3.514439in}}%
-\pgfpathlineto{\pgfqpoint{4.239943in}{3.436253in}}%
-\pgfpathlineto{\pgfqpoint{4.248750in}{3.379485in}}%
-\pgfpathlineto{\pgfqpoint{4.257557in}{3.447840in}}%
-\pgfpathlineto{\pgfqpoint{4.266364in}{3.484197in}}%
-\pgfpathlineto{\pgfqpoint{4.275170in}{3.490930in}}%
-\pgfpathlineto{\pgfqpoint{4.283977in}{3.333743in}}%
-\pgfpathlineto{\pgfqpoint{4.292784in}{3.240685in}}%
-\pgfpathlineto{\pgfqpoint{4.301591in}{3.281506in}}%
-\pgfpathlineto{\pgfqpoint{4.310398in}{3.311987in}}%
-\pgfpathlineto{\pgfqpoint{4.319205in}{3.224690in}}%
-\pgfpathlineto{\pgfqpoint{4.328011in}{3.167682in}}%
-\pgfpathlineto{\pgfqpoint{4.336818in}{3.020085in}}%
-\pgfpathlineto{\pgfqpoint{4.345625in}{3.121229in}}%
-\pgfpathlineto{\pgfqpoint{4.354432in}{3.094927in}}%
-\pgfpathlineto{\pgfqpoint{4.363239in}{3.183201in}}%
-\pgfpathlineto{\pgfqpoint{4.372045in}{3.209100in}}%
-\pgfpathlineto{\pgfqpoint{4.380852in}{3.185874in}}%
-\pgfpathlineto{\pgfqpoint{4.389659in}{3.088295in}}%
-\pgfpathlineto{\pgfqpoint{4.398466in}{3.089274in}}%
-\pgfpathlineto{\pgfqpoint{4.407273in}{3.106206in}}%
-\pgfpathlineto{\pgfqpoint{4.416080in}{3.041155in}}%
-\pgfpathlineto{\pgfqpoint{4.424886in}{3.151287in}}%
-\pgfpathlineto{\pgfqpoint{4.433693in}{3.119444in}}%
-\pgfpathlineto{\pgfqpoint{4.442500in}{3.185030in}}%
-\pgfpathlineto{\pgfqpoint{4.451307in}{3.103783in}}%
-\pgfpathlineto{\pgfqpoint{4.460114in}{3.100306in}}%
-\pgfpathlineto{\pgfqpoint{4.468920in}{3.276881in}}%
-\pgfpathlineto{\pgfqpoint{4.477727in}{3.352605in}}%
-\pgfpathlineto{\pgfqpoint{4.486534in}{3.306529in}}%
-\pgfpathlineto{\pgfqpoint{4.495341in}{3.419028in}}%
-\pgfpathlineto{\pgfqpoint{4.504148in}{3.396262in}}%
-\pgfpathlineto{\pgfqpoint{4.512955in}{3.397425in}}%
-\pgfpathlineto{\pgfqpoint{4.521761in}{3.425535in}}%
-\pgfpathlineto{\pgfqpoint{4.530568in}{3.560568in}}%
-\pgfpathlineto{\pgfqpoint{4.539375in}{3.563996in}}%
-\pgfpathlineto{\pgfqpoint{4.548182in}{3.450934in}}%
-\pgfpathlineto{\pgfqpoint{4.556989in}{3.441956in}}%
-\pgfpathlineto{\pgfqpoint{4.565795in}{3.475158in}}%
-\pgfpathlineto{\pgfqpoint{4.574602in}{3.324686in}}%
-\pgfpathlineto{\pgfqpoint{4.583409in}{3.310697in}}%
-\pgfpathlineto{\pgfqpoint{4.592216in}{3.151011in}}%
-\pgfpathlineto{\pgfqpoint{4.601023in}{3.189782in}}%
-\pgfpathlineto{\pgfqpoint{4.609830in}{3.198867in}}%
-\pgfpathlineto{\pgfqpoint{4.627443in}{3.361107in}}%
-\pgfpathlineto{\pgfqpoint{4.636250in}{3.398932in}}%
-\pgfpathlineto{\pgfqpoint{4.645057in}{3.295153in}}%
-\pgfpathlineto{\pgfqpoint{4.653864in}{3.286128in}}%
-\pgfpathlineto{\pgfqpoint{4.662670in}{3.260917in}}%
-\pgfpathlineto{\pgfqpoint{4.671477in}{3.253570in}}%
-\pgfpathlineto{\pgfqpoint{4.680284in}{3.201089in}}%
-\pgfpathlineto{\pgfqpoint{4.689091in}{3.055471in}}%
-\pgfpathlineto{\pgfqpoint{4.697898in}{3.064314in}}%
-\pgfpathlineto{\pgfqpoint{4.706705in}{2.959656in}}%
-\pgfpathlineto{\pgfqpoint{4.715511in}{3.080131in}}%
-\pgfpathlineto{\pgfqpoint{4.724318in}{3.257204in}}%
-\pgfpathlineto{\pgfqpoint{4.733125in}{3.172956in}}%
-\pgfpathlineto{\pgfqpoint{4.741932in}{3.180189in}}%
-\pgfpathlineto{\pgfqpoint{4.750739in}{3.181764in}}%
-\pgfpathlineto{\pgfqpoint{4.759545in}{2.918875in}}%
-\pgfpathlineto{\pgfqpoint{4.768352in}{3.043838in}}%
-\pgfpathlineto{\pgfqpoint{4.777159in}{2.987794in}}%
-\pgfpathlineto{\pgfqpoint{4.785966in}{3.052401in}}%
-\pgfpathlineto{\pgfqpoint{4.794773in}{3.103153in}}%
-\pgfpathlineto{\pgfqpoint{4.803580in}{3.064828in}}%
-\pgfpathlineto{\pgfqpoint{4.812386in}{3.137017in}}%
-\pgfpathlineto{\pgfqpoint{4.821193in}{3.144935in}}%
-\pgfpathlineto{\pgfqpoint{4.830000in}{3.149764in}}%
-\pgfpathlineto{\pgfqpoint{4.838807in}{3.123884in}}%
-\pgfpathlineto{\pgfqpoint{4.847614in}{3.142940in}}%
-\pgfpathlineto{\pgfqpoint{4.856420in}{3.070354in}}%
-\pgfpathlineto{\pgfqpoint{4.865227in}{3.178648in}}%
-\pgfpathlineto{\pgfqpoint{4.874034in}{3.164649in}}%
-\pgfpathlineto{\pgfqpoint{4.882841in}{3.081425in}}%
-\pgfpathlineto{\pgfqpoint{4.891648in}{3.293806in}}%
-\pgfpathlineto{\pgfqpoint{4.900455in}{3.403923in}}%
-\pgfpathlineto{\pgfqpoint{4.909261in}{3.412359in}}%
-\pgfpathlineto{\pgfqpoint{4.918068in}{3.341246in}}%
-\pgfpathlineto{\pgfqpoint{4.926875in}{3.357906in}}%
-\pgfpathlineto{\pgfqpoint{4.935682in}{3.199311in}}%
-\pgfpathlineto{\pgfqpoint{4.944489in}{3.404299in}}%
-\pgfpathlineto{\pgfqpoint{4.953295in}{3.169109in}}%
-\pgfpathlineto{\pgfqpoint{4.970909in}{2.997940in}}%
-\pgfpathlineto{\pgfqpoint{4.979716in}{2.992474in}}%
-\pgfpathlineto{\pgfqpoint{4.988523in}{3.010343in}}%
-\pgfpathlineto{\pgfqpoint{4.997330in}{2.939380in}}%
-\pgfpathlineto{\pgfqpoint{5.006136in}{2.980995in}}%
-\pgfpathlineto{\pgfqpoint{5.014943in}{2.958300in}}%
-\pgfpathlineto{\pgfqpoint{5.023750in}{2.963144in}}%
-\pgfpathlineto{\pgfqpoint{5.032557in}{2.938138in}}%
-\pgfpathlineto{\pgfqpoint{5.041364in}{2.899194in}}%
-\pgfpathlineto{\pgfqpoint{5.050170in}{2.933789in}}%
-\pgfpathlineto{\pgfqpoint{5.058977in}{2.723229in}}%
-\pgfpathlineto{\pgfqpoint{5.076591in}{2.838205in}}%
-\pgfpathlineto{\pgfqpoint{5.085398in}{2.776970in}}%
-\pgfpathlineto{\pgfqpoint{5.094205in}{2.958828in}}%
-\pgfpathlineto{\pgfqpoint{5.103011in}{2.962817in}}%
-\pgfpathlineto{\pgfqpoint{5.111818in}{3.120831in}}%
-\pgfpathlineto{\pgfqpoint{5.120625in}{3.066709in}}%
-\pgfpathlineto{\pgfqpoint{5.129432in}{3.098732in}}%
-\pgfpathlineto{\pgfqpoint{5.138239in}{3.150789in}}%
-\pgfpathlineto{\pgfqpoint{5.147045in}{3.132639in}}%
-\pgfpathlineto{\pgfqpoint{5.155852in}{2.997435in}}%
-\pgfpathlineto{\pgfqpoint{5.164659in}{2.910783in}}%
-\pgfpathlineto{\pgfqpoint{5.173466in}{2.935085in}}%
-\pgfpathlineto{\pgfqpoint{5.182273in}{2.800267in}}%
-\pgfpathlineto{\pgfqpoint{5.191080in}{2.743210in}}%
-\pgfpathlineto{\pgfqpoint{5.199886in}{2.811271in}}%
-\pgfpathlineto{\pgfqpoint{5.208693in}{2.815292in}}%
-\pgfpathlineto{\pgfqpoint{5.217500in}{2.854958in}}%
-\pgfpathlineto{\pgfqpoint{5.226307in}{2.964100in}}%
-\pgfpathlineto{\pgfqpoint{5.235114in}{3.057875in}}%
-\pgfpathlineto{\pgfqpoint{5.243920in}{3.037418in}}%
-\pgfpathlineto{\pgfqpoint{5.252727in}{2.939374in}}%
-\pgfpathlineto{\pgfqpoint{5.261534in}{2.948661in}}%
-\pgfpathlineto{\pgfqpoint{5.270341in}{3.067549in}}%
-\pgfpathlineto{\pgfqpoint{5.279148in}{3.247103in}}%
-\pgfpathlineto{\pgfqpoint{5.287955in}{2.936602in}}%
-\pgfpathlineto{\pgfqpoint{5.296761in}{2.954898in}}%
-\pgfpathlineto{\pgfqpoint{5.305568in}{2.845293in}}%
-\pgfpathlineto{\pgfqpoint{5.314375in}{2.791394in}}%
-\pgfpathlineto{\pgfqpoint{5.331989in}{2.987313in}}%
-\pgfpathlineto{\pgfqpoint{5.340795in}{2.989803in}}%
-\pgfpathlineto{\pgfqpoint{5.349602in}{3.029576in}}%
-\pgfpathlineto{\pgfqpoint{5.358409in}{2.985329in}}%
-\pgfpathlineto{\pgfqpoint{5.367216in}{2.848294in}}%
-\pgfpathlineto{\pgfqpoint{5.376023in}{2.828378in}}%
-\pgfpathlineto{\pgfqpoint{5.384830in}{3.027521in}}%
-\pgfpathlineto{\pgfqpoint{5.393636in}{3.131539in}}%
-\pgfpathlineto{\pgfqpoint{5.402443in}{3.251758in}}%
-\pgfpathlineto{\pgfqpoint{5.411250in}{3.195252in}}%
-\pgfpathlineto{\pgfqpoint{5.420057in}{3.211863in}}%
-\pgfpathlineto{\pgfqpoint{5.428864in}{3.383239in}}%
-\pgfpathlineto{\pgfqpoint{5.437670in}{3.378611in}}%
-\pgfpathlineto{\pgfqpoint{5.446477in}{3.347578in}}%
-\pgfpathlineto{\pgfqpoint{5.455284in}{3.284087in}}%
-\pgfpathlineto{\pgfqpoint{5.464091in}{3.327654in}}%
-\pgfpathlineto{\pgfqpoint{5.472898in}{3.586255in}}%
-\pgfpathlineto{\pgfqpoint{5.481705in}{3.612779in}}%
-\pgfpathlineto{\pgfqpoint{5.490511in}{3.744983in}}%
-\pgfpathlineto{\pgfqpoint{5.499318in}{3.670232in}}%
-\pgfpathlineto{\pgfqpoint{5.508125in}{3.795749in}}%
-\pgfpathlineto{\pgfqpoint{5.516932in}{3.864616in}}%
-\pgfpathlineto{\pgfqpoint{5.525739in}{4.001158in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfpathrectangle{\pgfqpoint{0.800000in}{0.528000in}}{\pgfqpoint{4.960000in}{3.696000in}}%
-\pgfusepath{clip}%
-\pgfsetrectcap%
-\pgfsetroundjoin%
-\pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.090196,0.745098,0.811765}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.025455in}{2.426037in}}%
-\pgfpathlineto{\pgfqpoint{1.029858in}{2.334484in}}%
-\pgfpathlineto{\pgfqpoint{1.034261in}{2.306448in}}%
-\pgfpathlineto{\pgfqpoint{1.038665in}{2.318070in}}%
-\pgfpathlineto{\pgfqpoint{1.043068in}{2.222178in}}%
-\pgfpathlineto{\pgfqpoint{1.047472in}{2.215806in}}%
-\pgfpathlineto{\pgfqpoint{1.060682in}{2.403506in}}%
-\pgfpathlineto{\pgfqpoint{1.065085in}{2.267638in}}%
-\pgfpathlineto{\pgfqpoint{1.069489in}{2.317005in}}%
-\pgfpathlineto{\pgfqpoint{1.073892in}{2.267620in}}%
-\pgfpathlineto{\pgfqpoint{1.078295in}{2.194343in}}%
-\pgfpathlineto{\pgfqpoint{1.082699in}{2.235116in}}%
-\pgfpathlineto{\pgfqpoint{1.087102in}{2.188177in}}%
-\pgfpathlineto{\pgfqpoint{1.091506in}{2.280206in}}%
-\pgfpathlineto{\pgfqpoint{1.095909in}{2.279622in}}%
-\pgfpathlineto{\pgfqpoint{1.100313in}{2.214975in}}%
-\pgfpathlineto{\pgfqpoint{1.104716in}{2.182549in}}%
-\pgfpathlineto{\pgfqpoint{1.109119in}{2.196931in}}%
-\pgfpathlineto{\pgfqpoint{1.113523in}{2.084805in}}%
-\pgfpathlineto{\pgfqpoint{1.117926in}{2.004403in}}%
-\pgfpathlineto{\pgfqpoint{1.122330in}{2.057509in}}%
-\pgfpathlineto{\pgfqpoint{1.126733in}{1.886112in}}%
-\pgfpathlineto{\pgfqpoint{1.131136in}{1.899422in}}%
-\pgfpathlineto{\pgfqpoint{1.135540in}{1.871534in}}%
-\pgfpathlineto{\pgfqpoint{1.139943in}{1.761344in}}%
-\pgfpathlineto{\pgfqpoint{1.144347in}{1.736828in}}%
-\pgfpathlineto{\pgfqpoint{1.148750in}{1.774645in}}%
-\pgfpathlineto{\pgfqpoint{1.153153in}{1.777216in}}%
-\pgfpathlineto{\pgfqpoint{1.157557in}{1.663769in}}%
-\pgfpathlineto{\pgfqpoint{1.161960in}{1.760408in}}%
-\pgfpathlineto{\pgfqpoint{1.166364in}{1.787817in}}%
-\pgfpathlineto{\pgfqpoint{1.170767in}{1.962201in}}%
-\pgfpathlineto{\pgfqpoint{1.175170in}{1.919121in}}%
-\pgfpathlineto{\pgfqpoint{1.179574in}{1.824862in}}%
-\pgfpathlineto{\pgfqpoint{1.183977in}{1.842666in}}%
-\pgfpathlineto{\pgfqpoint{1.188381in}{1.870974in}}%
-\pgfpathlineto{\pgfqpoint{1.192784in}{1.941156in}}%
-\pgfpathlineto{\pgfqpoint{1.197188in}{1.909439in}}%
-\pgfpathlineto{\pgfqpoint{1.205994in}{1.838114in}}%
-\pgfpathlineto{\pgfqpoint{1.210398in}{1.819716in}}%
-\pgfpathlineto{\pgfqpoint{1.214801in}{1.761439in}}%
-\pgfpathlineto{\pgfqpoint{1.219205in}{1.778253in}}%
-\pgfpathlineto{\pgfqpoint{1.223608in}{1.868280in}}%
-\pgfpathlineto{\pgfqpoint{1.228011in}{1.867922in}}%
-\pgfpathlineto{\pgfqpoint{1.232415in}{1.833013in}}%
-\pgfpathlineto{\pgfqpoint{1.236818in}{1.823819in}}%
-\pgfpathlineto{\pgfqpoint{1.241222in}{1.854709in}}%
-\pgfpathlineto{\pgfqpoint{1.245625in}{1.942489in}}%
-\pgfpathlineto{\pgfqpoint{1.250028in}{1.837235in}}%
-\pgfpathlineto{\pgfqpoint{1.254432in}{1.769457in}}%
-\pgfpathlineto{\pgfqpoint{1.258835in}{1.840783in}}%
-\pgfpathlineto{\pgfqpoint{1.263239in}{1.780162in}}%
-\pgfpathlineto{\pgfqpoint{1.267642in}{1.874708in}}%
-\pgfpathlineto{\pgfqpoint{1.276449in}{1.968176in}}%
-\pgfpathlineto{\pgfqpoint{1.280852in}{1.914534in}}%
-\pgfpathlineto{\pgfqpoint{1.285256in}{1.954280in}}%
-\pgfpathlineto{\pgfqpoint{1.289659in}{1.910213in}}%
-\pgfpathlineto{\pgfqpoint{1.294063in}{1.801804in}}%
-\pgfpathlineto{\pgfqpoint{1.298466in}{1.804952in}}%
-\pgfpathlineto{\pgfqpoint{1.302869in}{1.731647in}}%
-\pgfpathlineto{\pgfqpoint{1.307273in}{1.780800in}}%
-\pgfpathlineto{\pgfqpoint{1.311676in}{1.654695in}}%
-\pgfpathlineto{\pgfqpoint{1.320483in}{1.481995in}}%
-\pgfpathlineto{\pgfqpoint{1.324886in}{1.507578in}}%
-\pgfpathlineto{\pgfqpoint{1.329290in}{1.392287in}}%
-\pgfpathlineto{\pgfqpoint{1.333693in}{1.391932in}}%
-\pgfpathlineto{\pgfqpoint{1.338097in}{1.380299in}}%
-\pgfpathlineto{\pgfqpoint{1.342500in}{1.407742in}}%
-\pgfpathlineto{\pgfqpoint{1.346903in}{1.319696in}}%
-\pgfpathlineto{\pgfqpoint{1.351307in}{1.159002in}}%
-\pgfpathlineto{\pgfqpoint{1.355710in}{1.195610in}}%
-\pgfpathlineto{\pgfqpoint{1.360114in}{1.202545in}}%
-\pgfpathlineto{\pgfqpoint{1.364517in}{1.199395in}}%
-\pgfpathlineto{\pgfqpoint{1.368920in}{1.225858in}}%
-\pgfpathlineto{\pgfqpoint{1.373324in}{1.241707in}}%
-\pgfpathlineto{\pgfqpoint{1.377727in}{1.178535in}}%
-\pgfpathlineto{\pgfqpoint{1.382131in}{1.142018in}}%
-\pgfpathlineto{\pgfqpoint{1.390937in}{1.016056in}}%
-\pgfpathlineto{\pgfqpoint{1.395341in}{1.034447in}}%
-\pgfpathlineto{\pgfqpoint{1.399744in}{1.138761in}}%
-\pgfpathlineto{\pgfqpoint{1.404148in}{1.159033in}}%
-\pgfpathlineto{\pgfqpoint{1.408551in}{1.036372in}}%
-\pgfpathlineto{\pgfqpoint{1.412955in}{1.171191in}}%
-\pgfpathlineto{\pgfqpoint{1.417358in}{1.206873in}}%
-\pgfpathlineto{\pgfqpoint{1.421761in}{1.215309in}}%
-\pgfpathlineto{\pgfqpoint{1.426165in}{1.234536in}}%
-\pgfpathlineto{\pgfqpoint{1.430568in}{1.137458in}}%
-\pgfpathlineto{\pgfqpoint{1.439375in}{0.835519in}}%
-\pgfpathlineto{\pgfqpoint{1.443778in}{0.784286in}}%
-\pgfpathlineto{\pgfqpoint{1.448182in}{0.774593in}}%
-\pgfpathlineto{\pgfqpoint{1.452585in}{0.813965in}}%
-\pgfpathlineto{\pgfqpoint{1.456989in}{0.742580in}}%
-\pgfpathlineto{\pgfqpoint{1.461392in}{0.724957in}}%
-\pgfpathlineto{\pgfqpoint{1.465795in}{0.720660in}}%
-\pgfpathlineto{\pgfqpoint{1.470199in}{0.818027in}}%
-\pgfpathlineto{\pgfqpoint{1.474602in}{0.870178in}}%
-\pgfpathlineto{\pgfqpoint{1.479006in}{0.899486in}}%
-\pgfpathlineto{\pgfqpoint{1.483409in}{0.868668in}}%
-\pgfpathlineto{\pgfqpoint{1.487812in}{0.875485in}}%
-\pgfpathlineto{\pgfqpoint{1.492216in}{0.826418in}}%
-\pgfpathlineto{\pgfqpoint{1.496619in}{0.904962in}}%
-\pgfpathlineto{\pgfqpoint{1.501023in}{0.807600in}}%
-\pgfpathlineto{\pgfqpoint{1.505426in}{0.957966in}}%
-\pgfpathlineto{\pgfqpoint{1.509830in}{0.884276in}}%
-\pgfpathlineto{\pgfqpoint{1.518636in}{1.068236in}}%
-\pgfpathlineto{\pgfqpoint{1.523040in}{1.041522in}}%
-\pgfpathlineto{\pgfqpoint{1.527443in}{1.118280in}}%
-\pgfpathlineto{\pgfqpoint{1.531847in}{0.995974in}}%
-\pgfpathlineto{\pgfqpoint{1.536250in}{0.917333in}}%
-\pgfpathlineto{\pgfqpoint{1.540653in}{0.932351in}}%
-\pgfpathlineto{\pgfqpoint{1.545057in}{0.917960in}}%
-\pgfpathlineto{\pgfqpoint{1.549460in}{0.985627in}}%
-\pgfpathlineto{\pgfqpoint{1.553864in}{0.875103in}}%
-\pgfpathlineto{\pgfqpoint{1.558267in}{0.733822in}}%
-\pgfpathlineto{\pgfqpoint{1.562670in}{0.782675in}}%
-\pgfpathlineto{\pgfqpoint{1.567074in}{0.696000in}}%
-\pgfpathlineto{\pgfqpoint{1.571477in}{0.750614in}}%
-\pgfpathlineto{\pgfqpoint{1.575881in}{0.737699in}}%
-\pgfpathlineto{\pgfqpoint{1.580284in}{0.718238in}}%
-\pgfpathlineto{\pgfqpoint{1.589091in}{0.856015in}}%
-\pgfpathlineto{\pgfqpoint{1.593494in}{0.846210in}}%
-\pgfpathlineto{\pgfqpoint{1.597898in}{0.741830in}}%
-\pgfpathlineto{\pgfqpoint{1.602301in}{0.750447in}}%
-\pgfpathlineto{\pgfqpoint{1.606705in}{0.719718in}}%
-\pgfpathlineto{\pgfqpoint{1.611108in}{0.747690in}}%
-\pgfpathlineto{\pgfqpoint{1.615511in}{0.849200in}}%
-\pgfpathlineto{\pgfqpoint{1.619915in}{0.783840in}}%
-\pgfpathlineto{\pgfqpoint{1.624318in}{0.807400in}}%
-\pgfpathlineto{\pgfqpoint{1.628722in}{0.852462in}}%
-\pgfpathlineto{\pgfqpoint{1.633125in}{0.918022in}}%
-\pgfpathlineto{\pgfqpoint{1.637528in}{0.947395in}}%
-\pgfpathlineto{\pgfqpoint{1.641932in}{0.908045in}}%
-\pgfpathlineto{\pgfqpoint{1.646335in}{0.882998in}}%
-\pgfpathlineto{\pgfqpoint{1.650739in}{1.016725in}}%
-\pgfpathlineto{\pgfqpoint{1.659545in}{0.952071in}}%
-\pgfpathlineto{\pgfqpoint{1.668352in}{1.071420in}}%
-\pgfpathlineto{\pgfqpoint{1.672756in}{1.037169in}}%
-\pgfpathlineto{\pgfqpoint{1.681563in}{1.092714in}}%
-\pgfpathlineto{\pgfqpoint{1.685966in}{1.076361in}}%
-\pgfpathlineto{\pgfqpoint{1.690369in}{1.098961in}}%
-\pgfpathlineto{\pgfqpoint{1.694773in}{1.139794in}}%
-\pgfpathlineto{\pgfqpoint{1.703580in}{1.268951in}}%
-\pgfpathlineto{\pgfqpoint{1.707983in}{1.310388in}}%
-\pgfpathlineto{\pgfqpoint{1.712386in}{1.236763in}}%
-\pgfpathlineto{\pgfqpoint{1.716790in}{1.204119in}}%
-\pgfpathlineto{\pgfqpoint{1.721193in}{1.245325in}}%
-\pgfpathlineto{\pgfqpoint{1.725597in}{1.207715in}}%
-\pgfpathlineto{\pgfqpoint{1.730000in}{1.341241in}}%
-\pgfpathlineto{\pgfqpoint{1.734403in}{1.349480in}}%
-\pgfpathlineto{\pgfqpoint{1.738807in}{1.323640in}}%
-\pgfpathlineto{\pgfqpoint{1.743210in}{1.248422in}}%
-\pgfpathlineto{\pgfqpoint{1.747614in}{1.084309in}}%
-\pgfpathlineto{\pgfqpoint{1.752017in}{1.014929in}}%
-\pgfpathlineto{\pgfqpoint{1.756420in}{1.056950in}}%
-\pgfpathlineto{\pgfqpoint{1.760824in}{1.080874in}}%
-\pgfpathlineto{\pgfqpoint{1.769631in}{1.202726in}}%
-\pgfpathlineto{\pgfqpoint{1.774034in}{1.191170in}}%
-\pgfpathlineto{\pgfqpoint{1.778438in}{1.198676in}}%
-\pgfpathlineto{\pgfqpoint{1.782841in}{1.310633in}}%
-\pgfpathlineto{\pgfqpoint{1.787244in}{1.310746in}}%
-\pgfpathlineto{\pgfqpoint{1.791648in}{1.283929in}}%
-\pgfpathlineto{\pgfqpoint{1.796051in}{1.238398in}}%
-\pgfpathlineto{\pgfqpoint{1.800455in}{1.094392in}}%
-\pgfpathlineto{\pgfqpoint{1.804858in}{1.113411in}}%
-\pgfpathlineto{\pgfqpoint{1.809261in}{1.040134in}}%
-\pgfpathlineto{\pgfqpoint{1.813665in}{1.083091in}}%
-\pgfpathlineto{\pgfqpoint{1.822472in}{1.136955in}}%
-\pgfpathlineto{\pgfqpoint{1.826875in}{1.247058in}}%
-\pgfpathlineto{\pgfqpoint{1.831278in}{1.212033in}}%
-\pgfpathlineto{\pgfqpoint{1.840085in}{1.248830in}}%
-\pgfpathlineto{\pgfqpoint{1.844489in}{1.157620in}}%
-\pgfpathlineto{\pgfqpoint{1.853295in}{1.260220in}}%
-\pgfpathlineto{\pgfqpoint{1.857699in}{1.257038in}}%
-\pgfpathlineto{\pgfqpoint{1.862102in}{1.241210in}}%
-\pgfpathlineto{\pgfqpoint{1.866506in}{1.205172in}}%
-\pgfpathlineto{\pgfqpoint{1.870909in}{1.198556in}}%
-\pgfpathlineto{\pgfqpoint{1.875312in}{1.215732in}}%
-\pgfpathlineto{\pgfqpoint{1.879716in}{1.294083in}}%
-\pgfpathlineto{\pgfqpoint{1.888523in}{1.086806in}}%
-\pgfpathlineto{\pgfqpoint{1.892926in}{1.119338in}}%
-\pgfpathlineto{\pgfqpoint{1.897330in}{1.228979in}}%
-\pgfpathlineto{\pgfqpoint{1.901733in}{1.250368in}}%
-\pgfpathlineto{\pgfqpoint{1.906136in}{1.248292in}}%
-\pgfpathlineto{\pgfqpoint{1.914943in}{1.174304in}}%
-\pgfpathlineto{\pgfqpoint{1.919347in}{1.004638in}}%
-\pgfpathlineto{\pgfqpoint{1.932557in}{0.883274in}}%
-\pgfpathlineto{\pgfqpoint{1.936960in}{0.962193in}}%
-\pgfpathlineto{\pgfqpoint{1.941364in}{0.940536in}}%
-\pgfpathlineto{\pgfqpoint{1.945767in}{0.928015in}}%
-\pgfpathlineto{\pgfqpoint{1.950170in}{0.960726in}}%
-\pgfpathlineto{\pgfqpoint{1.954574in}{0.971859in}}%
-\pgfpathlineto{\pgfqpoint{1.958977in}{1.023064in}}%
-\pgfpathlineto{\pgfqpoint{1.963381in}{0.989663in}}%
-\pgfpathlineto{\pgfqpoint{1.967784in}{1.028233in}}%
-\pgfpathlineto{\pgfqpoint{1.972187in}{1.019117in}}%
-\pgfpathlineto{\pgfqpoint{1.976591in}{1.038242in}}%
-\pgfpathlineto{\pgfqpoint{1.980994in}{1.161241in}}%
-\pgfpathlineto{\pgfqpoint{1.989801in}{1.230241in}}%
-\pgfpathlineto{\pgfqpoint{1.994205in}{1.250428in}}%
-\pgfpathlineto{\pgfqpoint{1.998608in}{1.217448in}}%
-\pgfpathlineto{\pgfqpoint{2.003011in}{1.238765in}}%
-\pgfpathlineto{\pgfqpoint{2.007415in}{1.376721in}}%
-\pgfpathlineto{\pgfqpoint{2.011818in}{1.257320in}}%
-\pgfpathlineto{\pgfqpoint{2.020625in}{1.336029in}}%
-\pgfpathlineto{\pgfqpoint{2.029432in}{1.194126in}}%
-\pgfpathlineto{\pgfqpoint{2.033835in}{1.300677in}}%
-\pgfpathlineto{\pgfqpoint{2.038239in}{1.202159in}}%
-\pgfpathlineto{\pgfqpoint{2.042642in}{1.269890in}}%
-\pgfpathlineto{\pgfqpoint{2.047045in}{1.217573in}}%
-\pgfpathlineto{\pgfqpoint{2.051449in}{1.134140in}}%
-\pgfpathlineto{\pgfqpoint{2.055852in}{1.077217in}}%
-\pgfpathlineto{\pgfqpoint{2.060256in}{1.108196in}}%
-\pgfpathlineto{\pgfqpoint{2.064659in}{0.989640in}}%
-\pgfpathlineto{\pgfqpoint{2.069063in}{0.934853in}}%
-\pgfpathlineto{\pgfqpoint{2.073466in}{1.090714in}}%
-\pgfpathlineto{\pgfqpoint{2.077869in}{1.116511in}}%
-\pgfpathlineto{\pgfqpoint{2.082273in}{1.036228in}}%
-\pgfpathlineto{\pgfqpoint{2.086676in}{1.034574in}}%
-\pgfpathlineto{\pgfqpoint{2.091080in}{1.023776in}}%
-\pgfpathlineto{\pgfqpoint{2.095483in}{1.099747in}}%
-\pgfpathlineto{\pgfqpoint{2.099886in}{1.073815in}}%
-\pgfpathlineto{\pgfqpoint{2.104290in}{1.177792in}}%
-\pgfpathlineto{\pgfqpoint{2.108693in}{1.169209in}}%
-\pgfpathlineto{\pgfqpoint{2.113097in}{1.130144in}}%
-\pgfpathlineto{\pgfqpoint{2.117500in}{1.267347in}}%
-\pgfpathlineto{\pgfqpoint{2.121903in}{1.216536in}}%
-\pgfpathlineto{\pgfqpoint{2.126307in}{1.253862in}}%
-\pgfpathlineto{\pgfqpoint{2.130710in}{1.206778in}}%
-\pgfpathlineto{\pgfqpoint{2.135114in}{1.211329in}}%
-\pgfpathlineto{\pgfqpoint{2.139517in}{1.171984in}}%
-\pgfpathlineto{\pgfqpoint{2.143920in}{1.235893in}}%
-\pgfpathlineto{\pgfqpoint{2.148324in}{1.245787in}}%
-\pgfpathlineto{\pgfqpoint{2.152727in}{1.326066in}}%
-\pgfpathlineto{\pgfqpoint{2.157131in}{1.494653in}}%
-\pgfpathlineto{\pgfqpoint{2.161534in}{1.501479in}}%
-\pgfpathlineto{\pgfqpoint{2.165938in}{1.518898in}}%
-\pgfpathlineto{\pgfqpoint{2.170341in}{1.529650in}}%
-\pgfpathlineto{\pgfqpoint{2.174744in}{1.496546in}}%
-\pgfpathlineto{\pgfqpoint{2.179148in}{1.475777in}}%
-\pgfpathlineto{\pgfqpoint{2.183551in}{1.509812in}}%
-\pgfpathlineto{\pgfqpoint{2.187955in}{1.485708in}}%
-\pgfpathlineto{\pgfqpoint{2.192358in}{1.563613in}}%
-\pgfpathlineto{\pgfqpoint{2.196761in}{1.515754in}}%
-\pgfpathlineto{\pgfqpoint{2.201165in}{1.511240in}}%
-\pgfpathlineto{\pgfqpoint{2.205568in}{1.400370in}}%
-\pgfpathlineto{\pgfqpoint{2.209972in}{1.388598in}}%
-\pgfpathlineto{\pgfqpoint{2.218778in}{1.537308in}}%
-\pgfpathlineto{\pgfqpoint{2.223182in}{1.590009in}}%
-\pgfpathlineto{\pgfqpoint{2.227585in}{1.614341in}}%
-\pgfpathlineto{\pgfqpoint{2.231989in}{1.532704in}}%
-\pgfpathlineto{\pgfqpoint{2.236392in}{1.497363in}}%
-\pgfpathlineto{\pgfqpoint{2.240795in}{1.510854in}}%
-\pgfpathlineto{\pgfqpoint{2.245199in}{1.512276in}}%
-\pgfpathlineto{\pgfqpoint{2.249602in}{1.538445in}}%
-\pgfpathlineto{\pgfqpoint{2.254006in}{1.484039in}}%
-\pgfpathlineto{\pgfqpoint{2.258409in}{1.388087in}}%
-\pgfpathlineto{\pgfqpoint{2.262812in}{1.383296in}}%
-\pgfpathlineto{\pgfqpoint{2.267216in}{1.449276in}}%
-\pgfpathlineto{\pgfqpoint{2.271619in}{1.393206in}}%
-\pgfpathlineto{\pgfqpoint{2.276023in}{1.418886in}}%
-\pgfpathlineto{\pgfqpoint{2.280426in}{1.484506in}}%
-\pgfpathlineto{\pgfqpoint{2.284830in}{1.492704in}}%
-\pgfpathlineto{\pgfqpoint{2.289233in}{1.569675in}}%
-\pgfpathlineto{\pgfqpoint{2.293636in}{1.587042in}}%
-\pgfpathlineto{\pgfqpoint{2.298040in}{1.482117in}}%
-\pgfpathlineto{\pgfqpoint{2.302443in}{1.499545in}}%
-\pgfpathlineto{\pgfqpoint{2.306847in}{1.509882in}}%
-\pgfpathlineto{\pgfqpoint{2.311250in}{1.492875in}}%
-\pgfpathlineto{\pgfqpoint{2.320057in}{1.559185in}}%
-\pgfpathlineto{\pgfqpoint{2.324460in}{1.545359in}}%
-\pgfpathlineto{\pgfqpoint{2.328864in}{1.553990in}}%
-\pgfpathlineto{\pgfqpoint{2.333267in}{1.544026in}}%
-\pgfpathlineto{\pgfqpoint{2.337670in}{1.600866in}}%
-\pgfpathlineto{\pgfqpoint{2.346477in}{1.228417in}}%
-\pgfpathlineto{\pgfqpoint{2.350881in}{1.212256in}}%
-\pgfpathlineto{\pgfqpoint{2.355284in}{1.261048in}}%
-\pgfpathlineto{\pgfqpoint{2.359688in}{1.183513in}}%
-\pgfpathlineto{\pgfqpoint{2.364091in}{1.218710in}}%
-\pgfpathlineto{\pgfqpoint{2.368494in}{1.087506in}}%
-\pgfpathlineto{\pgfqpoint{2.377301in}{1.135544in}}%
-\pgfpathlineto{\pgfqpoint{2.381705in}{1.188379in}}%
-\pgfpathlineto{\pgfqpoint{2.386108in}{1.191108in}}%
-\pgfpathlineto{\pgfqpoint{2.390511in}{1.142677in}}%
-\pgfpathlineto{\pgfqpoint{2.394915in}{1.277739in}}%
-\pgfpathlineto{\pgfqpoint{2.399318in}{1.306053in}}%
-\pgfpathlineto{\pgfqpoint{2.403722in}{1.279210in}}%
-\pgfpathlineto{\pgfqpoint{2.408125in}{1.391316in}}%
-\pgfpathlineto{\pgfqpoint{2.412528in}{1.434245in}}%
-\pgfpathlineto{\pgfqpoint{2.416932in}{1.393306in}}%
-\pgfpathlineto{\pgfqpoint{2.421335in}{1.422169in}}%
-\pgfpathlineto{\pgfqpoint{2.425739in}{1.499881in}}%
-\pgfpathlineto{\pgfqpoint{2.430142in}{1.459612in}}%
-\pgfpathlineto{\pgfqpoint{2.434545in}{1.390322in}}%
-\pgfpathlineto{\pgfqpoint{2.438949in}{1.442316in}}%
-\pgfpathlineto{\pgfqpoint{2.447756in}{1.652472in}}%
-\pgfpathlineto{\pgfqpoint{2.452159in}{1.588499in}}%
-\pgfpathlineto{\pgfqpoint{2.456562in}{1.588532in}}%
-\pgfpathlineto{\pgfqpoint{2.460966in}{1.577762in}}%
-\pgfpathlineto{\pgfqpoint{2.469773in}{1.694071in}}%
-\pgfpathlineto{\pgfqpoint{2.474176in}{1.696492in}}%
-\pgfpathlineto{\pgfqpoint{2.478580in}{1.653920in}}%
-\pgfpathlineto{\pgfqpoint{2.487386in}{1.472533in}}%
-\pgfpathlineto{\pgfqpoint{2.491790in}{1.453436in}}%
-\pgfpathlineto{\pgfqpoint{2.496193in}{1.457480in}}%
-\pgfpathlineto{\pgfqpoint{2.500597in}{1.494837in}}%
-\pgfpathlineto{\pgfqpoint{2.505000in}{1.492625in}}%
-\pgfpathlineto{\pgfqpoint{2.509403in}{1.435178in}}%
-\pgfpathlineto{\pgfqpoint{2.513807in}{1.463559in}}%
-\pgfpathlineto{\pgfqpoint{2.518210in}{1.373921in}}%
-\pgfpathlineto{\pgfqpoint{2.522614in}{1.407230in}}%
-\pgfpathlineto{\pgfqpoint{2.527017in}{1.465607in}}%
-\pgfpathlineto{\pgfqpoint{2.531420in}{1.437827in}}%
-\pgfpathlineto{\pgfqpoint{2.535824in}{1.506611in}}%
-\pgfpathlineto{\pgfqpoint{2.540227in}{1.392727in}}%
-\pgfpathlineto{\pgfqpoint{2.544631in}{1.449596in}}%
-\pgfpathlineto{\pgfqpoint{2.549034in}{1.463847in}}%
-\pgfpathlineto{\pgfqpoint{2.553438in}{1.510125in}}%
-\pgfpathlineto{\pgfqpoint{2.562244in}{1.651711in}}%
-\pgfpathlineto{\pgfqpoint{2.566648in}{1.644997in}}%
-\pgfpathlineto{\pgfqpoint{2.571051in}{1.673172in}}%
-\pgfpathlineto{\pgfqpoint{2.575455in}{1.755533in}}%
-\pgfpathlineto{\pgfqpoint{2.579858in}{1.801979in}}%
-\pgfpathlineto{\pgfqpoint{2.584261in}{1.680107in}}%
-\pgfpathlineto{\pgfqpoint{2.588665in}{1.737832in}}%
-\pgfpathlineto{\pgfqpoint{2.593068in}{1.752716in}}%
-\pgfpathlineto{\pgfqpoint{2.597472in}{1.665409in}}%
-\pgfpathlineto{\pgfqpoint{2.601875in}{1.746812in}}%
-\pgfpathlineto{\pgfqpoint{2.606278in}{1.757579in}}%
-\pgfpathlineto{\pgfqpoint{2.610682in}{1.719948in}}%
-\pgfpathlineto{\pgfqpoint{2.615085in}{1.733354in}}%
-\pgfpathlineto{\pgfqpoint{2.619489in}{1.713949in}}%
-\pgfpathlineto{\pgfqpoint{2.623892in}{1.704591in}}%
-\pgfpathlineto{\pgfqpoint{2.628295in}{1.740696in}}%
-\pgfpathlineto{\pgfqpoint{2.632699in}{1.864866in}}%
-\pgfpathlineto{\pgfqpoint{2.637102in}{1.840393in}}%
-\pgfpathlineto{\pgfqpoint{2.641506in}{1.797627in}}%
-\pgfpathlineto{\pgfqpoint{2.645909in}{1.772659in}}%
-\pgfpathlineto{\pgfqpoint{2.650313in}{1.793628in}}%
-\pgfpathlineto{\pgfqpoint{2.654716in}{1.793319in}}%
-\pgfpathlineto{\pgfqpoint{2.659119in}{1.787922in}}%
-\pgfpathlineto{\pgfqpoint{2.663523in}{1.794733in}}%
-\pgfpathlineto{\pgfqpoint{2.667926in}{1.819134in}}%
-\pgfpathlineto{\pgfqpoint{2.672330in}{1.735920in}}%
-\pgfpathlineto{\pgfqpoint{2.676733in}{1.786882in}}%
-\pgfpathlineto{\pgfqpoint{2.681136in}{1.799277in}}%
-\pgfpathlineto{\pgfqpoint{2.685540in}{1.870695in}}%
-\pgfpathlineto{\pgfqpoint{2.689943in}{1.922452in}}%
-\pgfpathlineto{\pgfqpoint{2.694347in}{2.019353in}}%
-\pgfpathlineto{\pgfqpoint{2.698750in}{2.084929in}}%
-\pgfpathlineto{\pgfqpoint{2.703153in}{2.085889in}}%
-\pgfpathlineto{\pgfqpoint{2.707557in}{2.168735in}}%
-\pgfpathlineto{\pgfqpoint{2.711960in}{2.178205in}}%
-\pgfpathlineto{\pgfqpoint{2.716364in}{2.306608in}}%
-\pgfpathlineto{\pgfqpoint{2.720767in}{2.263717in}}%
-\pgfpathlineto{\pgfqpoint{2.725170in}{2.259508in}}%
-\pgfpathlineto{\pgfqpoint{2.729574in}{2.163699in}}%
-\pgfpathlineto{\pgfqpoint{2.733977in}{2.153082in}}%
-\pgfpathlineto{\pgfqpoint{2.738381in}{2.120518in}}%
-\pgfpathlineto{\pgfqpoint{2.742784in}{2.249544in}}%
-\pgfpathlineto{\pgfqpoint{2.747187in}{2.281575in}}%
-\pgfpathlineto{\pgfqpoint{2.751591in}{2.252378in}}%
-\pgfpathlineto{\pgfqpoint{2.755994in}{2.263999in}}%
-\pgfpathlineto{\pgfqpoint{2.760398in}{2.323469in}}%
-\pgfpathlineto{\pgfqpoint{2.764801in}{2.238325in}}%
-\pgfpathlineto{\pgfqpoint{2.769205in}{2.220044in}}%
-\pgfpathlineto{\pgfqpoint{2.773608in}{2.225916in}}%
-\pgfpathlineto{\pgfqpoint{2.778011in}{2.177115in}}%
-\pgfpathlineto{\pgfqpoint{2.782415in}{2.255642in}}%
-\pgfpathlineto{\pgfqpoint{2.786818in}{2.302697in}}%
-\pgfpathlineto{\pgfqpoint{2.791222in}{2.290867in}}%
-\pgfpathlineto{\pgfqpoint{2.795625in}{2.334181in}}%
-\pgfpathlineto{\pgfqpoint{2.800028in}{2.422250in}}%
-\pgfpathlineto{\pgfqpoint{2.804432in}{2.416505in}}%
-\pgfpathlineto{\pgfqpoint{2.808835in}{2.297974in}}%
-\pgfpathlineto{\pgfqpoint{2.813239in}{2.341146in}}%
-\pgfpathlineto{\pgfqpoint{2.817642in}{2.402993in}}%
-\pgfpathlineto{\pgfqpoint{2.822045in}{2.343521in}}%
-\pgfpathlineto{\pgfqpoint{2.826449in}{2.357574in}}%
-\pgfpathlineto{\pgfqpoint{2.830852in}{2.295289in}}%
-\pgfpathlineto{\pgfqpoint{2.835256in}{2.214948in}}%
-\pgfpathlineto{\pgfqpoint{2.839659in}{2.160965in}}%
-\pgfpathlineto{\pgfqpoint{2.848466in}{2.226599in}}%
-\pgfpathlineto{\pgfqpoint{2.852869in}{2.272046in}}%
-\pgfpathlineto{\pgfqpoint{2.857273in}{2.179368in}}%
-\pgfpathlineto{\pgfqpoint{2.861676in}{2.175649in}}%
-\pgfpathlineto{\pgfqpoint{2.866080in}{2.048362in}}%
-\pgfpathlineto{\pgfqpoint{2.870483in}{2.051814in}}%
-\pgfpathlineto{\pgfqpoint{2.879290in}{1.879701in}}%
-\pgfpathlineto{\pgfqpoint{2.883693in}{1.944468in}}%
-\pgfpathlineto{\pgfqpoint{2.892500in}{1.995662in}}%
-\pgfpathlineto{\pgfqpoint{2.896903in}{1.965743in}}%
-\pgfpathlineto{\pgfqpoint{2.901307in}{2.021190in}}%
-\pgfpathlineto{\pgfqpoint{2.905710in}{1.918349in}}%
-\pgfpathlineto{\pgfqpoint{2.910114in}{1.869577in}}%
-\pgfpathlineto{\pgfqpoint{2.914517in}{1.969409in}}%
-\pgfpathlineto{\pgfqpoint{2.918920in}{2.039609in}}%
-\pgfpathlineto{\pgfqpoint{2.923324in}{2.056265in}}%
-\pgfpathlineto{\pgfqpoint{2.927727in}{2.122085in}}%
-\pgfpathlineto{\pgfqpoint{2.932131in}{2.079695in}}%
-\pgfpathlineto{\pgfqpoint{2.936534in}{2.073426in}}%
-\pgfpathlineto{\pgfqpoint{2.940937in}{2.012166in}}%
-\pgfpathlineto{\pgfqpoint{2.945341in}{1.862254in}}%
-\pgfpathlineto{\pgfqpoint{2.949744in}{1.958400in}}%
-\pgfpathlineto{\pgfqpoint{2.954148in}{1.937023in}}%
-\pgfpathlineto{\pgfqpoint{2.958551in}{2.001385in}}%
-\pgfpathlineto{\pgfqpoint{2.962955in}{2.029149in}}%
-\pgfpathlineto{\pgfqpoint{2.967358in}{2.159829in}}%
-\pgfpathlineto{\pgfqpoint{2.971761in}{2.169836in}}%
-\pgfpathlineto{\pgfqpoint{2.976165in}{2.267788in}}%
-\pgfpathlineto{\pgfqpoint{2.980568in}{2.320051in}}%
-\pgfpathlineto{\pgfqpoint{2.984972in}{2.484662in}}%
-\pgfpathlineto{\pgfqpoint{2.989375in}{2.522714in}}%
-\pgfpathlineto{\pgfqpoint{2.993778in}{2.503420in}}%
-\pgfpathlineto{\pgfqpoint{2.998182in}{2.550792in}}%
-\pgfpathlineto{\pgfqpoint{3.002585in}{2.575559in}}%
-\pgfpathlineto{\pgfqpoint{3.006989in}{2.529565in}}%
-\pgfpathlineto{\pgfqpoint{3.011392in}{2.511474in}}%
-\pgfpathlineto{\pgfqpoint{3.015795in}{2.442895in}}%
-\pgfpathlineto{\pgfqpoint{3.020199in}{2.494012in}}%
-\pgfpathlineto{\pgfqpoint{3.024602in}{2.476471in}}%
-\pgfpathlineto{\pgfqpoint{3.029006in}{2.616836in}}%
-\pgfpathlineto{\pgfqpoint{3.033409in}{2.639417in}}%
-\pgfpathlineto{\pgfqpoint{3.037813in}{2.739677in}}%
-\pgfpathlineto{\pgfqpoint{3.042216in}{2.686060in}}%
-\pgfpathlineto{\pgfqpoint{3.046619in}{2.741906in}}%
-\pgfpathlineto{\pgfqpoint{3.051023in}{2.704957in}}%
-\pgfpathlineto{\pgfqpoint{3.055426in}{2.831865in}}%
-\pgfpathlineto{\pgfqpoint{3.059830in}{2.843160in}}%
-\pgfpathlineto{\pgfqpoint{3.064233in}{2.758513in}}%
-\pgfpathlineto{\pgfqpoint{3.068636in}{2.649382in}}%
-\pgfpathlineto{\pgfqpoint{3.073040in}{2.656456in}}%
-\pgfpathlineto{\pgfqpoint{3.077443in}{2.728098in}}%
-\pgfpathlineto{\pgfqpoint{3.081847in}{2.768083in}}%
-\pgfpathlineto{\pgfqpoint{3.086250in}{2.851524in}}%
-\pgfpathlineto{\pgfqpoint{3.090653in}{2.793581in}}%
-\pgfpathlineto{\pgfqpoint{3.095057in}{2.838651in}}%
-\pgfpathlineto{\pgfqpoint{3.099460in}{2.850560in}}%
-\pgfpathlineto{\pgfqpoint{3.103864in}{2.857292in}}%
-\pgfpathlineto{\pgfqpoint{3.108267in}{2.854956in}}%
-\pgfpathlineto{\pgfqpoint{3.112670in}{2.893174in}}%
-\pgfpathlineto{\pgfqpoint{3.117074in}{2.896128in}}%
-\pgfpathlineto{\pgfqpoint{3.121477in}{2.907709in}}%
-\pgfpathlineto{\pgfqpoint{3.125881in}{2.924183in}}%
-\pgfpathlineto{\pgfqpoint{3.130284in}{2.912542in}}%
-\pgfpathlineto{\pgfqpoint{3.134688in}{2.904578in}}%
-\pgfpathlineto{\pgfqpoint{3.139091in}{3.035896in}}%
-\pgfpathlineto{\pgfqpoint{3.143494in}{2.993123in}}%
-\pgfpathlineto{\pgfqpoint{3.147898in}{3.118536in}}%
-\pgfpathlineto{\pgfqpoint{3.152301in}{3.076295in}}%
-\pgfpathlineto{\pgfqpoint{3.156705in}{3.113608in}}%
-\pgfpathlineto{\pgfqpoint{3.161108in}{3.296841in}}%
-\pgfpathlineto{\pgfqpoint{3.169915in}{3.445643in}}%
-\pgfpathlineto{\pgfqpoint{3.174318in}{3.449880in}}%
-\pgfpathlineto{\pgfqpoint{3.178722in}{3.432257in}}%
-\pgfpathlineto{\pgfqpoint{3.183125in}{3.384622in}}%
-\pgfpathlineto{\pgfqpoint{3.187528in}{3.429080in}}%
-\pgfpathlineto{\pgfqpoint{3.191932in}{3.440163in}}%
-\pgfpathlineto{\pgfqpoint{3.196335in}{3.498032in}}%
-\pgfpathlineto{\pgfqpoint{3.200739in}{3.490911in}}%
-\pgfpathlineto{\pgfqpoint{3.205142in}{3.511719in}}%
-\pgfpathlineto{\pgfqpoint{3.209545in}{3.584488in}}%
-\pgfpathlineto{\pgfqpoint{3.213949in}{3.710615in}}%
-\pgfpathlineto{\pgfqpoint{3.218352in}{3.643920in}}%
-\pgfpathlineto{\pgfqpoint{3.222756in}{3.640232in}}%
-\pgfpathlineto{\pgfqpoint{3.227159in}{3.707349in}}%
-\pgfpathlineto{\pgfqpoint{3.231562in}{3.724545in}}%
-\pgfpathlineto{\pgfqpoint{3.235966in}{3.758706in}}%
-\pgfpathlineto{\pgfqpoint{3.240369in}{3.706828in}}%
-\pgfpathlineto{\pgfqpoint{3.244773in}{3.820056in}}%
-\pgfpathlineto{\pgfqpoint{3.249176in}{3.742412in}}%
-\pgfpathlineto{\pgfqpoint{3.253580in}{3.802686in}}%
-\pgfpathlineto{\pgfqpoint{3.257983in}{3.738758in}}%
-\pgfpathlineto{\pgfqpoint{3.262386in}{3.816765in}}%
-\pgfpathlineto{\pgfqpoint{3.266790in}{3.874809in}}%
-\pgfpathlineto{\pgfqpoint{3.271193in}{3.839875in}}%
-\pgfpathlineto{\pgfqpoint{3.275597in}{3.866332in}}%
-\pgfpathlineto{\pgfqpoint{3.280000in}{3.811226in}}%
-\pgfpathlineto{\pgfqpoint{3.284403in}{3.909112in}}%
-\pgfpathlineto{\pgfqpoint{3.288807in}{3.973518in}}%
-\pgfpathlineto{\pgfqpoint{3.293210in}{3.962202in}}%
-\pgfpathlineto{\pgfqpoint{3.297614in}{3.991896in}}%
-\pgfpathlineto{\pgfqpoint{3.302017in}{3.863812in}}%
-\pgfpathlineto{\pgfqpoint{3.306420in}{3.809487in}}%
-\pgfpathlineto{\pgfqpoint{3.310824in}{3.842423in}}%
-\pgfpathlineto{\pgfqpoint{3.315227in}{3.943956in}}%
-\pgfpathlineto{\pgfqpoint{3.319631in}{3.976809in}}%
-\pgfpathlineto{\pgfqpoint{3.324034in}{3.982967in}}%
-\pgfpathlineto{\pgfqpoint{3.328438in}{3.944407in}}%
-\pgfpathlineto{\pgfqpoint{3.332841in}{3.952052in}}%
-\pgfpathlineto{\pgfqpoint{3.337244in}{3.923464in}}%
-\pgfpathlineto{\pgfqpoint{3.341648in}{3.920159in}}%
-\pgfpathlineto{\pgfqpoint{3.346051in}{4.002504in}}%
-\pgfpathlineto{\pgfqpoint{3.350455in}{4.034123in}}%
-\pgfpathlineto{\pgfqpoint{3.354858in}{3.882551in}}%
-\pgfpathlineto{\pgfqpoint{3.359261in}{3.877788in}}%
-\pgfpathlineto{\pgfqpoint{3.363665in}{3.937357in}}%
-\pgfpathlineto{\pgfqpoint{3.368068in}{4.017802in}}%
-\pgfpathlineto{\pgfqpoint{3.372472in}{3.996467in}}%
-\pgfpathlineto{\pgfqpoint{3.376875in}{3.998486in}}%
-\pgfpathlineto{\pgfqpoint{3.381278in}{3.867629in}}%
-\pgfpathlineto{\pgfqpoint{3.390085in}{3.752191in}}%
-\pgfpathlineto{\pgfqpoint{3.394489in}{3.758257in}}%
-\pgfpathlineto{\pgfqpoint{3.398892in}{3.811288in}}%
-\pgfpathlineto{\pgfqpoint{3.403295in}{3.839691in}}%
-\pgfpathlineto{\pgfqpoint{3.407699in}{3.735866in}}%
-\pgfpathlineto{\pgfqpoint{3.412102in}{3.749870in}}%
-\pgfpathlineto{\pgfqpoint{3.416506in}{3.843496in}}%
-\pgfpathlineto{\pgfqpoint{3.420909in}{3.791103in}}%
-\pgfpathlineto{\pgfqpoint{3.425312in}{3.863043in}}%
-\pgfpathlineto{\pgfqpoint{3.429716in}{3.820036in}}%
-\pgfpathlineto{\pgfqpoint{3.434119in}{3.923540in}}%
-\pgfpathlineto{\pgfqpoint{3.438523in}{3.833300in}}%
-\pgfpathlineto{\pgfqpoint{3.442926in}{3.769493in}}%
-\pgfpathlineto{\pgfqpoint{3.447330in}{3.785903in}}%
-\pgfpathlineto{\pgfqpoint{3.451733in}{4.033061in}}%
-\pgfpathlineto{\pgfqpoint{3.456136in}{4.004107in}}%
-\pgfpathlineto{\pgfqpoint{3.460540in}{4.022713in}}%
-\pgfpathlineto{\pgfqpoint{3.464943in}{4.056000in}}%
-\pgfpathlineto{\pgfqpoint{3.482557in}{3.933599in}}%
-\pgfpathlineto{\pgfqpoint{3.486960in}{3.932531in}}%
-\pgfpathlineto{\pgfqpoint{3.491364in}{3.900865in}}%
-\pgfpathlineto{\pgfqpoint{3.495767in}{3.948878in}}%
-\pgfpathlineto{\pgfqpoint{3.500170in}{3.901166in}}%
-\pgfpathlineto{\pgfqpoint{3.504574in}{3.976936in}}%
-\pgfpathlineto{\pgfqpoint{3.508977in}{3.982471in}}%
-\pgfpathlineto{\pgfqpoint{3.513381in}{3.953409in}}%
-\pgfpathlineto{\pgfqpoint{3.517784in}{4.034906in}}%
-\pgfpathlineto{\pgfqpoint{3.522188in}{4.051828in}}%
-\pgfpathlineto{\pgfqpoint{3.526591in}{4.029574in}}%
-\pgfpathlineto{\pgfqpoint{3.530994in}{4.015365in}}%
-\pgfpathlineto{\pgfqpoint{3.535398in}{3.920759in}}%
-\pgfpathlineto{\pgfqpoint{3.539801in}{3.898065in}}%
-\pgfpathlineto{\pgfqpoint{3.544205in}{3.836992in}}%
-\pgfpathlineto{\pgfqpoint{3.548608in}{3.899475in}}%
-\pgfpathlineto{\pgfqpoint{3.553011in}{3.871162in}}%
-\pgfpathlineto{\pgfqpoint{3.557415in}{3.852031in}}%
-\pgfpathlineto{\pgfqpoint{3.561818in}{3.744786in}}%
-\pgfpathlineto{\pgfqpoint{3.570625in}{3.844394in}}%
-\pgfpathlineto{\pgfqpoint{3.575028in}{3.821050in}}%
-\pgfpathlineto{\pgfqpoint{3.579432in}{3.895029in}}%
-\pgfpathlineto{\pgfqpoint{3.583835in}{3.912700in}}%
-\pgfpathlineto{\pgfqpoint{3.588239in}{3.918221in}}%
-\pgfpathlineto{\pgfqpoint{3.592642in}{3.939263in}}%
-\pgfpathlineto{\pgfqpoint{3.601449in}{3.828773in}}%
-\pgfpathlineto{\pgfqpoint{3.605852in}{3.878564in}}%
-\pgfpathlineto{\pgfqpoint{3.610256in}{3.988974in}}%
-\pgfpathlineto{\pgfqpoint{3.614659in}{4.025302in}}%
-\pgfpathlineto{\pgfqpoint{3.619063in}{3.987779in}}%
-\pgfpathlineto{\pgfqpoint{3.623466in}{3.993636in}}%
-\pgfpathlineto{\pgfqpoint{3.627869in}{3.905657in}}%
-\pgfpathlineto{\pgfqpoint{3.632273in}{3.910315in}}%
-\pgfpathlineto{\pgfqpoint{3.636676in}{3.883526in}}%
-\pgfpathlineto{\pgfqpoint{3.641080in}{3.967794in}}%
-\pgfpathlineto{\pgfqpoint{3.645483in}{3.883505in}}%
-\pgfpathlineto{\pgfqpoint{3.649886in}{3.907125in}}%
-\pgfpathlineto{\pgfqpoint{3.654290in}{3.875842in}}%
-\pgfpathlineto{\pgfqpoint{3.658693in}{3.858022in}}%
-\pgfpathlineto{\pgfqpoint{3.663097in}{3.678988in}}%
-\pgfpathlineto{\pgfqpoint{3.667500in}{3.688766in}}%
-\pgfpathlineto{\pgfqpoint{3.671903in}{3.769123in}}%
-\pgfpathlineto{\pgfqpoint{3.676307in}{3.789908in}}%
-\pgfpathlineto{\pgfqpoint{3.680710in}{3.802869in}}%
-\pgfpathlineto{\pgfqpoint{3.685114in}{3.778328in}}%
-\pgfpathlineto{\pgfqpoint{3.689517in}{3.784560in}}%
-\pgfpathlineto{\pgfqpoint{3.693920in}{3.871955in}}%
-\pgfpathlineto{\pgfqpoint{3.698324in}{3.908795in}}%
-\pgfpathlineto{\pgfqpoint{3.702727in}{3.962039in}}%
-\pgfpathlineto{\pgfqpoint{3.707131in}{3.975858in}}%
-\pgfpathlineto{\pgfqpoint{3.711534in}{3.894010in}}%
-\pgfpathlineto{\pgfqpoint{3.715937in}{3.957000in}}%
-\pgfpathlineto{\pgfqpoint{3.720341in}{3.938361in}}%
-\pgfpathlineto{\pgfqpoint{3.724744in}{3.905201in}}%
-\pgfpathlineto{\pgfqpoint{3.729148in}{3.695714in}}%
-\pgfpathlineto{\pgfqpoint{3.733551in}{3.632775in}}%
-\pgfpathlineto{\pgfqpoint{3.737955in}{3.643117in}}%
-\pgfpathlineto{\pgfqpoint{3.742358in}{3.649714in}}%
-\pgfpathlineto{\pgfqpoint{3.746761in}{3.479236in}}%
-\pgfpathlineto{\pgfqpoint{3.755568in}{3.339223in}}%
-\pgfpathlineto{\pgfqpoint{3.759972in}{3.315359in}}%
-\pgfpathlineto{\pgfqpoint{3.764375in}{3.443742in}}%
-\pgfpathlineto{\pgfqpoint{3.768778in}{3.498976in}}%
-\pgfpathlineto{\pgfqpoint{3.773182in}{3.382947in}}%
-\pgfpathlineto{\pgfqpoint{3.777585in}{3.355196in}}%
-\pgfpathlineto{\pgfqpoint{3.781989in}{3.400057in}}%
-\pgfpathlineto{\pgfqpoint{3.786392in}{3.335159in}}%
-\pgfpathlineto{\pgfqpoint{3.790795in}{3.395878in}}%
-\pgfpathlineto{\pgfqpoint{3.795199in}{3.290428in}}%
-\pgfpathlineto{\pgfqpoint{3.799602in}{3.282466in}}%
-\pgfpathlineto{\pgfqpoint{3.804006in}{3.259875in}}%
-\pgfpathlineto{\pgfqpoint{3.808409in}{3.294027in}}%
-\pgfpathlineto{\pgfqpoint{3.812813in}{3.260216in}}%
-\pgfpathlineto{\pgfqpoint{3.817216in}{3.174753in}}%
-\pgfpathlineto{\pgfqpoint{3.821619in}{3.132893in}}%
-\pgfpathlineto{\pgfqpoint{3.826023in}{3.160161in}}%
-\pgfpathlineto{\pgfqpoint{3.830426in}{3.254954in}}%
-\pgfpathlineto{\pgfqpoint{3.834830in}{3.022036in}}%
-\pgfpathlineto{\pgfqpoint{3.843636in}{3.117704in}}%
-\pgfpathlineto{\pgfqpoint{3.848040in}{3.246241in}}%
-\pgfpathlineto{\pgfqpoint{3.852443in}{3.283313in}}%
-\pgfpathlineto{\pgfqpoint{3.856847in}{3.238166in}}%
-\pgfpathlineto{\pgfqpoint{3.861250in}{3.246256in}}%
-\pgfpathlineto{\pgfqpoint{3.865653in}{3.261406in}}%
-\pgfpathlineto{\pgfqpoint{3.870057in}{3.154820in}}%
-\pgfpathlineto{\pgfqpoint{3.874460in}{3.147362in}}%
-\pgfpathlineto{\pgfqpoint{3.878864in}{3.259378in}}%
-\pgfpathlineto{\pgfqpoint{3.883267in}{3.238746in}}%
-\pgfpathlineto{\pgfqpoint{3.887670in}{3.314537in}}%
-\pgfpathlineto{\pgfqpoint{3.892074in}{3.187498in}}%
-\pgfpathlineto{\pgfqpoint{3.900881in}{3.169383in}}%
-\pgfpathlineto{\pgfqpoint{3.909687in}{3.083604in}}%
-\pgfpathlineto{\pgfqpoint{3.914091in}{3.171772in}}%
-\pgfpathlineto{\pgfqpoint{3.918494in}{3.284736in}}%
-\pgfpathlineto{\pgfqpoint{3.922898in}{3.346688in}}%
-\pgfpathlineto{\pgfqpoint{3.927301in}{3.325445in}}%
-\pgfpathlineto{\pgfqpoint{3.931705in}{3.436378in}}%
-\pgfpathlineto{\pgfqpoint{3.936108in}{3.432374in}}%
-\pgfpathlineto{\pgfqpoint{3.940511in}{3.510248in}}%
-\pgfpathlineto{\pgfqpoint{3.944915in}{3.532337in}}%
-\pgfpathlineto{\pgfqpoint{3.949318in}{3.566135in}}%
-\pgfpathlineto{\pgfqpoint{3.953722in}{3.610470in}}%
-\pgfpathlineto{\pgfqpoint{3.958125in}{3.639378in}}%
-\pgfpathlineto{\pgfqpoint{3.962528in}{3.724783in}}%
-\pgfpathlineto{\pgfqpoint{3.966932in}{3.738430in}}%
-\pgfpathlineto{\pgfqpoint{3.971335in}{3.693024in}}%
-\pgfpathlineto{\pgfqpoint{3.975739in}{3.706017in}}%
-\pgfpathlineto{\pgfqpoint{3.980142in}{3.553958in}}%
-\pgfpathlineto{\pgfqpoint{3.993352in}{3.348086in}}%
-\pgfpathlineto{\pgfqpoint{3.997756in}{3.358396in}}%
-\pgfpathlineto{\pgfqpoint{4.002159in}{3.354246in}}%
-\pgfpathlineto{\pgfqpoint{4.006563in}{3.394137in}}%
-\pgfpathlineto{\pgfqpoint{4.010966in}{3.298802in}}%
-\pgfpathlineto{\pgfqpoint{4.015369in}{3.393165in}}%
-\pgfpathlineto{\pgfqpoint{4.019773in}{3.527927in}}%
-\pgfpathlineto{\pgfqpoint{4.024176in}{3.562104in}}%
-\pgfpathlineto{\pgfqpoint{4.028580in}{3.502947in}}%
-\pgfpathlineto{\pgfqpoint{4.032983in}{3.390371in}}%
-\pgfpathlineto{\pgfqpoint{4.037386in}{3.360349in}}%
-\pgfpathlineto{\pgfqpoint{4.041790in}{3.292729in}}%
-\pgfpathlineto{\pgfqpoint{4.050597in}{3.245507in}}%
-\pgfpathlineto{\pgfqpoint{4.055000in}{3.172991in}}%
-\pgfpathlineto{\pgfqpoint{4.059403in}{3.242035in}}%
-\pgfpathlineto{\pgfqpoint{4.063807in}{3.183680in}}%
-\pgfpathlineto{\pgfqpoint{4.072614in}{3.251138in}}%
-\pgfpathlineto{\pgfqpoint{4.081420in}{3.388972in}}%
-\pgfpathlineto{\pgfqpoint{4.090227in}{3.447084in}}%
-\pgfpathlineto{\pgfqpoint{4.094631in}{3.511086in}}%
-\pgfpathlineto{\pgfqpoint{4.099034in}{3.454458in}}%
-\pgfpathlineto{\pgfqpoint{4.103438in}{3.475869in}}%
-\pgfpathlineto{\pgfqpoint{4.107841in}{3.370407in}}%
-\pgfpathlineto{\pgfqpoint{4.112244in}{3.455439in}}%
-\pgfpathlineto{\pgfqpoint{4.116648in}{3.447533in}}%
-\pgfpathlineto{\pgfqpoint{4.121051in}{3.405866in}}%
-\pgfpathlineto{\pgfqpoint{4.125455in}{3.481879in}}%
-\pgfpathlineto{\pgfqpoint{4.129858in}{3.532187in}}%
-\pgfpathlineto{\pgfqpoint{4.138665in}{3.302509in}}%
-\pgfpathlineto{\pgfqpoint{4.143068in}{3.297513in}}%
-\pgfpathlineto{\pgfqpoint{4.147472in}{3.375874in}}%
-\pgfpathlineto{\pgfqpoint{4.156278in}{3.435772in}}%
-\pgfpathlineto{\pgfqpoint{4.160682in}{3.365088in}}%
-\pgfpathlineto{\pgfqpoint{4.169489in}{3.613595in}}%
-\pgfpathlineto{\pgfqpoint{4.178295in}{3.494227in}}%
-\pgfpathlineto{\pgfqpoint{4.182699in}{3.511400in}}%
-\pgfpathlineto{\pgfqpoint{4.187102in}{3.508928in}}%
-\pgfpathlineto{\pgfqpoint{4.191506in}{3.473401in}}%
-\pgfpathlineto{\pgfqpoint{4.195909in}{3.525636in}}%
-\pgfpathlineto{\pgfqpoint{4.200312in}{3.447908in}}%
-\pgfpathlineto{\pgfqpoint{4.204716in}{3.422808in}}%
-\pgfpathlineto{\pgfqpoint{4.209119in}{3.431394in}}%
-\pgfpathlineto{\pgfqpoint{4.213523in}{3.496736in}}%
-\pgfpathlineto{\pgfqpoint{4.217926in}{3.494496in}}%
-\pgfpathlineto{\pgfqpoint{4.222330in}{3.521870in}}%
-\pgfpathlineto{\pgfqpoint{4.226733in}{3.477423in}}%
-\pgfpathlineto{\pgfqpoint{4.231136in}{3.514439in}}%
-\pgfpathlineto{\pgfqpoint{4.235540in}{3.439376in}}%
-\pgfpathlineto{\pgfqpoint{4.239943in}{3.436253in}}%
-\pgfpathlineto{\pgfqpoint{4.244347in}{3.390994in}}%
-\pgfpathlineto{\pgfqpoint{4.248750in}{3.379485in}}%
-\pgfpathlineto{\pgfqpoint{4.253153in}{3.339451in}}%
-\pgfpathlineto{\pgfqpoint{4.257557in}{3.447840in}}%
-\pgfpathlineto{\pgfqpoint{4.261960in}{3.488963in}}%
-\pgfpathlineto{\pgfqpoint{4.266364in}{3.484197in}}%
-\pgfpathlineto{\pgfqpoint{4.270767in}{3.493736in}}%
-\pgfpathlineto{\pgfqpoint{4.275170in}{3.490930in}}%
-\pgfpathlineto{\pgfqpoint{4.279574in}{3.338602in}}%
-\pgfpathlineto{\pgfqpoint{4.283977in}{3.333743in}}%
-\pgfpathlineto{\pgfqpoint{4.292784in}{3.240685in}}%
-\pgfpathlineto{\pgfqpoint{4.297187in}{3.284393in}}%
-\pgfpathlineto{\pgfqpoint{4.301591in}{3.281506in}}%
-\pgfpathlineto{\pgfqpoint{4.305994in}{3.283515in}}%
-\pgfpathlineto{\pgfqpoint{4.310398in}{3.311987in}}%
-\pgfpathlineto{\pgfqpoint{4.314801in}{3.239571in}}%
-\pgfpathlineto{\pgfqpoint{4.319205in}{3.224690in}}%
-\pgfpathlineto{\pgfqpoint{4.323608in}{3.149113in}}%
-\pgfpathlineto{\pgfqpoint{4.328011in}{3.167682in}}%
-\pgfpathlineto{\pgfqpoint{4.332415in}{3.068203in}}%
-\pgfpathlineto{\pgfqpoint{4.336818in}{3.020085in}}%
-\pgfpathlineto{\pgfqpoint{4.341222in}{3.105550in}}%
-\pgfpathlineto{\pgfqpoint{4.345625in}{3.121229in}}%
-\pgfpathlineto{\pgfqpoint{4.350028in}{3.127289in}}%
-\pgfpathlineto{\pgfqpoint{4.354432in}{3.094927in}}%
-\pgfpathlineto{\pgfqpoint{4.358835in}{3.167384in}}%
-\pgfpathlineto{\pgfqpoint{4.363239in}{3.183201in}}%
-\pgfpathlineto{\pgfqpoint{4.367642in}{3.110198in}}%
-\pgfpathlineto{\pgfqpoint{4.372045in}{3.209100in}}%
-\pgfpathlineto{\pgfqpoint{4.376449in}{3.244119in}}%
-\pgfpathlineto{\pgfqpoint{4.385256in}{3.115138in}}%
-\pgfpathlineto{\pgfqpoint{4.389659in}{3.088295in}}%
-\pgfpathlineto{\pgfqpoint{4.394063in}{3.099497in}}%
-\pgfpathlineto{\pgfqpoint{4.398466in}{3.089274in}}%
-\pgfpathlineto{\pgfqpoint{4.402869in}{3.120976in}}%
-\pgfpathlineto{\pgfqpoint{4.407273in}{3.106206in}}%
-\pgfpathlineto{\pgfqpoint{4.420483in}{3.001728in}}%
-\pgfpathlineto{\pgfqpoint{4.424886in}{3.151287in}}%
-\pgfpathlineto{\pgfqpoint{4.429290in}{3.185304in}}%
-\pgfpathlineto{\pgfqpoint{4.433693in}{3.119444in}}%
-\pgfpathlineto{\pgfqpoint{4.438097in}{3.167250in}}%
-\pgfpathlineto{\pgfqpoint{4.442500in}{3.185030in}}%
-\pgfpathlineto{\pgfqpoint{4.446903in}{3.156441in}}%
-\pgfpathlineto{\pgfqpoint{4.451307in}{3.103783in}}%
-\pgfpathlineto{\pgfqpoint{4.455710in}{3.098543in}}%
-\pgfpathlineto{\pgfqpoint{4.460114in}{3.100306in}}%
-\pgfpathlineto{\pgfqpoint{4.464517in}{3.124689in}}%
-\pgfpathlineto{\pgfqpoint{4.468920in}{3.276881in}}%
-\pgfpathlineto{\pgfqpoint{4.477727in}{3.352605in}}%
-\pgfpathlineto{\pgfqpoint{4.482131in}{3.298215in}}%
-\pgfpathlineto{\pgfqpoint{4.486534in}{3.306529in}}%
-\pgfpathlineto{\pgfqpoint{4.490938in}{3.346904in}}%
-\pgfpathlineto{\pgfqpoint{4.495341in}{3.419028in}}%
-\pgfpathlineto{\pgfqpoint{4.499744in}{3.350288in}}%
-\pgfpathlineto{\pgfqpoint{4.508551in}{3.435836in}}%
-\pgfpathlineto{\pgfqpoint{4.512955in}{3.397425in}}%
-\pgfpathlineto{\pgfqpoint{4.517358in}{3.420855in}}%
-\pgfpathlineto{\pgfqpoint{4.521761in}{3.425535in}}%
-\pgfpathlineto{\pgfqpoint{4.526165in}{3.511995in}}%
-\pgfpathlineto{\pgfqpoint{4.530568in}{3.560568in}}%
-\pgfpathlineto{\pgfqpoint{4.534972in}{3.488190in}}%
-\pgfpathlineto{\pgfqpoint{4.539375in}{3.563996in}}%
-\pgfpathlineto{\pgfqpoint{4.543778in}{3.523445in}}%
-\pgfpathlineto{\pgfqpoint{4.548182in}{3.450934in}}%
-\pgfpathlineto{\pgfqpoint{4.552585in}{3.462739in}}%
-\pgfpathlineto{\pgfqpoint{4.556989in}{3.441956in}}%
-\pgfpathlineto{\pgfqpoint{4.561392in}{3.464515in}}%
-\pgfpathlineto{\pgfqpoint{4.565795in}{3.475158in}}%
-\pgfpathlineto{\pgfqpoint{4.570199in}{3.381798in}}%
-\pgfpathlineto{\pgfqpoint{4.574602in}{3.324686in}}%
-\pgfpathlineto{\pgfqpoint{4.579006in}{3.370648in}}%
-\pgfpathlineto{\pgfqpoint{4.583409in}{3.310697in}}%
-\pgfpathlineto{\pgfqpoint{4.587813in}{3.195678in}}%
-\pgfpathlineto{\pgfqpoint{4.592216in}{3.151011in}}%
-\pgfpathlineto{\pgfqpoint{4.596619in}{3.213386in}}%
-\pgfpathlineto{\pgfqpoint{4.601023in}{3.189782in}}%
-\pgfpathlineto{\pgfqpoint{4.605426in}{3.153513in}}%
-\pgfpathlineto{\pgfqpoint{4.609830in}{3.198867in}}%
-\pgfpathlineto{\pgfqpoint{4.614233in}{3.204048in}}%
-\pgfpathlineto{\pgfqpoint{4.618636in}{3.279243in}}%
-\pgfpathlineto{\pgfqpoint{4.623040in}{3.307382in}}%
-\pgfpathlineto{\pgfqpoint{4.627443in}{3.361107in}}%
-\pgfpathlineto{\pgfqpoint{4.631847in}{3.505566in}}%
-\pgfpathlineto{\pgfqpoint{4.636250in}{3.398932in}}%
-\pgfpathlineto{\pgfqpoint{4.640653in}{3.323297in}}%
-\pgfpathlineto{\pgfqpoint{4.645057in}{3.295153in}}%
-\pgfpathlineto{\pgfqpoint{4.649460in}{3.352593in}}%
-\pgfpathlineto{\pgfqpoint{4.653864in}{3.286128in}}%
-\pgfpathlineto{\pgfqpoint{4.658267in}{3.303770in}}%
-\pgfpathlineto{\pgfqpoint{4.662670in}{3.260917in}}%
-\pgfpathlineto{\pgfqpoint{4.667074in}{3.349789in}}%
-\pgfpathlineto{\pgfqpoint{4.671477in}{3.253570in}}%
-\pgfpathlineto{\pgfqpoint{4.675881in}{3.261216in}}%
-\pgfpathlineto{\pgfqpoint{4.684687in}{3.154832in}}%
-\pgfpathlineto{\pgfqpoint{4.689091in}{3.055471in}}%
-\pgfpathlineto{\pgfqpoint{4.693494in}{3.030493in}}%
-\pgfpathlineto{\pgfqpoint{4.697898in}{3.064314in}}%
-\pgfpathlineto{\pgfqpoint{4.702301in}{3.037062in}}%
-\pgfpathlineto{\pgfqpoint{4.706705in}{2.959656in}}%
-\pgfpathlineto{\pgfqpoint{4.711108in}{2.938077in}}%
-\pgfpathlineto{\pgfqpoint{4.715511in}{3.080131in}}%
-\pgfpathlineto{\pgfqpoint{4.719915in}{3.133508in}}%
-\pgfpathlineto{\pgfqpoint{4.724318in}{3.257204in}}%
-\pgfpathlineto{\pgfqpoint{4.728722in}{3.241051in}}%
-\pgfpathlineto{\pgfqpoint{4.733125in}{3.172956in}}%
-\pgfpathlineto{\pgfqpoint{4.737528in}{3.186235in}}%
-\pgfpathlineto{\pgfqpoint{4.741932in}{3.180189in}}%
-\pgfpathlineto{\pgfqpoint{4.746335in}{3.192791in}}%
-\pgfpathlineto{\pgfqpoint{4.750739in}{3.181764in}}%
-\pgfpathlineto{\pgfqpoint{4.755142in}{3.016458in}}%
-\pgfpathlineto{\pgfqpoint{4.759545in}{2.918875in}}%
-\pgfpathlineto{\pgfqpoint{4.763949in}{2.905670in}}%
-\pgfpathlineto{\pgfqpoint{4.768352in}{3.043838in}}%
-\pgfpathlineto{\pgfqpoint{4.772756in}{3.063552in}}%
-\pgfpathlineto{\pgfqpoint{4.777159in}{2.987794in}}%
-\pgfpathlineto{\pgfqpoint{4.781562in}{2.951031in}}%
-\pgfpathlineto{\pgfqpoint{4.785966in}{3.052401in}}%
-\pgfpathlineto{\pgfqpoint{4.790369in}{3.096651in}}%
-\pgfpathlineto{\pgfqpoint{4.794773in}{3.103153in}}%
-\pgfpathlineto{\pgfqpoint{4.799176in}{3.103238in}}%
-\pgfpathlineto{\pgfqpoint{4.803580in}{3.064828in}}%
-\pgfpathlineto{\pgfqpoint{4.807983in}{3.058931in}}%
-\pgfpathlineto{\pgfqpoint{4.812386in}{3.137017in}}%
-\pgfpathlineto{\pgfqpoint{4.816790in}{3.105425in}}%
-\pgfpathlineto{\pgfqpoint{4.825597in}{3.194226in}}%
-\pgfpathlineto{\pgfqpoint{4.830000in}{3.149764in}}%
-\pgfpathlineto{\pgfqpoint{4.834403in}{3.206805in}}%
-\pgfpathlineto{\pgfqpoint{4.838807in}{3.123884in}}%
-\pgfpathlineto{\pgfqpoint{4.843210in}{3.150756in}}%
-\pgfpathlineto{\pgfqpoint{4.847614in}{3.142940in}}%
-\pgfpathlineto{\pgfqpoint{4.852017in}{3.051411in}}%
-\pgfpathlineto{\pgfqpoint{4.856420in}{3.070354in}}%
-\pgfpathlineto{\pgfqpoint{4.860824in}{3.103790in}}%
-\pgfpathlineto{\pgfqpoint{4.865227in}{3.178648in}}%
-\pgfpathlineto{\pgfqpoint{4.869631in}{3.215999in}}%
-\pgfpathlineto{\pgfqpoint{4.878438in}{3.108520in}}%
-\pgfpathlineto{\pgfqpoint{4.882841in}{3.081425in}}%
-\pgfpathlineto{\pgfqpoint{4.887244in}{3.207708in}}%
-\pgfpathlineto{\pgfqpoint{4.891648in}{3.293806in}}%
-\pgfpathlineto{\pgfqpoint{4.896051in}{3.317688in}}%
-\pgfpathlineto{\pgfqpoint{4.900455in}{3.403923in}}%
-\pgfpathlineto{\pgfqpoint{4.904858in}{3.402175in}}%
-\pgfpathlineto{\pgfqpoint{4.909261in}{3.412359in}}%
-\pgfpathlineto{\pgfqpoint{4.913665in}{3.322257in}}%
-\pgfpathlineto{\pgfqpoint{4.918068in}{3.341246in}}%
-\pgfpathlineto{\pgfqpoint{4.922472in}{3.316257in}}%
-\pgfpathlineto{\pgfqpoint{4.926875in}{3.357906in}}%
-\pgfpathlineto{\pgfqpoint{4.931278in}{3.370688in}}%
-\pgfpathlineto{\pgfqpoint{4.935682in}{3.199311in}}%
-\pgfpathlineto{\pgfqpoint{4.940085in}{3.402353in}}%
-\pgfpathlineto{\pgfqpoint{4.944489in}{3.404299in}}%
-\pgfpathlineto{\pgfqpoint{4.953295in}{3.169109in}}%
-\pgfpathlineto{\pgfqpoint{4.957699in}{3.153377in}}%
-\pgfpathlineto{\pgfqpoint{4.962102in}{3.083458in}}%
-\pgfpathlineto{\pgfqpoint{4.966506in}{3.034329in}}%
-\pgfpathlineto{\pgfqpoint{4.970909in}{2.997940in}}%
-\pgfpathlineto{\pgfqpoint{4.975313in}{2.987749in}}%
-\pgfpathlineto{\pgfqpoint{4.979716in}{2.992474in}}%
-\pgfpathlineto{\pgfqpoint{4.984119in}{3.044978in}}%
-\pgfpathlineto{\pgfqpoint{4.988523in}{3.010343in}}%
-\pgfpathlineto{\pgfqpoint{4.992926in}{2.952037in}}%
-\pgfpathlineto{\pgfqpoint{4.997330in}{2.939380in}}%
-\pgfpathlineto{\pgfqpoint{5.001733in}{3.010276in}}%
-\pgfpathlineto{\pgfqpoint{5.006136in}{2.980995in}}%
-\pgfpathlineto{\pgfqpoint{5.010540in}{2.939627in}}%
-\pgfpathlineto{\pgfqpoint{5.014943in}{2.958300in}}%
-\pgfpathlineto{\pgfqpoint{5.019347in}{3.041828in}}%
-\pgfpathlineto{\pgfqpoint{5.023750in}{2.963144in}}%
-\pgfpathlineto{\pgfqpoint{5.028153in}{3.045128in}}%
-\pgfpathlineto{\pgfqpoint{5.032557in}{2.938138in}}%
-\pgfpathlineto{\pgfqpoint{5.036960in}{2.946419in}}%
-\pgfpathlineto{\pgfqpoint{5.041364in}{2.899194in}}%
-\pgfpathlineto{\pgfqpoint{5.045767in}{2.942412in}}%
-\pgfpathlineto{\pgfqpoint{5.050170in}{2.933789in}}%
-\pgfpathlineto{\pgfqpoint{5.058977in}{2.723229in}}%
-\pgfpathlineto{\pgfqpoint{5.063381in}{2.717955in}}%
-\pgfpathlineto{\pgfqpoint{5.067784in}{2.782251in}}%
-\pgfpathlineto{\pgfqpoint{5.072188in}{2.776225in}}%
-\pgfpathlineto{\pgfqpoint{5.076591in}{2.838205in}}%
-\pgfpathlineto{\pgfqpoint{5.080994in}{2.798585in}}%
-\pgfpathlineto{\pgfqpoint{5.085398in}{2.776970in}}%
-\pgfpathlineto{\pgfqpoint{5.094205in}{2.958828in}}%
-\pgfpathlineto{\pgfqpoint{5.098608in}{2.935791in}}%
-\pgfpathlineto{\pgfqpoint{5.103011in}{2.962817in}}%
-\pgfpathlineto{\pgfqpoint{5.107415in}{3.002147in}}%
-\pgfpathlineto{\pgfqpoint{5.111818in}{3.120831in}}%
-\pgfpathlineto{\pgfqpoint{5.116222in}{3.154656in}}%
-\pgfpathlineto{\pgfqpoint{5.120625in}{3.066709in}}%
-\pgfpathlineto{\pgfqpoint{5.125028in}{3.093737in}}%
-\pgfpathlineto{\pgfqpoint{5.129432in}{3.098732in}}%
-\pgfpathlineto{\pgfqpoint{5.133835in}{3.151868in}}%
-\pgfpathlineto{\pgfqpoint{5.138239in}{3.150789in}}%
-\pgfpathlineto{\pgfqpoint{5.142642in}{3.137773in}}%
-\pgfpathlineto{\pgfqpoint{5.147045in}{3.132639in}}%
-\pgfpathlineto{\pgfqpoint{5.160256in}{2.936373in}}%
-\pgfpathlineto{\pgfqpoint{5.164659in}{2.910783in}}%
-\pgfpathlineto{\pgfqpoint{5.169062in}{2.874027in}}%
-\pgfpathlineto{\pgfqpoint{5.173466in}{2.935085in}}%
-\pgfpathlineto{\pgfqpoint{5.177869in}{2.790501in}}%
-\pgfpathlineto{\pgfqpoint{5.182273in}{2.800267in}}%
-\pgfpathlineto{\pgfqpoint{5.191080in}{2.743210in}}%
-\pgfpathlineto{\pgfqpoint{5.195483in}{2.788790in}}%
-\pgfpathlineto{\pgfqpoint{5.199886in}{2.811271in}}%
-\pgfpathlineto{\pgfqpoint{5.204290in}{2.808901in}}%
-\pgfpathlineto{\pgfqpoint{5.208693in}{2.815292in}}%
-\pgfpathlineto{\pgfqpoint{5.213097in}{2.796804in}}%
-\pgfpathlineto{\pgfqpoint{5.217500in}{2.854958in}}%
-\pgfpathlineto{\pgfqpoint{5.221903in}{2.975307in}}%
-\pgfpathlineto{\pgfqpoint{5.226307in}{2.964100in}}%
-\pgfpathlineto{\pgfqpoint{5.230710in}{3.041006in}}%
-\pgfpathlineto{\pgfqpoint{5.235114in}{3.057875in}}%
-\pgfpathlineto{\pgfqpoint{5.239517in}{3.060921in}}%
-\pgfpathlineto{\pgfqpoint{5.243920in}{3.037418in}}%
-\pgfpathlineto{\pgfqpoint{5.248324in}{3.088094in}}%
-\pgfpathlineto{\pgfqpoint{5.252727in}{2.939374in}}%
-\pgfpathlineto{\pgfqpoint{5.257131in}{2.972420in}}%
-\pgfpathlineto{\pgfqpoint{5.261534in}{2.948661in}}%
-\pgfpathlineto{\pgfqpoint{5.265937in}{3.034519in}}%
-\pgfpathlineto{\pgfqpoint{5.270341in}{3.067549in}}%
-\pgfpathlineto{\pgfqpoint{5.274744in}{3.127828in}}%
-\pgfpathlineto{\pgfqpoint{5.279148in}{3.247103in}}%
-\pgfpathlineto{\pgfqpoint{5.283551in}{3.003444in}}%
-\pgfpathlineto{\pgfqpoint{5.287955in}{2.936602in}}%
-\pgfpathlineto{\pgfqpoint{5.292358in}{2.960292in}}%
-\pgfpathlineto{\pgfqpoint{5.296761in}{2.954898in}}%
-\pgfpathlineto{\pgfqpoint{5.301165in}{2.966653in}}%
-\pgfpathlineto{\pgfqpoint{5.305568in}{2.845293in}}%
-\pgfpathlineto{\pgfqpoint{5.309972in}{2.838312in}}%
-\pgfpathlineto{\pgfqpoint{5.314375in}{2.791394in}}%
-\pgfpathlineto{\pgfqpoint{5.318778in}{2.941981in}}%
-\pgfpathlineto{\pgfqpoint{5.323182in}{2.884516in}}%
-\pgfpathlineto{\pgfqpoint{5.327585in}{2.951434in}}%
-\pgfpathlineto{\pgfqpoint{5.331989in}{2.987313in}}%
-\pgfpathlineto{\pgfqpoint{5.336392in}{3.008214in}}%
-\pgfpathlineto{\pgfqpoint{5.340795in}{2.989803in}}%
-\pgfpathlineto{\pgfqpoint{5.345199in}{2.945740in}}%
-\pgfpathlineto{\pgfqpoint{5.349602in}{3.029576in}}%
-\pgfpathlineto{\pgfqpoint{5.358409in}{2.985329in}}%
-\pgfpathlineto{\pgfqpoint{5.362813in}{2.951077in}}%
-\pgfpathlineto{\pgfqpoint{5.371619in}{2.753094in}}%
-\pgfpathlineto{\pgfqpoint{5.376023in}{2.828378in}}%
-\pgfpathlineto{\pgfqpoint{5.380426in}{2.880238in}}%
-\pgfpathlineto{\pgfqpoint{5.384830in}{3.027521in}}%
-\pgfpathlineto{\pgfqpoint{5.389233in}{3.134677in}}%
-\pgfpathlineto{\pgfqpoint{5.393636in}{3.131539in}}%
-\pgfpathlineto{\pgfqpoint{5.398040in}{3.154224in}}%
-\pgfpathlineto{\pgfqpoint{5.402443in}{3.251758in}}%
-\pgfpathlineto{\pgfqpoint{5.406847in}{3.316536in}}%
-\pgfpathlineto{\pgfqpoint{5.411250in}{3.195252in}}%
-\pgfpathlineto{\pgfqpoint{5.415653in}{3.197643in}}%
-\pgfpathlineto{\pgfqpoint{5.420057in}{3.211863in}}%
-\pgfpathlineto{\pgfqpoint{5.424460in}{3.359079in}}%
-\pgfpathlineto{\pgfqpoint{5.428864in}{3.383239in}}%
-\pgfpathlineto{\pgfqpoint{5.433267in}{3.365329in}}%
-\pgfpathlineto{\pgfqpoint{5.437670in}{3.378611in}}%
-\pgfpathlineto{\pgfqpoint{5.446477in}{3.347578in}}%
-\pgfpathlineto{\pgfqpoint{5.455284in}{3.284087in}}%
-\pgfpathlineto{\pgfqpoint{5.459688in}{3.273249in}}%
-\pgfpathlineto{\pgfqpoint{5.468494in}{3.388356in}}%
-\pgfpathlineto{\pgfqpoint{5.472898in}{3.586255in}}%
-\pgfpathlineto{\pgfqpoint{5.477301in}{3.606505in}}%
-\pgfpathlineto{\pgfqpoint{5.481705in}{3.612779in}}%
-\pgfpathlineto{\pgfqpoint{5.490511in}{3.744983in}}%
-\pgfpathlineto{\pgfqpoint{5.494915in}{3.719285in}}%
-\pgfpathlineto{\pgfqpoint{5.499318in}{3.670232in}}%
-\pgfpathlineto{\pgfqpoint{5.503722in}{3.773056in}}%
-\pgfpathlineto{\pgfqpoint{5.508125in}{3.795749in}}%
-\pgfpathlineto{\pgfqpoint{5.512528in}{3.810066in}}%
-\pgfpathlineto{\pgfqpoint{5.516932in}{3.864616in}}%
-\pgfpathlineto{\pgfqpoint{5.521335in}{3.990852in}}%
-\pgfpathlineto{\pgfqpoint{5.525739in}{4.001158in}}%
-\pgfpathlineto{\pgfqpoint{5.530142in}{3.994842in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfpathlineto{\pgfqpoint{5.534545in}{3.922711in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetrectcap%
-\pgfsetmiterjoin%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{0.800000in}{0.528000in}}%
-\pgfpathlineto{\pgfqpoint{0.800000in}{4.224000in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetrectcap%
-\pgfsetmiterjoin%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{5.760000in}{0.528000in}}%
-\pgfpathlineto{\pgfqpoint{5.760000in}{4.224000in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetrectcap%
-\pgfsetmiterjoin%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{0.800000in}{0.528000in}}%
-\pgfpathlineto{\pgfqpoint{5.760000in}{0.528000in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetrectcap%
-\pgfsetmiterjoin%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{0.800000in}{4.224000in}}%
-\pgfpathlineto{\pgfqpoint{5.760000in}{4.224000in}}%
-\pgfusepath{stroke}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{textcolor}%
-\pgfsetfillcolor{textcolor}%
-% \pgftext[x=3.280000in,y=4.307333in,,base]{\color{textcolor}\sffamily\fontsize{12.000000}{14.400000}\selectfont Sample path of a Brownian motion at different resolutions}%
-\end{pgfscope}%
-\end{pgfpicture}%
-\makeatother%
-\endgroup%
+% This file was created by tikzplotlib v0.8.4.
+\begin{tikzpicture}
+
+\definecolor{color0}{rgb}{0.12156862745098,0.466666666666667,0.705882352941177}
+\definecolor{color1}{rgb}{1,0.498039215686275,0.0549019607843137}
+\definecolor{color2}{rgb}{0.172549019607843,0.627450980392157,0.172549019607843}
+\definecolor{color3}{rgb}{0.83921568627451,0.152941176470588,0.156862745098039}
+\definecolor{color4}{rgb}{0.580392156862745,0.403921568627451,0.741176470588235}
+\definecolor{color5}{rgb}{0.549019607843137,0.337254901960784,0.294117647058824}
+\definecolor{color6}{rgb}{0.890196078431372,0.466666666666667,0.76078431372549}
+\definecolor{color7}{rgb}{0.737254901960784,0.741176470588235,0.133333333333333}
+\definecolor{color8}{rgb}{0.0901960784313725,0.745098039215686,0.811764705882353}
+
+\begin{axis}[
+tick align=outside,
+tick pos=left,
+x grid style={white!69.01960784313725!black},
+xlabel={\(\displaystyle t\)},
+xmin=-0.05, xmax=1.05,
+xtick style={color=black},
+y grid style={white!69.01960784313725!black},
+ylabel={\(\displaystyle W(t)\)},
+ymin=-0.549249892405815, ymax=0.465939421362371,
+ytick style={color=black}
+]
+\addplot [semithick, color0]
+table {%
+0 0
+0.5 0.226188299266531
+1 0.0446367678077983
+};
+\addplot [semithick, color1]
+table {%
+0 0
+0.25 -0.163477428547707
+0.5 0.226188299266531
+0.75 -0.309270056876883
+1 0.0446367678077983
+};
+\addplot [semithick, color2]
+table {%
+0 0
+0.125 -0.0952290895608764
+0.25 -0.163477428547707
+0.375 0.153316609039355
+0.5 0.226188299266531
+0.625 -0.138600696262659
+0.75 -0.309270056876883
+0.875 -0.147663601827953
+1 0.0446367678077983
+};
+\addplot [semithick, color3]
+table {%
+0 0
+0.0625 0.0498406463010942
+0.125 -0.0952290895608764
+0.1875 -0.282560705866867
+0.25 -0.163477428547707
+0.3125 -0.17821024233334
+0.375 0.153316609039355
+0.4375 0.257296812010063
+0.5 0.226188299266531
+0.5625 0.0220933241208356
+0.625 -0.138600696262659
+0.6875 -0.305677867892093
+0.75 -0.309270056876883
+0.8125 -0.282006474217183
+0.875 -0.147663601827953
+0.9375 0.0216241360304298
+1 0.0446367678077983
+};
+\addplot [semithick, color4]
+table {%
+0 0
+0.03125 0.0606067941849485
+0.0625 0.0498406463010942
+0.09375 0.176226423266858
+0.125 -0.0952290895608764
+0.15625 -0.00756850556480143
+0.1875 -0.282560705866867
+0.21875 -0.201295357378841
+0.25 -0.163477428547707
+0.28125 -0.224839619792612
+0.3125 -0.17821024233334
+0.34375 -0.0568086556033337
+0.375 0.153316609039355
+0.40625 0.243738622097754
+0.4375 0.257296812010063
+0.46875 0.363798493889044
+0.5 0.226188299266531
+0.53125 -0.057133985656343
+0.5625 0.0220933241208356
+0.59375 -0.0154172561142197
+0.625 -0.138600696262659
+0.65625 -0.0260238606155302
+0.6875 -0.305677867892093
+0.71875 -0.184772217913951
+0.75 -0.309270056876883
+0.78125 -0.25741473101758
+0.8125 -0.282006474217183
+0.84375 -0.267559392039037
+0.875 -0.147663601827953
+0.90625 -0.154107577114174
+0.9375 0.0216241360304298
+0.96875 -0.224514770945199
+1 0.0446367678077983
+};
+\addplot [semithick, color5]
+table {%
+0 0
+0.015625 0.0949638996083537
+0.03125 0.0606067941849485
+0.046875 0.0159279928293963
+0.0625 0.0498406463010942
+0.078125 0.142210765700092
+0.09375 0.176226423266858
+0.109375 0.0243038731543342
+0.125 -0.0952290895608764
+0.140625 -0.0722392995830708
+0.15625 -0.00756850556480143
+0.171875 -0.172837157714303
+0.1875 -0.282560705866867
+0.203125 -0.354712292590823
+0.21875 -0.201295357378841
+0.234375 -0.161391528650076
+0.25 -0.163477428547707
+0.265625 -0.211712732872344
+0.28125 -0.224839619792612
+0.296875 -0.288749282393864
+0.3125 -0.17821024233334
+0.328125 -0.0846418797739782
+0.34375 -0.0568086556033337
+0.359375 -0.0346857477057923
+0.375 0.153316609039355
+0.390625 0.230677285059979
+0.40625 0.243738622097754
+0.421875 0.205516965049848
+0.4375 0.257296812010063
+0.453125 0.385027346836459
+0.46875 0.363798493889044
+0.484375 0.322215098367622
+0.5 0.226188299266531
+0.515625 0.132708025359011
+0.53125 -0.057133985656343
+0.546875 0.0330655873051347
+0.5625 0.0220933241208356
+0.578125 0.124604646774031
+0.59375 -0.0154172561142197
+0.609375 -0.220308355338923
+0.625 -0.138600696262659
+0.640625 -0.00258580696152944
+0.65625 -0.0260238606155302
+0.671875 -0.374947461328615
+0.6875 -0.305677867892093
+0.703125 -0.231252048833452
+0.71875 -0.184772217913951
+0.734375 -0.236365538420743
+0.75 -0.309270056876883
+0.765625 -0.399674335779856
+0.78125 -0.25741473101758
+0.796875 -0.29738887769789
+0.8125 -0.282006474217183
+0.828125 -0.202550631355121
+0.84375 -0.267559392039037
+0.859375 -0.209972054624842
+0.875 -0.147663601827953
+0.890625 -0.260885746422818
+0.90625 -0.154107577114174
+0.921875 -0.0924616219561403
+0.9375 0.0216241360304298
+0.953125 -0.143691821340463
+0.96875 -0.224514770945199
+0.984375 -0.0999651399759821
+1 0.0446367678077983
+};
+\addplot [semithick, color6]
+table {%
+0 0
+0.0078125 0.00750542366524199
+0.015625 0.0949638996083537
+0.0234375 0.0496090905745811
+0.03125 0.0606067941849485
+0.0390625 0.0541602667863782
+0.046875 0.0159279928293963
+0.0546875 0.0239416108487721
+0.0625 0.0498406463010942
+0.0703125 0.0612710623590579
+0.078125 0.142210765700092
+0.0859375 0.0858049787449583
+0.09375 0.176226423266858
+0.1015625 0.13138563187588
+0.109375 0.0243038731543342
+0.1171875 -0.0130490910708574
+0.125 -0.0952290895608764
+0.1328125 -0.076479633100492
+0.140625 -0.0722392995830708
+0.1484375 -0.0549530718489272
+0.15625 -0.00756850556480143
+0.1640625 -0.121943250428684
+0.171875 -0.172837157714303
+0.1796875 -0.262449730663052
+0.1875 -0.282560705866867
+0.1953125 -0.443197811705809
+0.203125 -0.354712292590823
+0.2109375 -0.298385064604458
+0.21875 -0.201295357378841
+0.2265625 -0.148635686377056
+0.234375 -0.161391528650076
+0.2421875 -0.0262762615121445
+0.25 -0.163477428547707
+0.2578125 -0.165171417964965
+0.265625 -0.211712732872344
+0.2734375 -0.246117414425025
+0.28125 -0.224839619792612
+0.2890625 -0.300016114161143
+0.296875 -0.288749282393864
+0.3046875 -0.235778569975109
+0.3125 -0.17821024233334
+0.3203125 -0.0930329111546726
+0.328125 -0.0846418797739782
+0.3359375 -0.136670067080375
+0.34375 -0.0568086556033337
+0.3515625 -0.0363944804959497
+0.359375 -0.0346857477057923
+0.3671875 0.0717251504165042
+0.375 0.153316609039355
+0.3828125 0.0402912481427834
+0.390625 0.230677285059979
+0.3984375 0.217879790761237
+0.40625 0.243738622097754
+0.4140625 0.198054592321961
+0.421875 0.205516965049848
+0.4296875 0.20399571176038
+0.4375 0.257296812010063
+0.4453125 0.325544799378953
+0.453125 0.385027346836459
+0.4609375 0.337368540626418
+0.46875 0.363798493889044
+0.4765625 0.284649307961869
+0.484375 0.322215098367622
+0.4921875 0.252514872591599
+0.5 0.226188299266531
+0.5078125 -0.0219788646798917
+0.515625 0.132708025359011
+0.5234375 0.128747610749399
+0.53125 -0.057133985656343
+0.5390625 -0.126138951666179
+0.546875 0.0330655873051347
+0.5546875 -0.0542370608026445
+0.5625 0.0220933241208356
+0.5703125 0.0258775495809889
+0.578125 0.124604646774031
+0.5859375 -0.0244488360694108
+0.59375 -0.0154172561142197
+0.6015625 -0.0854772803455934
+0.609375 -0.220308355338923
+0.6171875 -0.177353233246973
+0.625 -0.138600696262659
+0.6328125 -0.248509039979496
+0.640625 -0.00258580696152944
+0.6484375 -0.0847920520557961
+0.65625 -0.0260238606155302
+0.6640625 -0.0238289675547193
+0.671875 -0.374947461328615
+0.6796875 -0.358766087750973
+0.6875 -0.305677867892093
+0.6953125 -0.246793541592899
+0.703125 -0.231252048833452
+0.7109375 -0.137858080427287
+0.71875 -0.184772217913951
+0.7265625 -0.271147567301344
+0.734375 -0.236365538420743
+0.7421875 -0.161369466976155
+0.75 -0.309270056876883
+0.7578125 -0.398981607955599
+0.765625 -0.399674335779856
+0.7734375 -0.503104923598171
+0.78125 -0.25741473101758
+0.7890625 -0.333566661517945
+0.796875 -0.29738887769789
+0.8046875 -0.166414263982712
+0.8125 -0.282006474217183
+0.8203125 -0.234418490290076
+0.828125 -0.202550631355121
+0.8359375 -0.310275733475615
+0.84375 -0.267559392039037
+0.8515625 -0.256696568419661
+0.859375 -0.209972054624842
+0.8671875 -0.196399527078721
+0.875 -0.147663601827953
+0.8828125 -0.20886395487942
+0.890625 -0.260885746422818
+0.8984375 -0.223910118636943
+0.90625 -0.154107577114174
+0.9140625 -0.168726988496781
+0.921875 -0.0924616219561403
+0.9296875 0.00237673140619113
+0.9375 0.0216241360304298
+0.9453125 -0.0137956920029042
+0.953125 -0.143691821340463
+0.9609375 -0.168445090129871
+0.96875 -0.224514770945199
+0.9765625 -0.189447521519726
+0.984375 -0.0999651399759821
+0.9921875 -0.0995064939869106
+1 0.0446367678077983
+};
+\addplot [semithick, white!49.80392156862745!black]
+table {%
+0 0
+0.00390625 0.0263962315661699
+0.0078125 0.00750542366524199
+0.01171875 0.0380399724328816
+0.015625 0.0949638996083537
+0.01953125 0.156842406289404
+0.0234375 0.0496090905745811
+0.02734375 0.120289925622556
+0.03125 0.0606067941849485
+0.03515625 0.0553094517344589
+0.0390625 0.0541602667863782
+0.04296875 -0.0514981832936526
+0.046875 0.0159279928293963
+0.05078125 0.0365201590246302
+0.0546875 0.0239416108487721
+0.05859375 -0.0224362032089515
+0.0625 0.0498406463010942
+0.06640625 0.131926776817921
+0.0703125 0.0612710623590579
+0.07421875 0.133371215725286
+0.078125 0.142210765700092
+0.08203125 0.0714055704422601
+0.0859375 0.0858049787449583
+0.08984375 0.13910629059502
+0.09375 0.176226423266858
+0.09765625 0.240697737319982
+0.1015625 0.13138563187588
+0.10546875 -0.00762576113177928
+0.109375 0.0243038731543342
+0.11328125 -0.036058800446301
+0.1171875 -0.0130490910708574
+0.12109375 -0.0828487239942866
+0.125 -0.0952290895608764
+0.12890625 -0.0940753058586704
+0.1328125 -0.076479633100492
+0.13671875 -0.158971472381434
+0.140625 -0.0722392995830708
+0.14453125 -0.05995998031238
+0.1484375 -0.0549530718489272
+0.15234375 -0.0907707810499254
+0.15625 -0.00756850556480143
+0.16015625 -0.0587028221711809
+0.1640625 -0.121943250428684
+0.16796875 -0.221334122378265
+0.171875 -0.172837157714303
+0.17578125 -0.157381234739689
+0.1796875 -0.262449730663052
+0.18359375 -0.29645239153525
+0.1875 -0.282560705866867
+0.19140625 -0.240652766705346
+0.1953125 -0.443197811705809
+0.19921875 -0.373261647113368
+0.203125 -0.354712292590823
+0.20703125 -0.296252315148166
+0.2109375 -0.298385064604458
+0.21484375 -0.2393744701935
+0.21875 -0.201295357378841
+0.22265625 -0.19963573102332
+0.2265625 -0.148635686377056
+0.23046875 -0.15526160597645
+0.234375 -0.161391528650076
+0.23828125 -0.0979507837257469
+0.2421875 -0.0262762615121445
+0.24609375 -0.0792059625392834
+0.25 -0.163477428547707
+0.25390625 -0.150331289069667
+0.2578125 -0.165171417964965
+0.26171875 -0.222872756276004
+0.265625 -0.211712732872344
+0.26953125 -0.217407873130758
+0.2734375 -0.246117414425025
+0.27734375 -0.200805442873365
+0.28125 -0.224839619792612
+0.28515625 -0.231913796558504
+0.2890625 -0.300016114161143
+0.29296875 -0.364518167816891
+0.296875 -0.288749282393864
+0.30078125 -0.218464022723796
+0.3046875 -0.235778569975109
+0.30859375 -0.229012590227173
+0.3125 -0.17821024233334
+0.31640625 -0.232986571174745
+0.3203125 -0.0930329111546726
+0.32421875 -0.0924936053327452
+0.328125 -0.0846418797739782
+0.33203125 -0.0967495599790372
+0.3359375 -0.136670067080375
+0.33984375 -0.0216939625756777
+0.34375 -0.0568086556033337
+0.34765625 -0.0782402646913226
+0.3515625 -0.0363944804959497
+0.35546875 -0.00614499587666713
+0.359375 -0.0346857477057923
+0.36328125 0.0816574471400288
+0.3671875 0.0717251504165042
+0.37109375 0.157716294016238
+0.375 0.153316609039355
+0.37890625 0.115346740660878
+0.3828125 0.0402912481427834
+0.38671875 0.176226359833509
+0.390625 0.230677285059979
+0.39453125 0.178092364608356
+0.3984375 0.217879790761237
+0.40234375 0.240526787947656
+0.40625 0.243738622097754
+0.41015625 0.216739306790557
+0.4140625 0.198054592321961
+0.41796875 0.198472268396748
+0.421875 0.205516965049848
+0.42578125 0.150001828456082
+0.4296875 0.20399571176038
+0.43359375 0.2257011351187
+0.4375 0.257296812010063
+0.44140625 0.295514270586683
+0.4453125 0.325544799378953
+0.44921875 0.393534823533129
+0.453125 0.385027346836459
+0.45703125 0.345190318817798
+0.4609375 0.337368540626418
+0.46484375 0.269977367105124
+0.46875 0.363798493889044
+0.47265625 0.29353388613458
+0.4765625 0.284649307961869
+0.48046875 0.364023825344129
+0.484375 0.322215098367622
+0.48828125 0.257868279073694
+0.4921875 0.252514872591599
+0.49609375 0.18463987104118
+0.5 0.226188299266531
+0.50390625 0.205221248349695
+0.5078125 -0.0219788646798917
+0.51171875 0.06870842022355
+0.515625 0.132708025359011
+0.51953125 0.101886100867533
+0.5234375 0.128747610749399
+0.52734375 0.00788460927000829
+0.53125 -0.057133985656343
+0.53515625 -0.125672890548181
+0.5390625 -0.126138951666179
+0.54296875 -0.0822779939939632
+0.546875 0.0330655873051347
+0.55078125 -0.0582517338477929
+0.5546875 -0.0542370608026445
+0.55859375 -0.028822665828881
+0.5625 0.0220933241208356
+0.56640625 0.0238165367931883
+0.5703125 0.0258775495809889
+0.57421875 0.136358955315751
+0.578125 0.124604646774031
+0.58203125 0.107778145952784
+0.5859375 -0.0244488360694108
+0.58984375 -0.0174323640707271
+0.59375 -0.0154172561142197
+0.59765625 0.00396721560635573
+0.6015625 -0.0854772803455934
+0.60546875 -0.215288326386932
+0.609375 -0.220308355338923
+0.61328125 -0.186602195083765
+0.6171875 -0.177353233246973
+0.62109375 -0.13724981850899
+0.625 -0.138600696262659
+0.62890625 -0.159260193265509
+0.6328125 -0.248509039979496
+0.63671875 -0.161522907806613
+0.640625 -0.00258580696152944
+0.64453125 -0.060802295929
+0.6484375 -0.0847920520557961
+0.65234375 -0.0425329917772428
+0.65625 -0.0260238606155302
+0.66015625 -0.102262032210925
+0.6640625 -0.0238289675547193
+0.66796875 -0.219944922929224
+0.671875 -0.374947461328615
+0.67578125 -0.397594486540326
+0.6796875 -0.358766087750973
+0.68359375 -0.275970135059472
+0.6875 -0.305677867892093
+0.69140625 -0.236656605824755
+0.6953125 -0.246793541592899
+0.69921875 -0.299978892047295
+0.703125 -0.231252048833452
+0.70703125 -0.126815741800246
+0.7109375 -0.137858080427287
+0.71484375 -0.13694585014441
+0.71875 -0.184772217913951
+0.72265625 -0.229978523995509
+0.7265625 -0.271147567301344
+0.73046875 -0.193515943991879
+0.734375 -0.236365538420743
+0.73828125 -0.220979256039149
+0.7421875 -0.161369466976155
+0.74609375 -0.272992527498911
+0.75 -0.309270056876883
+0.75390625 -0.371473420466688
+0.7578125 -0.398981607955599
+0.76171875 -0.404719139941017
+0.765625 -0.399674335779856
+0.76953125 -0.475628872552948
+0.7734375 -0.503104923598171
+0.77734375 -0.391719387590152
+0.78125 -0.25741473101758
+0.78515625 -0.333971207221557
+0.7890625 -0.333566661517945
+0.79296875 -0.305124893610988
+0.796875 -0.29738887769789
+0.80078125 -0.289785409585198
+0.8046875 -0.166414263982712
+0.80859375 -0.269700975899721
+0.8125 -0.282006474217183
+0.81640625 -0.226483545664001
+0.8203125 -0.234418490290076
+0.82421875 -0.302399406767347
+0.828125 -0.202550631355121
+0.83203125 -0.215419791367675
+0.8359375 -0.310275733475615
+0.83984375 -0.244703208428599
+0.84375 -0.267559392039037
+0.84765625 -0.216607028796237
+0.8515625 -0.256696568419661
+0.85546875 -0.277846718638333
+0.859375 -0.209972054624842
+0.86328125 -0.195657413405065
+0.8671875 -0.196399527078721
+0.87109375 -0.130776411481616
+0.875 -0.147663601827953
+0.87890625 -0.156656610991417
+0.8828125 -0.20886395487942
+0.88671875 -0.248801583743796
+0.890625 -0.260885746422818
+0.89453125 -0.289063460034515
+0.8984375 -0.223910118636943
+0.90234375 -0.300327242483637
+0.90625 -0.154107577114174
+0.91015625 -0.207021984596591
+0.9140625 -0.168726988496781
+0.91796875 -0.132022667917891
+0.921875 -0.0924616219561403
+0.92578125 -0.0523759759356481
+0.9296875 0.00237673140619113
+0.93359375 -0.0520886717469625
+0.9375 0.0216241360304298
+0.94140625 0.00866443189137601
+0.9453125 -0.0137956920029042
+0.94921875 -0.0819817196248202
+0.953125 -0.143691821340463
+0.95703125 -0.223360218369492
+0.9609375 -0.168445090129871
+0.96484375 -0.223145037349761
+0.96875 -0.224514770945199
+0.97265625 -0.206389570522446
+0.9765625 -0.189447521519726
+0.98046875 -0.132568269239262
+0.984375 -0.0999651399759821
+0.98828125 -0.0170142944554604
+0.9921875 -0.0995064939869106
+0.99609375 -0.0315024580347488
+1 0.0446367678077983
+};
+\addplot [semithick, color7]
+table {%
+0 0
+0.001953125 0.0232871603362519
+0.00390625 0.0263962315661699
+0.005859375 0.0150384479705233
+0.0078125 0.00750542366524199
+0.009765625 -0.00482878149200773
+0.01171875 0.0380399724328816
+0.013671875 0.0713351002779234
+0.015625 0.0949638996083537
+0.017578125 0.112171955968573
+0.01953125 0.156842406289404
+0.021484375 0.111113449722117
+0.0234375 0.0496090905745811
+0.025390625 0.0988853927096341
+0.02734375 0.120289925622556
+0.029296875 0.0864072463907575
+0.03125 0.0606067941849485
+0.033203125 -0.00127862530076411
+0.03515625 0.0553094517344589
+0.037109375 0.0792281516374222
+0.0390625 0.0541602667863782
+0.041015625 0.0158958550817062
+0.04296875 -0.0514981832936526
+0.044921875 0.00507037300003466
+0.046875 0.0159279928293963
+0.048828125 0.0256422492020869
+0.05078125 0.0365201590246302
+0.052734375 0.0752240615830723
+0.0546875 0.0239416108487721
+0.056640625 -0.0402462598581825
+0.05859375 -0.0224362032089515
+0.060546875 -0.00744409587095423
+0.0625 0.0498406463010942
+0.064453125 0.0952351264186752
+0.06640625 0.131926776817921
+0.068359375 0.116514939203743
+0.0703125 0.0612710623590579
+0.072265625 0.0971114947186668
+0.07421875 0.133371215725286
+0.076171875 0.143955387942964
+0.078125 0.142210765700092
+0.080078125 0.149156983957442
+0.08203125 0.0714055704422601
+0.083984375 0.0818905383416038
+0.0859375 0.0858049787449583
+0.087890625 0.137230505007555
+0.08984375 0.13910629059502
+0.091796875 0.118860152474113
+0.09375 0.176226423266858
+0.095703125 0.243889287053919
+0.09765625 0.240697737319982
+0.099609375 0.172111122613549
+0.1015625 0.13138563187588
+0.103515625 0.0942599239507356
+0.10546875 -0.00762576113177928
+0.107421875 0.0421341045097762
+0.109375 0.0243038731543342
+0.111328125 -0.0293777761217829
+0.11328125 -0.036058800446301
+0.115234375 -0.084384864845623
+0.1171875 -0.0130490910708574
+0.119140625 -0.053766325755176
+0.12109375 -0.0828487239942866
+0.123046875 -0.102687635533628
+0.125 -0.0952290895608764
+0.126953125 -0.125535477587916
+0.12890625 -0.0940753058586704
+0.130859375 -0.0816394392427401
+0.1328125 -0.076479633100492
+0.134765625 -0.133303148137123
+0.13671875 -0.158971472381434
+0.138671875 -0.160370684845608
+0.140625 -0.0722392995830708
+0.142578125 -0.0578801820558323
+0.14453125 -0.05995998031238
+0.146484375 -0.0796051238031616
+0.1484375 -0.0549530718489272
+0.150390625 -0.103278262440399
+0.15234375 -0.0907707810499254
+0.154296875 -0.110106722463679
+0.15625 -0.00756850556480143
+0.158203125 -0.00292746164833332
+0.16015625 -0.0587028221711809
+0.162109375 -0.11114266160513
+0.1640625 -0.121943250428684
+0.166015625 -0.168010024583614
+0.16796875 -0.221334122378265
+0.169921875 -0.157747685058733
+0.171875 -0.172837157714303
+0.173828125 -0.139920847305001
+0.17578125 -0.157381234739689
+0.177734375 -0.186742028494335
+0.1796875 -0.262449730663052
+0.181640625 -0.307367084756947
+0.18359375 -0.29645239153525
+0.185546875 -0.330191026500355
+0.1875 -0.282560705866867
+0.189453125 -0.297701195172807
+0.19140625 -0.240652766705346
+0.193359375 -0.313880392664538
+0.1953125 -0.443197811705809
+0.197265625 -0.46879303357154
+0.19921875 -0.373261647113368
+0.201171875 -0.365300445998884
+0.203125 -0.354712292590823
+0.205078125 -0.315756873521809
+0.20703125 -0.296252315148166
+0.208984375 -0.305474032260795
+0.2109375 -0.298385064604458
+0.212890625 -0.269529589939583
+0.21484375 -0.2393744701935
+0.216796875 -0.27415673782097
+0.21875 -0.201295357378841
+0.220703125 -0.168962073116153
+0.22265625 -0.19963573102332
+0.224609375 -0.176105373968778
+0.2265625 -0.148635686377056
+0.228515625 -0.0961853582436953
+0.23046875 -0.15526160597645
+0.232421875 -0.195043873979939
+0.234375 -0.161391528650076
+0.236328125 -0.101062675130361
+0.23828125 -0.0979507837257469
+0.240234375 -0.0926308982926995
+0.2421875 -0.0262762615121445
+0.244140625 -0.00487309381690309
+0.24609375 -0.0792059625392834
+0.248046875 -0.110570504652723
+0.25 -0.163477428547707
+0.251953125 -0.16604761546756
+0.25390625 -0.150331289069667
+0.255859375 -0.119632223767659
+0.2578125 -0.165171417964965
+0.259765625 -0.147099714632839
+0.26171875 -0.222872756276004
+0.263671875 -0.248525794209365
+0.265625 -0.211712732872344
+0.267578125 -0.211496772362654
+0.26953125 -0.217407873130758
+0.271484375 -0.199804232017033
+0.2734375 -0.246117414425025
+0.275390625 -0.217137260315202
+0.27734375 -0.200805442873365
+0.279296875 -0.210759360920784
+0.28125 -0.224839619792612
+0.283203125 -0.242454892262259
+0.28515625 -0.231913796558504
+0.287109375 -0.295808228133019
+0.2890625 -0.300016114161143
+0.291015625 -0.379710467614765
+0.29296875 -0.364518167816891
+0.294921875 -0.291654060860531
+0.296875 -0.288749282393864
+0.298828125 -0.211183902770684
+0.30078125 -0.218464022723796
+0.302734375 -0.265757661360059
+0.3046875 -0.235778569975109
+0.306640625 -0.245164877106894
+0.30859375 -0.229012590227173
+0.310546875 -0.212415697039078
+0.3125 -0.17821024233334
+0.314453125 -0.172496037054829
+0.31640625 -0.232986571174745
+0.318359375 -0.177517208196036
+0.3203125 -0.0930329111546726
+0.322265625 -0.0902273620289791
+0.32421875 -0.0924936053327452
+0.326171875 -0.0868182008700163
+0.328125 -0.0846418797739782
+0.330078125 -0.0758187937924795
+0.33203125 -0.0967495599790372
+0.333984375 -0.0997637978670162
+0.3359375 -0.136670067080375
+0.337890625 -0.0657166506725158
+0.33984375 -0.0216939625756777
+0.341796875 -0.0796629103969444
+0.34375 -0.0568086556033337
+0.345703125 -0.0491919728121229
+0.34765625 -0.0782402646913226
+0.349609375 -0.0713338444841452
+0.3515625 -0.0363944804959497
+0.353515625 0.0230000827880981
+0.35546875 -0.00614499587666713
+0.357421875 -0.0439205208328652
+0.359375 -0.0346857477057923
+0.361328125 0.0372041936776117
+0.36328125 0.0816574471400288
+0.365234375 0.0414711130364623
+0.3671875 0.0717251504165042
+0.369140625 0.116411496367838
+0.37109375 0.157716294016238
+0.373046875 0.118677514795719
+0.375 0.153316609039355
+0.376953125 0.160379096720897
+0.37890625 0.115346740660878
+0.380859375 0.0990937598416174
+0.3828125 0.0402912481427834
+0.384765625 0.168374177899138
+0.38671875 0.176226359833509
+0.388671875 0.205123184377808
+0.390625 0.230677285059979
+0.392578125 0.20723909488803
+0.39453125 0.178092364608356
+0.396484375 0.203176347920042
+0.3984375 0.217879790761237
+0.400390625 0.264432065899554
+0.40234375 0.240526787947656
+0.404296875 0.264702479904582
+0.40625 0.243738622097754
+0.408203125 0.240405710764268
+0.41015625 0.216739306790557
+0.412109375 0.167557579199958
+0.4140625 0.198054592321961
+0.416015625 0.233658696454773
+0.41796875 0.198472268396748
+0.419921875 0.2229163730079
+0.421875 0.205516965049848
+0.423828125 0.183130826520175
+0.42578125 0.150001828456082
+0.427734375 0.131051104748605
+0.4296875 0.20399571176038
+0.431640625 0.258925523187346
+0.43359375 0.2257011351187
+0.435546875 0.234107571681156
+0.4375 0.257296812010063
+0.439453125 0.283062639235478
+0.44140625 0.295514270586683
+0.443359375 0.284095565358353
+0.4453125 0.325544799378953
+0.447265625 0.419794452554726
+0.44921875 0.393534823533129
+0.451171875 0.35449308081875
+0.453125 0.385027346836459
+0.455078125 0.373239647757316
+0.45703125 0.345190318817798
+0.458984375 0.340693592903548
+0.4609375 0.337368540626418
+0.462890625 0.31366744659283
+0.46484375 0.269977367105124
+0.466796875 0.330209608267049
+0.46875 0.363798493889044
+0.470703125 0.390469136817937
+0.47265625 0.29353388613458
+0.474609375 0.346020695514927
+0.4765625 0.284649307961869
+0.478515625 0.335257946343223
+0.48046875 0.364023825344129
+0.482421875 0.346573306395403
+0.484375 0.322215098367622
+0.486328125 0.34283571353021
+0.48828125 0.257868279073694
+0.490234375 0.301247280933469
+0.4921875 0.252514872591599
+0.494140625 0.199766684568157
+0.49609375 0.18463987104118
+0.498046875 0.20124810974909
+0.5 0.226188299266531
+0.501953125 0.171437637966031
+0.50390625 0.205221248349695
+0.505859375 0.0668638834038843
+0.5078125 -0.0219788646798917
+0.509765625 -0.0180227268825522
+0.51171875 0.06870842022355
+0.513671875 0.106259644948706
+0.515625 0.132708025359011
+0.517578125 0.127587876861345
+0.51953125 0.101886100867533
+0.521484375 0.111590094194346
+0.5234375 0.128747610749399
+0.525390625 0.0865419897878292
+0.52734375 0.00788460927000829
+0.529296875 -0.0559288435386276
+0.53125 -0.057133985656343
+0.533203125 -0.115866825044
+0.53515625 -0.125672890548181
+0.537109375 -0.143515158651238
+0.5390625 -0.126138951666179
+0.541015625 -0.0703849467579954
+0.54296875 -0.0822779939939632
+0.544921875 0.0395008957022845
+0.546875 0.0330655873051347
+0.548828125 -0.00207727820852743
+0.55078125 -0.0582517338477929
+0.552734375 -0.0684037967523167
+0.5546875 -0.0542370608026445
+0.556640625 -0.0367912170937145
+0.55859375 -0.028822665828881
+0.560546875 0.0101227107899712
+0.5625 0.0220933241208356
+0.564453125 -0.0249367450395892
+0.56640625 0.0238165367931883
+0.568359375 0.00868383603544118
+0.5703125 0.0258775495809889
+0.572265625 0.0633380884520613
+0.57421875 0.136358955315751
+0.576171875 0.113032720454596
+0.578125 0.124604646774031
+0.580078125 0.0820312323890443
+0.58203125 0.107778145952784
+0.583984375 0.0662386863223572
+0.5859375 -0.0244488360694108
+0.587890625 -0.0378182773920432
+0.58984375 -0.0174323640707271
+0.591796875 -0.0261218004077911
+0.59375 -0.0154172561142197
+0.595703125 -0.026898187397326
+0.59765625 0.00396721560635573
+0.599609375 -0.0324094090729715
+0.6015625 -0.0854772803455934
+0.603515625 -0.154404583419096
+0.60546875 -0.215288326386932
+0.607421875 -0.248242445998252
+0.609375 -0.220308355338923
+0.611328125 -0.208943867253795
+0.61328125 -0.186602195083765
+0.615234375 -0.156314868630493
+0.6171875 -0.177353233246973
+0.619140625 -0.13890788782629
+0.62109375 -0.13724981850899
+0.623046875 -0.138249694666777
+0.625 -0.138600696262659
+0.626953125 -0.140128784213901
+0.62890625 -0.159260193265509
+0.630859375 -0.171355138432634
+0.6328125 -0.248509039979496
+0.634765625 -0.194348331983071
+0.63671875 -0.161522907806613
+0.638671875 -0.0801065024870649
+0.640625 -0.00258580696152944
+0.642578125 -0.022038335447487
+0.64453125 -0.060802295929
+0.646484375 -0.117491803471145
+0.6484375 -0.0847920520557961
+0.650390625 -0.0898258521419344
+0.65234375 -0.0425329917772428
+0.654296875 -0.0286218162308286
+0.65625 -0.0260238606155302
+0.658203125 -0.0912531923908817
+0.66015625 -0.102262032210925
+0.662109375 -0.0624279254751085
+0.6640625 -0.0238289675547193
+0.666015625 -0.145708091602882
+0.66796875 -0.219944922929224
+0.669921875 -0.347553226304313
+0.671875 -0.374947461328615
+0.673828125 -0.426225620385062
+0.67578125 -0.397594486540326
+0.677734375 -0.384274649207844
+0.6796875 -0.358766087750973
+0.681640625 -0.300343274191569
+0.68359375 -0.275970135059472
+0.685546875 -0.307602022413533
+0.6875 -0.305677867892093
+0.689453125 -0.301038207466494
+0.69140625 -0.236656605824755
+0.693359375 -0.22164663806433
+0.6953125 -0.246793541592899
+0.697265625 -0.323715787395223
+0.69921875 -0.299978892047295
+0.701171875 -0.228186068348061
+0.703125 -0.231252048833452
+0.705078125 -0.15062886139399
+0.70703125 -0.126815741800246
+0.708984375 -0.151502029375596
+0.7109375 -0.137858080427287
+0.712890625 -0.125787228416556
+0.71484375 -0.13694585014441
+0.716796875 -0.179686065989587
+0.71875 -0.184772217913951
+0.720703125 -0.195705492258046
+0.72265625 -0.229978523995509
+0.724609375 -0.292176118882207
+0.7265625 -0.271147567301344
+0.728515625 -0.223214952936768
+0.73046875 -0.193515943991879
+0.732421875 -0.239255049430413
+0.734375 -0.236365538420743
+0.736328125 -0.198669948806414
+0.73828125 -0.220979256039149
+0.740234375 -0.235012806923656
+0.7421875 -0.161369466976155
+0.744140625 -0.181102868413322
+0.74609375 -0.272992527498911
+0.748046875 -0.270728439775957
+0.75 -0.309270056876883
+0.751953125 -0.389340789371419
+0.75390625 -0.371473420466688
+0.755859375 -0.405393321473075
+0.7578125 -0.398981607955599
+0.759765625 -0.369720102294587
+0.76171875 -0.404719139941017
+0.763671875 -0.38339453565877
+0.765625 -0.399674335779856
+0.767578125 -0.420424360867359
+0.76953125 -0.475628872552948
+0.771484375 -0.472360486659131
+0.7734375 -0.503104923598171
+0.775390625 -0.499279584868604
+0.77734375 -0.391719387590152
+0.779296875 -0.36257627247326
+0.78125 -0.25741473101758
+0.783203125 -0.284878140083387
+0.78515625 -0.333971207221557
+0.787109375 -0.381589974240222
+0.7890625 -0.333566661517945
+0.791015625 -0.277027658066412
+0.79296875 -0.305124893610988
+0.794921875 -0.333227292224381
+0.796875 -0.29738887769789
+0.798828125 -0.293039199201516
+0.80078125 -0.289785409585198
+0.802734375 -0.170919311082894
+0.8046875 -0.166414263982712
+0.806640625 -0.285103360356818
+0.80859375 -0.269700975899721
+0.810546875 -0.298272647230867
+0.8125 -0.282006474217183
+0.814453125 -0.230029415961757
+0.81640625 -0.226483545664001
+0.818359375 -0.206906408410932
+0.8203125 -0.234418490290076
+0.822265625 -0.282290779318036
+0.82421875 -0.302399406767347
+0.826171875 -0.247306611504149
+0.828125 -0.202550631355121
+0.830078125 -0.221616066520195
+0.83203125 -0.215419791367675
+0.833984375 -0.274135645127123
+0.8359375 -0.310275733475615
+0.837890625 -0.218107923807573
+0.83984375 -0.244703208428599
+0.841796875 -0.211617537354712
+0.84375 -0.267559392039037
+0.845703125 -0.256708708352955
+0.84765625 -0.216607028796237
+0.849609375 -0.237462837575726
+0.8515625 -0.256696568419661
+0.853515625 -0.249398968235236
+0.85546875 -0.277846718638333
+0.857421875 -0.203867876083331
+0.859375 -0.209972054624842
+0.861328125 -0.242982814419095
+0.86328125 -0.195657413405065
+0.865234375 -0.249022592358907
+0.8671875 -0.196399527078721
+0.869140625 -0.178413592826531
+0.87109375 -0.130776411481616
+0.873046875 -0.13264559087744
+0.875 -0.147663601827953
+0.876953125 -0.0715955827028644
+0.87890625 -0.156656610991417
+0.880859375 -0.195055706634116
+0.8828125 -0.20886395487942
+0.884765625 -0.20821593255532
+0.88671875 -0.248801583743796
+0.888671875 -0.208011549404874
+0.890625 -0.260885746422818
+0.892578125 -0.247496666593297
+0.89453125 -0.289063460034515
+0.896484375 -0.281780786760974
+0.8984375 -0.223910118636943
+0.900390625 -0.23457953088115
+0.90234375 -0.300327242483637
+0.904296875 -0.203094989144496
+0.90625 -0.154107577114174
+0.908203125 -0.145714834692211
+0.91015625 -0.207021984596591
+0.912109375 -0.244687445961182
+0.9140625 -0.168726988496781
+0.916015625 -0.162957099470955
+0.91796875 -0.132022667917891
+0.919921875 -0.106872198201237
+0.921875 -0.0924616219561403
+0.923828125 -0.0511110871926631
+0.92578125 -0.0523759759356481
+0.927734375 -0.0659232634385568
+0.9296875 0.00237673140619113
+0.931640625 -0.0353641524952404
+0.93359375 -0.0520886717469625
+0.935546875 -0.0403165778206282
+0.9375 0.0216241360304298
+0.939453125 0.0297545228496643
+0.94140625 0.00866443189137601
+0.943359375 -0.00975735988743161
+0.9453125 -0.0137956920029042
+0.947265625 -0.0373597127860505
+0.94921875 -0.0819817196248202
+0.951171875 -0.133392244611412
+0.953125 -0.143691821340463
+0.955078125 -0.148660670328966
+0.95703125 -0.223360218369492
+0.958984375 -0.198875459011197
+0.9609375 -0.168445090129871
+0.962890625 -0.203749174583767
+0.96484375 -0.223145037349761
+0.966796875 -0.227250164376533
+0.96875 -0.224514770945199
+0.970703125 -0.21225597856372
+0.97265625 -0.206389570522446
+0.974609375 -0.178503402524127
+0.9765625 -0.189447521519726
+0.978515625 -0.19186818722138
+0.98046875 -0.132568269239262
+0.982421875 -0.0782070623255066
+0.984375 -0.0999651399759821
+0.986328125 -0.0970098299977018
+0.98828125 -0.0170142944554604
+0.990234375 -0.027231918084717
+0.9921875 -0.0995064939869106
+0.994140625 -0.0829454036510088
+0.99609375 -0.0315024580347488
+0.998046875 0.042849008283082
+1 0.0446367678077983
+};
+\addplot [semithick, color8]
+table {%
+0 0
+0.0009765625 0.0114861252793495
+0.001953125 0.0232871603362519
+0.0029296875 0.0328937485072227
+0.00390625 0.0263962315661699
+0.0048828125 -0.000259869913875065
+0.005859375 0.0150384479705233
+0.0068359375 0.0378264961155611
+0.0078125 0.00750542366524199
+0.0087890625 0.0145890627570374
+0.009765625 -0.00482878149200773
+0.0107421875 -0.0175021638698739
+0.01171875 0.0380399724328816
+0.0126953125 0.0188392082506875
+0.013671875 0.0713351002779234
+0.0146484375 0.0709160541374486
+0.015625 0.0949638996083537
+0.0166015625 0.126100584304985
+0.017578125 0.112171955968573
+0.0185546875 0.114709632591106
+0.01953125 0.156842406289404
+0.0205078125 0.133084643615294
+0.021484375 0.111113449722117
+0.0224609375 0.026619048787763
+0.0234375 0.0496090905745811
+0.0244140625 0.0547916419858947
+0.025390625 0.0988853927096341
+0.0263671875 0.110046876893882
+0.02734375 0.120289925622556
+0.0283203125 0.0938664269235817
+0.029296875 0.0864072463907575
+0.0302734375 0.0492922880096761
+0.03125 0.0606067941849485
+0.0322265625 0.0187138788490163
+0.033203125 -0.00127862530076411
+0.0341796875 0.00736357380744103
+0.03515625 0.0553094517344589
+0.0361328125 0.0344364863673718
+0.037109375 0.0792281516374222
+0.0380859375 0.0562246654760598
+0.0390625 0.0541602667863782
+0.0400390625 0.0236256663533831
+0.041015625 0.0158958550817062
+0.0419921875 0.0123461077981531
+0.04296875 -0.0514981832936526
+0.0439453125 -0.00831479154415343
+0.044921875 0.00507037300003466
+0.0458984375 0.0165585991304462
+0.046875 0.0159279928293963
+0.0478515625 -0.000815843981822065
+0.048828125 0.0256422492020869
+0.0498046875 -0.0285511584099417
+0.05078125 0.0365201590246302
+0.0517578125 0.0733597342974828
+0.052734375 0.0752240615830723
+0.0537109375 0.0792639938906963
+0.0546875 0.0239416108487721
+0.0556640625 0.012035518814693
+0.056640625 -0.0402462598581825
+0.0576171875 -0.0183008237383888
+0.05859375 -0.0224362032089515
+0.0595703125 -0.0390541499322731
+0.060546875 -0.00744409587095423
+0.0615234375 0.0492142189436747
+0.0625 0.0498406463010942
+0.0634765625 0.0655153079750641
+0.064453125 0.0952351264186752
+0.0654296875 0.135135999485506
+0.06640625 0.131926776817921
+0.0673828125 0.126095566201475
+0.068359375 0.116514939203743
+0.0693359375 0.148184347576369
+0.0703125 0.0612710623590579
+0.0712890625 0.0877204046681787
+0.072265625 0.0971114947186668
+0.0732421875 0.135490295181246
+0.07421875 0.133371215725286
+0.0751953125 0.120832151834677
+0.076171875 0.143955387942964
+0.0771484375 0.145654661289567
+0.078125 0.142210765700092
+0.0791015625 0.155996820957399
+0.080078125 0.149156983957442
+0.0810546875 0.113561133847643
+0.08203125 0.0714055704422601
+0.0830078125 0.12406701890015
+0.083984375 0.0818905383416038
+0.0849609375 0.0707531006768662
+0.0859375 0.0858049787449583
+0.0869140625 0.10892830384381
+0.087890625 0.137230505007555
+0.0888671875 0.0966295571744289
+0.08984375 0.13910629059502
+0.0908203125 0.091132625387219
+0.091796875 0.118860152474113
+0.0927734375 0.176540209892726
+0.09375 0.176226423266858
+0.0947265625 0.234072267139677
+0.095703125 0.243889287053919
+0.0966796875 0.221629797336691
+0.09765625 0.240697737319982
+0.0986328125 0.2385569613578
+0.099609375 0.172111122613549
+0.1005859375 0.14243094858962
+0.1015625 0.13138563187588
+0.1025390625 0.0377473170455939
+0.103515625 0.0942599239507356
+0.1044921875 0.0238070767880975
+0.10546875 -0.00762576113177928
+0.1064453125 0.0662546417962625
+0.107421875 0.0421341045097762
+0.1083984375 0.0236955643038956
+0.109375 0.0243038731543342
+0.1103515625 -0.0207837652518231
+0.111328125 -0.0293777761217829
+0.1123046875 -0.047984793889385
+0.11328125 -0.036058800446301
+0.1142578125 -0.0681563834546757
+0.115234375 -0.084384864845623
+0.1162109375 -0.0604693510062875
+0.1171875 -0.0130490910708574
+0.1181640625 -0.0441481307605462
+0.119140625 -0.053766325755176
+0.1201171875 -0.0574470943968352
+0.12109375 -0.0828487239942866
+0.1220703125 -0.0819386436459245
+0.123046875 -0.102687635533628
+0.1240234375 -0.0807181616714391
+0.125 -0.0952290895608764
+0.1259765625 -0.139589754895364
+0.126953125 -0.125535477587916
+0.1279296875 -0.0769006754261017
+0.12890625 -0.0940753058586704
+0.1298828125 -0.123129505393681
+0.130859375 -0.0816394392427401
+0.1318359375 -0.0572111834183807
+0.1328125 -0.076479633100492
+0.1337890625 -0.139702017773494
+0.134765625 -0.133303148137123
+0.1357421875 -0.13732810435371
+0.13671875 -0.158971472381434
+0.1376953125 -0.2006518095896
+0.138671875 -0.160370684845608
+0.1396484375 -0.110972914040279
+0.140625 -0.0722392995830708
+0.1416015625 -0.0486971050271688
+0.142578125 -0.0578801820558323
+0.1435546875 -0.019954477957838
+0.14453125 -0.05995998031238
+0.1455078125 -0.0752440201440878
+0.146484375 -0.0796051238031616
+0.1474609375 -0.0517117452651317
+0.1484375 -0.0549530718489272
+0.1494140625 -0.127578861635835
+0.150390625 -0.103278262440399
+0.1513671875 -0.0942200895335026
+0.15234375 -0.0907707810499254
+0.1533203125 -0.0869116666218514
+0.154296875 -0.110106722463679
+0.1552734375 -0.0279486227612414
+0.15625 -0.00756850556480143
+0.1572265625 0.0166344562067522
+0.158203125 -0.00292746164833332
+0.1591796875 -0.0460175538195376
+0.16015625 -0.0587028221711809
+0.1611328125 -0.110598555309594
+0.162109375 -0.11114266160513
+0.1630859375 -0.0920516822135448
+0.1640625 -0.121943250428684
+0.1650390625 -0.157785709842152
+0.166015625 -0.168010024583614
+0.1669921875 -0.193745977600967
+0.16796875 -0.221334122378265
+0.1689453125 -0.179096567133098
+0.169921875 -0.157747685058733
+0.1708984375 -0.154314458662963
+0.171875 -0.172837157714303
+0.1728515625 -0.141198665325728
+0.173828125 -0.139920847305001
+0.1748046875 -0.131683134989521
+0.17578125 -0.157381234739689
+0.1767578125 -0.176260898514934
+0.177734375 -0.186742028494335
+0.1787109375 -0.234180669299501
+0.1796875 -0.262449730663052
+0.1806640625 -0.294695336842896
+0.181640625 -0.307367084756947
+0.1826171875 -0.275525222399218
+0.18359375 -0.29645239153525
+0.1845703125 -0.304618823970862
+0.185546875 -0.330191026500355
+0.1865234375 -0.32826510752497
+0.1875 -0.282560705866867
+0.1884765625 -0.270660941743561
+0.189453125 -0.297701195172807
+0.1904296875 -0.250985761366229
+0.19140625 -0.240652766705346
+0.1923828125 -0.29539219801224
+0.193359375 -0.313880392664538
+0.1943359375 -0.37928494163339
+0.1953125 -0.443197811705809
+0.1962890625 -0.415952452786581
+0.197265625 -0.46879303357154
+0.1982421875 -0.403889514271346
+0.19921875 -0.373261647113368
+0.2001953125 -0.316976013094844
+0.201171875 -0.365300445998884
+0.2021484375 -0.355593016020563
+0.203125 -0.354712292590823
+0.2041015625 -0.313353620984129
+0.205078125 -0.315756873521809
+0.2060546875 -0.314759362246517
+0.20703125 -0.296252315148166
+0.2080078125 -0.271161796947406
+0.208984375 -0.305474032260795
+0.2099609375 -0.278229530623309
+0.2109375 -0.298385064604458
+0.2119140625 -0.26389126064388
+0.212890625 -0.269529589939583
+0.2138671875 -0.267624522040147
+0.21484375 -0.2393744701935
+0.2158203125 -0.216559914825021
+0.216796875 -0.27415673782097
+0.2177734375 -0.277960364273373
+0.21875 -0.201295357378841
+0.2197265625 -0.184054087425751
+0.220703125 -0.168962073116153
+0.2216796875 -0.218418386365178
+0.22265625 -0.19963573102332
+0.2236328125 -0.238633086555772
+0.224609375 -0.176105373968778
+0.2255859375 -0.1511722326623
+0.2265625 -0.148635686377056
+0.2275390625 -0.0759347576760931
+0.228515625 -0.0961853582436953
+0.2294921875 -0.178198677984464
+0.23046875 -0.15526160597645
+0.2314453125 -0.17372097004818
+0.232421875 -0.195043873979939
+0.2333984375 -0.211814607847987
+0.234375 -0.161391528650076
+0.2353515625 -0.122933117367408
+0.236328125 -0.101062675130361
+0.2373046875 -0.0764361137006017
+0.23828125 -0.0979507837257469
+0.2392578125 -0.0734408517525471
+0.240234375 -0.0926308982926995
+0.2412109375 -0.0475407192881792
+0.2421875 -0.0262762615121445
+0.2431640625 -0.0642814118195134
+0.244140625 -0.00487309381690309
+0.2451171875 -0.0423782394280894
+0.24609375 -0.0792059625392834
+0.2470703125 -0.108526844229391
+0.248046875 -0.110570504652723
+0.2490234375 -0.0971004270605746
+0.25 -0.163477428547707
+0.2509765625 -0.136300602975493
+0.251953125 -0.16604761546756
+0.2529296875 -0.151249687189091
+0.25390625 -0.150331289069667
+0.2548828125 -0.122954277894354
+0.255859375 -0.119632223767659
+0.2568359375 -0.17554575630328
+0.2578125 -0.165171417964965
+0.2587890625 -0.103233713090651
+0.259765625 -0.147099714632839
+0.2607421875 -0.174330986755681
+0.26171875 -0.222872756276004
+0.2626953125 -0.271973873094294
+0.263671875 -0.248525794209365
+0.2646484375 -0.171597033021372
+0.265625 -0.211712732872344
+0.2666015625 -0.218737166731632
+0.267578125 -0.211496772362654
+0.2685546875 -0.19901418052873
+0.26953125 -0.217407873130758
+0.2705078125 -0.208803040458392
+0.271484375 -0.199804232017033
+0.2724609375 -0.218218944950053
+0.2734375 -0.246117414425025
+0.2744140625 -0.205783527751082
+0.275390625 -0.217137260315202
+0.2763671875 -0.219284455314062
+0.27734375 -0.200805442873365
+0.2783203125 -0.217285888275687
+0.279296875 -0.210759360920784
+0.2802734375 -0.221752130008254
+0.28125 -0.224839619792612
+0.2822265625 -0.229508458672897
+0.283203125 -0.242454892262259
+0.2841796875 -0.260117249525954
+0.28515625 -0.231913796558504
+0.2861328125 -0.278305691949867
+0.287109375 -0.295808228133019
+0.2880859375 -0.302198326097258
+0.2890625 -0.300016114161143
+0.2900390625 -0.356648882153972
+0.291015625 -0.379710467614765
+0.2919921875 -0.334278453454372
+0.29296875 -0.364518167816891
+0.2939453125 -0.315660045636406
+0.294921875 -0.291654060860531
+0.2958984375 -0.312429926072453
+0.296875 -0.288749282393864
+0.2978515625 -0.233306675456443
+0.298828125 -0.211183902770684
+0.2998046875 -0.197501472394238
+0.30078125 -0.218464022723796
+0.3017578125 -0.218869042467058
+0.302734375 -0.265757661360059
+0.3037109375 -0.221151280457909
+0.3046875 -0.235778569975109
+0.3056640625 -0.21774806471589
+0.306640625 -0.245164877106894
+0.3076171875 -0.201331479086489
+0.30859375 -0.229012590227173
+0.3095703125 -0.264383353673555
+0.310546875 -0.212415697039078
+0.3115234375 -0.199569088706513
+0.3125 -0.17821024233334
+0.3134765625 -0.180303447725416
+0.314453125 -0.172496037054829
+0.3154296875 -0.192442690776575
+0.31640625 -0.232986571174745
+0.3173828125 -0.193498955763066
+0.318359375 -0.177517208196036
+0.3193359375 -0.181325116900902
+0.3203125 -0.0930329111546726
+0.3212890625 -0.12081549143011
+0.322265625 -0.0902273620289791
+0.3232421875 -0.102242491807156
+0.32421875 -0.0924936053327452
+0.3251953125 -0.0743786813881124
+0.326171875 -0.0868182008700163
+0.3271484375 -0.0299192364682982
+0.328125 -0.0846418797739782
+0.3291015625 -0.0392571021415893
+0.330078125 -0.0758187937924795
+0.3310546875 -0.0646888067183151
+0.33203125 -0.0967495599790372
+0.3330078125 -0.0836539323416401
+0.333984375 -0.0997637978670162
+0.3349609375 -0.105704850035848
+0.3359375 -0.136670067080375
+0.3369140625 -0.0733986131113326
+0.337890625 -0.0657166506725158
+0.3388671875 -0.067107672987734
+0.33984375 -0.0216939625756777
+0.3408203125 -0.0766470645841625
+0.341796875 -0.0796629103969444
+0.3427734375 -0.0729898794849432
+0.34375 -0.0568086556033337
+0.3447265625 -0.0548688207910179
+0.345703125 -0.0491919728121229
+0.3466796875 -0.0684478364569034
+0.34765625 -0.0782402646913226
+0.3486328125 -0.0368234545694192
+0.349609375 -0.0713338444841452
+0.3505859375 -0.02234221448493
+0.3515625 -0.0363944804959497
+0.3525390625 -0.0332486497620201
+0.353515625 0.0230000827880981
+0.3544921875 -0.0157293419188386
+0.35546875 -0.00614499587666713
+0.3564453125 -0.0329210097743372
+0.357421875 -0.0439205208328652
+0.3583984375 -0.0067716184516047
+0.359375 -0.0346857477057923
+0.3603515625 0.0247759804320821
+0.361328125 0.0372041936776117
+0.3623046875 0.0798931550131001
+0.36328125 0.0816574471400288
+0.3642578125 0.0470596252097664
+0.365234375 0.0414711130364623
+0.3662109375 0.0714248118641287
+0.3671875 0.0717251504165042
+0.3681640625 0.124657920743365
+0.369140625 0.116411496367838
+0.3701171875 0.118015270091139
+0.37109375 0.157716294016238
+0.3720703125 0.145199348879718
+0.373046875 0.118677514795719
+0.3740234375 0.114250133490338
+0.375 0.153316609039355
+0.3759765625 0.148172778013744
+0.376953125 0.160379096720897
+0.3779296875 0.14077996162726
+0.37890625 0.115346740660878
+0.3798828125 0.0979978141847156
+0.380859375 0.0990937598416174
+0.3818359375 0.0990250970577059
+0.3828125 0.0402912481427834
+0.3837890625 0.118366011258146
+0.384765625 0.168374177899138
+0.3857421875 0.188565420209041
+0.38671875 0.176226359833509
+0.3876953125 0.215338342521634
+0.388671875 0.205123184377808
+0.3896484375 0.212211225082753
+0.390625 0.230677285059979
+0.3916015625 0.211928592627851
+0.392578125 0.20723909488803
+0.3935546875 0.182931827087416
+0.39453125 0.178092364608356
+0.3955078125 0.174292110534952
+0.396484375 0.203176347920042
+0.3974609375 0.162438357738987
+0.3984375 0.217879790761237
+0.3994140625 0.254818368070644
+0.400390625 0.264432065899554
+0.4013671875 0.223253799502129
+0.40234375 0.240526787947656
+0.4033203125 0.255881980748643
+0.404296875 0.264702479904582
+0.4052734375 0.282198002068673
+0.40625 0.243738622097754
+0.4072265625 0.230136404266206
+0.408203125 0.240405710764268
+0.4091796875 0.245370526216905
+0.41015625 0.216739306790557
+0.4111328125 0.175766719017806
+0.412109375 0.167557579199958
+0.4130859375 0.189953937463529
+0.4140625 0.198054592321961
+0.4150390625 0.205662309118611
+0.416015625 0.233658696454773
+0.4169921875 0.194001516181326
+0.41796875 0.198472268396748
+0.4189453125 0.20383499792677
+0.419921875 0.2229163730079
+0.4208984375 0.190836568655875
+0.421875 0.205516965049848
+0.4228515625 0.175205618098416
+0.423828125 0.183130826520175
+0.4248046875 0.185849010423631
+0.42578125 0.150001828456082
+0.4267578125 0.160322961667533
+0.427734375 0.131051104748605
+0.4287109375 0.202062085959872
+0.4296875 0.20399571176038
+0.4306640625 0.220505074957956
+0.431640625 0.258925523187346
+0.4326171875 0.213730477282531
+0.43359375 0.2257011351187
+0.4345703125 0.262729763891601
+0.435546875 0.234107571681156
+0.4365234375 0.221776480369283
+0.4375 0.257296812010063
+0.4384765625 0.237195800065177
+0.439453125 0.283062639235478
+0.4404296875 0.303385271164861
+0.44140625 0.295514270586683
+0.4423828125 0.262381004911708
+0.443359375 0.284095565358353
+0.4443359375 0.3163838045465
+0.4453125 0.325544799378953
+0.4462890625 0.36835348113976
+0.447265625 0.419794452554726
+0.4482421875 0.376676821067154
+0.44921875 0.393534823533129
+0.4501953125 0.382298965060953
+0.451171875 0.35449308081875
+0.4521484375 0.338741796896071
+0.453125 0.385027346836459
+0.4541015625 0.398253328477643
+0.455078125 0.373239647757316
+0.4560546875 0.340626790223139
+0.45703125 0.345190318817798
+0.4580078125 0.329636442965302
+0.458984375 0.340693592903548
+0.4599609375 0.332859246550138
+0.4609375 0.337368540626418
+0.4619140625 0.324307726814412
+0.462890625 0.31366744659283
+0.4638671875 0.259056452788105
+0.46484375 0.269977367105124
+0.4658203125 0.271379965148224
+0.466796875 0.330209608267049
+0.4677734375 0.317188432599647
+0.46875 0.363798493889044
+0.4697265625 0.373821231940535
+0.470703125 0.390469136817937
+0.4716796875 0.348646545305952
+0.47265625 0.29353388613458
+0.4736328125 0.348708636754118
+0.474609375 0.346020695514927
+0.4755859375 0.341243753336103
+0.4765625 0.284649307961869
+0.4775390625 0.315738130964179
+0.478515625 0.335257946343223
+0.4794921875 0.343302744493012
+0.48046875 0.364023825344129
+0.4814453125 0.381919077256471
+0.482421875 0.346573306395403
+0.4833984375 0.338822232067074
+0.484375 0.322215098367622
+0.4853515625 0.324300023703524
+0.486328125 0.34283571353021
+0.4873046875 0.279754874807924
+0.48828125 0.257868279073694
+0.4892578125 0.263627256407554
+0.490234375 0.301247280933469
+0.4912109375 0.287241380076955
+0.4921875 0.252514872591599
+0.4931640625 0.259103093036396
+0.494140625 0.199766684568157
+0.4951171875 0.201409455042595
+0.49609375 0.18463987104118
+0.4970703125 0.205447581832233
+0.498046875 0.20124810974909
+0.4990234375 0.198791427181418
+0.5 0.226188299266531
+0.5009765625 0.214608820106969
+0.501953125 0.171437637966031
+0.5029296875 0.151364000879841
+0.50390625 0.205221248349695
+0.5048828125 0.119670339690416
+0.505859375 0.0668638834038843
+0.5068359375 0.00714303422289926
+0.5078125 -0.0219788646798917
+0.5087890625 0.0154091520793252
+0.509765625 -0.0180227268825522
+0.5107421875 0.020382824141535
+0.51171875 0.06870842022355
+0.5126953125 0.0819086147369435
+0.513671875 0.106259644948706
+0.5146484375 0.128358868919183
+0.515625 0.132708025359011
+0.5166015625 0.127523040715947
+0.517578125 0.127587876861345
+0.5185546875 0.13062315461024
+0.51953125 0.101886100867533
+0.5205078125 0.0955693310092697
+0.521484375 0.111590094194346
+0.5224609375 0.102979825334751
+0.5234375 0.128747610749399
+0.5244140625 0.118686828219925
+0.525390625 0.0865419897878292
+0.5263671875 0.0161417567851968
+0.52734375 0.00788460927000829
+0.5283203125 -0.00335909392000704
+0.529296875 -0.0559288435386276
+0.5302734375 -0.0199207884076283
+0.53125 -0.057133985656343
+0.5322265625 -0.118400345007267
+0.533203125 -0.115866825044
+0.5341796875 -0.140249489356196
+0.53515625 -0.125672890548181
+0.5361328125 -0.106113404249813
+0.537109375 -0.143515158651238
+0.5380859375 -0.133749839464511
+0.5390625 -0.126138951666179
+0.5400390625 -0.118087971206166
+0.541015625 -0.0703849467579954
+0.5419921875 -0.0484433146747237
+0.54296875 -0.0822779939939632
+0.5439453125 -0.0284064233268122
+0.544921875 0.0395008957022845
+0.5458984375 0.031473696112689
+0.546875 0.0330655873051347
+0.5478515625 0.00244350900702555
+0.548828125 -0.00207727820852743
+0.5498046875 -0.0228449131913204
+0.55078125 -0.0582517338477929
+0.5517578125 -0.0981226770499901
+0.552734375 -0.0684037967523167
+0.5537109375 -0.0940239912792806
+0.5546875 -0.0542370608026445
+0.5556640625 -0.0652181852889638
+0.556640625 -0.0367912170937145
+0.5576171875 -0.017183353292409
+0.55859375 -0.028822665828881
+0.5595703125 -0.0260144084587793
+0.560546875 0.0101227107899712
+0.5615234375 -0.0325970453708293
+0.5625 0.0220933241208356
+0.5634765625 0.00314184928966225
+0.564453125 -0.0249367450395892
+0.5654296875 -0.0365664804216716
+0.56640625 0.0238165367931883
+0.5673828125 0.0359068164862953
+0.568359375 0.00868383603544118
+0.5693359375 0.0109061887378309
+0.5703125 0.0258775495809889
+0.5712890625 0.0180537241146533
+0.572265625 0.0633380884520613
+0.5732421875 0.122076674579782
+0.57421875 0.136358955315751
+0.5751953125 0.138380623296468
+0.576171875 0.113032720454596
+0.5771484375 0.115366646384187
+0.578125 0.124604646774031
+0.5791015625 0.137350799728631
+0.580078125 0.0820312323890443
+0.5810546875 0.12168185282518
+0.58203125 0.107778145952784
+0.5830078125 0.102070264863513
+0.583984375 0.0662386863223572
+0.5849609375 0.0105782288975517
+0.5859375 -0.0244488360694108
+0.5869140625 -0.0233467765737028
+0.587890625 -0.0378182773920432
+0.5888671875 -0.0336355835234864
+0.58984375 -0.0174323640707271
+0.5908203125 0.00456383498909143
+0.591796875 -0.0261218004077911
+0.5927734375 0.00605865391933094
+0.59375 -0.0154172561142197
+0.5947265625 -0.0580078653365413
+0.595703125 -0.026898187397326
+0.5966796875 -0.0106612376921359
+0.59765625 0.00396721560635573
+0.5986328125 -0.0115637810247518
+0.599609375 -0.0324094090729715
+0.6005859375 -0.0738581547978902
+0.6015625 -0.0854772803455934
+0.6025390625 -0.12227349158597
+0.603515625 -0.154404583419096
+0.6044921875 -0.13111019835177
+0.60546875 -0.215288326386932
+0.6064453125 -0.243848515004607
+0.607421875 -0.248242445998252
+0.6083984375 -0.229413804867323
+0.609375 -0.220308355338923
+0.6103515625 -0.221236829719658
+0.611328125 -0.208943867253795
+0.6123046875 -0.19782891006619
+0.61328125 -0.186602195083765
+0.6142578125 -0.194278817732565
+0.615234375 -0.156314868630493
+0.6162109375 -0.188564613149374
+0.6171875 -0.177353233246973
+0.6181640625 -0.18608095720939
+0.619140625 -0.13890788782629
+0.6201171875 -0.133682186438353
+0.62109375 -0.13724981850899
+0.6220703125 -0.115335387134424
+0.623046875 -0.138249694666777
+0.6240234375 -0.151596592320311
+0.625 -0.138600696262659
+0.6259765625 -0.129220564164689
+0.626953125 -0.140128784213901
+0.6279296875 -0.1206451307414
+0.62890625 -0.159260193265509
+0.6298828125 -0.157419670557346
+0.630859375 -0.171355138432634
+0.6318359375 -0.176133798717211
+0.6328125 -0.248509039979496
+0.6337890625 -0.19961509859345
+0.634765625 -0.194348331983071
+0.6357421875 -0.210812980105275
+0.63671875 -0.161522907806613
+0.6376953125 -0.0895105245555641
+0.638671875 -0.0801065024870649
+0.6396484375 -0.0355695573943676
+0.640625 -0.00258580696152944
+0.6416015625 0.00654691041464456
+0.642578125 -0.022038335447487
+0.6435546875 -0.0218947071678425
+0.64453125 -0.060802295929
+0.6455078125 -0.0831201183653237
+0.646484375 -0.117491803471145
+0.6474609375 -0.106813853848626
+0.6484375 -0.0847920520557961
+0.6494140625 -0.069290605154547
+0.650390625 -0.0898258521419344
+0.6513671875 -0.0945642364603043
+0.65234375 -0.0425329917772428
+0.6533203125 -0.0306672997334164
+0.654296875 -0.0286218162308286
+0.6552734375 -0.0354461027522308
+0.65625 -0.0260238606155302
+0.6572265625 -0.064960296885802
+0.658203125 -0.0912531923908817
+0.6591796875 -0.0850710104148761
+0.66015625 -0.102262032210925
+0.6611328125 -0.0586615209340756
+0.662109375 -0.0624279254751085
+0.6630859375 0.0251246879061497
+0.6640625 -0.0238289675547193
+0.6650390625 -0.0804862971082763
+0.666015625 -0.145708091602882
+0.6669921875 -0.179341902228405
+0.66796875 -0.219944922929224
+0.6689453125 -0.245841340431001
+0.669921875 -0.347553226304313
+0.6708984375 -0.362782917942029
+0.671875 -0.374947461328615
+0.6728515625 -0.389749378414972
+0.673828125 -0.426225620385062
+0.6748046875 -0.425081174867171
+0.67578125 -0.397594486540326
+0.6767578125 -0.351629070755102
+0.677734375 -0.384274649207844
+0.6787109375 -0.372344402659725
+0.6796875 -0.358766087750973
+0.6806640625 -0.305581269955463
+0.681640625 -0.300343274191569
+0.6826171875 -0.26632531174131
+0.68359375 -0.275970135059472
+0.6845703125 -0.310722297618079
+0.685546875 -0.307602022413533
+0.6865234375 -0.324463501972615
+0.6875 -0.305677867892093
+0.6884765625 -0.306826938556908
+0.689453125 -0.301038207466494
+0.6904296875 -0.269084768345664
+0.69140625 -0.236656605824755
+0.6923828125 -0.260099098428862
+0.693359375 -0.22164663806433
+0.6943359375 -0.263413332814426
+0.6953125 -0.246793541592899
+0.6962890625 -0.242884585201227
+0.697265625 -0.323715787395223
+0.6982421875 -0.323673216783075
+0.69921875 -0.299978892047295
+0.7001953125 -0.313568266940403
+0.701171875 -0.228186068348061
+0.7021484375 -0.23266104982632
+0.703125 -0.231252048833452
+0.7041015625 -0.219363786247258
+0.705078125 -0.15062886139399
+0.7060546875 -0.138868292511561
+0.70703125 -0.126815741800246
+0.7080078125 -0.14919087029191
+0.708984375 -0.151502029375596
+0.7099609375 -0.154757331715306
+0.7109375 -0.137858080427287
+0.7119140625 -0.110475627292134
+0.712890625 -0.125787228416556
+0.7138671875 -0.161749428144076
+0.71484375 -0.13694585014441
+0.7158203125 -0.144835825779253
+0.716796875 -0.179686065989587
+0.7177734375 -0.158129464066763
+0.71875 -0.184772217913951
+0.7197265625 -0.176172368522028
+0.720703125 -0.195705492258046
+0.7216796875 -0.213605839574578
+0.72265625 -0.229978523995509
+0.7236328125 -0.251906405282497
+0.724609375 -0.292176118882207
+0.7255859375 -0.286562434248354
+0.7265625 -0.271147567301344
+0.7275390625 -0.229773158431846
+0.728515625 -0.223214952936768
+0.7294921875 -0.240251408420047
+0.73046875 -0.193515943991879
+0.7314453125 -0.225513498137156
+0.732421875 -0.239255049430413
+0.7333984375 -0.271105677083031
+0.734375 -0.236365538420743
+0.7353515625 -0.180045004404846
+0.736328125 -0.198669948806414
+0.7373046875 -0.208640625528023
+0.73828125 -0.220979256039149
+0.7392578125 -0.219581055654149
+0.740234375 -0.235012806923656
+0.7412109375 -0.181325038134105
+0.7421875 -0.161369466976155
+0.7431640625 -0.191987981073328
+0.744140625 -0.181102868413322
+0.7451171875 -0.214515570806994
+0.74609375 -0.272992527498911
+0.7470703125 -0.239764125984181
+0.748046875 -0.270728439775957
+0.7490234375 -0.308116542704904
+0.75 -0.309270056876883
+0.7509765625 -0.344989660003291
+0.751953125 -0.389340789371419
+0.7529296875 -0.319997219979599
+0.75390625 -0.371473420466688
+0.7548828125 -0.35864907931316
+0.755859375 -0.405393321473075
+0.7568359375 -0.418127337182721
+0.7578125 -0.398981607955599
+0.7587890625 -0.356990053979089
+0.759765625 -0.369720102294587
+0.7607421875 -0.417737575257129
+0.76171875 -0.404719139941017
+0.7626953125 -0.368711064853415
+0.763671875 -0.38339453565877
+0.7646484375 -0.40678940405103
+0.765625 -0.399674335779856
+0.7666015625 -0.401017917646958
+0.767578125 -0.420424360867359
+0.7685546875 -0.442923956823722
+0.76953125 -0.475628872552948
+0.7705078125 -0.446692486573897
+0.771484375 -0.472360486659131
+0.7724609375 -0.493100800334582
+0.7734375 -0.503104923598171
+0.7744140625 -0.489590240154068
+0.775390625 -0.499279584868604
+0.7763671875 -0.456764288063152
+0.77734375 -0.391719387590152
+0.7783203125 -0.368622256062471
+0.779296875 -0.36257627247326
+0.7802734375 -0.339588347358022
+0.78125 -0.25741473101758
+0.7822265625 -0.317623757524731
+0.783203125 -0.284878140083387
+0.7841796875 -0.30109812167763
+0.78515625 -0.333971207221557
+0.7861328125 -0.394271257949429
+0.787109375 -0.381589974240222
+0.7880859375 -0.369439960310716
+0.7890625 -0.333566661517945
+0.7900390625 -0.273197039362718
+0.791015625 -0.277027658066412
+0.7919921875 -0.328224398222744
+0.79296875 -0.305124893610988
+0.7939453125 -0.309453841492703
+0.794921875 -0.333227292224381
+0.7958984375 -0.314192868213613
+0.796875 -0.29738887769789
+0.7978515625 -0.284974578929931
+0.798828125 -0.293039199201516
+0.7998046875 -0.300998193428586
+0.80078125 -0.289785409585198
+0.8017578125 -0.246610113015473
+0.802734375 -0.170919311082894
+0.8037109375 -0.171128495318671
+0.8046875 -0.166414263982712
+0.8056640625 -0.204825112076779
+0.806640625 -0.285103360356818
+0.8076171875 -0.288392128708001
+0.80859375 -0.269700975899721
+0.8095703125 -0.292324231029778
+0.810546875 -0.298272647230867
+0.8115234375 -0.260795754549064
+0.8125 -0.282006474217183
+0.8134765625 -0.283734618561483
+0.814453125 -0.230029415961757
+0.8154296875 -0.266860991278836
+0.81640625 -0.226483545664001
+0.8173828125 -0.230268036581819
+0.818359375 -0.206906408410932
+0.8193359375 -0.220542228309437
+0.8203125 -0.234418490290076
+0.8212890625 -0.309069071647366
+0.822265625 -0.282290779318036
+0.8232421875 -0.29184784602079
+0.82421875 -0.302399406767347
+0.8251953125 -0.27530590526053
+0.826171875 -0.247306611504149
+0.8271484375 -0.165850453567155
+0.828125 -0.202550631355121
+0.8291015625 -0.191383615002606
+0.830078125 -0.221616066520195
+0.8310546875 -0.245943131990791
+0.83203125 -0.215419791367675
+0.8330078125 -0.247106875011105
+0.833984375 -0.274135645127123
+0.8349609375 -0.324426988707545
+0.8359375 -0.310275733475615
+0.8369140625 -0.266909395822777
+0.837890625 -0.218107923807573
+0.8388671875 -0.252008435769674
+0.83984375 -0.244703208428599
+0.8408203125 -0.259751576986972
+0.841796875 -0.211617537354712
+0.8427734375 -0.222298583045516
+0.84375 -0.267559392039037
+0.8447265625 -0.244877297748179
+0.845703125 -0.256708708352955
+0.8466796875 -0.228068049292494
+0.84765625 -0.216607028796237
+0.8486328125 -0.228487333769448
+0.849609375 -0.237462837575726
+0.8505859375 -0.237104173410733
+0.8515625 -0.256696568419661
+0.8525390625 -0.261133409915922
+0.853515625 -0.249398968235236
+0.8544921875 -0.278888495857845
+0.85546875 -0.277846718638333
+0.8564453125 -0.253156071653699
+0.857421875 -0.203867876083331
+0.8583984375 -0.176814823281106
+0.859375 -0.209972054624842
+0.8603515625 -0.239925594481422
+0.861328125 -0.242982814419095
+0.8623046875 -0.229356166835562
+0.86328125 -0.195657413405065
+0.8642578125 -0.203149412986755
+0.865234375 -0.249022592358907
+0.8662109375 -0.179212366172329
+0.8671875 -0.196399527078721
+0.8681640625 -0.19924599472216
+0.869140625 -0.178413592826531
+0.8701171875 -0.159293274100711
+0.87109375 -0.130776411481616
+0.8720703125 -0.10544668660122
+0.873046875 -0.13264559087744
+0.8740234375 -0.10833600928718
+0.875 -0.147663601827953
+0.8759765625 -0.0927461049044344
+0.876953125 -0.0715955827028644
+0.8779296875 -0.0950545404187393
+0.87890625 -0.156656610991417
+0.8798828125 -0.159921323646002
+0.880859375 -0.195055706634116
+0.8818359375 -0.226948565543799
+0.8828125 -0.20886395487942
+0.8837890625 -0.204362676964625
+0.884765625 -0.20821593255532
+0.8857421875 -0.189834453646506
+0.88671875 -0.248801583743796
+0.8876953125 -0.253293289938647
+0.888671875 -0.208011549404874
+0.8896484375 -0.240077617255318
+0.890625 -0.260885746422818
+0.8916015625 -0.289139094292389
+0.892578125 -0.247496666593297
+0.8935546875 -0.256446127415582
+0.89453125 -0.289063460034515
+0.8955078125 -0.265004778713661
+0.896484375 -0.281780786760974
+0.8974609375 -0.238119060063606
+0.8984375 -0.223910118636943
+0.8994140625 -0.235996998811666
+0.900390625 -0.23457953088115
+0.9013671875 -0.288890970621839
+0.90234375 -0.300327242483637
+0.9033203125 -0.264106564336748
+0.904296875 -0.203094989144496
+0.9052734375 -0.179146965622225
+0.90625 -0.154107577114174
+0.9072265625 -0.151196755593334
+0.908203125 -0.145714834692211
+0.9091796875 -0.153628153226913
+0.91015625 -0.207021984596591
+0.9111328125 -0.223928312561471
+0.912109375 -0.244687445961182
+0.9130859375 -0.159093352482078
+0.9140625 -0.168726988496781
+0.9150390625 -0.183722020629622
+0.916015625 -0.162957099470955
+0.9169921875 -0.160307578641887
+0.91796875 -0.132022667917891
+0.9189453125 -0.122380430160437
+0.919921875 -0.106872198201237
+0.9208984375 -0.124210460089219
+0.921875 -0.0924616219561403
+0.9228515625 -0.0980158115404674
+0.923828125 -0.0511110871926631
+0.9248046875 -0.0432550053985788
+0.92578125 -0.0523759759356481
+0.9267578125 -0.069295647619943
+0.927734375 -0.0659232634385568
+0.9287109375 -0.0242901784279459
+0.9296875 0.00237673140619113
+0.9306640625 -0.0116989702385588
+0.931640625 -0.0353641524952404
+0.9326171875 -0.087056869019684
+0.93359375 -0.0520886717469625
+0.9345703125 -0.0187327913043468
+0.935546875 -0.0403165778206282
+0.9365234375 0.0148635571469058
+0.9375 0.0216241360304298
+0.9384765625 0.0172260331179969
+0.939453125 0.0297545228496643
+0.9404296875 0.0632641632921729
+0.94140625 0.00866443189137601
+0.9423828125 -0.00268546222278892
+0.943359375 -0.00975735988743161
+0.9443359375 0.0254419360388995
+0.9453125 -0.0137956920029042
+0.9462890625 -0.0306093561771842
+0.947265625 -0.0373597127860505
+0.9482421875 -0.0797592226985972
+0.94921875 -0.0819817196248202
+0.9501953125 -0.0717067762785751
+0.951171875 -0.133392244611412
+0.9521484375 -0.130167973885939
+0.953125 -0.143691821340463
+0.9541015625 -0.135966487571291
+0.955078125 -0.148660670328966
+0.9560546875 -0.190694684274533
+0.95703125 -0.223360218369492
+0.9580078125 -0.201621612681908
+0.958984375 -0.198875459011197
+0.9599609375 -0.160830995164614
+0.9609375 -0.168445090129871
+0.9619140625 -0.204702931101339
+0.962890625 -0.203749174583767
+0.9638671875 -0.249395851066678
+0.96484375 -0.223145037349761
+0.9658203125 -0.234896947079241
+0.966796875 -0.227250164376533
+0.9677734375 -0.25254983251927
+0.96875 -0.224514770945199
+0.9697265625 -0.226332201149437
+0.970703125 -0.21225597856372
+0.9716796875 -0.194786234856295
+0.97265625 -0.206389570522446
+0.9736328125 -0.15608210731715
+0.974609375 -0.178503402524127
+0.9755859375 -0.201049857200407
+0.9765625 -0.189447521519726
+0.9775390625 -0.182690058281001
+0.978515625 -0.19186818722138
+0.9794921875 -0.194179757818054
+0.98046875 -0.132568269239262
+0.9814453125 -0.125722958862039
+0.982421875 -0.0782070623255066
+0.9833984375 -0.0396931761573109
+0.984375 -0.0999651399759821
+0.9853515625 -0.07958437888302
+0.986328125 -0.0970098299977018
+0.9873046875 -0.110873481813943
+0.98828125 -0.0170142944554604
+0.9892578125 -0.0454357480547657
+0.990234375 -0.027231918084717
+0.9912109375 -0.0511108713860097
+0.9921875 -0.0995064939869106
+0.9931640625 -0.0812708041549363
+0.994140625 -0.0829454036510088
+0.9951171875 -0.0107033530915312
+0.99609375 -0.0315024580347488
+0.9970703125 0.0167737754377366
+0.998046875 0.042849008283082
+0.9990234375 0.0373281656046175
+1 0.0446367678077983
+};
+\end{axis}
+
+\end{tikzpicture}
