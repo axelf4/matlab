@@ -8,7 +8,7 @@
 \usepackage{siunitx}
 \usepackage{ifthen}
 
-\usetikzlibrary{arrows, decorations.markings, calc}
+\usetikzlibrary{arrows, decorations.markings, calc, shapes.geometric}
 
 \DeclareMathOperator\rowSums{rowSums}
 
@@ -22,9 +22,8 @@ the final square.
 	\def\ladderwidth{1.5mm}
 	\def\ladderstep{1.5mm}
 	\begin{tikzpicture}[
-			state/.style={ draw, square, fill=gray!15 },
+			state/.style={ draw, regular polygon, regular polygon sides=4, fill=gray!15 },
 			every edge/.style={ draw, ->,>=stealth', auto, },
-			% ladder/.style={},
 			chute/.style={ top color=gray!50, bottom color=gray!50,
 			middle color=gray!10, draw=gray!50!black, line cap=round,
 			draw opacity=0.3, fill opacity=0.5,
