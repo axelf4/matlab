@@ -8,29 +8,84 @@
 \usepackage{siunitx}
 \usepackage{ifthen}
 
-\usetikzlibrary{arrows}
+\usetikzlibrary{arrows, decorations.markings, calc}
 
 \DeclareMathOperator\rowSums{rowSums}
 
 \begin{document}
 
 \section{Question \num{3.52} in Dobrow.}
+With the rule variation that you have to roll the exact number to reach
+the final square.
 
 \begin{center}
+	\def\ladderwidth{1.5mm}
+	\def\ladderstep{1.5mm}
 	\begin{tikzpicture}[
-			state/.style={ draw, circle, fill=gray!15 },
+			state/.style={ draw, square, fill=gray!15 },
 			every edge/.style={ draw, ->,>=stealth', auto, },
-				]
-		\foreach \x in {0,...,2}
-			\foreach \y in {0,...,2} {
-				\ifthenelse{\NOT 1 = \x}{
-					\pgfmathtruncatemacro\label{1 + \x + 3 * \y}
-					\ifthenelse{1 = \y}{\def\xp{4 - 2 * \x}}{\def\xp{2 * \x}}
-					\node[state] (\label) at (\xp, 2 * \y) {\label};
-					}{}
-				}
+			% ladder/.style={},
+			chute/.style={ top color=gray!50, bottom color=gray!50,
+			middle color=gray!10, draw=gray!50!black, line cap=round,
+			draw opacity=0.3, fill opacity=0.5,
+			line join=round,line width=1pt,},
+			ladder/.style={decorate,decoration={
+				markings,
+				mark=between positions {1/#1/2} and {-1/#1/2} step {1/#1} with {
+					\draw[draw=gray, draw opacity=0.5,
+			line cap=round, line join=round, line width=2pt,]
+					(0,-\ladderwidth) -- (0,\ladderwidth)
+					(\ladderstep,-\ladderwidth) -- (-\ladderstep,-\ladderwidth)
+					(\ladderstep,\ladderwidth) -- (-\ladderstep,\ladderwidth);
+					},
+					},
+					},
+					ladder auto/.style={
+						to path={
+							let \p1=($(\tikztostart) - (\tikztotarget)$), \n1={veclen(\x1,\y1)} in
+							\pgfextra{
+								\pgfmathsetmacro{\bars}{int(\n1/\ladderstep/2)+1}
+								\pgfinterruptpath
+								\draw[ladder=\bars] (\tikztostart) -- (\tikztotarget);
+								\endpgfinterruptpath
+								}
+								},
+								},
+								chute auto/.style={
+									to path={
+										let
+										\p1=([xshift=\ladderwidth]\tikztostart),
+										\p2=([xshift=-\ladderwidth]\tikztostart),
+										\p3=([xshift=\ladderwidth]\tikztotarget),
+										\p4=([xshift=-\ladderwidth]\tikztotarget),
+										\p5=($(\p1)!.4!(\p3)$),
+										\p6=($(\p2)!.4!(\p4)$)
+										in
+										\pgfextra{
+											\pgfinterruptpath
+											\path[chute]
+											(\p1) sin (\p5) cos (\p3) --
+											(\p4) sin (\p6) cos (\p2) -- cycle;
+											\endpgfinterruptpath
+											}
+											},
+											},
+											]
+											\foreach \x in {0,...,2}
+											\foreach \y in {0,...,2} {
+												\pgfmathtruncatemacro\label{1 + \x + 3 * \y}
+												\ifthenelse{1 = \y}{\def\xp{4 - 2 * \x}}{\def\xp{2 * \x}}
+												\ifthenelse{\NOT 1 = \x}{
+													\node[state] (\label) at (\xp, 2 * \y) {\label};
+													}{
+														\node[state, draw opacity=0.3, fill opacity=0.3] (\label) at (\xp, 2 * \y) {\label};
+														}
+														}
 
-		\draw (1) edge[bend right] node{\tt 2/4} (3);
+		\draw[chute auto] (3) to (5) (4) to (8);
+		\draw[ladder auto] (2) to (7);
+
+		\draw (1) edge[bend right] node[below] {\tt 2/4} (3);
 		\draw (1) edge node[below] {\tt 1/4} (4);
 		\draw (1) edge[bend left=70] node{\tt 1/4} (7);
 
