@@ -28,7 +28,7 @@ plot(density(selected))
 plot(selected, dgamma(selected, alpha + 2, beta + 1)) # λ|X=2 ~ Gamma(3 + 2, 4, + 1)
 
 # (c) Compare Y1,Y2,Y3 ~ Poi(λ_i) to 2,0,1 to approx (a)
-sample <- Filter(function(lambda) identical(x, rpois(3, lambda)), lambda)
+sample <- Filter(function(lambda) isTRUE(all.equal(x, rpois(3, lambda))), lambda)
 
 # 2. Question 3.52
 states <- c("1", "3", "4", "6", "7", "9")
