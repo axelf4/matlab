@@ -16,6 +16,35 @@
 \begin{document}
 
 \section{Question 1}
+We assume the number of customers each day at a taxidermist's shop is
+Poisson($\lambda$) distributed, where $\lambda$ is the expected number of daily customers.
+The shop receives 2, 0, and 1 customers on Monday, Tuesday, and Wednesday,
+respectively. We would like to predict how many customers there will
+be on Thursday.
+\begin{enumerate}[label=(\alph*)]
+    \item Based on previous experiences in similar shops, we assume the prior
+        probability distribution for $\lambda$ is Gamma(3, 4). Compute the posterior
+        probability distribution for $\lambda$ given the data above. Also, given the
+        data, compute the predicted probabilities for getting zero, 1, 2, 3, or
+        4 or more customers on Thursday.
+    \item Simulate in R, $N$ = 1.000.000 variables $\lambda_1, ..., \lambda_N$ from the Gamma(3, 4)
+        distribution. For each $\lambda_i$ simulate $y_i$ from the Poisson($\lambda_i$) distribution,
+        and select those $\lambda_i$ with a simulated $y_i$ value equal to 2.
+        Compute theoretically the expected proportion you would select, and
+        check with your simulations. Compute also theoretically the distribution
+        of the $\lambda_i$ you would select, and compare with the results of
+        your simulation.
+    \item Starting with the sample above of size one million, simulate for each
+        $\lambda_i$ values $y_{i1}, y_{i2}$ and $y_{i3}$ that are Poisson($\lambda_i$) distributed. 
+        By comparing the simulated values to 2, 0, and 1, respectively, obtain a
+        sample which can be used to obtain an approximate answer to the
+        question you answered in (a). Compare your approximate answer to
+        your answer from (a).
+    \item The answer in (a) can also be computed using numerical integration,
+        similar to the example in Section 1.6 of the Lecture Notes. Make
+        such a computation, and compare with your results from (a).
+\end{enumerate}
+
 \subsection{Part (a)}
 \subsection{Part (d)}
 Compute $\pi(Y \mid X)$ by numerical integration.
