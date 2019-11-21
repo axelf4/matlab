@@ -32,6 +32,15 @@ $$ \pi(\lambda \mid X) = \frac{\pi(X \mid \lambda) \pi(\lambda)}{\int_\lambda \p
 \section{Question \num{3.52} in Dobrow.}
 With the rule variation that you have to roll the exact number to reach
 the final square.
+\begin{enumerate}[label=(\alph*)]
+	\item Find the expected length of the game.
+	\item Assume that the player is on square 6.
+		Find the probability that they will find themselves on square 3 before finishing the game.
+
+		Modify $P$ to make $3$ an absorbing state and repeat the above.
+\end{enumerate}
+
+\subsection{(a)}
 
 \begin{center}
 	\def\ladderwidth{1.5mm}
@@ -47,7 +56,7 @@ the final square.
 				markings,
 				mark=between positions {1/#1/2} and {-1/#1/2} step {1/#1} with {
 					\draw[draw=gray, draw opacity=0.5,
-					line cap=round, line join=round, line width=2pt,]
+			line cap=round, line join=round, line width=2pt,]
 					(0,-\ladderwidth) -- (0,\ladderwidth)
 					(\ladderstep,-\ladderwidth) -- (-\ladderstep,-\ladderwidth)
 					(\ladderstep,\ladderwidth) -- (-\ladderstep,\ladderwidth);
@@ -125,56 +134,146 @@ the final square.
 		\draw (9) edge[loop right] node{\tt 1} (9);
 	\end{tikzpicture}
 \end{center}
+The transition matrix is
+\begin{equation}
+	P \coloneqq \bordermatrix{~ & 1 & 3 & 4 & 6 & 7 & 9 \cr
+		1 & 2/4 & 1/4 & 0 & 0 & 1/4 & 0 \cr
+		3 & 0 & 1/4 & 1/4 & 1/4 & 1/4 & 0 \cr
+		4 & 0 & 1/4 & 1/4 & 1/4 & 1/4 & 0 \cr
+		6 & 0 & 0 & 1/4 & 1/4 & 1/4 & 1/4 \cr
+		7 & 0 & 0 & 1/4 & 0 & 2/4 & 1/4 \cr
+		9 & 0 & 0 & 0 & 0 & 0 & 1 \cr
+		}
+\end{equation}
+This gives
+$$ F \coloneqq (I - Q)^{-1} = \left(\begin{pmatrix}
+		1 & 0 & 0 & 0 & 0 \\
+		0 & 1 & 0 & 0 & 0 \\
+		0 & 0 & 1 & 0 & 0 \\
+		0 & 0 & 0 & 1 & 0 \\
+		0 & 0 & 0 & 0 & 1 \\
+\end{pmatrix} - \begin{pmatrix}
+		2/4 & 1/4 & 0 & 0 & 1/4 \\
+		0 & 1/4 & 1/4 & 1/4 & 1/4 \\
+		0 & 1/4 & 1/4 & 1/4 & 1/4 \\
+		0 & 0 & 1/4 & 1/4 & 1/4 \\
+		0 & 0 & 1/4 & 0 & 2/4 \\
+\end{pmatrix}\right)^{-1}
+	= \begin{pmatrix}
+		\cdots \\
+	\end{pmatrix}
+	$$
+and
+$$ \rowSums(F) = \bordermatrix{
+	~ & ~ \cr
+	1 & 9 \cr
+	3 & 8 \cr
+	4 & 8 \cr
+	6 & 6 \cr
+	7 & 6 \cr
+	}
+	$$
+Which gives the expexted number of steps starting from each state
+to first hit $9$.
+Thus the answer is $9$.
 
-\begin{enumerate}[label=(\alph*)]
-	\item Find the expected length of the game.
+\subsection{(b)}
+The modified transition matrix is 
+\begin{equation}
+	P \coloneqq \bordermatrix{~ & 1 & 4 & 6 & 7 & 3 & 9 \cr
+		1 & 2/4 & 0 & 0 & 1/4 & 1/4 & 0 \cr
+		4 & 0 & 1/4 & 1/4 & 1/4 & 1/4 & 0 \cr
+		6 & 0 & 1/4 & 1/4 & 1/4 & 0 & 1/4 \cr
+		7 & 0 & 1/4 & 0 & 2/4 & 0 & 1/4 \cr
+		3 & 0 & 0 & 0 & 0 & 1 & 0 \cr
+		9 & 0 & 0 & 0 & 0 & 0 & 1 \cr
+		}
+\end{equation}
+Solving for $F_m$ gives
+$$ F_m \coloneqq (I - Q)^{-1} = \begin{pmatrix}
+		\cdots \\
+	\end{pmatrix} = 
+	  \bordermatrix{~ & 3 & 9 \cr
+		1 & 5/8 & 3/8 \cr
+		4 & 1/2 & 1/2 \cr
+		6 & 1/4 & 3/4 \cr
+		7 & 1/4 & 3/4 \cr
+		}
+$$
+From this matrix we can see that the probability of landing on square 3 starting on square 6 is equal to 1/4.
 
-		The transition matrix is
-		\begin{equation}
-			P \coloneqq \bordermatrix{~ & 1 & 3 & 4 & 6 & 7 & 9 \cr
-			1 & 2/4 & 1/4 & 0 & 0 & 1/4 & 0 \cr
-			3 & 0 & 1/4 & 1/4 & 1/4 & 1/4 & 0 \cr
-			4 & 0 & 1/4 & 1/4 & 1/4 & 1/4 & 0 \cr
-			6 & 0 & 0 & 1/4 & 1/4 & 1/4 & 1/4 \cr
-			7 & 0 & 0 & 1/4 & 0 & 2/4 & 1/4 \cr
-			9 & 0 & 0 & 0 & 0 & 0 & 1 \cr
-			}
-		\end{equation}
-		This gives
-		$$ F \coloneqq (I - Q)^{-1} = \left(\begin{pmatrix}
-			1 & 0 & 0 & 0 & 0 \\
-			0 & 1 & 0 & 0 & 0 \\
-			0 & 0 & 1 & 0 & 0 \\
-			0 & 0 & 0 & 1 & 0 \\
-			0 & 0 & 0 & 0 & 1 \\
-		\end{pmatrix} - \begin{pmatrix}
-			2/4 & 1/4 & 0 & 0 & 1/4 \\
-			0 & 1/4 & 1/4 & 1/4 & 1/4 \\
-			0 & 1/4 & 1/4 & 1/4 & 1/4 \\
-			0 & 0 & 1/4 & 1/4 & 1/4 \\
-			0 & 0 & 1/4 & 0 & 2/4 \\
-		\end{pmatrix}\right)^{-1}
-		= \begin{pmatrix}
-			\cdots \\
-		\end{pmatrix}
-		$$
-		and
-		$$ \rowSums(F) = \bordermatrix{
-			~ & ~ \cr
-			1 & 9 \cr
-			3 & 8 \cr
-			4 & 8 \cr
-			6 & 6 \cr
-			7 & 6 \cr
-			} $$
-			Which gives the expexted number of steps starting from each state
-			to first hit $9$.
-			Thus the answer is $9$.
+\appendix
+\section{Appendix, R code}
+\begin{verbatim}
+alpha <- 3; beta <- 4
 
-		\item Assume that the player is on square 6.
-			Find the probability that they will find themselves on square 3 before finishing the game.
+# (a) Compute the predicted probabilities for getting N customers
+# λ ~ Gamma(3, 4), X|λ ~ Poi(λ)
+# λ|X ~ Gamma(3 + Σx, 4 + n), ty konjugatpar
+#
+# Y ~ Poi(λ)
+# Y|X ~ Neg-Bin(α_1, β_1 / (β_1 + 1)), ty konjugatpar
+x <- c(2, 0, 1)
+c <- c(0, 1, 2, 3, 4)
+alpha1 <- alpha + sum(x); beta1 <- beta + length(x)
+predicted_probabilities <- dnbinom(c, alpha1, 1 - 1 / (1 + beta1))
+prob_4_or_more <- 1 - sum(predicted_probabilities)
 
-			Modify $P$ to make $3$ an absorbing state and repeat the above.
-\end{enumerate}
+# (b) Simulate some things, compute some things
+# π(X = 2) = ?
+set.seed(123)
+N <- 1e6; lambda <- rgamma(N, alpha, beta)
+# y <- sapply(lambda, function(lambda) rpois(1, lambda))
+selected <- Filter(function(lambda) rpois(1, lambda) == 2, lambda)
+
+cat(sprintf("The expected proportion:\n\tAnalytical results: %f\n\tSimulated results: %f\n",
+		dnbinom(2, alpha, 1 - 1 / (1 + beta)),
+		length(selected) / N))
+
+# Plot the distributions of selected lambdas
+plot(density(selected))
+plot(selected, dgamma(selected, alpha + 2, beta + 1)) # λ|X=2 ~ Gamma(3 + 2, 4, + 1)
+
+# (c) Compare Y1,Y2,Y3 ~ Poi(λ_i) to 2,0,1 to approx (a)
+sample <- Filter(function(lambda) isTRUE(all.equal(x, rpois(3, lambda))), lambda)
+
+# (d) Answer question in (a) using numerical integration
+pred_probability <- function(y) {
+	likelihood <- function(lambda) dpois(2, lambda) * dpois(0, lambda) * dpois(1, lambda)
+	integrate(function(lambda) dpois(y, lambda) * likelihood(lambda) * dgamma(lambda, alpha, beta), 0, Inf)$value /
+		integrate(function(lambda) likelihood(lambda) * dgamma(lambda, alpha, beta), 0, Inf)$value
+}
+num_predicted_probabilities <- Vectorize(pred_probability)(c)
+
+# 2. Question 3.52 a)
+states <- c("1", "3", "4", "6", "7", "9")
+P <- matrix(c(2/4, 1/4, 0, 0, 1/4, 0,
+		0, 1/4, 1/4, 1/4, 1/4, 0,
+		0, 1/4, 1/4, 1/4, 1/4, 0,
+		0, 0, 1/4, 1/4, 1/4, 1/4,
+		0, 0, 1/4, 0, 2/4, 1/4,
+		0, 0, 0, 0, 0, 1),
+	nrow = length(states),
+	byrow = TRUE,
+	dimnames = list(states, states))
+Q <- P[1:5, 1:5]
+R <- solve(diag(5) - Q)
+a <- rowSums(R)
+
+# 2. b)
+states <- c("1", "4", "6", "7", "3", "9")
+P <- matrix(c(2/4, 0, 0, 1/4, 1/4, 0,
+		0, 1/4, 1/4, 1/4, 1/4, 0,
+		0, 1/4, 1/4, 1/4, 0, 1/4,
+		0, 1/4, 0, 2/4, 0, 1/4,
+		0, 0, 0, 0, 1, 0,
+		0, 0, 0, 0, 0, 1),
+	nrow = length(states),
+	byrow = TRUE,
+	dimnames = list(states, states))
+Q <- P[1:4, 1:4]
+R <- P[1:4, 5:6]
+Fm <- solve(diag(4) - Q) %*% R
+\end{verbatim}
 
 \end{document}
