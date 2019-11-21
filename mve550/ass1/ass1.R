@@ -8,7 +8,7 @@ alpha <- 3; beta <- 4
 # Y|X ~ Neg-Bin(α_1, β_1 / (β_1 + 1)), ty konjugatpar
 x <- c(2, 0, 1)
 c <- c(0, 1, 2, 3, 4)
-alpha1 <- 3 + sum(x); beta1 <- 3 + length(x)
+alpha1 <- alpha + sum(x); beta1 <- beta + length(x)
 predicted_probabilities <- dnbinom(c, alpha1, 1 - 1 / (1 + beta1))
 prob_4_or_more <- 1 - sum(predicted_probabilities)
 
@@ -29,6 +29,14 @@ plot(selected, dgamma(selected, alpha + 2, beta + 1)) # λ|X=2 ~ Gamma(3 + 2, 4,
 
 # (c) Compare Y1,Y2,Y3 ~ Poi(λ_i) to 2,0,1 to approx (a)
 sample <- Filter(function(lambda) isTRUE(all.equal(x, rpois(3, lambda))), lambda)
+
+# (d) Answer question in (a) using numerical integration
+pred_probability <- function(y) {
+	likelihood <- function(lambda) dpois(2, lambda) * dpois(0, lambda) * dpois(1, lambda)
+	integrate(function(lambda) dpois(y, lambda) * likelihood(lambda) * dgamma(lambda, alpha, beta), 0, Inf)$value /
+		integrate(function(lambda) likelihood(lambda) * dgamma(lambda, alpha, beta), 0, Inf)$value
+}
+num_predicted_probabilities <- Vectorize(pred_probability)(c)
 
 # 2. Question 3.52 a)
 states <- c("1", "3", "4", "6", "7", "9")
