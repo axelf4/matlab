@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{listings}
+\usepackage{comment}
+
+\DeclareMathOperator\Poisson{Poi}
+
+\begin{document}
+
+\section{Question 1}
+\begin{enumerate}[label=(\alph*)]
+\item A
+\item B
+\item
+\end{enumerate}
+
+\subsection{(a)}
+Let $Z_n \coloneqq \sum_{i=1}^{Z_{n-1}} X_i$,
+where $Z_n$ is the size of each generation,
+$X \sim \Poisson(\lambda)$, and $X, X_1, X_2, \ldots$ are i.i.d.
+Then since the offspring distribution is a Poisson distribution.
+$$ G_X(s) = \exp(\lambda (s - 1)), \quad
+G_{Z_n}(s) = \prod_{i=1}^{Z_{n-1}} G_X(s) = \exp(Z_{n-1} \lambda (s - 1)) $$
+
+Using $ \mathbb P(Z_n = k) = G_{Z_n}^{(k)}(0) / k! $
+we get for the different generations
+\begin{align*}
+	\mathbb P(Z_1 = 1) &= \lambda e^{-\lambda} &\quad
+	\mathbb P(Z_2 = 2) &= \frac12 \lambda^2 e^{-\lambda} \\
+	\mathbb P(Z_3 = 3) &= \frac16 (2\lambda)^2 e^{-\lambda} &\quad
+	\mathbb P(Z_4 = 7) &= \frac1{7!} (3\lambda)^6 e^{-\lambda}
+\end{align*}
+where $\mathbb P(Z_0 = 1) = 1$ is known.
+Putting everything together,
+using the fact that everything is independent
+$$ \mathbb P(\text{data} \mid \lambda) = \frac{3^5}{7!} \lambda^{11} e^{-4\lambda} $$
+and the posterior becomes
+$$ \mathbb P(\lambda \mid \text{data}) \propto_\lambda \lambda^10 e^{-4\lambda}
+	\implies \mathbb P(\lambda \mid \text{data}) = \frac{\lambda^10 e^{-4\lambda}}{\int_\Lambda \lambda^10 e^{-4\lambda} \, d\lambda} $$
+
+\subsection{(c)}
+Have that $\pi(\text{extinction} \mid \lambda, \text{data})$ is known
+and given by the procedure derived in (b).
+Thus
+\begin{align*}
+\pi(\text{extinction} \mid \text{data}) &= \int_{\Lambda \coloneqq \mathbb R^+} \pi(\text{extinction}, \lambda \mid \text{data}) \, d\lambda \\
+	&= \int_\Lambda \pi(\text{extinction} \mid \lambda, \text{data}) \, \pi(\lambda \mid \text{dta}) \, d\lambda
+\end{align*}
+
+\appendix
+\section{Appendix, R code}
+% \lstinputlisting[language=R]{ass2.R}
+
+\end{document}
