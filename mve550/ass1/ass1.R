@@ -16,7 +16,6 @@ prob_4_or_more <- 1 - sum(predicted_probabilities)
 # π(X = 2) = ?
 set.seed(123)
 N <- 1e6; lambda <- rgamma(N, alpha, beta)
-# y <- sapply(lambda, function(lambda) rpois(1, lambda))
 selected <- Filter(function(lambda) rpois(1, lambda) == 2, lambda)
 
 cat(sprintf("The expected proportion:\n\tAnalytical results: %f\n\tSimulated results: %f\n",
@@ -24,11 +23,13 @@ cat(sprintf("The expected proportion:\n\tAnalytical results: %f\n\tSimulated res
 		length(selected) / N))
 
 # Plot the distributions of selected lambdas
-plot(density(selected))
-plot(selected, dgamma(selected, alpha + 2, beta + 1)) # λ|X=2 ~ Gamma(3 + 2, 4, + 1)
+plot(density(selected), label="Simulated")
+plot(selected, dgamma(selected, alpha + 2, beta + 1), label="Analytical") # λ|X=2 ~ Gamma(3 + 2, 4, + 1)
 
 # (c) Compare Y1,Y2,Y3 ~ Poi(λ_i) to 2,0,1 to approx (a)
 sample <- Filter(function(lambda) isTRUE(all.equal(x, rpois(3, lambda))), lambda)
+plot(density(sample))
+plot(sample, dgamma(sample, alpha1, beta1))
 
 # (d) Answer question in (a) using numerical integration
 pred_probability <- function(y) {
@@ -50,7 +51,7 @@ P <- matrix(c(2/4, 1/4, 0, 0, 1/4, 0,
 	byrow = TRUE,
 	dimnames = list(states, states))
 Q <- P[1:5, 1:5]
-R <- solve(diag(5) - Q)
+Fm <- solve(diag(5) - Q)
 a <- rowSums(R)
 
 # 2. b)
