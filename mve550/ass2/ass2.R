@@ -8,24 +8,34 @@ local({
 })
 
 # Returns Z_n using the specified lambda
-branch <- function(lambda, n = 50) {
+branch <- function(lambda, n = 10) {
 	Z <- 7
-	for (i in seq(n - 4)) Z <- sum(rpois(Z, lambda))
+	for (i in (4 + 1):n) {
+		if (Z > 5000) {
+			return(Z)
+		}
+		Z <- sum(rpois(Z, lambda))
+	}
 	Z
 }
 
 # (b) Given λ, compute numerically prob that branching process in
 # Fig4 becomes extinct
 extinctionProbability <- function(lambda) {
-	num_trials <- 10
+	num_trials <- 1000
 	simulations <- replicate(num_trials, branch(lambda))
 	sum(simulations == 0) / num_trials # Estimate of extinction probability
 }
 
-# print(extinctionProbability(1.1))
+print(extinctionProbability(1.1))
 
 # (c) Probability of extinction for the brancing process taking uncertainty into account
 probability_of_extinction <- integrate(Vectorize(function(lambda)
 	extinctionProbability(lambda) * posterior(lambda)), 0, Inf)
 cat(sprintf("The probability of extinction for the process in question: %f\n",
-		probability_of_extinction))
+		probability_of_extinction$value))
+
+# (d) Use simulation to check result in (c)
+
+# (e) Compute MLE for λ. Probability of extinction using that λ?
+
