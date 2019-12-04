@@ -35,10 +35,10 @@ probability_of_extinction <- integrate(Vectorize(function(lambda)
 cat(sprintf("The probability of extinction for the process in question: %f\n",
 		probability_of_extinction$value))
 
-# (d) Use simulation to check result in (c)
+# (d) Use simulation to check result in (c) Ska man köra (c) många ggr bara?
 simExtP <- c()
 for (i in 1:1000) {
-  simExtP[i] <- extinctionProbability(1.1) # Varför 1.1?
+  simExtP[i] <- extinctionProbability(1.1) 
 }
 hist(simExtP); print(mean(simExtP))
 
@@ -56,6 +56,7 @@ hist(simBranch); print(mean(simBranch))
 # (a) Plot the data
 D <- read.table("Regressiondata.txt")
 plot(D)
+x <- D[,1]
 
 # (b) Log of P(theta*|data)/P(theta|data)
 prior <- function(theta1, theta2, theta3, theta4) {
