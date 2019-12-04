@@ -8,7 +8,8 @@
 \usepackage{listings}
 \usepackage{comment}
 
-\DeclareMathOperator\Poisson{Poi}
+\DeclareMathOperator\Poisson{Pois}
+\DeclareMathOperator\GammaDist{Gamma}
 
 \begin{document}
 
@@ -23,7 +24,7 @@
 Let $Z_n \coloneqq \sum_{i=1}^{Z_{n-1}} X_i$,
 where $Z_n$ is the size of each generation,
 $X \sim \Poisson(\lambda)$, and $X, X_1, X_2, \ldots$ are i.i.d.
-Then since the offspring distribution is a Poisson distribution.
+Then since the offspring distribution is a Poisson distribution
 $$ G_X(s) = \exp(\lambda (s - 1)), \quad
 G_{Z_n}(s) = \prod_{i=1}^{Z_{n-1}} G_X(s) = \exp(Z_{n-1} \lambda (s - 1)) $$
 
@@ -37,19 +38,20 @@ we get for the different generations
 \end{align*}
 where $\mathbb P(Z_0 = 1) = 1$ is known.
 Putting everything together,
-using the fact that everything is independent
-$$ \mathbb P(\text{data} \mid \lambda) = \frac{3^5}{7!} \lambda^{11} e^{-4\lambda} $$
+using the fact that everything is independent we get for the likelihood
+$$ \pi(\text{data} \mid \lambda) = \frac{3^5}{7!} \lambda^{11} e^{-4\lambda}
+	\propto_\lambda \GammaDist(12, 4) $$
 and the posterior becomes
-$$ \mathbb P(\lambda \mid \text{data}) \propto_\lambda \lambda^10 e^{-4\lambda}
-	\implies \mathbb P(\lambda \mid \text{data}) = \frac{\lambda^10 e^{-4\lambda}}{\int_\Lambda \lambda^10 e^{-4\lambda} \, d\lambda} $$
+$$ \pi(\lambda \mid \text{data}) \propto_\lambda \lambda^{10} e^{-4\lambda}
+	\propto_\lambda \GammaDist(11, 4)
+	\implies \pi(\lambda \mid \text{data}) = \frac{\lambda^{10} e^{-4\lambda}}{\int_\Lambda \lambda^10 e^{-4\lambda} \, d\lambda} $$
 
 \subsection{(c)}
-Have that $\pi(\text{extinction} \mid \lambda, \text{data})$ is known
-and given by the procedure derived in (b).
-Thus
+Using that $\pi(\text{extinction} \mid \lambda, \text{data})$ is known
+and given by the procedure derived in (b) we get
 \begin{align*}
 \pi(\text{extinction} \mid \text{data}) &= \int_{\Lambda \coloneqq \mathbb R^+} \pi(\text{extinction}, \lambda \mid \text{data}) \, d\lambda \\
-	&= \int_\Lambda \pi(\text{extinction} \mid \lambda, \text{data}) \, \pi(\lambda \mid \text{dta}) \, d\lambda
+	&= \int_\Lambda \pi(\text{extinction} \mid \lambda, \text{data}) \, \pi(\lambda \mid \text{data}) \, d\lambda
 \end{align*}
 
 \appendix
