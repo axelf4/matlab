@@ -40,10 +40,10 @@ probability_of_extinction <- integrate(Vectorize(function(lambda)
 cat(sprintf("The probability of extinction for the process in question: %f\n",
 		probability_of_extinction$value))
 
-# (d) Use simulation to check result in (c) Ska man köra (c) många ggr bara?
-n <- 1e2
+# (d) Use simulation to check result in (c)
+n <- 1e3
 # Draw n λ:s from the posterior distribution, and average simulations on those
-sim_extinction_prob <- mean(sapply(rposterior(n), extinctionProbability)) / n
+sim_extinction_prob <- mean(sapply(rposterior(n), extinctionProbability))
 cat(sprintf("Simulated probability of extinction for THE process: %f\n",
 		sim_extinction_prob))
 
@@ -51,20 +51,66 @@ cat(sprintf("Simulated probability of extinction for THE process: %f\n",
 
 lambda_mle <- optimize(function(lambda) dgamma(lambda, shape = 12, rate = 4),
 	lower = 0, upper = 10, maximum = TRUE)$maximum
-cat(paste0("MLE estimate for lambda: lambda_mle = ", lambda_mle,
-		", extinctionProbability(lambda_mle) = ", extinctionProbability(lambda_mle)))
+cat(paste0("MLE estimate for lambda:\n\tlambda_mle = ", lambda_mle,
+		"\n\textinctionProbability(lambda_mle) = ", extinctionProbability(lambda_mle),
+		"\n"))
 
 # 2. Metropolis Hastings
+D <- read.table("Regressiondata.txt", col.names = c("x", "y"))
 
 # (a) Plot the data
-D <- read.table("Regressiondata.txt")
-plot(D)
-x <- D[,1]
+# plot(D)
+X <- D["x"]
 
-# (b) Log of P(theta*|data)/P(theta|data)
-prior <- function(theta1, theta2, theta3, theta4) {
-  prior <- theta1*rnorm(1, 10, 10^2) * theta2*rgamma(1, 1/2, 1/10) * theta3*runif(1, 0, 1) * theta4*rgamma(1, 2, 2)
+# (b) Log of P(theta'|data)/P(theta|data)
+logAlpha <- function(theta, theta_prime) {
+	logPosterior <- function(theta1, theta2, theta3, theta4)
+		dnorm(theta1, 10, 10, log = T) + dgamma(theta2, 1/2, 1/10, log = T) +
+			dunif(theta3, 0, 1, log = T) + dgamma(theta4, 2, 2, log = T) +
+			sum(sapply(X,
+					function(x) dnorm(theta1 + theta2 * sin((x - theta3) * 2 * pi), theta4))) # Likelihoods
+	logPosterior(theta[[1]],theta[[2]],theta[[3]],   theta[[4]]) -
+		logPosterior(theta_prime[[1]],theta_prime[[2]],theta_prime[[3]], theta_prime[[4]])
 }
-likelihood <- function(x, theta1, theta2, theta3, theta4) {
-  likelihood <- rnorm(theta1 + theta2*sin((x - theta3)*2*pi), theta4^2)
+
+# (c) Implement Metropolis-Hastings
+# Get starting point by drawing from prior
+metropolisHastings <- function() {
+	theta <- c(rnorm(1, 10, 10), rgamma(1, 1/2, 1/10), runif(1, 0, 1), rgamma(1, 2, 2))
+
+	n <- 1e5
+	for (i in 1:n) {
+		local({
+			theta1 <- rnorm(1, theta[[1]], 0.1)
+			theta2 <- abs(rnorm(1, theta[[2]], 0.1))
+			theta3 <- theta[[3]] + runif(1, -0.1, 0.1)
+			if (theta3 > 1) theta3 <- theta3 - 1
+			if (theta3 < 0) theta3 <- theta3 + 1
+			theta4 <- abs(rnorm(1, theta[[4]], 0.1))
+			theta_prime <<- c(theta1, theta2, theta3, theta4)
+		})
+
+		a <- exp(logAlpha(theta, theta_prime))
+		if (runif(1) < a) {
+			# Accept the fucker
+			theta <- theta_prime
+		}
+	}
+
+	theta
 }
+
+theta <- metropolisHastings()
+cat(paste0("The resulting theta is (", toString(theta), ")\n"))
+
+# (d) Repeat (c) a shitton of times
+thetas <- replicate(100, metropolisHastings())
+means <- apply(thetas, 1, mean)
+sds <- apply(thetas, 1, sd)
+cat(paste0("The means are\n\t\t(", toString(means), ")\n\tand the standard deviations are\n\t\t(",
+		toString(sds), ")\n"))
+
+# (e)
+probability_of_y <- mean(apply(thetas, 2, function(theta) 1 -
+	pnorm(7.4, theta[[1]] + theta[[2]] * sin((0.6 - theta[[3]]) * 2 * pi), theta[[4]])))
+print(probability_of_y)
