@@ -2,12 +2,9 @@
 
 # (a) Compute posterior
 local({
-	propto <- function(lambda) lambda^10 * exp(-4 * lambda)
-	int_const <- 1 / integrate(propto, 0, Inf)$value
-	posterior <<- function(lambda) int_const * propto(lambda)
+	alpha <- 0; beta <- 0 # Prior parameters
 	# It is a Gamma distribution with parameters
 	# α_1 = 11, β_1 = 4
-	alpha <- 0; beta <- 0 # Prior parameters
 	alpha_1 <<- 11; beta_1 <<- 4
 	dposterior <<- function(lambda) dgamma(lambda, shape = alpha_1, rate = beta_1)
 	rposterior <<- function(n) rgamma(n, shape = alpha_1, rate = beta_1)
@@ -41,7 +38,7 @@ cat(sprintf("The probability of extinction for the process in question: %f\n",
 		probability_of_extinction$value))
 
 # (d) Use simulation to check result in (c)
-n <- 1e3
+n <- 1e4
 # Draw n λ:s from the posterior distribution, and average simulations on those
 sim_extinction_prob <- mean(sapply(rposterior(n), extinctionProbability))
 cat(sprintf("Simulated probability of extinction for THE process: %f\n",
@@ -57,10 +54,10 @@ cat(paste0("MLE estimate for lambda:\n\tlambda_mle = ", lambda_mle,
 
 # 2. Metropolis Hastings
 D <- read.table("Regressiondata.txt", col.names = c("x", "y"))
+X <- D["x"]
 
 # (a) Plot the data
-# plot(D)
-X <- D["x"]
+plot(D)
 
 # (b) Log of P(theta'|data)/P(theta|data)
 logAlpha <- function(theta, theta_prime) {

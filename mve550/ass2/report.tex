@@ -7,6 +7,19 @@
 \usepackage{siunitx}
 \usepackage{listings}
 \usepackage{comment}
+\usepackage{tikz}
+\usepackage{afterpage}
+\usepackage{booktabs}
+
+\makeatletter
+\def\fps@figure{hbtp}
+\def\fps@table{hbtp}
+\makeatother
+
+\sisetup{
+	round-mode      = places,
+	round-precision = 3
+	}
 
 \DeclareMathOperator\Poisson{Pois}
 \DeclareMathOperator\GammaDist{Gamma}
@@ -23,7 +36,7 @@
 \begin{enumerate}[label=(\alph*)]
 \item Given an improper prior, $\pi(\lambda) \propto_{\lambda} 1/\lambda$, and the first five steps of the branching process, compute the posterior.
 \item Numerically compute the probability of extinction given a fixed $\lambda$ and that the process has reached size 7.
-\item Compute the probability of extinction but take $\lambda$:s uncertainty into account by integrating out the uncertainity. 
+\item Compute the probability of extinction but take $\lambda$:s uncertainty into account by integrating out the uncertainity.
 \item Draw multiple samples of $\lambda$ to account for the uncertainty in the branching process. Compare with (d).
 \item Do a maximum likelihood estimate for $\lambda$. What is the probability for extinction with this $\hat\lambda$?
 \end{enumerate}
@@ -51,53 +64,106 @@ $$ \pi(\text{data} \mid \lambda) = \frac{3^5}{7!} \lambda^{11} e^{-4\lambda}
 	\propto_\lambda \GammaDist(12, 4) $$
 and the posterior becomes
 $$ \pi(\lambda \mid \text{data}) \propto_\lambda \lambda^{10} e^{-4\lambda}
-	\propto_\lambda \GammaDist(11, 4)
-	\implies \pi(\lambda \mid \text{data}) = \frac{\lambda^{10} e^{-4\lambda}}{\int_\Lambda \lambda^10 e^{-4\lambda} \, d\lambda} $$
+	\propto_\lambda \GammaDist(11, 4) $$
 
 \subsection{(c)}
 Using that $\pi(\text{extinction} \mid \lambda, \text{data})$ is known
 and given by the procedure derived in (b) we get
 \begin{align*}
-\pi(\text{extinction} \mid \text{data}) &= \int_{\Lambda \coloneqq \mathbb R^+} \pi(\text{extinction}, \lambda \mid \text{data}) \, d\lambda \\
-	&= \int_\Lambda \pi(\text{extinction} \mid \lambda, \text{data}) \, \pi(\lambda \mid \text{data}) \, d\lambda
+	\pi(\text{extinction} \mid \text{data}) &= \int_{\Lambda \coloneqq \mathbb R^+} \pi(\text{extinction}, \lambda \mid \text{data}) \, d\lambda \\
+		&= \int_\Lambda \pi(\text{extinction} \mid \lambda, \text{data}) \, \pi(\lambda \mid \text{data}) \, d\lambda
+		\approx 0.004682
 \end{align*}
 
 \subsection{(d)}
 To account for the uncertainty in $\lambda$ we simulate for
 a large number of $\lambda$:s drawn from the posterior distribution
 the extinction probability.
-% TODO Add result
+The result becomes $0.004845$.
+We see that it is approximately what we saw in (c).
 
 \subsection{(e)}
 Finding the maximum of $\pi(\text{data} \mid \lambda)$ with respect to $\lambda$
-yield the maximum likelihood estimate
-$$ \hat\lambda = \ldots $$ % TODO
+yields the maximum likelihood estimate
+$$ \hat\lambda_\text{mle} = \num{2.74998059503805} $$
 for which the simulated probability of extinction becomes
+$$ \texttt{extinctionProbability}(\hat\lambda_\text{mle}) \approx 0 $$
+The simulation is unable to pick up any process that went extinct,
+even though we know from theory that the probability is non-zero.
 
 \section{Question 2}
 \begin{enumerate}[label=(\alph*)]
-\item Plot the data. 
-\item Given a prior, $$\pi(\theta) = \Normal (\theta_1; 10, 10^2) \GammaDist (\theta_2; 1/2, 1/10) \Uniform (\theta_3; 0, 1) \GammaDist (\theta_4; 2, 2)$$ 
+\item Plot the data.
+\item Given a prior, $$\pi(\theta) = \Normal (\theta_1; 10, 10^2) \GammaDist (\theta_2; 1/2, 1/10) \Uniform (\theta_3; 0, 1) \GammaDist (\theta_4; 2, 2)$$
 and a model for the data so that the likelihood becomes $$\pi (x_i \mid y_i) = \Normal(\theta_1 + \theta_2 \sin(x_i - \theta_3) 2\pi, \theta_4^2)$$
 compute the \textit{logarithm} of the ratio $$\frac{\pi(\theta' \mid \text{data})}{\pi(\theta \mid \text{data})}$$
 by computing the logarithms of the terms with a given $\theta$ and $\theta'$.
 \item Use the Metropolis Hastings algorithm for 10 000 steps. \\
-The proposal function should add $\Normal(0, 0.1)$ to $\theta_1$. 
-To $\theta_2$ and $\theta_4$ it should add $\Normal (0, 0.1)$ and then take the absolute value. 
-To $\theta_3$ we add $\Uniform(-0.1, 0.1)$ and make sure the result is between 0 and 1. 
-\item Repeat the above process 100 times and report the means and standard deviations of $\theta$. 
+The proposal function should add $\Normal(0, 0.1)$ to $\theta_1$.
+To $\theta_2$ and $\theta_4$ it should add $\Normal (0, 0.1)$ and then take the absolute value.
+To $\theta_3$ we add $\Uniform(-0.1, 0.1)$ and make sure the result is between 0 and 1.
+\item Repeat the above process 100 times and report the means and standard deviations of $\theta$.
 \item Using the simultated values, answer the following question: \\
 Taking into account the uncertainty in the parameters, what is the probability that a new observation with $x = 0.6$ will result in a response $y$ that is greater than 7.4?
 \end{enumerate}
 
 \subsection{(a)}
+The data is plotted in figure~\ref{fig:data_plot}.
+
+\begin{figure}
+	\centering
+	\input{regression_data.tex}
+	\caption{Plot of the data from the file \texttt{Regressiondata.txt}. \label{fig:data_plot}}
+\end{figure}
+% \afterpage{\clearpage}
+
+\subsection{(b)}
 It is generally a good idea to
 compute the logarithm of the partaking factors individually
 since it can lead to better numberical stability,
 since you'll add small numbers instead of multiplying them.
 
+\subsection{(c)}
+The resulting $\theta$ is
+$(\num{1327.19003751346}, \num{90.7653725828567}, \num{0.0229769401252709}, \num{651.369683888707})$.
+
+\subsection{(d)}
+The means and standard deviations of the simulated $\theta$ components
+are shown in table~\ref{tab:theta_means_sds}.
+
+\begin{table}
+	\caption{Mean and standard deviations for the different components of $\theta$,
+	that were simulated 100 times as in (c). \label{tab:theta_means_sds}}
+	\centering
+	\begin{tabular}{l r r r r} \toprule
+		~ & \multicolumn{1}{c}{$\theta_1$} & \multicolumn{1}{c}{$\theta_2$} & \multicolumn{1}{c}{$\theta_3$} & \multicolumn{1}{c}{$\theta_4$} \\
+		\midrule
+		\textbf{Mean:} &
+		\num{51.3363353789917} &
+		\num{58.4570863747811} &
+		\num{0.539136016514659} &
+		\num{806.135765325465} \\
+		\textbf{SD:} &
+		\num{692.104989310555} &
+		\num{25.1757118926179} &
+		\num{0.31481735663175} &
+		\num{44.7867130184426} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+% \afterpage{\clearpage}
+
+\subsection{(e)}
+Since $y \mid x, \theta$ is normally distributed,
+we can take the average of the result of \texttt{1 - pnorm(7.4, ...)}
+with the correct parameters
+across the different simulated $\theta$:s,
+and in doing so account for uncertainty in $\theta$.
+The result comes out to be
+$$ \mathbb P(y > 7.4 \mid x = 0.6) \approx \num{0.5123227} $$
+
 \appendix
 \section{Appendix, R code}
-% \lstinputlisting[language=R]{ass2.R}
+\lstinputlisting[language=R]{ass2.R}
 
 \end{document}
