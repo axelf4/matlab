@@ -10,14 +10,22 @@
 
 \DeclareMathOperator\Poisson{Pois}
 \DeclareMathOperator\GammaDist{Gamma}
+\DeclareMathOperator\Normal{Normal}
+\DeclareMathOperator\Uniform{Uniform}
+
+\title{Second Assignment in MVE550}
+\author{Axel Forsman, Jonas Lauri}
 
 \begin{document}
+\maketitle
 
 \section{Question 1}
 \begin{enumerate}[label=(\alph*)]
-\item A
-\item B
-\item
+\item Given an improper prior, $\pi(\lambda) \propto_{\lambda} 1/\lambda$, and the first five steps of the branching process, compute the posterior.
+\item Numerically compute the probability of extinction given a fixed $\lambda$ and that the process has reached size 7.
+\item Compute the probability of extinction but take $\lambda$:s uncertainty into account by integrating out the uncertainity. 
+\item Draw multiple samples of $\lambda$ to account for the uncertainty in the branching process. Compare with (d).
+\item Do a maximum likelihood estimate for $\lambda$. What is the probability for extinction with this $\hat\lambda$?
 \end{enumerate}
 
 \subsection{(a)}
@@ -67,6 +75,21 @@ $$ \hat\lambda = \ldots $$ % TODO
 for which the simulated probability of extinction becomes
 
 \section{Question 2}
+\begin{enumerate}[label=(\alph*)]
+\item Plot the data. 
+\item Given a prior, $$\pi(\theta) = \Normal (\theta_1; 10, 10^2) \GammaDist (\theta_2; 1/2, 1/10) \Uniform (\theta_3; 0, 1) \GammaDist (\theta_4; 2, 2)$$ 
+and a model for the data so that the likelihood becomes $$\pi (x_i \mid y_i) = \Normal(\theta_1 + \theta_2 \sin(x_i - \theta_3) 2\pi, \theta_4^2)$$
+compute the \textit{logarithm} of the ratio $$\frac{\pi(\theta' \mid \text{data})}{\pi(\theta \mid \text{data})}$$
+by computing the logarithms of the terms with a given $\theta$ and $\theta'$.
+\item Use the Metropolis Hastings algorithm for 10 000 steps. \\
+The proposal function should add $\Normal(0, 0.1)$ to $\theta_1$. 
+To $\theta_2$ and $\theta_4$ it should add $\Normal (0, 0.1)$ and then take the absolute value. 
+To $\theta_3$ we add $\Uniform(-0.1, 0.1)$ and make sure the result is between 0 and 1. 
+\item Repeat the above process 100 times and report the means and standard deviations of $\theta$. 
+\item Using the simultated values, answer the following question: \\
+Taking into account the uncertainty in the parameters, what is the probability that a new observation with $x = 0.6$ will result in a response $y$ that is greater than 7.4?
+\end{enumerate}
+
 \subsection{(a)}
 It is generally a good idea to
 compute the logarithm of the partaking factors individually
