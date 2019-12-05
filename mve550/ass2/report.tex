@@ -54,6 +54,25 @@ and given by the procedure derived in (b) we get
 	&= \int_\Lambda \pi(\text{extinction} \mid \lambda, \text{data}) \, \pi(\lambda \mid \text{data}) \, d\lambda
 \end{align*}
 
+\subsection{(d)}
+To account for the uncertainty in $\lambda$ we simulate for
+a large number of $\lambda$:s drawn from the posterior distribution
+the extinction probability.
+% TODO Add result
+
+\subsection{(e)}
+Finding the maximum of $\pi(\text{data} \mid \lambda)$ with respect to $\lambda$
+yield the maximum likelihood estimate
+$$ \hat\lambda = \ldots $$ % TODO
+for which the simulated probability of extinction becomes
+
+\section{Question 2}
+\subsection{(a)}
+It is generally a good idea to
+compute the logarithm of the partaking factors individually
+since it can lead to better numberical stability,
+since you'll add small numbers instead of multiplying them.
+
 \appendix
 \section{Appendix, R code}
 % \lstinputlisting[language=R]{ass2.R}
