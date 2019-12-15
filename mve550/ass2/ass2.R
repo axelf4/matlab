@@ -3,8 +3,6 @@
 # (a) Compute posterior
 local({
 	alpha <- 0; beta <- 0 # Prior parameters
-	# It is a Gamma distribution with parameters
-	# α_1 = 11, β_1 = 4
 	alpha_1 <<- 11; beta_1 <<- 4
 	dposterior <<- function(lambda) dgamma(lambda, shape = alpha_1, rate = beta_1)
 	rposterior <<- function(n) rgamma(n, shape = alpha_1, rate = beta_1)
@@ -14,14 +12,14 @@ local({
 branch <- function(lambda, n = 30) {
 	Z <- 7
 	for (i in (4 + 1):n) {
-		# Large λ:s cause larger populations than R can handle: Prolly won't go extinct
+		# Large lambdas cause larger populations than R can handle: Prolly won't go extinct
 		Z <- sum(rpois(Z, lambda))
 		if (Z > 1000) break
 	}
 	Z
 }
 
-# (b) Given λ, compute numerically prob that branching process in
+# (b) Given lambda, compute numerically prob that branching process in
 # Fig4 becomes extinct
 extinctionProbability <- function(lambda) {
 	num_trials <- 1e3
@@ -39,12 +37,12 @@ cat(sprintf("The probability of extinction for the process in question: %f\n",
 
 # (d) Use simulation to check result in (c)
 n <- 1e4
-# Draw n λ:s from the posterior distribution, and average simulations on those
+# Draw n lambdas from the posterior distribution, and average simulations on those
 sim_extinction_prob <- mean(sapply(rposterior(n), extinctionProbability))
 cat(sprintf("Simulated probability of extinction for THE process: %f\n",
 		sim_extinction_prob))
 
-# (e) Compute MLE for λ. Probability of extinction using that λ?
+# (e) Compute MLE for lambda. Probability of extinction using that lambda?
 
 lambda_mle <- optimize(function(lambda) dgamma(lambda, shape = 12, rate = 4),
 	lower = 0, upper = 10, maximum = TRUE)$maximum
