@@ -32,3 +32,45 @@ calcX <- function(sim) {
 calcX(sim)
 Xs <- replicate(1000, calcX(simTrees(rlambda())))
 hist(Xs, probability = T)
+
+		       
+# 2.
+# Table 1
+state <- c(1, 3, 2, 3, 1, 2, 1, 3, 1, 2)
+duration <- c(6.83, 4.01, 6.63, 0.44, 5.11, 0.29, 2.87, 1.3, 4.76, 1.92)
+D <- matrix(c(state, duration), nrow = 10)
+colnames(D) <- c("state", "duration")
+
+# The embedded matrix. 
+Ptilde <- matrix(c(0, 0.5, 0.5, 0.5, 0, 0.5, 0.5, 0.5, 0), nrow = 3)
+
+# a) Generator matrix Q.
+q <- c(1/5, 1, 1/2)
+Q <- matrix(c(-1/5, 1/2, 1/4, 1/10, -1, 1/4, 1/10, 1/2, -1/2), nrow = 3)
+
+# The limiting distribution is obtained by taking e^(tQ) with a big t.
+library(expm)
+print(expm(50*Q))
+
+# b) Joint distribution for the parameters. 
+# The priors for the q's.
+rq_1 <- function() rgamma(1, 1, q[1])
+rq_2 <- function() rgamma(1, 1, q[2])
+rq_3 <- function() rgamma(1, 1, q[3])
+
+# The priors for Ptilde. (Same prior for p_12, p_21 and p_31)
+rp <- function() rbeta(1, 1/2, 1/2)
+
+# The product of the q's multiplied with the rows of Ptilde. (Fel?)
+jointPosterior <- function(rq_1, rq_2, rq_3, rp) rq_1 * rq_2 * rq_3 * rp
+posteriorSim <- c()
+for (i in 1:1000){
+  posteriorSim[i] <- jointPosterior(rq_1(), rq_2(), rq_3(), rp())
+}
+plot(posteriorSim)
+
+# Posterior = [q1 * 0, q1 * p12, q1 * p12,
+#              q2 * p21, q2 * 0, q2 * p21,
+#              q3 * p31, q3 * p31, q3 * 0]? 
+
+# c) Based on this posterior, simulate from an 
