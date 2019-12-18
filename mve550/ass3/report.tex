@@ -96,6 +96,42 @@ $$ \frac{\size{D}}{\size{[0, 1]^2}} \lambda \mid \text{data} = \size{D} \lambda 
 Due to Poisson and Gamma being conjugate distributions we get
 $$ Y \mid \text{data} \sim \NegBin(36, 1 - \frac1{1 + \frac1{\size{D}}}) $$
 
+\section{Question 2}
+We have a contiuous-time, discrete state space Markov Chain with three states.
+The vector for the holding times is: $q = (1/5, 1, 1/2)$.
+The transition matrix for the embedded Markov chain is: 
+$$ \tilde{P} = \begin{bmatrix}
+0 & 0.5 & 0.5\\
+0.5 & 0 & 0.5\\
+0.5 & 0.5 & 0
+\end{bmatrix} $$
+\begin{enumerate}[label=(\alph*)]
+	\item Compute the generator matrix Q and the limiting distribution.
+	\item 
+\end{enumerate}
+\subsection{(a)}
+By multiplying the expected holding times, $q$, with the probability of moving to each other state, specified by $\tilde{P}$, we get: 
+$$ \hat{Q} = \begin{bmatrix}
+0 & 0.1 & 0.1\\
+0.5 & 0 & 0.5\\
+0.25 & 0.25 & 0
+\end{bmatrix}.$$
+To get the generator matrix $Q$, we make sure each row sums to 0. $\implies$
+$$ Q = \begin{bmatrix}
+-0.2 & 0.1 & 0.1\\
+0.5 & -1 & 0.5\\
+0.25 & 0.25 & -0.5
+\end{bmatrix}.$$
+To get the limiting distributions we take the matrix exponential with a high $t$.
+$$ e^{50Q} = \begin{bmatrix}
+0.625 & 0.125 & 0.25\\
+0.625 & 0.125 & 0.25\\
+0.625 & 0.125 & 0.25
+\end{bmatrix}.$$
+
+\subsection{(b)}
+\subsection{(c)}
+
 \begin{comment}
 	\appendix
 	\section{Appendix, R code}
