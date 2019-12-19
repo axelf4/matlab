@@ -1,5 +1,5 @@
-library(expm)
-library(MASS)
+# library(expm)
+# library(MASS)
 normalize <- function(v) v / sum(v)
 
 # 1.
@@ -20,10 +20,12 @@ plotSim <- function(sim) {
 	par(pty = "s")
 	plot(x = sim$x, y = sim$y, pch = 2,
 		xlim = c(0, 1), ylim = c(0, 1),
-		xlab = "", ylab = "")
+		xlab = "", ylab = "", main = NULL)
 }
 
+tikz("trees.tex", width = 4, height = 4)
 plotSim(simTrees(lambda))
+dev.off()
 
 # (d) Sample lambda from posterior in (c)
 alpha_1 <- 36; beta_1 <- 1
@@ -70,41 +72,6 @@ cat(paste0("Stat is (", toString(stat), ")\n"))
 # b)
 X <- data.frame(state = c(1, 3, 2, 3, 1, 2, 1, 3, 1, 2),
 		duration = c(6.83, 4.01, 1.63, 0.44, 5.11, 0.29, 2.87, 1.3, 4.76, 1.92))
-
-# Returns the likelihood
-dlikelihood2 <- function(q1, q2, q3, p12, p21, p31) {
-	q <- c(q1, q2, q3)
-	Q <- calcQ(q, p12, p21, p31)
-
-	result <- 0
-	for (k in 1:(nrow(X) - 1)) {
-		t <- X[[k, "duration"]]
-		i <- X[[k, "state"]]
-		j <- X[[k + 1, "state"]]
-		result <- result +
-			log(expm(t * Q)[[i, j]])
-	}
-	exp(result)
-}
-
-dlikelihood <- function(q1, q2, q3, p12, p21, p31) {
-	q <- c(q1, q2, q3)
-	prod_dur <- prod(apply(X, 1, function(row) dexp(row[[2]], rate = q[[row[[1]]]])))
-
-	Ptilde <- calcPtilde(p12, p21, p31)
-	prod_state <- 1
-	for (k in 1:(nrow(X) - 1)) {
-		i <- X[[k, "state"]]
-		j <- X[[k + 1, "state"]]
-		prod_state <- prod_state * Ptilde[[i, j]]
-	}
-
-	prod_dur * prod_state
-}
-
-dprior <- function(q1, q2, q3, p12, p21, p31)
-	1/q1 * 1/q2 * 1/q3 *
-		prod(dbeta(c(p12, p21, p31, 1/2, 1/2)))
 
 # Returns a random draw from the posterior for the parameters.
 rposterior <- function() list(q1 = rgamma(1, 4, 19.57), q2 = rgamma(1, 4, 3.84),

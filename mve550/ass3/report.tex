@@ -112,10 +112,12 @@ Likelihood: $\pi(\text{data} \mid \lambda) = \Poisson(\lambda \cdot 1^2)$.
 Due to the Poisson-Gamma conjugacy: $\pi(\lambda \mid \text{data}) = \GammaDist(36, 1)$
 
 \subsection{(e)}
+One such random sample is shown in figure~\ref{fig:X_histogram}.
+
 \begin{figure}
     \centering
     \includegraphics[scale = 0.7]{Histo_Xs.pdf}
-    \caption{Histogram of the $Xs$}
+	\caption{Histogram of the $X$:s. \label{fig:X_histogram}}
 \end{figure}
 
 \subsection{(f)}
@@ -212,12 +214,16 @@ and therefore the posterior hyperparameters become
 $$ \alpha_1 = \alpha + n, \quad \beta_1 = \beta + \sum_i x_i $$
 And the posteriors become
 \begin{gather*}
-	q_1 \sim \GammaDist(0 + 4, 0 + 6.83 + 5.11 + 2.87 + 4.76) = \GammaDist(4, 19.57) \\
-	q_2 \sim \GammaDist(0 + 3, 0 + 1.63 + 0.29 + 1.92) = \GammaDist(4, 3.84) \\
-	q_3 \sim \GammaDist(0 + 3, 0 + 4.01 + 0.44 + 1.3) = \GammaDist(4, 5.75) \\
+	q_1 \mid \text{data} \sim \GammaDist(0 + 4, 0 + 6.83 + 5.11 + 2.87 + 4.76) = \GammaDist(4, 19.57) \\
+	q_2 \mid \text{data} \sim \GammaDist(0 + 3, 0 + 1.63 + 0.29 + 1.92) = \GammaDist(4, 3.84) \\
+	q_3 \mid \text{data} \sim \GammaDist(0 + 3, 0 + 4.01 + 0.44 + 1.3) = \GammaDist(4, 5.75) \\
 \end{gather*}
 Multiplying the independent posteriors together to the joint posterior
-$$ \pi(q_1, q_2, q_3, p_{12}, p_{21}, p_{31}) = \Beta(p_{12}; \frac52, \frac52) \Beta(p_{21}; \frac32, \frac32) \Beta(p_{31}; \frac52, \frac32) \GammaDist(q_1; 4, 19.57) \GammaDist(q_2; 4, 3.84) \GammaDist(q_3; 4, 5.75) $$
+\begin{multline*}
+	\pi(q_1, q_2, q_3, p_{12}, p_{21}, p_{31}) = \\
+	\Beta(p_{12}; \frac52, \frac52) \Beta(p_{21}; \frac32, \frac32) \Beta(p_{31}; \frac52, \frac32) \\
+	\GammaDist(q_1; 4, 19.57) \GammaDist(q_2; 4, 3.84) \GammaDist(q_3; 4, 5.75)
+\end{multline*}
 
 \subsection{(c)}
 One such simulation from parameters drawn from the posterior derived in (b)
@@ -235,16 +241,14 @@ picking the minimum time and moving to the corresponding state.
 
 \begin{table}
 	\caption{Simulation of the continuous time Markov Chain. \label{tab:2c_sim}}
-	\begin{tabular}{c|r|r|r|r|r|r|r|r|r}\toprule
+	\begin{tabular}{crrrrrrrrr}\toprule
 		\textbf{State} & 1 & 2 & 3 & 2 & 3 & 1 & 3 & 2 & 1 \\ \midrule
 		\textbf{Duration} & 5.97 & 7.58 & 0.26 & 4.17 & 2.83 & 7.39 & 0.65 & 1.14 & 1.47 \\ \bottomrule
 	\end{tabular}
 \end{table}
 
-\begin{comment}
-	\appendix
-	\section{Appendix, R code}
-	\lstinputlisting[language=R]{ass2.R}
-\end{comment}
+\appendix
+\section{Appendix, R code}
+\lstinputlisting[language=R]{ass3.R}
 
 \end{document}
