@@ -100,6 +100,17 @@ Improper prior $\pi(\lambda) \propto_\lambda 1/\lambda \propto_\lambda \GammaDis
 Likelihood: $\pi(\text{data} \mid \lambda) = \Poisson(\lambda \cdot 1^2)$.
 Due to the Poisson-Gamma conjugacy: $\pi(\lambda \mid \text{data}) = \GammaDist(36, 1)$
 
+\subsection{(f)}
+In the results of (e) we get $Xs_{mean} \approx 0.092$ while for the example figure the $X = 0.1352$.
+The reason for this discrepancy between the $X$ is because of the nature of the Poisson distribution.
+The probability of $n$ points in an area $A$ is equal to: 
+$$\frac{(\lambda |B|)^n}{n!}e^{-\lambda|B|} \propto_n \frac{(\lambda |B|)^n}{n!}$$
+While this quickly goes to $0$ as $n$ increases, often two trees will overlap.
+This causes $X$ to be drastically smaller than in the cases where there is no overlapping. 
+Two trees overlapping is of course an unlikely scenario because of physical limitations.
+One way of changing the model would be to force new trees to separated from old ones.
+This can be done by throwing away trees too close to already created ones.
+
 \subsection{(g)}
 We have that $Y \mid \lambda \sim \Poisson(\lambda \lvert D \rvert)$,
 where $D$ is the disk of radius $0.1$ centered at $(0.5, 0.5)$,
