@@ -61,16 +61,13 @@ rq_3 <- function() rgamma(1, 1, q[3])
 # The priors for Ptilde. (Same prior for p_12, p_21 and p_31)
 rp <- function() rbeta(1, 1/2, 1/2)
 
-# The product of the q's multiplied with the rows of Ptilde. (Fel?)
-jointPosterior <- function(rq_1, rq_2, rq_3, rp) rq_1 * rq_2 * rq_3 * rp
-posteriorSim <- c()
-for (i in 1:1000){
-  posteriorSim[i] <- jointPosterior(rq_1(), rq_2(), rq_3(), rp())
-}
-plot(posteriorSim)
+# The product of the q's multiplied with the rows of Ptilde.
+jointP <- function(rq, rp) rq * rp
 
 # Posterior = [q1 * 0, q1 * p12, q1 * p12,
 #              q2 * p21, q2 * 0, q2 * p21,
-#              q3 * p31, q3 * p31, q3 * 0]? 
+#              q3 * p31, q3 * p31, q3 * 0]?
 
 # c) Based on this posterior, simulate from an 
+posteriorSim <- matrix(c(0, jointP(rq_1(), rp()), jointP(rq_1(), rp()), jointP(rq_2(), rp()), 0 ,jointP(rq_2(), rp()), jointP(rq_3(), rp()), jointP(rq_3(), rp()), 0), nrow = 3)
+Qsim <- posteriorSim + matrix(c(-rowSums(posteriorSim, 3)[1], 0, 0, 0, -rowSums(posteriorSim, 3)[2], 0, 0, 0, -rowSums(posteriorSim, 3)[3]), nrow = 3)
