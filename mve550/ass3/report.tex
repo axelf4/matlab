@@ -41,8 +41,17 @@
 % \maketitle
 
 \section{Question 1}
+Imagine we have square of dimensions $[0,1] \times [0,1]$ with 36 trees.
 \begin{enumerate}[label=(\alph*)]
-	\item Fin.
+	\item A modeling of the trees can be seen as a spatial Poisson process with parameter $\lambda = 36$. Compute the probability of 6 or more trees in the area $[0.2, 0.6] \times [0.2, 0.6]$.
+	\item With the same assumptions, compute the probability of exactly 4 trees in $[0.2, 0.6] \times [0.2, 0.6]$ AND exactly 4 trees in $[0.4, 0.8] \times [0.4, 0.8]$. 
+	\item With the same assumptions, write R code as to simulate this spatial process and show one such simulation.
+	\item Assume that $\lambda$ has the prior $\pi(\lambda) \propto_\lambda 1/\lambda$ and we have observed 36 trees in the square $[0,1] \times [0,1]$. Derive the posterior for $\lambda$. Use this posterior in (c) to simulate.
+	\item With the stochastic process simulated in (d), derive the average of the distance to the nearest neighbour. Let this be $X$. Then, for $k$ points, 
+	$$X = \frac{1}{k}\sum_{i=1}^k \min_{j = 1, ..., k} \sqrt{(x_i-x_j)^2+(y_i-y_j)^2)}, j \neq i.$$
+	Simulate a couple $X$ and plot the distribution.
+	\item From the real life data $X = 0.1358$. Use the result from (e) to discuss if the Poisson model is good, and if not what should be changed. 
+	\item With the process in (d), consider $Y$ a random variable representing the number of points in the circle centered at (0.5, 0.5) with radius 0.1. Determine the name and the parameters of the $Y$ distribution.
 \end{enumerate}
 
 \subsection{(a)}
