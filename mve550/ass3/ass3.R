@@ -11,7 +11,13 @@ simTrees <- function(lambda) {
 	# Conditioning on N, the location of points are uniformly distributed
 	list(x = runif(N, 0, 1), y = runif(N, 0, 1))
 }
-plotSim <- function(sim) plot(x = sim$x, y = sim$y, pch = 2, xlim = c(0, 1), ylim = c(0, 1))
+
+plotSim <- function(sim) {
+	par(pty = "s")
+	plot(x = sim$x, y = sim$y, pch = 2,
+		xlim = c(0, 1), ylim = c(0, 1),
+		xlab = "", ylab = "")
+}
 
 plotSim(simTrees(lambda))
 
@@ -29,7 +35,6 @@ calcX <- function(sim) {
 	minDistances <- sqrt(apply(distances, 1, min, na.rm = TRUE))
 	mean(minDistances)
 }
-calcX(sim)
 Xs <- replicate(1000, calcX(simTrees(rlambda())))
 hist(Xs, probability = T)
 
@@ -41,7 +46,7 @@ duration <- c(6.83, 4.01, 6.63, 0.44, 5.11, 0.29, 2.87, 1.3, 4.76, 1.92)
 D <- matrix(c(state, duration), nrow = 10)
 colnames(D) <- c("state", "duration")
 
-# The embedded matrix. 
+# The embedded matrix.
 Ptilde <- matrix(c(0, 0.5, 0.5, 0.5, 0, 0.5, 0.5, 0.5, 0), nrow = 3)
 
 # a) Generator matrix Q.
@@ -52,7 +57,7 @@ Q <- matrix(c(-1/5, 1/2, 1/4, 1/10, -1, 1/4, 1/10, 1/2, -1/2), nrow = 3)
 library(expm)
 print(expm(50*Q))
 
-# b) Joint distribution for the parameters. 
+# b) Joint distribution for the parameters.
 # The priors for the q's.
 rq_1 <- function() rgamma(1, 1, q[1])
 rq_2 <- function() rgamma(1, 1, q[2])
@@ -68,6 +73,6 @@ jointP <- function(rq, rp) rq * rp
 #              q2 * p21, q2 * 0, q2 * p21,
 #              q3 * p31, q3 * p31, q3 * 0]?
 
-# c) Based on this posterior, simulate from an 
+# c) Based on this posterior, simulate from an
 posteriorSim <- matrix(c(0, jointP(rq_1(), rp()), jointP(rq_1(), rp()), jointP(rq_2(), rp()), 0 ,jointP(rq_2(), rp()), jointP(rq_3(), rp()), jointP(rq_3(), rp()), 0), nrow = 3)
 Qsim <- posteriorSim + matrix(c(-rowSums(posteriorSim, 3)[1], 0, 0, 0, -rowSums(posteriorSim, 3)[2], 0, 0, 0, -rowSums(posteriorSim, 3)[3]), nrow = 3)

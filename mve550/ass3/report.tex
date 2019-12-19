@@ -79,6 +79,22 @@ Then
 \end{align*}
 where we have used that $N_B, N_C$ are independent since $B, C$ are disjoint.
 
+\subsection{(c)}
+Since conditional on the number of points in $A \coloneqq [0, 1]^2$,
+the positions of the points are uniformly distributed in $A$,
+we can simulate such a process using
+\begin{lstlisting}[language = R]
+N <- rpois(1, lambda * 1^2)
+list(x = runif(N, 0, 1), y = runif(N, 0, 1))
+\end{lstlisting}
+One such example simulation is shown in figure~\ref{fig:c_sim}.
+
+\begin{figure}
+	\centering
+	\input{trees.tex}
+	\caption{One simulation of the spatial Poisson process. \label{fig:c_sim}}
+\end{figure}
+
 \subsection{(d)}
 Improper prior $\pi(\lambda) \propto_\lambda 1/\lambda \propto_\lambda \GammaDist(0, 0)$
 Likelihood: $\pi(\text{data} \mid \lambda) = \Poisson(\lambda \cdot 1^2)$.
@@ -99,7 +115,7 @@ $$ Y \mid \text{data} \sim \NegBin(36, 1 - \frac1{1 + \frac1{\size{D}}}) $$
 \section{Question 2}
 We have a contiuous-time, discrete state space Markov Chain with three states.
 The vector for the holding times is: $q = (1/5, 1, 1/2)$.
-The transition matrix for the embedded Markov chain is: 
+The transition matrix for the embedded Markov chain is:
 $$ \tilde{P} = \begin{bmatrix}
 0 & 0.5 & 0.5\\
 0.5 & 0 & 0.5\\
@@ -107,10 +123,10 @@ $$ \tilde{P} = \begin{bmatrix}
 \end{bmatrix} $$
 \begin{enumerate}[label=(\alph*)]
 	\item Compute the generator matrix Q and the limiting distribution.
-	\item 
+	\item
 \end{enumerate}
 \subsection{(a)}
-By multiplying the expected holding times, $q$, with the probability of moving to each other state, specified by $\tilde{P}$, we get: 
+By multiplying the expected holding times, $q$, with the probability of moving to each other state, specified by $\tilde{P}$, we get:
 $$ \hat{Q} = \begin{bmatrix}
 0 & 0.1 & 0.1\\
 0.5 & 0 & 0.5\\
