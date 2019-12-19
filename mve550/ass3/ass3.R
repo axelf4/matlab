@@ -1,3 +1,7 @@
+library(expm)
+library(MASS)
+normalize <- function(v) v / sum(v)
+
 # 1.
 lambda = 36
 # (b)
@@ -38,41 +42,97 @@ calcX <- function(sim) {
 Xs <- replicate(1000, calcX(simTrees(rlambda())))
 hist(Xs, probability = T)
 
-		       
 # 2.
-# Table 1
-state <- c(1, 3, 2, 3, 1, 2, 1, 3, 1, 2)
-duration <- c(6.83, 4.01, 6.63, 0.44, 5.11, 0.29, 2.87, 1.3, 4.76, 1.92)
-D <- matrix(c(state, duration), nrow = 10)
-colnames(D) <- c("state", "duration")
 
-# The embedded matrix.
-Ptilde <- matrix(c(0, 0.5, 0.5, 0.5, 0, 0.5, 0.5, 0.5, 0), nrow = 3)
+# Rows are probability vectors and sum to one.
+calcPtilde <- function(p12, p21, p31) matrix(
+		c(0, p12, 1 - p12,
+			p21, 0, 1 - p12,
+			p31, 1 - p31, 0),
+		nrow = 3, byrow = TRUE,
+		dimnames = list(states, states))
 
-# a) Generator matrix Q.
+calcQ <- function(q, p12, p21, p31) {
+	Ptilde <- calcPtilde(p12, p21, p31)
+	Q <- q * Ptilde
+	diag(Q) <- -q
+	Q
+}
+
+# a)
+states <- c(1, 2, 3)
 q <- c(1/5, 1, 1/2)
-Q <- matrix(c(-1/5, 1/2, 1/4, 1/10, -1, 1/4, 1/10, 1/2, -1/2), nrow = 3)
+p12 <- p13 <- p21 <- p23 <- p31 <- p32 <- 0.5
+Q <- calcQ(q, p12, p21, p31)
+stat <- normalize(t(Null(Q)))
+cat(paste0("Stat is (", toString(stat), ")\n"))
 
-# The limiting distribution is obtained by taking e^(tQ) with a big t.
-library(expm)
-print(expm(50*Q))
+# b)
+X <- data.frame(state = c(1, 3, 2, 3, 1, 2, 1, 3, 1, 2),
+		duration = c(6.83, 4.01, 1.63, 0.44, 5.11, 0.29, 2.87, 1.3, 4.76, 1.92))
 
-# b) Joint distribution for the parameters.
-# The priors for the q's.
-rq_1 <- function() rgamma(1, 1, q[1])
-rq_2 <- function() rgamma(1, 1, q[2])
-rq_3 <- function() rgamma(1, 1, q[3])
+# Returns the likelihood
+dlikelihood2 <- function(q1, q2, q3, p12, p21, p31) {
+	q <- c(q1, q2, q3)
+	Q <- calcQ(q, p12, p21, p31)
 
-# The priors for Ptilde. (Same prior for p_12, p_21 and p_31)
-rp <- function() rbeta(1, 1/2, 1/2)
+	result <- 0
+	for (k in 1:(nrow(X) - 1)) {
+		t <- X[[k, "duration"]]
+		i <- X[[k, "state"]]
+		j <- X[[k + 1, "state"]]
+		result <- result +
+			log(expm(t * Q)[[i, j]])
+	}
+	exp(result)
+}
 
-# The product of the q's multiplied with the rows of Ptilde.
-jointP <- function(rq, rp) rq * rp
+dlikelihood <- function(q1, q2, q3, p12, p21, p31) {
+	q <- c(q1, q2, q3)
+	prod_dur <- prod(apply(X, 1, function(row) dexp(row[[2]], rate = q[[row[[1]]]])))
 
-# Posterior = [q1 * 0, q1 * p12, q1 * p12,
-#              q2 * p21, q2 * 0, q2 * p21,
-#              q3 * p31, q3 * p31, q3 * 0]?
+	Ptilde <- calcPtilde(p12, p21, p31)
+	prod_state <- 1
+	for (k in 1:(nrow(X) - 1)) {
+		i <- X[[k, "state"]]
+		j <- X[[k + 1, "state"]]
+		prod_state <- prod_state * Ptilde[[i, j]]
+	}
 
-# c) Based on this posterior, simulate from an
-posteriorSim <- matrix(c(0, jointP(rq_1(), rp()), jointP(rq_1(), rp()), jointP(rq_2(), rp()), 0 ,jointP(rq_2(), rp()), jointP(rq_3(), rp()), jointP(rq_3(), rp()), 0), nrow = 3)
-Qsim <- posteriorSim + matrix(c(-rowSums(posteriorSim, 3)[1], 0, 0, 0, -rowSums(posteriorSim, 3)[2], 0, 0, 0, -rowSums(posteriorSim, 3)[3]), nrow = 3)
+	prod_dur * prod_state
+}
+
+dprior <- function(q1, q2, q3, p12, p21, p31)
+	1/q1 * 1/q2 * 1/q3 *
+		prod(dbeta(c(p12, p21, p31, 1/2, 1/2)))
+
+# Returns a random draw from the posterior for the parameters.
+rposterior <- function() list(q1 = rgamma(1, 4, 19.57), q2 = rgamma(1, 4, 3.84),
+	q3 = rgamma(1, 4, 5.75), p12 = rbeta(1, 5/2, 5/2),
+	p21 = rbeta(1, 3/2, 3/3), p31 = rbeta(1, 5/2, 3/2))
+
+# (c)
+
+simulate <- function() {
+	params <- rposterior()
+	q <- c(params$q1, params$q2, params$q3)
+	Q <- calcQ(q, params$p12, params$p21, params$p31)
+
+	Qnodiag <- Q
+	diag(Qnodiag) <- NA
+
+	state <- 1 # Start in state 1
+
+	num_values <- 10
+	values <- list()
+	for (k in 1:(num_values - 1)) {
+		row <- Qnodiag[state,]
+		times <- sapply(row, function(q) if (is.na(q)) NA else rexp(1, q))
+		min_index <- which.min(times)
+		values[[k]] <- list(state = state, dur = times[[min_index]])
+		state <- min_index
+	}
+	values
+}
+
+sim <- simulate()
