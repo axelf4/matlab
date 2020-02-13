@@ -1,0 +1,176 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+\usepackage{amsmath, amsfonts, amsthm, mathtools}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}[theorem]
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\title{MVE030: Fourier analysis}
+\author{Axel Forsman}
+
+\begin{document}
+\maketitle
+
+\begin{definition}{Periodicity}
+	A function $f$ is \emph{periodic} with period $p$ if
+	$$ f(x + p) = f(x) \quad \forall x \in \mathbb R $$
+	and this is the smallest $p$ for which this holds.
+\end{definition}
+
+\begin{lemma}
+	If $f$ is periodic with period $p$ then
+	$\int_a^{a + p} f \, dx$
+	is the same for all $a \in \mathbb R$.
+\end{lemma}
+
+\begin{proof}
+	Let
+	$$ q(a) \coloneqq \int_a^{a + p} f(x) \, dx = \int_0^{a + p} f \, dx - \int_0^a f \, dx $$
+	Then the fundamental theorem of calculus gives $ q'(a) = f(a + p) - f(a) = 0 $.
+\end{proof}
+
+\begin{definition}{Hilbert space}
+	A complete (every Cauchy sequence converges) normed vector space
+	with a hermitian scalar product, that is
+
+	$$ \langle f, g \rangle = \overline{\langle g, f \rangle} $$
+\end{definition}
+
+\begin{definition}{(Working definition of) $L^2([a, b])$}
+	All functions $f : [a, b] \to \mathbb C$ such that $\norm f < \infty$.
+	Hilbert space with scalar product
+	$$ \langle f, g \rangle_{L^2} = \int\limits_a^b f(x) \overline{g(x)} \, dx $$
+\end{definition}
+
+\begin{proposition}{Standard estimate}
+	Assume $\lvert f(x) \rvert \le M$ for (almost every) $x \in [a, b]$, then
+	$$ \int_a^b \lvert f(x) \rvert^2 \, dx \le M^2 (b - a) $$
+	thus $f \in L^2([a, b])$.
+\end{proposition}
+\begin{proof}
+	$$ \int_a^b \lvert f(x) \rvert^2 \, dx \le \int_a^b M^2 \, dx = M^2 (b - a) \qedhere $$
+\end{proof}
+
+\begin{corollary}
+	If $f$ is continuous on $[a, b]$ then $f \in L^2([a, b])$.
+\end{corollary}
+
+\begin{theorem}{Bessel's inequality}
+	Let $H$ Hilbert space, $\{e_n\} \subset H$ orthonormal sequence, then
+	$$ \sum_n \lvert \langle x, e_n \rangle \rvert^2 \le \norm{f}^2 \quad \forall f \in H $$
+\end{theorem}
+
+\begin{corollary}
+	$$ \lim_{n \to \infty_-^+} c_n = 0 $$
+\end{corollary}
+
+\begin{definition}{Piecewise $C^k$}
+	A function is piecewise $C^k$ on interval $I$ if it is $k$ times differentiable
+	on $I \setminus S, \, S \coloneqq \{s_j\}_{j=1}^n$
+	and $\forall j \, \exists \lim_{x \to {s_j}_-^+} f^{(j)}(x)$ for $l = 0, 1, \ldots, k$.
+\end{definition}
+
+\begin{theorem}{Pointwise convergence of Fourier series}
+	Assume $f$ piecewise $C^1$ on $[-\pi, \pi]$ and $2\pi$ periodic on $\mathbb R$.
+	Then $ S_N(x) \coloneqq \sum_{n = -N}^N c_n e^{inx} $ satisfies
+	$$ \lim_{N \to \infty} S_N(x) = \frac{f(x_-) + f(x_+)}2 \quad \forall x \in \mathbb R $$
+	When $f$ continuous at $x$ then $f(x_+) = f(x_-) = f(x)$.
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item Fix $x \in \mathbb R$
+		\item Use definition of $c_n$:
+			$ \displaystyle S_N(x) = \sum_{\lvert n \rvert \le N} \frac1{2\pi} \int\limits_{-\pi}^\pi f(y) e^{in (x - y)} \, dy $
+		\item Change variables: Let $t \coloneqq y - x$. Then $y = t + x$, $dy = dt$
+			\begin{align*}
+				S_N(x) &= \sum_{\abs n \le N} \frac1{2\pi} \int\limits_{-\pi - x}^{\pi - x} \overbrace{f(t + x) e^{-int}}^{2\pi \text{ periodic}} \, dt \\
+				&= \sum_{\abs n \le N} \frac1{2\pi} \int\limits_{-\pi}^{\pi} f(t + x) e^{-int} \, dt \\
+				&= \int\limits_{-\pi}^{\pi} f(t + x) \left( \frac1{2\pi} \sum_{\abs n \le N} e^{-int} \right) \, dt
+			\end{align*}
+		\item Two facts about N\textsuperscript{th} Dirichlet kernel, $D_N(t) \coloneqq \frac1{2\pi} \sum_{-N}^N e^{\pm int}$:
+
+			\begin{enumerate}
+				\item $$ e^{int} + e^{-int} = 2 \cos nt \implies D_N(t) = \frac1{2\pi} \left(1 + \sum_{n = 1}^N 2\cos nt\right) $$
+					$D_N$ is even: $\int_{-\pi}^0 D_N \, dt = \int_0^{\pi} D_N \, dt = \frac12$
+				\item
+					\begin{align*}
+						D_N(t) &= \frac{e^{-iNt}}{2\pi} \sum_{n = 0}^{2N} e^{int} = \frac{e^{-iNt}}{2\pi} \frac{1 - e^{i(2N + 1)t}}{1 - e^{it}} \\
+						&= \frac{e^{-iNt} - e^{i(N + 1)t}}{2\pi (1 - e^{it})}
+					\end{align*}
+			\end{enumerate}
+
+			Our goal is to prove $\lim_{N \to \infty} \abs{S_N(x) - \frac{f(x_-) + f(x_+)}2} = 0$ or equivalently
+			$\abs{\int_{-\pi}^\pi f(t + x) D_N(t) \, dt - \frac{f(x_-) + f(x_+)}2} \to 0, N \to \infty$
+		\item $\frac12 f(x_-) = \int_{-\pi}^0 f(x_-) D_N(t) \, dt, \,
+			\frac12 f(x_+) = \int_0^\pi f(x_+) D_N(t) \, dt$
+
+			\begin{multline*}
+				\abs{\int_{-\pi}^\pi f(t + x) D_N(t) \, dt - \int_{-\pi}^0 f(x_-)D_N(t) \, dt - \int_0^\pi f(x_+)D_N(t) \, dt} \\
+				= \abs{\int_{-\pi}^0 (f(t + x) - f(x_-)) D_N(t) \, dt + \int_0^\pi (f(t + x) - f(x_+)) D_N(t) \, dt}
+			\end{multline*}
+
+		\item Substitute the second fact about $D_N$:
+			\begin{multline*}
+				\abs{\int_{-\pi}^0 \frac{e^{-iNt} - e^{i(N + 1)t}}{2\pi (1 - e^{it})} (f(t + x) - f(x_-)) \, dt \\
+				+ \int_0^\pi \frac{e^{-iNt} - e^{i(N + 1)t}}{2\pi (1 - e^{it})} (f(t + x) - f(x_+)) \, dt}
+			\end{multline*}
+
+		\item Define
+			$$ g(t) \coloneqq \begin{cases}
+				\frac{f(t + x) - f(x_-)}{1 - e^{it}} & -\pi \le t < 0 \\
+				\frac{f(t + x) - f(x_+)}{1 - e^{it}} & 0 \le t \le \pi
+			\end{cases} $$
+			\begin{align*}
+				\lim_{t \to 0_-} \frac{f(t + x) - f(x_-)}{1 - e^{it}} &= \lim_{t \to 0_-} \frac{f(t + x) - f(x_-) t}{t (1 - e^{it})} \\
+				= \frac{f'(x_-)}{-i e^{i(0)}} = \frac{f'(x_-)}{-i}
+			\end{align*}
+			where the second equality is due to $f$ being piecewise $C^1$.
+			PSS $\lim_{t \to 0_+} g(t) = \frac{f'(x_+)}{-i}$
+			Thus $g$ is piecewise $C^1$ too. Therefore $g$ is \emph{bounded} on $[-\pi, \pi]$.
+
+			$$ \abs{S_N(x) - \frac{f(x_-) + f(x_+)}2}
+			= \abs{\int_{-\pi}^\pi \left(\frac{e^{-iNt}}{2\pi} g(t) + \frac{e^{i(N + 1)t}}{2\pi} g(t) \right) \, dt} $$
+
+		\item Bessel's inequality: For $g$ its $N$\textsuperscript{th} Fourier coefficient is
+			$$ \frac1{2\pi} \int_{-\pi}^\pi g(t) e^{-iNt} \, dt \to 0, N \to \infty $$
+			The $-N-1$\textsuperscript{st} Fourier coefficient is
+			$$ \frac1{2\pi} \int_{-\pi}^\pi g(t) e^{i(N + 1)t} \, dt \to 0, N \to \infty \qedhere $$
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}{Fourier series}
+	The Fourier series for a $2\pi$ periodic function is
+	$$ \sum_{n \in \mathbb Z} c_n e^{inx} $$
+\end{definition}
+
+Want to differentiate/integrate solutions to PDE:s.
+
+\begin{theorem}{On differentiation of Fourier series}
+	Assume $f$ piecewise $C^1$ on $(-\pi, \pi)$, $2\pi$ periodic and continuous on $\mathbb R$.
+	Then the Fourier coeffs $a_n, b_n, c_n$ and those of $f'$; $a'_n, b'_n, c'_n$; satisfy
+	\begin{align*}
+		a'_n &= n b_n & b'_n &= -n a_n & c'_n &= in c_n
+	\end{align*}
+\end{theorem}
+\begin{proof}
+	Use the definition of $c'_n$ and relate to $c_n$ through integration by parts
+	\begin{align*}
+		c'_n &\coloneqq \frac1{2\pi} \int_{-\pi}^\pi f'(x) e^{-inx} \, dx \\
+		&= \frac1{2\pi} \left( \left. f(x) e^{-inx} \right\rvert_{-\pi}^\pi - \int_{-\pi}^\pi f(x) (-in) e^{-inx} \, dx \right) = in c_n
+	\end{align*}
+	where we have used that $f(x) e^{-inx}$ is $2\pi$ periodic.
+\end{proof}
+
+\begin{proposition}
+	On $[-\pi, \pi]$, $\phi_n(x) \coloneqq \frac{e^{inx}}{\sqrt{2\pi}}, \, n \in \mathbb Z$ are orthonormal.
+\end{proposition}
+
+\end{document}
