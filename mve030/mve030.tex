@@ -173,4 +173,74 @@ Want to differentiate/integrate solutions to PDE:s.
 	On $[-\pi, \pi]$, $\phi_n(x) \coloneqq \frac{e^{inx}}{\sqrt{2\pi}}, \, n \in \mathbb Z$ are orthonormal.
 \end{proposition}
 
+\begin{theorem}{Best approximation theorem}
+	Let $\{\phi_n\}_{n \ge 1} \subset H \text{ = Hilbert space}$ ONS.
+	Then $\forall \sum_{n \ge 1} c_n \phi_n \in H, \, c_n \ in \mathbb C$
+	$$ \norm{f - \sum_{n \ge q} \langle f, \phi_n \rangle} \le \norm{f - \sum_{n \ge q} c_n \phi_n} $$
+	with equality iff $c_n = \langle f, \phi_n \rangle \forall n \ge 1$.
+\end{theorem}
+\begin{proof}
+	Let $\hat f_n \coloneqq \langle f, \phi_n \rangle$.
+	These are the Fourier coeffs of f wrt. $\{\phi_n\}$.
+	$\sum_n \hat f_n \phi_n$ is the Fourier series of f wrt. $\{\phi_n\}$.
+	Let $g \coloneqq \sum_n \hat f_n \phi_n$, and $\varphi \coloneqq \sum_n c_n \phi_n$.
+
+	Idea: $\norm{f - \varphi}^2 = \norm{f - g + g - \varphi}^2 = \norm{f - g}^2 + 2\Re \langle f - g, g - \varphi \rangle + \norm{g - \varphi}^2$
+
+	Deal with $\langle f - g, g - \varphi \rangle$. Want to show it's 0.
+
+	\begin{multline*}
+		\langle f - g, g - \varphi \rangle = \langle f, g \rangle - \langle f, \varphi \rangle - \langle g, g \rangle + \langle g, \varphi \rangle \\
+		= 0
+	\end{multline*}
+
+	Therefore $\norm{f - \varphi}^2 \ge \norm{f - g}^2$ and equal iff $\norm{g - \varphi}^2 = 0$.
+
+	$$ \norm{g - \varphi}^2 = \norm{sum_n (\hat f_n - c_n) \phi_n}^2 \overset{\text{Pythagoras}}{=} \sum_n \norm{(\hat f_n - c_n) \phi_n}^2 = \sum_n \abs{\hat f_n - c_n}^2 $$
+	This is 0 iff $\abs{\hat f_n - c_n}^2 = 0 \; \forall n \iff \hat f_n = c_n \; \forall n$.
+\end{proof}
+
+Sturm-Leoville problems: ODE:s that are physically important and/or come
+from PDE:s and separating variables.
+
+\begin{definition}{Regular Sturm-Leoville Problem}
+	\begin{enumerate}
+		\item A differential operator $L(f) \coloneqq (r f')' + pf$
+			with $r, p$ real valued functions, $r, r' \text{ and } p$ are continuous.
+			The problem is for $f(x), \, x \in [a, b], r(x) > 0$.
+		\item Boundary conditions (``Self-adjoint'')
+			$$ B_i(f) = \alpha_i f(a) + \alpha'_i f'(a) + \beta_i f(b) + \beta'_i f'(b) = 0 \quad for i = 1, 2 $$
+			Such that if $f, g$ both satisfy the boundary conditions then
+			$$ \left. r (\bar g f' - \bar g' f) \right\rvert_a^b = 0 $$
+		\item Positive continuous weight function $w(x)$ on $[a, b]$
+	\end{enumerate}
+
+	The SLP is to find all solutions $f$ `eigenfunctions' and `eigenvalues' $\lambda$
+	such that
+	$$ L(f) + \lambda w f = 0, B_i(f) = 0, i = 1, 2 $$
+\end{definition}
+
+\begin{theorem}{Adult Spectral Theorem}
+	For \emph{every} regular SLP there is an orthogonal basis of eigenfunctions
+	for $L_w^2((a, b))$ with eigenvalues $\{\lambda_n\} \subset \mathbb R, \lim_{n \to \infty} \lambda_n = \infty$.
+	$$ L_w^2(a, b) \coloneqq \left\{f: \int_a^b \abs{f(x)}^2 w(x) \, dx < \infty\right\} $$
+	Scalar product is $\langle f, g \rangle_w = \int_a^b f(x) \overline{g(x)} w(x) \, dx$.
+\end{theorem}
+
+\begin{corollary}
+	The functions $\{e^{inx}\}_{n \in \mathbb Z}$ are an orthogonal basis for $L^2(-\pi, \pi)$.
+\end{corollary}
+\begin{proof}
+	Consider
+	$$ f'' = -\lambda f, \quad x \in [-\pi, \pi], f \text{ is } 2\pi \text{ periodic} $$
+	The only solutions are $e^{inx}, \, n \in \mathbb Z$.
+	Need to show that it is a regular SLP: The boundary conditions are
+	$$ \left\{ \begin{array}{lr}
+		f(-\pi) - f(\pi) = 0, & \alpha_1 = 1, \alpha'_1 = 0, \beta_1 = -1, \beta'_1 = 0 \\
+		f'(-\pi) - f'(\pi) = 0, & \alpha_2 = 0, \alpha'_2 = 1, \beta_2 = 0, \beta'_2 = -1
+	\end{array} \right. $$
+	Assume $f, g$ satisfy the BC, thus $\left. \bar g f' - \bar g' f \right\rvert_{-\pi}^\pi = 0$, by periodicity.
+	Therefore it is a regular SLP and the theorem says the solutions form an OB.
+\end{proof}
+
 \end{document}
