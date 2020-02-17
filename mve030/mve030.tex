@@ -13,11 +13,20 @@
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+% \let\oldnorm\norm
+% \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
 \title{MVE030: Fourier analysis}
 \author{Axel Forsman}
 
 \begin{document}
 \maketitle
+
+\section{Fourier series}
 
 \begin{definition}{Periodicity}
 	A function $f$ is \emph{periodic} with period $p$ if
@@ -119,8 +128,8 @@
 
 		\item Substitute the second fact about $D_N$:
 			\begin{multline*}
-				\abs{\int_{-\pi}^0 \frac{e^{-iNt} - e^{i(N + 1)t}}{2\pi (1 - e^{it})} (f(t + x) - f(x_-)) \, dt \\
-				+ \int_0^\pi \frac{e^{-iNt} - e^{i(N + 1)t}}{2\pi (1 - e^{it})} (f(t + x) - f(x_+)) \, dt}
+				\lvert \int_{-\pi}^0 \frac{e^{-iNt} - e^{i(N + 1)t}}{2\pi (1 - e^{it})} (f(t + x) - f(x_-)) \, dt \\
+				+ \int_0^\pi \frac{e^{-iNt} - e^{i(N + 1)t}}{2\pi (1 - e^{it})} (f(t + x) - f(x_+)) \, dt \rvert
 			\end{multline*}
 
 		\item Define
@@ -128,10 +137,8 @@
 				\frac{f(t + x) - f(x_-)}{1 - e^{it}} & -\pi \le t < 0 \\
 				\frac{f(t + x) - f(x_+)}{1 - e^{it}} & 0 \le t \le \pi
 			\end{cases} $$
-			\begin{align*}
-				\lim_{t \to 0_-} \frac{f(t + x) - f(x_-)}{1 - e^{it}} &= \lim_{t \to 0_-} \frac{f(t + x) - f(x_-) t}{t (1 - e^{it})} \\
-				= \frac{f'(x_-)}{-i e^{i(0)}} = \frac{f'(x_-)}{-i}
-			\end{align*}
+			$$ \lim_{t \to 0_-} \frac{f(t + x) - f(x_-)}{1 - e^{it}} = \lim_{t \to 0_-} \frac{f(t + x) - f(x_-) t}{t (1 - e^{it})}
+			= \frac{f'(x_-)}{-i e^{i(0)}} = \frac{f'(x_-)}{-i} $$
 			where the second equality is due to $f$ being piecewise $C^1$.
 			PSS $\lim_{t \to 0_+} g(t) = \frac{f'(x_+)}{-i}$
 			Thus $g$ is piecewise $C^1$ too. Therefore $g$ is \emph{bounded} on $[-\pi, \pi]$.
@@ -181,13 +188,13 @@ Want to differentiate/integrate solutions to PDE:s.
 \end{theorem}
 \begin{proof}
 	Let $\hat f_n \coloneqq \langle f, \phi_n \rangle$.
-	These are the Fourier coeffs of f wrt. $\{\phi_n\}$.
-	$\sum_n \hat f_n \phi_n$ is the Fourier series of f wrt. $\{\phi_n\}$.
+	These are the Fourier coeffs of $f$ wrt. $\{\phi_n\}$.
+	$\sum_n \hat f_n \phi_n$ is the Fourier series of $f$ wrt. $\{\phi_n\}$.
 	Let $g \coloneqq \sum_n \hat f_n \phi_n$, and $\varphi \coloneqq \sum_n c_n \phi_n$.
 
 	Idea: $\norm{f - \varphi}^2 = \norm{f - g + g - \varphi}^2 = \norm{f - g}^2 + 2\Re \langle f - g, g - \varphi \rangle + \norm{g - \varphi}^2$
 
-	Deal with $\langle f - g, g - \varphi \rangle$. Want to show it's 0.
+	Deal with $\langle f - g, g - \varphi \rangle$. Want to show it is 0.
 
 	\begin{multline*}
 		\langle f - g, g - \varphi \rangle = \langle f, g \rangle - \langle f, \varphi \rangle - \langle g, g \rangle + \langle g, \varphi \rangle \\
@@ -241,6 +248,96 @@ from PDE:s and separating variables.
 	\end{array} \right. $$
 	Assume $f, g$ satisfy the BC, thus $\left. \bar g f' - \bar g' f \right\rvert_{-\pi}^\pi = 0$, by periodicity.
 	Therefore it is a regular SLP and the theorem says the solutions form an OB.
+\end{proof}
+
+\section{Fourier transform}
+
+\begin{definition}{Fourier transform}
+	Let $f \in L^1(\mathbb R), \, \xi \in \mathbb R$.
+	$$ \hat f(\xi) \coloneqq \int_{\mathbb R} e^{-ix\xi} f(x) \, dx \left(= \int_{\mathbb R} f(x) \overline{e^{ix\xi}} \, dx  \text{ kont. version av Fourier koeff.}\right) $$
+\end{definition}
+
+Om $f \in L^1(\mathbb R)$, $\abs{\hat f(\xi)} = \abs{\int_{\mathbb R} e^{-ix\xi} f(x) \, dx} \le \int_{mathbb R} \abs{e^{-ix\xi} f(x) \, dx} = \norm f_{L^1(\mathbb R)}$.
+
+\begin{definition}{Convolution (Faltning)}
+	Om $\int_{\mathbb R} f(x - y) g(y) \, dy \in \mathbb R$, är faltningen
+	$$ f * g(x) \coloneqq \int_{\mathbb R} f(x - y) g(y) \, dy $$
+\end{definition}
+
+\begin{proposition}
+	Assume $f, g, h \in L^2(\mathbb R)$
+	\begin{enumerate}
+		\item $\abs{f * g(x)} \le \norm f_{L^2(\mathbb R)} \norm g_{L^2(\mathbb R)}$
+		\item $f * (ag + bh) = af * g + bf * h \quad \forall a, b \in \mathbb C \quad \text{(linear)}$
+		\item $f * g = g * f \quad \text{(commutative)}$
+		\item $f * (g * h) = (f * g) * h \quad \text{(associative)}$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+	If $f \in C^1(\mathbb R) \cap L^2(\mathbb R), f' \in L^2(\mathbb R), g \in L^2(\mathbb R)$ then
+	$$ f * g \in C^1(\mathbb R) \quad (f * g)' = f' * g $$
+\end{proposition}
+% TODO Proof mollification
+
+\begin{theorem}{Properties of the Fourier transform}
+	Assume everything is well-defined
+	\begin{enumerate}
+		\item $\mathcal F(f(x - a))(\xi) = e^{ix} \hat f(\xi)$
+		\item $\mathcal F(f')(\xi) = i\xi \hat f(\xi)$
+		\item $\mathcal F(x f(x))(\xi) = i \mathcal F(f')(\xi)$
+		\item $\mathcal F(f * g)(\xi) = \hat f(\xi) \hat g(\xi)$
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Fourier inversion theorem (FIT)}
+	(There is a well-defined extension of $\mathcal F$ to $L^2$)
+	For any $f \in L^2(\mathcal R)$
+	$$ f(x) = \frac1{2\pi} \int_{\mathbb R} e^{ix\xi} \hat f(\xi) \, d\xi $$
+\end{theorem}
+
+\begin{theorem}{Plancherel}
+	For any $f, g \in L^2$ ($\implies \hat f, \hat g \in L^2$)
+	$$ \langle \hat f, \hat g \rangle = 2\pi \langle f, g \rangle $$
+	Thus $\norm{\hat f}_{L^2(\mathbb R)}^2 = 2\pi \norm f_{L^2(\mathbb R)}^2$
+\end{theorem}
+\begin{proof}
+	\begin{align*}
+		2\pi \langle f, g \rangle &= 2\pi \int_{\mathbb R} f(x) \overline{g(x)} \, dx
+		\overset{FIT}= 2\pi \int_{\mathbb R} \frac1{2\pi} \int_{\mathbb R} e^{ix\xi} \hat f(\xi) \, d\xi \, \overline{g(x)} \, dx \\
+								  &= \int_{\mathbb R} \hat f(\xi) \overline{\int_{\mathbb R} e^{-ix\xi} g(x) \, dx} \, d\xi
+								  = \int_{\mathbb R} \hat f(\xi) \overline{\hat g(\xi)} \, d\xi = \langle \hat f, \hat g \rangle \qedhere
+	\end{align*}
+\end{proof}
+
+\begin{lemma}{Riemann-Lebesgue}
+	For any $f \in L^2(\mathbb R)$, $\lim_{\xi \to \pm \infty} \hat f(\xi) = 0$.
+\end{lemma}
+
+\begin{theorem}{Convolution approximation}
+	Assume $g \in L^1(\mathbb R)$ with $\int_{\mathbb R} g \, dx = 1$.
+	Define $\alpha = \int_{-\infty}^0 g \, dx$ and $\beta = \int_0^\infty g \, dx$.
+	Assume $f$ is piecewise continuous on $\mathbb R$ and either
+	(I) $f$ is bounded, or (II) $g$ vanishes outside a bounded interval.
+	Let $g_\epsilon(x) = \frac{g(x / \epsilon)}\epsilon$.
+	Then
+	$$ \lim_{\epsilon \downarrow 0} f * g_\epsilon(x) = \alpha f(x_+) + \beta f(x_-) \quad \forall x \in \mathbb R $$
+	If $f$ is continuous then $\lim_{\epsilon \downarrow 0} f * g(x) = f(x)$.
+\end{theorem}
+\begin{proof}
+	Idea: Make into `left' and `right' sides:
+	\begin{multline*}
+		\overbrace{\int_{-\infty}^0 f(x - y) g_\epsilon(y) \, dy - \int_{-\infty}^0 g(y) f(x_+) \, dy}^{L_\epsilon} \\
+		+ \underbrace{\int_0^\infty f(x - y) g(y) \, dy - \int_0^\infty g(y) f(x_-) \, dy}_{R_\epsilon} \overset?\to 0, \epsilon \to 0
+	\end{multline*}
+	The proofs for the separate sides are analogous, so pick left.
+	Fix $\delta > 0$.
+	By change of variables, $\int_{-\infty}^0 g(y) \, dy = \int_{-\infty}^0 \frac{g(z / \epsilon)}\epsilon \, dz$.
+	Thus
+	$$ \abs{L_\epsilon} = \abs{\int_{-\infty}^0 g_\epsilon(y) (f(x - y) - f(x_+)) \, dy} $$
+	Idea: $\lim_{y \to 0^+} f(x - y) - f(x_+) = 0$, so split into two parts, e.g. for some $y_0$
+	$$ \abs{L_\epsilon} = \abs{\int_{-\infty}^{y_0} g_\epsilon(y) (f(x - y) - f(x_+)) \, dy + \int_{y_0}^0 \text{same}}
+	\le \abs{\int_{-\infty}^{y_0} \cdots} + \abs{\int_{y_0}^0 \cdots} $$
 \end{proof}
 
 \end{document}
