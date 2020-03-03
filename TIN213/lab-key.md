@@ -168,14 +168,14 @@ dvs ger den ett default värde behålls om ingen construktor skriver över det. 
 
 ## Lab 4: Newtonian Gravity
 
-Bättre också att istället för att spara accelerationen i Planeterna, spara den antingen bredvid eller i ett fält på något sätt. På så vis kan man aldrig läsa av en felaktig accelerationen medan calculateAcceleration() körs, och man slipper resetAcceleration() grejen vilken är lite missbruk av OOP.
+Bättre att istället för att spara accelerationen i Planeterna, spara den antingen bredvid eller i ett fält på något sätt. På så vis kan man aldrig råka läsa av en felaktig accelerationen medan calculateAcceleration() körs, och man slipper resetAcceleration() grejen vilken är lite missbruk av OOP.
+t.ex. från tidigare tidssteg
 
 Kan skapa en Vector klass så slipper man skriva varje operation två gånger, en för varje komponent
+, ie kan ha tex `pos.add(vel.mult(dt))`
 , och testa om längden är =2.
 
 Implementationen av Verlet algoritmen är väldigt plottrig. Tex räknar ni ut accelerationerna väldigt många gånger mer än vad som behövs. Skulle bli bättre att tex. flytta in allt som är specifikt berör algoritmen till PlanetsModel och göra Planet till enkel POC.
-
-Kan få problem då delar med maxAcc
 
 Verlet algoritmen är lite fel. Ni har rätt tanke men måste se över: I) Behöver beräkna accelerationerna 2ggr för varje frame; II) Behöver beräkna accelerationerna i början av tidssteget innan några positioner updateras, annars kommer det bli "fel" värden.
 
@@ -199,8 +199,20 @@ Sedan behöver ni inte spara accelerations\_old utan kan bara göra det steget i
     view.showPlanet(mars);
     view.showPlanet(saturnus);
 
-Säg att man skriver en ny klass som inte använder Verlet algoritmen. Då är beteendet av `Planet#updatePosition()` lite konstigt, dvs att mult med `dt*dt/2`. Tänk till om det går att fixa på något bättre sätt
+Säg att man skriver en ny klass som inte använder Verlet algoritmen. Då är beteendet av `Planet#updatePosition()` lite konstigt, dvs att mult med `dt*dt/2`. Den makear ju bara sense i kontexten av Verlet algoritmen, så därför borde det finnas någon antydan om det i namnet eller kommentar.
 
 * Kan skapa en metod som beräknar alla planeters acceleration istället för att upprepa den 2ggr
 
 * Istället för att skapa ett fält där index 0 är x, 1 är y, och 2 är massa: Skapa en enkel POC anonym klass. PSS kan man ge namn åt sakerna och slippa fibbla med index
+
+* Tips att ta bort `TODO` när man gjort klart det. Då kan man bara söka efterTODO för att se allt man har kvar att göra
+
+* Istället för att kolla vilken kvadrant koordinat ligger i för Math.atan: Använd Math.atan2 istället
+
+* Ännu bättre: Använd bara vektormatte och skippa trig funktionerna, räcker att normalisera
+
+* Tips: Skulle kunna importera `VectorMath` statiskt
+
+* Tips: Kan använda enhanced for loop: `for (Planet planet : planets) {` ist för `for (int i = 0; i < planets.length; ++i) { Planet planet = planets[i];`
+
+* Bättre att göra `updatePosition(dt * dt / 2)` ist för att ändra updatePosition, då den inte nödvändigtvis has med Verlet algo att göra
