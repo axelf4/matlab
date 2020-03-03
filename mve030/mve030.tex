@@ -72,14 +72,46 @@
 	If $f$ is continuous on $[a, b]$ then $f \in L^2([a, b])$.
 \end{corollary}
 
+\begin{proposition}
+	Let $H$ Hilbert space:
+	$$ \forall u, v \in H: \norm{u + v}^2 = \norm{u}^2 + 2 \Re \langle u, v \rangle + \norm{v}^2 $$
+\end{proposition}
+
+\begin{proposition}{Cauchy-Schwarz inequality}
+	For any Hilbert space, $H$, and $u, v \in H$,
+	$$ \abs{\langle u, v \rangle} \le \norm{u} \norm{v} $$
+\end{proposition}
+
 \begin{theorem}{Bessel's inequality}
 	Let $H$ Hilbert space, $\{e_n\} \subset H$ orthonormal sequence, then
-	$$ \sum_n \lvert \langle x, e_n \rangle \rvert^2 \le \norm{f}^2 \quad \forall f \in H $$
+	$$ \sum_n \lvert \langle x, e_n \rangle \rvert^2 \le \norm{x}^2 \quad \forall f \in H $$
 \end{theorem}
-
 \begin{corollary}
-	$$ \lim_{n \to \infty_-^+} c_n = 0 $$
+	$ \lim_{n \to \infty_-^+} c_n = 0 $
 \end{corollary}
+
+\begin{theorem}{Three equivalent conditions for an orthonormal set to be an ONB}
+	\begin{enumerate}
+		\item If $f \in H, \langle f, \phi_n \rangle = 0 \; \forall n \implies f = 0$
+		\item If $f \in H, \sum_n \langle f, \phi_n \rangle \, \phi_n = f$
+		\item If $f \in H, \norm{f}^2 = \sum_n \abs{\langle f, \phi_n \rangle}^2$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Start by showing (I) implies (II):
+	Let $g \coloneqq \sum_n \langle f, \phi_n \rangle \, \phi_n \in H$.
+	% TODO Is this needed
+	% $$ \norm{g}^2 \overset{\text{Pythagorean}}{\underset{\text{Theorem}}=}
+	% = \sum_n \norm{\langle f, \phi_n \rangle \, \phi_n}^2 = \sum_n \abs{\langle f, \phi_n \rangle}^2
+	% \overset{\text{Bessel's}}{\underset{\text{inequality}}\le} \norm{f}^2 $$
+	Fix $n$, then
+	$$ \langle f - g, \phi_n \rangle = \langle f, \phi_n \rangle - \underbrace{\langle g, \phi_n \rangle}_{=\sum_m \langle f, \phi_n \rangle \, \langle \phi_m, \phi_n \rangle = \langle f, \phi_n \rangle} = 0 $$
+	Thus (I) implies that $f = g$.
+	For (II) implies (III):
+	$$ \norm{f}^2 \overset{\text{(II)}}= \norm{\sum_n \langle f, \phi_n \rangle \, \phi_n}^2 \overset{\text{Inf}}{\underset{\text{Pyth}}=} \sum_n \norm{\langle f, \phi_n \rangle \, \phi_n}^2 = \sum_n \abs{\langle f, \phi_n \rangle}^2 $$
+	For (III) implies (I): Assume $\langle f, \phi_n \rangle = 0 \; \forall n$, then, by (III)
+	$$ \norm{f}^2 = \sum_n \abs{\langle f, \phi_n \rangle}^2 = \sum_n 0 = 0 \overset{\text{def of \,} \norm{\cdot}}\implies f = 0 $$
+\end{proof}
 
 \begin{definition}{Piecewise $C^k$}
 	A function is piecewise $C^k$ on interval $I$ if it is $k$ times differentiable
@@ -176,9 +208,24 @@ Want to differentiate/integrate solutions to PDE:s.
 	where we have used that $f(x) e^{-inx}$ is $2\pi$ periodic.
 \end{proof}
 
+\begin{theorem}
+	Assume $f$ $2\pi$ periodic, $f$ is $C^{k-1}$, $f^{(k-1)}$ is piecewise $C^1$, f is piecewise $C^k$. Then
+	$$ \sum \abs{n^k c_n}^2 < \infty $$
+	If $\abs{c_n} \le c \abs n^{-k - \alpha} \; \forall n, \text{for some} c>0, \alpha > 1$ then $f \in C^k$.
+	(Idea: The rate of convergence of Fourier Series $\longleftrightarrow$
+	how smooth $f$ is)
+\end{theorem}
+
 \begin{proposition}
 	On $[-\pi, \pi]$, $\phi_n(x) \coloneqq \frac{e^{inx}}{\sqrt{2\pi}}, \, n \in \mathbb Z$ are orthonormal.
 \end{proposition}
+\begin{proof}
+	$$ \langle \phi_n, \phi_m \rangle = \int\limits_{-\pi}^\pi \frac{e^{inx}}{\sqrt{2\pi}} \overline{\frac{e^{imx}}{\sqrt{2\pi}}} \, dx
+	= \frac1{2\pi} \begin{cases}
+		2\pi & n = m \\
+		\left. \frac{e^{xi(n-m)}}{i(n-m)} \right\rvert_{x=-\pi}^\pi = 0 & n \ne m
+	\end{cases} \qedhere $$
+\end{proof}
 
 \begin{theorem}{Best approximation theorem}
 	Let $\{\phi_n\}_{n \ge 1} \subset H \text{ = Hilbert space}$ ONS.
@@ -257,7 +304,7 @@ from PDE:s and separating variables.
 	$$ \hat f(\xi) \coloneqq \int_{\mathbb R} e^{-ix\xi} f(x) \, dx \left(= \int_{\mathbb R} f(x) \overline{e^{ix\xi}} \, dx  \text{ kont. version av Fourier koeff.}\right) $$
 \end{definition}
 
-Om $f \in L^1(\mathbb R)$, $\abs{\hat f(\xi)} = \abs{\int_{\mathbb R} e^{-ix\xi} f(x) \, dx} \le \int_{mathbb R} \abs{e^{-ix\xi} f(x) \, dx} = \norm f_{L^1(\mathbb R)}$.
+Om $f \in L^1(\mathbb R)$, $\abs{\hat f(\xi)} = \abs{\int_{\mathbb R} e^{-ix\xi} f(x) \, dx} \le \int_{\mathbb R} \abs{f(x)} \, dx = \norm f_{L^1(\mathbb R)}$.
 
 \begin{definition}{Convolution (Faltning)}
 	Om $\int_{\mathbb R} f(x - y) g(y) \, dy \in \mathbb R$, är faltningen
