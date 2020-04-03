@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+\usepackage{amsmath, amsfonts, amsthm, mathtools}
+\usepackage{cancel}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}[theorem]
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+% \let\oldnorm\norm
+% \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\title{MVE030: ODE:s}
+\author{Axel Forsman}
+
+\begin{document}
+\maketitle
+
+Systems of differential equations in the form
+$$ x'(t) = f(t, x(t)) $$
+where $f : J \times G \to \mathbb R^n, \; t \in J, G \subseteq \mathbb R^n, \text{open}$.
+Finding $x : L \to \mathbb R^n, \; L \subset J$ satisfying the system
+together with the initial condition $x(\tau) = \xi$ is called a
+\emph{initial value problem (I.V.P.)}.
+If $f = f(x)$ is independent of time, the system is called \emph{autonomous}.
+
+\section{Linear autonomous systems of ODE}
+
+\begin{lemma}{The space of solutions for general linear systems}
+	The sets of solutions $\mathcal S_{hom}$ to
+	$$ x'(t) = A(t) x(t), \quad x(t) \in \mathbb R^n, \, t \in J $$
+	are linear vector spaces.
+\end{lemma}
+\begin{proof}
+	$\mathcal S_{hom}$ includes the constant zero vector.
+	By the linearity of the time derivative $x'$ and the matrix multiplication $A(t)x(t)$,
+	for a pair of solutions $x, y$ their sum $x + y$ and the scalar product $Cx$ are also solutions:
+	$$ (x(t) + y(t))' = A(t) (x(t) + y(t)), \quad (Cx(t))' = A(t)(Cx(t)) \qedhere $$
+\end{proof}
+
+\begin{lemma}{Uniqueness of solutions to autonomous linear systems}
+	The solution to autonomous linear system IVP is unique.
+\end{lemma}
+\begin{proof}
+	Suppose $x(t)$ solution on interval $I \ni \tau$, $\tau \le t$. Then
+	$$ x(t) = \xi + \int_\tau^t Ax(\sigma) \, d\sigma $$
+	Estimate using triangle inequality, triangle inequality for integrals and definition of matrix norm
+	$$ \norm{x(t)} \le \norm \xi + \int_\tau^t \norm A \norm{x(\sigma)} \, d\sigma $$
+	Will prove that this inequality implies Grönwall inequality
+	giving an estimate for $\norm{x(t)}$ in terms of the initial data $\norm \xi$.
+	Let $G(t) \coloneqq \norm \xi + \int_\tau^t \norm A \norm{x(\sigma)} \, d\sigma $,
+	with $G(\tau) = \xi, \norm{x(t)} \le G(t)$, and
+	$$ G'(t) = \norm A \norm{x(t)} \le \norm A G(t) $$
+	Multiplying the last inequality with the integrating factor $\exp(-\norm A t)$ we get
+	$$ (G \exp(-\norm A))' \le 0 $$
+	Integrating from $\tau$ to $t$
+	$$ G(t) \le \norm \xi \exp(\norm A (t - \tau)) $$
+	which implies the Grönwall inequality in this simple case:
+	\begin{equation}\label{eq:gronwall_ineq}
+		\norm{x(t)} \le \norm \xi \exp(\norm A (t - \tau))
+	\end{equation}
+
+	Now, suppose $x, y$ are solutions both equal to $\xi$ at the initial time $t = \tau$
+	and consider $z(t) \coloneqq x(t) - y(t)$ for $\tau \le t$.
+	Then $z$ also solution and satisfies the initial condition $z(\tau) = 0$.
+	The estimate \eqref{eq:gronwall_ineq} applied to $z$ implies $z(t) \equiv 0$.
+	In the case $\tau \le t$ the proof is similar.
+\end{proof}
+
+\end{document}

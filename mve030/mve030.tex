@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[swedish]{babel}
 \usepackage{amsmath, amsfonts, amsthm, mathtools}
+\usepackage{cancel}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{definition}{Definition}
@@ -12,6 +13,7 @@
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\DeclareMathOperator{\Deg}{deg}
 
 \makeatletter
 \let\oldabs\abs
@@ -385,6 +387,44 @@ Om $f \in L^1(\mathbb R)$, $\abs{\hat f(\xi)} = \abs{\int_{\mathbb R} e^{-ix\xi}
 	Idea: $\lim_{y \to 0^+} f(x - y) - f(x_+) = 0$, so split into two parts, e.g. for some $y_0$
 	$$ \abs{L_\epsilon} = \abs{\int_{-\infty}^{y_0} g_\epsilon(y) (f(x - y) - f(x_+)) \, dy + \int_{y_0}^0 \text{same}}
 	\le \abs{\int_{-\infty}^{y_0} \cdots} + \abs{\int_{y_0}^0 \cdots} $$
+\end{proof}
+
+\section{French polynomials}
+
+Exotic functions arise from solving PDEs in exotic geometric settings.
+
+\begin{proposition}
+	Assume ${p_n}_{n \in N}$ sequence of polynomials such that $\Deg p_n = n$,
+	$p_0 \ne 0$.
+	Then for each $k \in \mathbb N$, any polynomial of degree $k$ is a linear combination
+	of ${p_j}_{j=0}^k$.
+\end{proposition}
+
+\begin{proposition}
+	Let ${p_k}_{k=0}^\infty$ set of polynomials such that $\Deg p_k = k$, $p_0 \ne 0$.
+	Moreover, assume that they are $L^2([a, b])$ orthogonal.
+	Then these polynomials comprise an orthogonal basis of $L^2$ on $[a, b]$.
+\end{proposition}
+\begin{proof}
+	Assume $f \in L^2[a, b]$ orthogonal to all these polynomials.
+	Therefore by the preceding proposition, $f$ ortho to \emph{all} polynomials.
+	Continuous functions are dense in $L^2$, i.e. given $\epsilon > 0$,
+	there exists a continuous function, $g$, such that
+	$$ \norm{f - g} < \epsilon $$
+	Stone-Weierstrass Theorem says that all continuous functions on bounded intervals
+	can be approximated by polynomials.
+	Therefore, there exists a polynomial $p$ such that
+	$$ \norm{g - p} < \epsilon $$
+	Finally, using Cauchy-Schwarz inequality
+	\begin{align*}
+		\norm{f}^2 &= \langle f, f \rangle = \langle f - g + g - p + p, f \rangle
+		= \langle f - g, f \rangle + \langle g - p, f \rangle + \cancel{\langle p, f \rangle} \\
+		&\le \norm{f - g} \norm f + \norm{g - p} \norm f \\
+		&\le 2 \epsilon \norm f
+	\end{align*}
+	Since $\epsilon > 0$ is arbitrary, this shows that $\norm f = 0$.
+	Hence by the three equiv conds to be an ortho basis,
+	the polynomials are an orthogonal basis of $L^2[a, b]$.
 \end{proof}
 
 \end{document}
