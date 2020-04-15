@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[swedish]{babel}
 \usepackage{amsmath, amsfonts, amsthm, mathtools}
+\usepackage[hidelinks]{hyperref}
 \usepackage{cancel}
 
 \newtheorem{theorem}{Theorem}
@@ -10,6 +11,8 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}{Proposition}
 \newtheorem{corollary}{Corollary}[theorem]
+
+\DeclareMathOperator{\diag}{diag}
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
@@ -36,6 +39,14 @@ together with the initial condition $x(\tau) = \xi$ is called a
 If $f = f(x)$ is independent of time, the system is called \emph{autonomous}.
 
 \section{Linear autonomous systems of ODE}
+We consider the I.V.P. consisting of the
+linear autonomous ODE consider with an initial condition:
+\begin{equation}\label{eq:ivp}
+	\left\{ \begin{array}{ll}
+		x'(t) = A x(t), & x(t) \in \mathbb R^n, t \in \mathbb R \\
+		x(\tau) = \xi
+	\end{array} \right.
+\end{equation}
 
 \begin{lemma}{The space of solutions for general linear systems}
 	The sets of solutions $\mathcal S_{hom}$ to
@@ -54,7 +65,9 @@ If $f = f(x)$ is independent of time, the system is called \emph{autonomous}.
 \end{lemma}
 \begin{proof}
 	Suppose $x(t)$ solution on interval $I \ni \tau$, $\tau \le t$. Then
-	$$ x(t) = \xi + \int_\tau^t Ax(\sigma) \, d\sigma $$
+	\begin{equation}\label{eq:intrep}
+		x(t) = \xi + \int_\tau^t Ax(\sigma) \, d\sigma
+	\end{equation}
 	Estimate using triangle inequality, triangle inequality for integrals and definition of matrix norm
 	$$ \norm{x(t)} \le \norm \xi + \int_\tau^t \norm A \norm{x(\sigma)} \, d\sigma $$
 	Will prove that this inequality implies Grönwall inequality
@@ -76,6 +89,119 @@ If $f = f(x)$ is independent of time, the system is called \emph{autonomous}.
 	Then $z$ also solution and satisfies the initial condition $z(\tau) = 0$.
 	The estimate \eqref{eq:gronwall_ineq} applied to $z$ implies $z(t) \equiv 0$.
 	In the case $\tau \le t$ the proof is similar.
+\end{proof}
+
+\section{Exponent of a matrix}
+
+Two ideas are used to construct analytical solutions to \eqref{eq:ivp}:
+(1) Possibility of finding a basis $\{v_1(t), \ldots, v_N(t)\}$ to $\mathcal S_{hom}$,
+and (2) The observation that the matrix exponent
+$$ e^{A(t - \tau)} \coloneqq I + A (t - \tau) + \frac12 A^2 (t - \tau)^2 + \cdots = \sum_{k=0}^\infty \frac1{k!} A^k (t - \tau)^k $$
+gives an expression of the unique solution to the I.V.P. \eqref{eq:ivp}.
+
+\begin{corollary}{Weierstrass criterion}
+	Let $X$ be a normed vector space, $Y$ a complete normed vector space
+	(Banach space), $K \subset X$ compact, ${f_n}_{n=1}^\infty$
+	a sequence of continuous functions $f_n : K \to Y$
+	and let ${m_n}$ a real sequence such that
+	$\norm{f_n(x)}_Y \le m_n, \quad \forall x \in K, n \in \mathbb N$
+	If $\sum_{n=1}^\infty m_n$ is convergent, then $\sum_{n=1}^\infty f_n(x)$
+	is uniformly convergent on $K$.
+\end{corollary}
+
+One can derive this property by considering
+the integral equation \eqref{eq:intrep} for $x(t)$.
+We can try to solve this integral equation by iterations
+\begin{align*}
+	x_{k+1} &= \xi + \int_\tau^t A x_k(\sigma) \, d\sigma \\
+	x_0 &= \xi \\
+	x_k(t) &= \left[ I + A(t - \tau) + \frac12 A^2 (t - \tau)^2 + \cdots + \frac1{k!} A^k (t - \tau)^k \right] \xi
+\end{align*}
+Iterations $x_k$ as $k \to \infty$ gives the series representation for $\exp(At)$
+times the initial data $\xi$.
+We will prove that our series converges uniformly
+on any finite time interval $[-T, T]$ including the initial time point $\tau$,
+with the Weierstrass criterion
+by applying the estimate for the norm of the product of two matrices:
+$$ \norm{AB} \le \norm A \norm B \implies \norm{A^k} \le \norm A^k $$
+For each term we get
+$$ \norm{\frac1{k!} A^k (t - \tau)^k} \le \frac1{k!} \norm{A^k} \abs{t - \tau}^k
+	\le \frac1{k!} \norm A^k (2T)^k $$
+which are terms from the convergent series for $\exp(\norm A (2T))$,
+where we have used lemma \ref{le:norm_submultiplicative} and that
+$\abs{t - \tau} \le 2T$.
+Thus by taking the limit as $k \to \infty$ in the integral equation
+defining the iterations we get the solution
+$$ x(t) = e^{A(t - \tau)}\xi = \left(\sum_{k=0}^\infty \frac1{k!}(t-\tau)^kA^k\right) \xi $$
+since as the integrand converges uniformly the limit of the integral
+is equal to the integral of the integrand limit.
+
+\section{The dimension of $\mathcal S_{hom}$}
+
+\begin{theorem}
+	Let $b_1, \ldots, b_N$ basis in $\mathbb R^N$ (or $\mathbb C^N$).
+	Then $y_j : \mathbb R \to \mathbb R^N$ (or $\mathbb C^N$)
+	defined as solutions to the I.V.P. \eqref{eq:ivp}
+	with $y_j(\tau) = b_j, j = 1, \ldots, N$,
+	form a basis for $\mathcal S_{hom}$ to \eqref{eq:ivp}.
+	The dimension of $\mathcal S_{hom}$ is equal to $N$
+	(the dimension of the system \eqref{eq:ivp}).
+\end{theorem}
+\begin{proof}
+	This is a consequence of linearity and uniqueness of solutions.
+
+	Consider a linear combination of $y_j$:s
+	equal to zero for some time $\sigma \in \mathbb R$:
+	$l(\sigma) = \sum_{j=1}^N \alpha_j y_j(\sigma) = 0$.
+	Observe that the trivial zero solution coincides with $l$ at this time point.
+	But by the uniqueness of solutions to \eqref{eq:ivp}
+	they must coincide at all times, and in particular at $t = \tau$, wherefore
+	$$ l(\tau) = \sum \alpha_j y_j(\tau) = \sum \alpha_j b_j = 0 \implies \alpha_j = 0 \quad \forall j$$
+	because the $b_j$:s are linearly independent.
+	Therefore $y_1, \ldots, y_N$ are linearly independent by definition.
+
+	Write arbitrary initial data as $x(\tau) = \xi = \sum_{j=1}^N C_j b_j$.
+	By linearity of the system an arbitrary solution to \eqref{eq:ivp}
+	can be represented as linear combinations of $y_1, \ldots, y_N$.
+	\begin{align*}
+		x(t) &= \exp(A(t-\tau))\xi = \exp(A(t-\tau)) \sum C_j b_j \\
+		&= \sum C_j \underbrace{\exp(A(t-\tau)) b_j}_{= y_j(t)} = \sum C_j y_j(t)
+	\end{align*}
+	It follows that $\{y_1,\ldots,y_N\}$ is a basis for $\mathcal S_{hom}$
+	and therefore it has dimension $N$.
+\end{proof}
+
+From this, by taking $\xi = e_1, \ldots, e_N$, we see that the
+columns of the matrix $\exp(A (t - \tau))$ are linearly independent
+and build a basis in the space of solutions.
+
+For a complex matrix $M$, the notation $M^*$ means
+transpose and complex conjugate matrix (Hermitian transpose).
+\begin{lemma}{Properties of the matrix exponent}
+	Let $P, Q \in \mathbb C^{N \times N}$, then
+	\begin{enumerate}
+		\item For a diagonal matrix $P = \diag(\lambda_1, \ldots, \lambda_n)$:
+			$$ \exp(P) = \diag(\exp(\lambda_1), \ldots, \exp(\lambda_n)) $$
+	\end{enumerate}
+\end{lemma}
+
+\appendix
+
+\section{Various proofs}
+
+\begin{lemma}
+	$$ \norm{Ax} \le \norm A \norm x $$
+\end{lemma}
+\begin{proof}
+	Antag motsatsen, dvs. $\exists A, x \ne 0 : \norm A < \frac{\norm{Ax}}{\norm x}$.
+	Men det strider mot definitionen av $\norm A$.
+\end{proof}
+\begin{lemma}{Induced norms are submultiplicative}\label{le:norm_submultiplicative}
+	$$ \norm{AB} \le \norm A \norm B $$
+\end{lemma}
+\begin{proof}
+	$$ \norm{AB} = \sup_{\norm x = 1} \norm{ABx} \le \sup_{\norm x = 1} \norm A \norm{Bx}
+	= \norm A \sup_{\norm x = 1} \norm{Bx} = \norm A \norm B \qedhere $$
 \end{proof}
 
 \end{document}
