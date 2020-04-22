@@ -1,0 +1,311 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsfonts, mathtools}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{eurosym}
+\usepackage{listings}
+\usepackage{lmodern, microtype}
+
+\sisetup{
+	round-mode = figures,
+	round-precision = 3,
+}
+\DeclareSIUnit\hectare{ha}
+\lstset{
+	breaklines=true,
+	postbreak=\mbox{$\hookrightarrow$\space},
+	breakindent = 5pt,
+	breakautoindent = false,
+}
+
+\title{Biodiesel supply chain}
+\author{Axel Forsman, Jonas Lauri}
+
+\begin{document}
+\maketitle
+Collectively approximately 15 hours were spent on this assignment.
+
+\section{Problem 1}
+
+First the given values were converted into SI units,
+see table~\ref{tab:crop_values},
+and the effective costs of the respective products, taking into account tax,
+were calculated, see table~\ref{tab:product_costs}.
+
+\begin{table}
+	\centering
+	\caption{Crop values converted to SI units. \label{tab:crop_values}}
+	\begin{tabular}{l r r r}
+		\toprule
+		Crop & Yield [kg/ha] & Water demand [l/ha] & Oil content [l/kg] \\
+		\midrule
+		Soybeans & \num{2.6e3} & \num{5.0e6} & 0.178 \\
+		Sunflower seeds & \num{1.4e3} & \num{4.2e6} & 0.216 \\
+		Cotton seeds & \num{0.9e3} & \num{1.0e6} & 0.433 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\caption{Effective product costs. \label{tab:product_costs}}
+	\begin{tabular}{l r}
+		\toprule
+		Product & Effective price [\euro/l] ($\text{price} \cdot (1 - \text{tax})$) \\
+		\midrule
+		B5 & 1.144 \\
+		B30 & 1.2255 \\
+		B100 & 1.16 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Let $C = \{\text{soy}, \text{sunflower}, \text{cotton}\}$ be
+the set of crops and
+$P = \{\text{B5}, \text{B30}, \text{B100}\}$ be the set of products.
+Define functions
+$$ \text{yield}, \text{waterdemand}, \text{oilcontent} : C \to \mathbb R $$
+for the different types of crops,
+and for the three products
+$$ \text{biodieselprop}, \text{effectiveprice} : P \to \mathbb R $$
+where $\text{effectiveprice}$ gives
+$\text{price} * (1 - \text{tax})$ for the product in question.
+
+Let $x_c \ge 0$ be the area in hectar to grow of crop $c \in C$,
+and let $y_p \ge 0$ be number of litres to produce of product $p \in P$,
+see figure~\ref{fig:productflow}.
+The number of litres of vegetable oil produced then becomes
+$$ \text{vegoil} = \sum_{c \in C} \text{oilcontent}(c) \, \text{yield}(c) \, x_c $$
+with the water and area limits
+$$ \sum_c \text{waterdemand}(c) \, x_c \le \SI{5000}{\mega\liter} \quad
+\sum_c x_c \le \SI{1600}{\hectare} $$
+Since \emph{all} oil is transesterificated the total amount of biodiesel is
+$$ \text{biodieselamount} = 0.9 \text{vegoil} $$
+The amount of petrol used is
+$$ \text{petrolusage} = \sum_{p \in P} (1 - \text{biodieselprop}(p)) \, y_p $$
+The petrol and delivery constraints become
+$$ \text{petrolusage} \le \SI{150000}{\liter} \quad \sum y \ge \SI{280000}{\liter} $$
+We cannot use more biodiesel than we have produced
+$$ \sum_p \text{biodieselprop}(p) \, y_p \le \text{biodieselamount} $$
+which relates the crop and product sides.
+The objective  is then to maximize the profits,
+i.e. the incomes minus the price of methanol and petrol,
+$$ z = \sum_p \text{effectiveprice}(p) \, y_p - \num{1.5} \cdot 0.2 \, \text{vegoil} - 1 \, \text{petrolusage} $$
+
+\begin{figure}
+	\centering
+	\def\svgwidth{\textwidth}
+	\input{drawing.pdf_tex}
+	\caption{The product flow of the problem
+	showing the optimization variables. \label{fig:productflow}}
+\end{figure}
+
+\section{Problem 2}
+The JuMP implementation of the model is given in appendix~\ref{app:code}.
+
+The optimal value of the objective was found to be
+\num{5.481630343e+05} \euro.
+The values of the variables at the solution is shown in table~\ref{tab:optimal_values},
+and we see that they look plausible by virtue of the usage of `free' biodiesel
+from the crops seeming to have been maximized.
+
+\begin{table}
+	\centering
+	\caption{Values of variables at optimum for the original solution. \label{tab:optimal_values}}
+	\begin{tabular}{l r}
+		\toprule
+		Crop       & Value at optimum               \\
+		\midrule
+		Soybeans   & \SI{850}{\hectare}             \\
+		Sunflowers & \SI{0}{\hectare}               \\
+		Cotton     & \SI{750}{\hectare}             \\
+		\bottomrule
+		\toprule
+		Product    & Value at optimum               \\
+		\midrule
+		B5         & \SI{0}{\liter}                 \\
+		B30        & \SI{214285.7142857143}{\liter} \\
+		B100       & \SI{552803.7857142857}{\liter} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Problem 3}
+\subsection{(a) Availability of petrol, water and area}
+% TODO I think the question means feasible as in there exists a solution
+Using \verb+lp_rhs_perturbation_range(petrol_constraint)+ we find that
+the current basis is always optimal regardless of the petrol limit,
+that is the model will stay feasible if we only change
+the petrol limit in a vacuum.
+Otherwise the delivery constraint will limit what models are feasible.
+With less biodiesel available,
+we will be forced to use the more expensive petrol,
+possible falling back to making B5.
+The water and area constraints are fairly similar;
+the LHS:s only differ on the coefficients for $x$.
+Still how they matter will depend on what happens to be
+the best crop distribution.
+
+\subsection{(b) Potential gain from increasing the availabilities}
+Any increase in availabilities can only increase our potential gains.
+Increasing petrol will increase B30, and after it is maxed out then make B5.
+With unlimited petrol, one would only make B5 at a potential profit of 1.234179e7.
+Hence, B5 is most profit per litre.
+B30 is the most profit per litre of petrolium.
+Increasing water supply will make us able to grow more soy and increase yield.
+This will increase the amount of B100.
+Increasing the availiable area will make us able to grow more cotton and increase yield.
+This will increase the amount of B100.
+This increased yield will not affect B30 production as we already max it out.
+
+In the dual each constraint is represented by one variable.
+Their optimal values are the \emph{shadow prices} -
+how much profit increase would correspond to upping the resource amount
+in the constraint RHS by one unit:
+Decreasing petrol availability by \num{10000} gives a reduction in profits by \num{2535.7} \euro. 
+This is what one would expect from table ~\ref{tab:shadowprices}.
+This relation can be checked for area and water aswell. 
+
+\begin{table}
+	\centering
+	\caption{Shadow prices for the dual variables. \label{tab:shadowprices}}
+	\begin{tabular}{l r}
+		\toprule
+		Constraint & Value per one unit \\
+		\midrule
+		Petrol & 0.2535714285714 \\
+		Area & 276.3402 \\
+		Water & 1.3596599999999994e-5 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{(c) Sunflower}
+Even if the model is augmented such that
+the water demand of sunflower is zero,
+the optimal solution still does not use any sunflower.
+One could bring up the water demand of both soy and cotton
+to make growing anything other than sunflower unfeasible.
+Otherwise, if still only changing one parameter in isolation,
+either yield or oil content has to be changed -
+which one will not matter since they are only ever used multiplied together.
+Using binary search on
+$\text{yield of sunflower} \in [\SI{1.40e3}{\kilo\gram\per\hectare}, 3000] \setminus 10^{-3} \times (0, 1)$,
+for a solution where sunflower is grown,
+we get that the yield has to be increased to around \SI[round-precision=6]{2074.907445907593}{\kilo\gram\per\hectare}
+for the growing of any sunflower to be profitable.
+
+\subsection{(d) The price of petrol at 1.20 \euro/l.}\label{sec:3d}
+The optimal value of the objective was found to be
+\num{5.181630343e+05} \euro. 
+Approximatly 3 000 \euro less than before, with petrol at 1 \euro/l.
+The results are in table~\ref{tab:new_values}.
+
+\begin{table}
+	\centering
+	\caption{Values of variables at optimum for the new solution in section~\ref{sec:3d}. \label{tab:new_values}}
+	\begin{tabular}{l r}
+		\toprule
+		Crop       & Value at optimum               \\
+		\midrule
+		Soybeans   & \SI{850}{\hectare}             \\
+		Sunflowers & \SI{0}{\hectare}               \\
+		Cotton     & \SI{750}{\hectare}             \\
+		\bottomrule
+		\toprule
+		Product    & Value at optimum               \\
+		\midrule
+		B5         & \SI{0}{\liter}                 \\
+		B30        & \SI{214285.7142857143}{\liter} \\
+		B100       & \SI{552803.7857142857}{\liter} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{(e) Changes in tax-policy}
+Any increase in tax will make the objective value decrease or stay the same. 
+Any decrease in tax will make the objective value increase or stay the same. 
+To have a difference on which products we make, the most profitable product per litre must change. 
+With the original data the optimal usage of vegetable oil is making B30, followed by B100, and then B5. 
+For the tax differences to affect which product is being made it must disrupt this order. 
+Three important breaking points are: 
+B100 more profitable than B30 for tax at 10\%. 
+B100 more profitable than B5 for tax at 19\%. 
+B30 as profitable as B5: $\textrm{tax}_5 = (\textrm{tax}_{30} + 0.11)/1.11$.
+We can get a different result by B5 being more profitable than B30 or B100 being more profitable than B30 and B5. 
+B5 more profitable than B30: This causes the production to make B5 at maximal capacity.  
+Then with any remaining capacity, B100 would be made. 
+B100 more profitable than B5 and B30: In that case there would only be B100 produced. 
+
+\subsection{(f) Uncertainty of weather}\label{sec:3f}
+Changing the water demand for all crops by some factor $f$
+is the same as instead changing the availabile water amount
+by $1/f$ due to linearity.
+Changing water availablility is effectively the same as moving a hyperplane
+and we know that we will stay in the same basis and in turn vertex
+while doing so for perturbations of size
+\verb+JuMP.lp_rhs_perturbation_range(water_constraint) = (-3.4e9, 3.0e9)+.
+Therefore the optimum will move linearly
+and since the objective function is a linear function,
+we can construct the objective as a function of water availablility
+by only knowing two points
+$$ \left\{ \begin{array}{r l}
+	z(w) &= z_0 + \frac{z_1 - z_0}{w_1 - w_0} (w - w_0) \\
+	(z_0, w_0) &= (\num{5.481630343e+05}, \num{5000e6}) \\
+	(z_1, w_1) &= (\num{5.345664343e+05}, \num{4000e6})
+\end{array} \right.
+	$$
+where $z$ is the optimal objective, $w$ is the water limit
+and $(z_0, w_0)$, $(z_1, w_1)$ are two points.
+
+Furthermore, since the water constraint is active
+(as shown by the constraint right-hand side \num{5.0e9} being equal to
+\verb+JuMP.value(water_constraint)+)
+any tweaking of the coefficients in the LHS of the constraint
+will necessitate a change in optimal solution.
+That is, the water demand for soybeans is not allowed to change one bit.
+
+\subsection{(g) Optimal value of the objective function}
+Following the same reasoning as in section~\ref{sec:3f},
+the values of \verb+lp_rhs_perturbation_range+ for
+\verb+petrol_constraint+, \verb+water_constraint+ and \verb+area_constraint+
+are all non-empty ranges,
+wherefore the objective function will react linearly to small-enough perturbations.
+By querying at these points we get that
+$$ z(\Delta) = z_0 + k \Delta $$
+where $\Delta = (dP_\text{max}, dW_\text{max}, dA_\text{max})^T$ is the perturbation
+and
+$$ k = \frac1{10^4} \left[ \begin{array}{l}
+	\num{5.506987486e+05} - z_0 \\
+	\num{5.481631703e+05} - z_0 \\
+	\num{1.487719714e+06} - z_0 \\
+\end{array}\right]$$
+
+\subsection{(h) A more sustainable objective function}
+An easy way would be just taxing the unecofriendly options more. 
+This would cause ecofriendly options to be priorizied. 
+Examples of data which could affect how high the tax should be:
+Amount of CO2 equivalents being released per product, amount of eventual hazardous substances being released, etc. 
+Additionally there would be value in looking at the crops being grown. 
+Cotton, being the most water efficient crop, could be prioritized using some kind of extra tax aswell.
+For this, one could tax water usage. 
+Other factors to take into account are, for example: 
+The amount of pesticide being released per crop, how much land the crop needs, in what state the used land ends up in, 
+ie. to what level does the crop drain the nutrients of the ground?
+All this data could then be used to make appropriate tax levels.  
+This is largely how ecofriendly options are treated in the real world.  
+Of course one could give subsidies aswell, instead of taxing, but that is essentially the other side of the same coin. 
+
+\appendix
+\section{Julia code}\label{app:code}
+\subsection{biodiesel.jl}
+\lstinputlisting{biodiesel.jl}
+\subsection{dat.jl}
+\lstinputlisting{dat.jl}
+\subsection{mod.jl}
+\lstinputlisting{mod.jl}
+
+\end{document}

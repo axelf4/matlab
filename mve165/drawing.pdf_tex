@@ -1,0 +1,80 @@
+%% Creator: Inkscape inkscape 0.92.4, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'drawing.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{867.99077072bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.7969927)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{drawing.pdf}}%
+    \put(0.15162041,0.30226749){\color[rgb]{0,0,0}\rotatebox{24.351747}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_\text{cotton}$ ha of cotton\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{drawing.pdf}}%
+    \put(0.55519068,0.07015303){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}0.9 l biodiesel\end{tabular}}}}%
+    \put(0.36860508,0.38434105){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1l veg oil\end{tabular}}}}%
+    \put(0.51678588,0.31542021){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}0.2 l Methanol\end{tabular}}}}%
+    \put(0.33072319,0.22018584){\color[rgb]{0,0,0}\rotatebox{-32.509336}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Transesterification\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{drawing.pdf}}%
+    \put(0.0418778,0.37113581){\color[rgb]{0,0,0}\rotatebox{24.351747}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_\text{sunflower}$ ha of sunflowers\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{drawing.pdf}}%
+    \put(0.42521733,0.7794639){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}5000 Ml Water\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{drawing.pdf}}%
+    \put(-0.02633945,0.4515715){\color[rgb]{0,0,0}\rotatebox{24.351747}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_\text{soybeans}$ ha of soybeans\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{drawing.pdf}}%
+    \put(0.4838835,0.70942512){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1600 ha area\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{drawing.pdf}}%
+    \put(0.76074524,0.12486791){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Petrol 1\euro/l\end{tabular}}}}%
+    \put(0.81382343,0.00019579){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}max 150000 l\end{tabular}}}}%
+    \put(0.59610155,0.52216084){\color[rgb]{0,0,0}\rotatebox{-33.188678}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_\text{B5}$ l of B5\end{tabular}}}}}%
+    \put(0.68942587,0.52780141){\color[rgb]{0,0,0}\rotatebox{-33.188678}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_\text{B30}$ l of B30\end{tabular}}}}}%
+    \put(0.77336351,0.54508276){\color[rgb]{0,0,0}\rotatebox{-33.188678}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_\text{B100}$ l of B100\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{drawing.pdf}}%
+    \put(0.77021072,0.76823458){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}min 280000 l of\\biodiesel\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
