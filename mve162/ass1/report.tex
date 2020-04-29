@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+\usepackage[backend=biber]{biblatex}
+\usepackage{amsmath, amsfonts, amsthm, mathtools}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cancel}
+\usepackage{siunitx}
+
+\bibliography{sources}
+\sisetup{
+	round-mode=figures,
+	round-precision=3,
+	}
+\DeclareSIUnit\st{st}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}[theorem]
+
+\DeclareMathOperator{\diag}{diag}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+% \let\oldnorm\norm
+% \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\title{MVE162}
+\author{Axel Forsman}
+
+\begin{document}
+% \maketitle
+
+Analysera Coronavirus spridning i Sverige.
+Vi betraktar susceptible-infected-removed (SIR) modellen
+\begin{equation}\label{eq:sir}
+	\begin{alignedat}{4}
+		& \frac{dS}{dt} &=& -&&rSI && \\
+		& \frac{dI}{dt} &=& &&rSI &-& \gamma I \\
+		& \frac{dR}{dt} &=& && &&\gamma I
+	\end{alignedat}
+\end{equation}
+där $S(t), I(t), R(t)$ betecknar antalet motagliga, infekterade
+respektive borttagna individer efter $t \in [0, \infty)$ veckor,
+$S, I, R \ge 0$.
+Låt $N = \SI{10327589}{\st}$ vara antalet invånare i Sverige
+(enligt mätningar från 2020) \autocite{population}.
+Begynnelsevärden läts spegla situationen just innan
+första smittspridningen i Sverige,
+med $S(0) = N, R(0) = 0$ och $I(0) = I_0$,
+där $I_0 = 1$ är det lilla antalet från början importerade infekterade -
+som vi kommer se har det inte för stor påverkan på modellen. % TODO
+
+% Question 1
+
+Då de två första ekvationerna i~\eqref{eq:sir}
+är oberoende av $R$
+kan vi betrakta dem separat
+$$ \frac{dI}{dt} \overset{\text{chain}}{\underset{\text{rule}}=} \frac{dI}{dS} \frac{dS}{dt}
+\implies \Phi(S) \coloneqq \frac{dI}{dS} \overset{\eqref{eq:sir}}= \frac{rSI - \gamma I}{-rSI} = \frac\gamma{rS} - 1 $$
+under antagandet att $S \ne 0$.
+Integration av $\Phi$ ger ett explicit uttryck för $I(S)$,
+$$ I(S) = \int \Phi(\sigma) \, d\sigma = \frac\gamma r \ln S - S + C $$
+där $C$ är integrationskonstanten som finnes genom
+insättning av begynnelsevärdena $I(S) \vert_{S=N} = I_0$.
+Vi ser att $I(S) \to 0, S \to 1$ och $I(S) \to -\infty, S \to \infty$.
+För att undersöka eventuella extrempunkter
+noterar vi att $\Phi(S) = 0 \Leftrightarrow S = \gamma / r \eqqcolon \rho$,
+vilket är en maximipunkt enligt gränsvärdesuppförandet.
+% TODO Add plot
+Vidare är $\Phi(S) > 0 \quad \forall S < \rho$,
+vilket sammantaget med faktumet att
+$\frac{dS}{dt} < 0 \quad \forall t$
+gör att $I(t)$ är monotont avtagande för $t : S(t) \le \rho$ -
+varför $\rho$ är den övre gräns på antalet motagliga
+för att epidemin med tiden ska dö ut.
+
+Med veckor som tidsenhet.
+\cite{folkhalso}
+
+\printbibliography
+
+\end{document}
