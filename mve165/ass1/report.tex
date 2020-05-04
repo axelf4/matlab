@@ -7,8 +7,10 @@
 \usepackage{siunitx}
 \usepackage{eurosym}
 \usepackage{listings}
+\usepackage{pgfplots, pgfplotstable}
 \usepackage{lmodern, microtype}
 
+\pgfplotsset{compat=1.15}
 \sisetup{
 	round-mode = figures,
 	round-precision = 3,
@@ -77,30 +79,52 @@ $\text{price} * (1 - \text{tax})$ for the product in question.
 Let $x_c \ge 0$ be the area in hectar to grow of crop $c \in C$,
 and let $y_p \ge 0$ be number of litres to produce of product $p \in P$,
 see figure~\ref{fig:productflow}.
-The number of litres of vegetable oil produced then becomes
-$$ \text{vegoil} = \sum_{c \in C} \text{oilcontent}(c) \, \text{yield}(c) \, x_c $$
-with the water and area limits
-$$ \sum_c \text{waterdemand}(c) \, x_c \le \SI{5000}{\mega\liter} \quad
-\sum_c x_c \le \SI{1600}{\hectare} $$
-Since \emph{all} oil is transesterificated the total amount of biodiesel is
-$$ \text{biodieselamount} = 0.9 \text{vegoil} $$
-The amount of petrol used is
-$$ \text{petrolusage} = \sum_{p \in P} (1 - \text{biodieselprop}(p)) \, y_p $$
-The petrol and delivery constraints become
-$$ \text{petrolusage} \le \SI{150000}{\liter} \quad \sum y \ge \SI{280000}{\liter} $$
-We cannot use more biodiesel than we have produced
-$$ \sum_p \text{biodieselprop}(p) \, y_p \le \text{biodieselamount} $$
-which relates the crop and product sides.
-The objective  is then to maximize the profits,
+The objective is then to maximize the profits,
 i.e. the incomes minus the price of methanol and petrol,
-$$ z = \sum_p \text{effectiveprice}(p) \, y_p - \num{1.5} \cdot 0.2 \, \text{vegoil} - 1 \, \text{petrolusage} $$
+with the constraints translated straightforwardly,
+\begin{equation*}
+	\begin{aligned}
+		\max_{x, y} \quad & z = \sum_p \text{effectiveprice}(p) \, y_p - \mathbb P_\text{methanol} \cdot M_\% \, \text{vegoil} - \mathbb P_\text{petrol} \, \text{petrolusage} \\
+		\textrm{s.t.} \quad & \sum_{c \in C} \text{waterdemand}(c) \, x_c \le W_\text{max} \\
+		& \sum_{c \in C} x_c \le A_\text{max} \\
+		& \text{petrolusage} \le P_\text{max} \\
+		& \sum y \ge Y_\text{min} \\
+		& \sum_{p \in P} \text{biodieselprop}(p) \, y_p \le \text{biodieselamount}
+	\end{aligned}
+\end{equation*}
+where
+$$ \text{vegoil} = \sum_{c \in C} \text{oilcontent}(c) \, \text{yield}(c) \, x_c $$
+is the number of litres of vegetable oil produced,
+the total amount of biodiesel (since \emph{all} oil is transesterificated) is
+$$ \text{biodieselamount} = B_\% \text{vegoil} $$
+and the amount of petrol used is
+$$ \text{petrolusage} = \sum_{p \in P} (1 - \text{biodieselprop}(p)) \, y_p $$
+The values of the constants used for optimization is shown in table~\ref{tab:const_vals}.
+
+\begin{table}
+	\centering
+	\caption{Effective values of the constants present in the model. \label{tab:const_vals}}
+	\begin{tabular}{l r}
+		\toprule
+		Constant & Value \\
+		\midrule
+		$W_\text{max}$ & \SI{5000}{\mega\liter} \\
+		$A_\text{max}$ & \SI{1600}{\hectare} \\
+		$P_\text{max}$ & \SI{150000}{\liter} \\
+		$Y_\text{min}$ & \SI{280000}{\liter} \\
+		$B_\%$ & 0.9 \\
+		$M_\%$ & 0.2 \\
+		$\mathbb P_\text{methanol}$ & 1.5 \euro/$l$ \\
+		$\mathbb P_\text{petrol}$ & 1 \euro/$l$ \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 \begin{figure}
 	\centering
 	\def\svgwidth{\textwidth}
 	\input{drawing.pdf_tex}
-	\caption{The product flow of the problem
-	showing the optimization variables. \label{fig:productflow}}
+	\caption{The product flow of the problem showing the optimization variables. \label{fig:productflow}}
 \end{figure}
 
 \section{Problem 2}
@@ -135,7 +159,6 @@ from the crops seeming to have been maximized.
 
 \section{Problem 3}
 \subsection{(a) Availability of petrol, water and area}
-% TODO I think the question means feasible as in there exists a solution
 Using \verb+lp_rhs_perturbation_range(petrol_constraint)+ we find that
 the current basis is always optimal regardless of the petrol limit,
 that is the model will stay feasible if we only change
@@ -201,7 +224,7 @@ for the growing of any sunflower to be profitable.
 \subsection{(d) The price of petrol at 1.20 \euro/l.}\label{sec:3d}
 The optimal value of the objective was found to be
 \num{5.181630343e+05} \euro. 
-Approximatly 3 000 \euro less than before, with petrol at 1 \euro/l.
+Approximatly \num{3e+04} \euro{} less than before, with petrol at 1 \euro/l.
 The results are in table~\ref{tab:new_values}.
 
 \begin{table}
@@ -232,13 +255,27 @@ To have a difference on which products we make, the most profitable product per 
 With the original data the optimal usage of vegetable oil is making B30, followed by B100, and then B5. 
 For the tax differences to affect which product is being made it must disrupt this order. 
 Three important breaking points are: 
-B100 more profitable than B30 for tax at 10\%. 
-B100 more profitable than B5 for tax at 19\%. 
+B100 more profitable than B30 for tax at \SI{10}\percent. 
+B100 more profitable than B5 for tax at \SI{19}\percent. 
 B30 as profitable as B5: $\textrm{tax}_5 = (\textrm{tax}_{30} + 0.11)/1.11$.
 We can get a different result by B5 being more profitable than B30 or B100 being more profitable than B30 and B5. 
 B5 more profitable than B30: This causes the production to make B5 at maximal capacity.  
 Then with any remaining capacity, B100 would be made. 
 B100 more profitable than B5 and B30: In that case there would only be B100 produced. 
+The values of the objective function for different tax values
+are shown in figure~\ref{fig:tax_objective}.
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[xlabel = Tax, ylabel = Profit,]
+			\addplot table[x=Tax,y=Profit,col sep=comma] {profit5.csv};
+			\addplot table[x=Tax,y=Profit,col sep=comma] {profit30.csv};
+			\legend{B5, B30}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{The objective function for different tax values. \label{fig:tax_objective}}
+\end{figure}
 
 \subsection{(f) Uncertainty of weather}\label{sec:3f}
 Changing the water demand for all crops by some factor $f$
