@@ -9,6 +9,7 @@
 \usepackage{siunitx}
 \usepackage{pgfplots, pgfplotstable}
 \usepackage[useregional]{datetime2}
+\usepackage{listings}
 \usepackage{lmodern, microtype}
 
 \pgfplotsset{compat=1.15}
@@ -21,6 +22,12 @@
 	round-precision=3,
 	}
 \DeclareSIUnit\st{st}
+\lstset{
+	breaklines=true,
+	postbreak=\mbox{$\hookrightarrow$\space},
+	breakindent = 5pt,
+	breakautoindent = false,
+}
 
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
@@ -38,14 +45,29 @@
 
 \newcommand\covid{COVID\nobreakdash-19}
 
-\title{MVE162}
+\title{Två modeller för \covid{} epidemin i Sverige}
 \author{Axel Forsman}
 
 \begin{document}
-% \maketitle
+\maketitle
 
-Analysera Coronavirus spridning i Sverige.
-Vi betraktar susceptible-infected-removed (SIR) modellen
+\begin{abstract}
+	Två enkla ordinära differentialekvationsmodeller
+	för \covid{} epidemin i Sverige presenteras,
+	den andra utökad från den första för att omfatta
+	Sveriges isolationspolitik för personer 70 år och äldre.
+	Statistik från SCB används för att estimera parameterna
+	och deras lösningar analyseras.
+	Resultatet är att en väldigt stor andel av befolkningen
+	(\SI{0.9947}\percent) kommer smittas innan epidemin dör ut,
+	och, i den andra modellen, att det gått att mitigera
+	om alla över 20 år isolerats.
+\end{abstract}
+
+\section{SIR-modellen}
+
+För att analysera \covid:s spridning i Sverige
+betraktar vi susceptible-infected-removed (SIR) modellen
 \begin{equation}\label{eq:sir}
 	\begin{alignedat}{4}
 		& \frac{dS}{dt} &=& -&&rSI && \\
@@ -53,7 +75,7 @@ Vi betraktar susceptible-infected-removed (SIR) modellen
 		& \frac{dR}{dt} &=& && &&\gamma I
 	\end{alignedat}
 \end{equation}
-där $S(t), I(t), R(t) \ge 0$ betecknar antalet motagliga, infekterade
+där $S(t), I(t), R(t) \ge 0$ betecknar antalet mottagliga, infekterade
 respektive borttagna (antingen återhämtade eller bortgångna)
 individer efter $t \in \mathbb R^+$ veckor.
 \def\N{10327589}
@@ -62,11 +84,9 @@ Låt $N = \SI{10327589}\st$ vara antalet invånare i Sverige
 Begynnelsevärden läts spegla situationen just innan
 första smittspridningen i Sverige,
 med $S(0) = N, R(0) = 0$ och $I(0) = I_0$,
-där $I_0 = 1$ är det lilla antalet från början importerade infekterade -
-som vi kommer se har det inte för stor påverkan på modellen. % TODO
+där $I_0 = 1$ är det lilla antalet från början importerade infekterade.
 
 % Question 1
-
 Då de två första ekvationerna i~\eqref{eq:sir}
 är oberoende av $R$
 kan vi betrakta dem separat
@@ -87,7 +107,7 @@ Vidare är $\Phi(S) > 0 \quad \forall S < \rho$,
 vilket sammantaget med faktumet att
 $\frac{dS}{dt} < 0 \quad \forall t$
 gör att $I(t)$ är monotont avtagande för $t : S(t) \le \rho$ -
-varför $\rho$ är den övre gräns på antalet motagliga
+varför $\rho$ är den övre gräns på antalet mottagliga
 för att epidemin med tiden ska dö ut.
 
 % Question 2
@@ -104,7 +124,7 @@ Dessutom kommer vi anta att de registrerade fallen endast representerar
 Låt $t=0$ representera \DTMdate{2020-02-04} då första infektionen inträffade.
 $$ r^* \coloneqq \argmin_r \sum_{t \in T_q} (S_r(t) - S_{\text{actual}}(t))^2 $$
 där
-$$ T_q = \left\{\text{2020-03-12} + n \cdot 1 \text{\,week} \le \text{2020-04-29} \vert n \in \mathbb N \cup \{0\} \right\} $$
+$$ T_q = \left\{\text{2020-03-12} + n \cdot 1 \text{\,vecka} \le \text{2020-04-29} \vert n \in \mathbb N \cup \{0\} \right\} $$
 Från och med den 12:e mars ändrades metodiken för vilka individer
 som testades till att bara inkludera inlagda personer från riskgrupper
 och sjukhuspersonal med symptom,
@@ -142,7 +162,7 @@ $$ \rho = \frac\gamma r = \num{\rhoVal} < N = \num{\N} $$
 det vill säga,
 enligt modellen kommer antalet fall per dag öka tills
 invånarantalet når $\rho$, för att sedan avta.
-Den numeriska lösningen för parametrarna i fråga är redovisad i figure~\ref{fig:sir_solution}
+Den numeriska lösningen för parametrarna i fråga är redovisad i figur~\ref{fig:sir_solution}
 med de augmenterade värdena för antalet smittofall.
 Vi ser att $S(t)$ asymptotiskt går mot 0 alltså att alla blir infekterade.
 
@@ -215,7 +235,7 @@ så att komma närmre origo.
 \end{figure}
 
 % Question 3 & 5.
-Hittils är det totala antalet rapportede infekterade 20302 stycken,
+Hittills är det totala antalet rapporterade infekterade 20302 stycken,
 och det totala antalet dödsfall, 2449 stycken \autocite{folkhalso}.
 Därför är en grov uppskattning av dödligheten till följd av \covid{},
 $$ D_\% = \frac{2449}{\frac1{\SI5{\percent}} 20302} = \SI{0.6031}{\percent} $$
@@ -225,17 +245,37 @@ men är ändå i närheten av WHO:s uppskattning på \SIrange12{\percent} \autoc
 Då, enligt ovan, alla så småningom blir infekterade är också detta
 andelen döda personer vid slutet av epidemin.
 
-\section{Andra modellen}
+\section{Utökad SIR-modell för isolationspolitiken}
 
+Sveriges politik om att isolera personer 70 år och äldre
+ämnar sig bättre åt en lite annorlunda modell,
+där $S$ och $R$ klasserna delats upp i $S_1, R_1$ och $S_2, R_2$
+för de inte isolerats respektive resten,
+med två olika infektionstakter $r_1, r_2$.
+Nödvändigtvis, är då $r_2 < r_1$.
 \begin{equation}\label{eq:ssirr}
 	\begin{alignedat}{4}
-		& \frac{dS_1}{dt} &=& &-r_1&SI && \\
-		& \frac{dS_2}{dt} &=& &-r_2&SI && \\
-		& \frac{dI}{dt} &=& &(r_1 + r_2)&SI &-\gamma& I \\
+		& \frac{dS_1}{dt} &=& &-r_1&S_1I && \\
+		& \frac{dS_2}{dt} &=& &-r_2&S_2I && \\
+		& \frac{dI}{dt} &=& &(r_1S_1 + r_2S_2)&I &-\gamma& I \\
 		& \frac{dR_1}{dt} &=& && &\frac{r_1}{r_1 + r_2} \gamma& I \\
 		& \frac{dR_2}{dt} &=& && &\frac{r_2}{r_1 + r_2} \gamma& I
 	\end{alignedat}
 \end{equation}
+Åldersdistributionen i Sverige given av SCB är redovisad i figur~\ref{fig:pop_dist}.
+Från den utläses att andelen personer av ålder $70+$ är
+$$ p_{70+} = \SI{0.1477}\percent $$
+vilket ger begynnelsevärdena $S_1(0) = (1 - p_{70+}) N, \, S_2(0) = p_{70+} N$,
+med resten liknande de i \eqref{eq:sir}.
+Under antagandet att vårt tidigare deriverade $r^*$ var optimalt
+måste vi ha
+$$ \frac{dS_1}{dt} + \frac{dS_2}{dt} = -r^* (S_1 + S_2) I \implies r_1 = r^* + (r^* - r_2) \frac{S_2}{S_1} $$
+varför det räcker att estimera $r_2$, vilket görs på samma sätt som tidigare
+så att andelen sjukdomsfall i åldersgruppen $\le 70$,
+$p_{\le 70}^\text{sjukdomsfall} = \SI{0.6391}\percent$, se figur~\ref{fig:casesPerAge},
+överensstämmer.
+Vi får då
+$$ r_1 = \num{1.4484e-07} \quad \text{och} \quad r_2 = \num{2.5441e-08} $$
 
 \begin{figure}
 	\centering
@@ -251,9 +291,73 @@ andelen döda personer vid slutet av epidemin.
 				\addplot table[x=Age,y=Individuals,col sep=comma] {populationDist.csv};
 		\end{axis}
 	\end{tikzpicture}
-	\caption{Åldersdistributionen i Sverige år 2019. \autocite{populationDist}}
+	\caption{Åldersdistributionen i Sverige år 2019. \autocite{populationDist} \label{fig:pop_dist}}
 \end{figure}
 
+Med takten då individer i isolation blir smittade estimerad,
+kan vi sedan ändra andelen av befolkningen som är isolerad separat.
+$R_1(t)$ och $R_2(t)$ är då antalet borttagna individer som
+inte varit isolerade respektive varit.
+Med statistik över antalet sjukdomsfall och dödsfall,
+se tabell~\ref{fig:casesPerAge},
+kan vi uppskatta dödsrisken för smittade av olika åldersgrupper.
+Figur~\ref{fig:isolation_values} visar resultatet.
+Vi ser att om istället alla 30 år och äldre isolerats
+så hålls dödstalet väldigt lågt.
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+				ybar interval,
+				symbolic x coords={0-9, 10-19, 20-29, 30-39, 40-49, 50-59, 60-69, 70-79, 80-89, 90+},
+				xtick=data,
+				xticklabel style = {rotate=45, anchor=north east},
+				xlabel = Ålder, ylabel = Antal fall,
+				width = \textwidth, height=0.5\textwidth,
+				legend style={at={(0.05,0.95)},anchor=north west},
+				]
+				\addplot table[x=Age,y=Infections,col sep=comma] {casesPerAge.csv};
+				\addplot table[x=Age,y=Diseased,col sep=comma] {casesPerAge.csv};
+				\legend{Sjukdomsfall, Dödsfall}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Sjukdomsfall och dödsfall per åldersgrupp. \autocite{folkhalso} \label{fig:casesPerAge}}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+				ybar interval,
+				xlabel = Antal åldersgrupper som inte är isolerade, ylabel = Antal fall,
+				legend style={at={(0.05,0.95)},anchor=north west},
+				]
+				\addplot table[x=i,y=Infected,col sep=comma] {isolationVals.csv};
+				\addplot table[x=i,y=Dead,col sep=comma] {isolationVals.csv};
+				\legend{Sjukdomsfall, Dödsfall}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Totala antalet infekterade och döda i modell \eqref{eq:ssirr} för olika
+	antal åldersgrupper i isolation.
+	Det vill säga, till exempel 1 korresponderar med att alla förutom 0-10 år är isolerade.
+	\label{fig:isolation_values}}
+\end{figure}
+
+\vspace{2em}
+
+Vi har sett två modeller för \covid{} epidemin i Sverige.
+Graden med vilken de representerar verkligheten är dock diskuterbar.
+Åtminstone ett exempel på förbättringsområde är vad som händer
+efter att infektionsfallen ökat dramatiskt -
+man kan tänka sig att det skulle leda ökad isolation.
+Och förhoppningsvis fortsätter dessa modeller vara just modeller
+och inte profetior.
+
+\appendix
+
+\section{MATLAB kod}
+\lstinputlisting[language=MATLAB]{ass1.m}
 
 \printbibliography
 
