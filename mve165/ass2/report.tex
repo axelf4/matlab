@@ -1,0 +1,352 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[english]{babel}
+\usepackage[backend=biber]{biblatex}
+\usepackage{amsmath, amsfonts, mathtools, amsthm}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{eurosym}
+\usepackage{listings}
+\usepackage{pgfplots, pgfplotstable}
+\usepackage[caption=false]{subfig}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{lmodern, microtype}
+
+\bibliography{sources}
+\pgfplotsset{compat=1.15}
+\lstset{
+	breaklines=true,
+	postbreak=\mbox{$\hookrightarrow$\space},
+	breakindent = 5pt,
+	breakautoindent = false,
+}
+\newtheorem{prop}{Proposition}
+\renewcommand{\arraystretch}{1.2}
+
+\title{Maintenance scheduling}
+\author{Axel Forsman, Jonas Lauri}
+
+\begin{document}
+\maketitle
+Collectively approximately 15 hours were spent on this assignment.
+
+We refer to the BLP model presented in \autocite{almgren12}
+for maintenance scheduling.
+
+\section{Relaxation behaviour}
+We will first consider the model given in the assignment instructions,
+with the following sets, parameters and variables
+\begin{itemize}
+    \item $N = \text{the set of components in the system}$
+    \item $T = \text{the number of time steps in the planning period}$
+    \item $T_i = \text{the life of a new component of type } i \in N $
+    \item $c_{it} = \text{the cost a spare component of type } i \in N \text{at time } t$
+    \item $d_t = \text{the cost for a maintenance occation at time } t$ 
+    \item $x_{it} = \begin{cases} 1, \text{if component \,} i \text{\, is replaced at time} \, t, \\ 0, \text{otherwise}
+    \end{cases}$
+\item $z_t = \begin{cases} 1, \text{if maintenance is made at time} \, t, \\ 0, \text{otherwise} \end{cases}$
+\end{itemize}
+with the model being
+\begin{equation*}
+	\begin{aligned}
+        \text{minimize} \quad & \sum^T_{t=1} \left ( \sum_{i \in N} c_{it} x_{it} + d_t z_t \right ), \\
+        \text{subject to} \quad & \sum^{l+T_i}_{t=l+1} x^i_{st} \ge 1, \\
+        & x_{it} \leq z_t, \\
+        & \forall x_{it}, z_t \in \{0,1\}.
+    \end{aligned}
+\end{equation*}
+
+The solutions with the large data set are in table~\ref{tab:large_dataset}.
+\begin{table}
+    \centering
+    \caption{Solutions for the large dataset. \label{tab:large_dataset}}
+    \begin{tabular}{@{} c r r @{}}
+        \toprule 
+        \multicolumn{1}{c}{Relaxed} & \multicolumn{1}{c}{Solve Time [s]} & \multicolumn{1}{c}{Solution} \\
+        \midrule
+        - & 12 & 762 \\
+        x & 2 & \num{7.619999952763e+02} \\
+        x, z & 0.06 & \num{7.239047619e+02} \\
+        \bottomrule 
+    \end{tabular}
+\end{table}
+The reason it takes longer for the integer problems is that the problem must be iterated many times, where we at each step make a cut in the set of solutions.
+The solutions with the large data set are in table~\ref{tab:small_dataset}.
+\begin{table}\centering
+    \caption{Solutions for the small dataset. \label{tab:small_dataset}}
+    \begin{tabular}{@{}crl@{}}\toprule 
+        \multicolumn{1}{c}{Relaxed} & \verb+add_cut_to_small(m)+ & \multicolumn{1}{c}{Solution} \\
+        \midrule
+        - & FALSE & 14 \\
+        x, z & FALSE & 13.5 \\
+        x, z & TRUE & 13.5 \\
+        \bottomrule 
+    \end{tabular}
+\end{table}
+Relaxing integrality constraints will give us an as good or better optimization. 
+The function does not cut away any feasible solution, as will be proven, and therefore the optimum stays the same.
+
+\begin{proof}
+Proof by contradiction.
+Suppose the model augmented with
+$$ z_1 + x_{12} + x_{22} + x_{13} + x_{23} + z_4 \le 1 $$
+has a feasible solution,
+for which only one of $z_1,x_{12},x_{22},x_{13},x_{23},z_4$ can be one,
+the others zero, or they are all zero.
+Only six possible combinations: Consider them each exhaustively.
+If $z_1$ is true all maintenance has to be done on time unit,
+but life of component 1 is 3, so impossible.
+Similairily for $z_4$.
+If any one of $x_{12},x_{22},x_{13},x_{23}$ is true,
+say maintenance is done for component 1 at time unit 2,
+then no maintenance may be done for the other component,
+but its life is 4, thus impossible.
+If all are zero then no maintenance can be performed on any day.
+\end{proof}
+
+\section{Solve times}
+Solve times for when integer requirements have been lifted from the $z$ variables
+are shown in figure~\ref{fig:2a}, and, 
+from all variables, in figure~\ref{fig:2b}.
+We see that in the first case they are exponential,
+whereas in the second, subexponential.
+Gurobi uses the branch-and-bound (B\&B) algorithm,
+which in the case of binary variables
+in the worst case has time complexity $O(2^n)$,
+where $n$ is the number of binary variables,
+since that is the maximum number of candidate solutions
+that may need to be considered with a LP solver.
+Indeed, in the first case we will have $\lvert \mathcal N \rvert \, T$
+binary variables,
+and zero in the second case.
+With all variables taking continuous values a standard LP solver will suffice.
+
+The B\&B algorithm can be divided into three parts:
+(I) presolve, including heuristics and problem preprocessing;
+(II) minimizing each branch;
+and (III) verifying optimality of a solution.
+The presolve can be assumed to show up as a constant term in figure~\ref{fig:2a} -
+we see that not a big portion of time is spent by Gurobi on this step.
+Since verifying optimality in essence entails doing (II) for multiple subbranches,
+and since this is basically what is done once for every solve in figure~\ref{fig:2b} -
+which takes many orders of magnitude less time -
+we can conclude that (III) is by far the most time consuming.
+
+\begin{figure}
+    \centering
+    \subfloat[]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ymode = log, scale = 0.6,
+        ]
+            \addplot table[col sep=comma] {cpu2a.csv};
+            \addplot[no markers, thick, red] table[y = {create col/linear regression},col sep=comma] {cpu2a.csv}
+            node [anchor=east] {$\pgfmathprintnumber[precision=2, fixed zerofill]
+      {\pgfplotstableregressiona} \cdot x
+      \pgfmathprintnumber[precision=1]{\pgfplotstableregressionb}$}; % TODO this is not necessary?
+        \end{axis}
+    \end{tikzpicture}
+    \label{fig:2a}
+    }
+    \subfloat[]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ymode = log, scale = 0.6,
+        ]
+            \addplot[no markers, blue] table[col sep=comma] {cpu2b.csv};
+        \end{axis}
+    \end{tikzpicture}
+    \label{fig:2b}
+    }
+    \caption{Logarithmic plots of solve times in seconds 
+    for the first model and the large dataset, with:
+    \protect\subref{fig:2a} Integer requirements on $z$ only,
+    with added regression line; and
+    \protect\subref{fig:2b} All integer requirements relaxed.
+    Note that the x-axes differ. \label{fig:2_cpu}}
+\end{figure}
+
+\section{Generalized model}
+Next, we will consider the generalized model given in
+\autocite{gustavsson14}
+\begin{equation*}
+	\begin{aligned}
+        \text{minimize} \quad & \sum_{t \in T} d_t z_t + \sum_{i \in N} \sum_{(s,t) \in I} c^i_{st} x^i_{st}. \\
+        \text{subject to} \quad & \sum^{t-1}_{s=0} x^i_{st} \le z_t, \\
+        & \sum^{t-1}_{s=0} x^i_{st} = \sum^{T+1}_{r=t+1} x^i_{tr}, \\
+        & \sum^{T+1}_{t=1} x^i_{0t} = 1, \\
+        & \forall x^i_{st}, z_t \in \{0,1\}.
+    \end{aligned}
+\end{equation*}
+where
+$I \coloneqq \{(s,t): 0 \le s < t \le T + 1; (s,t), \in Z\}$
+is a set of intervals and
+$$ x^i_{st} = 
+\begin{cases} 
+ 1, \text{if component $i$ receives maintenance at the times $s$ and $t$, not inbetween} \\
+ 0, \text{otherwise}
+\end{cases} $$
+with $z$ as before.
+The model can be interpreted as a network flow with the
+time steps as nodes, and $x_{st}$ as edges.
+
+% Compare the outcomes from the two models and make relevant conclusions. Illustrate with suitable graphs.
+The two models seem to have approximately the same level of complexity,
+as their solve times match up closely save for a constant factor,
+see figure~\ref{fig:3_cpu}.
+% Discuss the characterization of the mathematical model from the article in terms of, e.g., integrality property and network flows. Explain your findings.
+Relaxing the integrality constraints on the $x$ will not change the optimal solution,
+as all extreme points of the feasible set have integer coordinates,
+as shown by \textit{Proposition 1} in \autocite{gustavsson14}, which follows from the problem's close connection to network flow problems for which this property is known,
+\begin{prop}
+If the variables $z_t, t \in T$, are fixed to binary values then the polyhedron $P^z \subset \mathbb{R}^{n(T+1)(T+2)/2}$ possesses integral extreme points.
+\end{prop}
+Comparing the objective values of the respective solutions,
+see figure~\ref{fig:3_obj},
+we that the generalized model consistently gets lower costs,
+even in the face of relaxed integrality constraints,
+and the fact that they should model the same thing
+in the absence of relaxations.
+This is not what we would expect, however,
+since as relaxing the $x$ variables is unnecessary for the generalized model,
+as per above,
+it should only be more beneficial to the first model.
+Thus it is possible that there is a slight error in our implementation of the model.
+
+\begin{figure}
+    \centering
+    \subfloat[]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ymode = log, scale = 0.6,
+            legend style={at={(1,0.0)},anchor=south east},
+        ]
+            \addplot table[col sep=comma] {cpu2a_other.csv};
+            \addplot table[col sep=comma] {cpu3a_other.csv};
+            \legend{Model (I), Model (II)}
+        \end{axis}
+    \end{tikzpicture}
+    \label{fig:3a}
+    }
+    \subfloat[]{
+    \begin{tikzpicture}
+        \begin{axis}[
+            ymode = log, scale = 0.6,
+            legend style={at={(1,0.0)},anchor=south east},
+        ]
+            \addplot[thick, blue] table[col sep=comma] {cpu2b_other.csv};
+            \addplot[thick, red] table[col sep=comma] {cpu3b_other.csv};
+            \legend{Model (I), Model (II)}
+        \end{axis}
+    \end{tikzpicture}
+    \label{fig:3b}
+    }
+    \caption{Logarithmic plots of solve times in seconds 
+    for the generalized model and the large dataset, with:
+    \protect\subref{fig:3a} Integer requirements on $z$ only,
+    with added regression line; and
+    \protect\subref{fig:3b} All integer requirements relaxed.
+    Note that the x-axes differ. \label{fig:3_cpu}}
+\end{figure}
+
+% Optimal values
+\begin{figure}
+    \centering
+    \subfloat[]{
+    \begin{tikzpicture}
+        \begin{axis}[ymode=log,scale = 0.6, legend style={at={(1,0.0)},anchor=south east},]
+            \addplot table[col sep=comma, y=Objective] {cpu2a_other.csv};
+            \addplot table[col sep=comma, y=Objective] {cpu3a_other.csv};
+            \legend{Model (I), Model (II)}
+        \end{axis}
+    \end{tikzpicture}
+    \label{fig:3a_obj}
+    }
+    \subfloat[]{
+    \begin{tikzpicture}
+        \begin{axis}[ymode=log,scale = 0.6, legend style={at={(1,0.0)},anchor=south east},]
+            \addplot[thick, blue] table[col sep=comma, y=Objective] {cpu2b_other.csv};
+            \addplot[thick, red] table[col sep=comma, y=Objective] {cpu3b_other.csv};
+            \legend{Model (I), Model (II)}
+        \end{axis}
+    \end{tikzpicture}
+    \label{fig:3b_obj}
+    }
+    \caption{Objective values for the solutions of the first and generalized model
+    and the large dataset, with:
+    \protect\subref{fig:3a_obj} Integer requirements on $z$ only, and
+    \protect\subref{fig:3b_obj} All integer requirements relaxed.
+    Note that the y-axes are logarithmic and the x-axes differ between the plots. \label{fig:3_obj}}
+\end{figure}
+
+\section{Addition of a side constraint}
+We consider an additional constraint to the first model
+that requires that all components have remaining lifes,
+at the end of the planning period ($t=T$),
+that are at least $r \ge 0$,
+\begin{equation}\tag{MinRemLife}
+\sum_{t = T + r - T_i + 1}^T x_{it} \ge 1, \quad \forall i \in \mathcal N
+\end{equation}
+Note that for $r=0$ this is a valid inequality,
+since it is just the constraints for the last time stretch shifted by $r$.
+Also increasing $r$ leads to a strictly more restrictive constraint,
+thereof the monotone cost as a function of $r$,
+see figure~\ref{fig:4b}.
+Notable is that, in this particular dataset,
+the cost of maintenances is constant for each component
+irrespective of time step.
+Larger values of $r$ force replacements to occur closer
+to the end of the time horizon,
+which is disadvantageous for the cost,
+since having to cover a larger time window will require more maintenance occations.
+This is largely what we see happen in practice too.
+% 4.(c)
+Only values $0 \le r \le 10$ yield feasible solutions since
+the dataset \verb+as_dat_large.jl+ contains a component with a life
+of eleven time steps.
+Thus even if maintenance was done at time $t = T$,
+it will have deprecated before $r=11$ time steps have passed,
+and the constraint will not be satisfied.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \pgfplotsset{
+            xmin = 0, xmax = 10,
+        }
+        \begin{axis}[
+          axis y line*=left,
+          ymin=600, ymax=700,
+          xlabel=$r$, ylabel=Cost,
+        ]
+        \addplot[red] table[x=r,y=cost, col sep=comma] {4bValues.csv}; \label{cost_plot}
+        \end{axis}
+
+        \begin{axis}[
+          axis y line* = right,
+          axis x line = none,
+          ymin=9, ymax = 31,
+          ylabel = Number of occurrences,
+          legend style={at={(0.5,-0.2)},anchor=north},
+        ]
+        \addlegendimage{/pgfplots/refstyle=cost_plot}\addlegendentry{Cost}
+        \addplot[mark=o,blue] table[x=r,y=numMaintenances, col sep=comma] {4bValues.csv};
+        \addlegendentry{Number of maintenances}
+        \addplot table[x=r,y=numReplaced, col sep=comma] {4bValues.csv}; \label{replaced_plot}
+        \addlegendentry{Number of replaced components}
+        \end{axis}
+        \end{tikzpicture}
+    \label{fig:4b}
+    \caption{The cost and number of replaced components and maintenances as a function of $r$.}
+\end{figure}
+
+\appendix
+\section{Julia code}\label{app:code}
+\lstinputlisting{ass2.jl}
+
+\printbibliography
+
+\end{document}
