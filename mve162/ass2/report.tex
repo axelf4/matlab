@@ -1,0 +1,365 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+\usepackage[backend=biber]{biblatex}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz, pgfplots, pgfplotstable}
+\usepackage{listings}
+\usepackage{lmodern, microtype}
+\usepackage[caption=false]{subfig}
+
+\bibliography{sources}
+\pgfplotsset{compat=1.14}
+\usetikzlibrary{patterns}
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{cycle list/Dark2,colormap/GnBu}
+\lstset{
+	breaklines=true,
+	postbreak=\mbox{$\hookrightarrow$\space},
+	breakindent = 5pt,
+	breakautoindent = false,
+}
+
+\newtheorem{theorem}{Sats}
+\newtheorem{definition}{Def}
+
+\DeclareMathOperator{\trace}{tr}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\makeatletter
+\def\fps@figure{hbtp}
+\def\fps@table{hbtp}
+
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+% \let\oldnorm\norm
+% \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\newcommand\figurescale{1}
+
+\title{Två modeller för populationer}
+\author{Axel Forsman}
+
+\begin{document}
+\maketitle
+
+\section{Teori och bakgrund}
+
+Populationerna $x_1(t), x_2(t)$ av två arter modelleras med följande
+system av differentialekvationer
+\begin{equation}\label{eq:competition_model}
+	\begin{gathered}
+		\begin{alignedat}{3}
+			x_1' &= r_1 x_1 (1-\frac{x_1}{K_1}) - \alpha_1 x_1 x_2 &&= x_1 (1-x_1) - x_1 x_2 \\
+			x_2' &= r_2 x_1 (1-\frac {x_2}{K_2}) - \alpha_2 x_1 x_2 &&= \nu x_2 (1 - \frac{x_2}\nu) - 2\nu^2 x_1 x_2
+		\end{alignedat} \\
+		x_1, x_2 > 0
+	\end{gathered}
+\end{equation}
+där vi kommer studera fallet
+$r_1=1, K_1=1, \alpha_1=1, r_2=\nu, K_2=\nu, \alpha_2=2\nu^2$
+för olika värden på $\nu>0$
+Den första termen svarar mot mängden resurser är finit,
+där $K_1,K_2$ är största populationsstorlekarna som kan upphållas
+och $r_1,r_2$ är tillväxthastigheterna,
+och den andra, mot konkurrens mellan arterna.
+
+I nästa modell har art nummer två bytts ut mot ett rovdjur
+medan den andra arten får ta platsen som bytesdjur
+\begin{equation}\label{eq:predator_prey_model}
+	\begin{gathered}
+		\begin{alignedat}{3}
+			x_1' &= r x_1 (1-\frac{x_1}K) - w \frac{x_1}{D + x_1} x_2 &&= r x_1 (1-\frac{x_1}K) - \frac{x_1}{1 + x_1} x_2 \\
+			x_2' &= s \left(1 - J \frac{x_2}{x_1}\right) x_2 &&= 1 - J \frac{x_2}{x_1}
+		\end{alignedat} \\
+		x_1, x_2 > 0
+	\end{gathered}
+\end{equation}
+där vi låter $w = D = s = 1$ och undersöker systemet för
+olika värden på $r, K, J > 0$.
+
+% TODO Skriv om teorin
+Låt $J \subset \mathbb R, G \subset \mathbb R^n, \tau \in J, \xi \in G, f \text{\, kontinuerlig i \,} J \times G$.
+Betraktar begynnelsevärdesproblemet
+\begin{equation}\label{eq:ivp}
+	x'(t) = f(t, x); x(\tau) = \xi
+\end{equation}
+Behöver ett antal satser för analysen \autocite{lnotes}:
+
+Följande sats garanterar att lösningar inte skär varandra
+i fallet då högerledet $f$ är oberoende av $t$
+\begin{theorem}{Picard-Lindelöf}
+	Om $f$ är lokalt Lipschitz map. $x \in G$ existerar det en
+	unik maximal lösning $x:I_x \to \mathbb R^n$ till \eqref{eq:ivp}.
+\end{theorem}
+
+Grobman-Hartmans sats gör att vi kan applicera metoder för
+linjära system för
+bestämning av stabilitet av jämviktspunkter
+för olinjära system
+genom att linjärisera högerledet $f$,
+då $f=f(x)$, $f \in C^1$ kring punkten och
+alla egenvärden till linjäriseringsmatrisen $A$
+är sådana att $\Re(\lambda) \ne 0$.
+Vidare är jämviktspunkten
+\begin{itemize}
+	\item Asymptotiskt stabil omm $\Re(\lambda) < 0 \, \forall \lambda \in \sigma(A)$
+	\item Stabil omm $\Re(\lambda) \le 0 \, \forall \lambda \in \sigma(A)$
+		och alla $\lambda$ med $\Re(\lambda) = 0$ är \emph{semisimple}
+		(algebraisk multiplicitet är lika med geometrisk)
+	\item annars instabil
+\end{itemize}
+\autocite{lnotes}
+
+\begin{theorem}{Poincaré-Bendixson}
+	Låt $\xi \in G \subset \mathbb R^2$.
+	Om det slutna höljet av en positiv bana $O_+(\xi)$
+	är kompakt och innesluten i $G$
+	och $\omega$-gränsvärdesmängden $\Omega(\xi)$ saknar jämviktspunkter
+	är $\Omega(\xi)$ banan av en periodisk lösning.
+\end{theorem}
+Med andra ord, om en lösning inte blåser iväg eller
+slutar i en punkt har den en gränsvärdescykel.
+
+\section{Resultat}
+
+\subsection{Modell I}
+
+% 3. Investigate nullclines and equilibrium points for (1)
+Vi undersöker så kallade \emph{nullclines} för systemet \eqref{eq:competition_model},
+det vill säga två linjer där $x_1'=0$ eller $x_2'=0$.
+Om $x_1' = 0$:
+$$ x_1 = 0 \text{\, eller \,} x_2 = 1 - x_1 $$
+Om $x_2' = 0$:
+$$ x_2 = 0 \text{\, eller \,} x_2 = \nu - 2\nu^2 x_1 $$
+Se figur~\ref{fig:nullclines},
+där första kvadranten är intressant då den motsvarar $x_1, x_2 > 0$.
+Skärningspunkter av två nullclines är jämviktspunkter ($x_1'=0, x_2'=0$).
+% 4. Find ν s.t. (1) has equil point corr to coexistance
+För att hitta jämviktspunkten med $x_1, x_2 > 0$,
+vilken motsvarar stabil samexistens av de två arterna,
+sätter vi
+$$ \left\{ \begin{aligned}
+	x_2 &= 1 - x_1 \\
+	x_2 &= \nu - 2\nu^2x_1
+\end{aligned} \right. $$
+och löser ut
+$$ x = \frac{\nu - 1}{2\nu^2 - 1} $$
+då $2\nu^2 - 1 = 0$ ej uppbådar några lösningar.
+Från icke-negativitetsvillkoren på $x_1,x_2$ måste $0 < x_1 < 1$ och genom att
+betrakta var olikhet för de två fallen $2\nu^2 - 1 \overset<> 0$ får vi att
+$$ \nu \in (0, \frac12) \cup (1, \infty) \implies x^* = (\frac{\nu-1}{2\nu^2-1}, \frac{2\nu^2-\nu}{2\nu^2-1}) \text{\, är en jämviktspunkt} $$
+
+% https://tex.stackexchange.com/questions/21408/intersections-in-pgfplots
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+				view = {0}{90},
+				xmin=-0.5, xmax=1.5, ymin=-0.5, ymax=1.5,
+				domain=-0.5:1.5, y domain=-0.5:1.5,
+				thick,
+				]
+				\draw[pattern=checkerboard, pattern color=Dark2-F, opacity=0.2] (0,0) -- (5,0) -- (5,-5) -- (-5,-5) -- (-5,5) -- (0,5) -- cycle;
+				\addplot[Dark2-A] coordinates {(0,-5)(0,5)};
+				\addplot[Dark2-B, samples=2] {0};
+
+				\def\n{0.4}
+				\addplot3 [gray, quiver={u={x * (1 - x) - x * y}, v={y * (\n - y) - 2 * pow(\n, 2) * x * y}, scale arrows=0.005, every arrow/.append style={-latex}}, samples=20] (x,y,0);
+
+				\addplot[Dark2-A, samples=2] {1 - x};
+				\addplot[Dark2-B, samples=2] {(\n - 2 * pow(\n, 2) * x)};
+				\legend{$x_1'=0$, $x_2'=0$}
+
+				\node at (1,1) {$A$};
+				\node at (0.25,0.6) {$B$};
+				\node at (0.2,0.2) {$C$};
+				\node at (1,0.1) {$D$};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Nullclines för systemet \eqref{eq:competition_model} tillsammas med riktingsfält för $\nu=2/5$. Områdena i första kvadranten som avgränsas av nullclinerna är namngivna. \label{fig:nullclines}}
+\end{figure}
+
+För att undersöka för vilka värden på $\nu$ som jämviktspunkten är \emph{stabil}
+linjäriserar vi systemet i den punkten.
+Jakobianen
+$$ \left. Df = \begin{pmatrix}
+	\frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} \\
+	\frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2}
+\end{pmatrix} \right\lvert_{x^*} \eqqcolon A = \begin{pmatrix}
+	-x_1 & -x_1 \\
+	2\nu^2x_1 - 2\nu^2 & x_1 - 1
+\end{pmatrix} $$
+Därav då det karakteristiska polynomet ges av
+$$ p(\lambda) = \lambda^2 - \lambda \trace A + \det A $$
+med
+$$ \trace A = -x_1 + x_1 - 1 = -1 < 0 \quad \det A = x_1 (x_1 - 1) (2\nu^2 - 1) \ne 0 $$
+fås egenvärdena av
+$$ \lambda_{1,2} = \frac{\trace A}2 \pm \sqrt{\left(\frac{\trace A}2\right)^2 - \det A} $$
+Stabil omm $\Re(\lambda) \le 0 \, \forall \lambda \in \sigma(A)$
+och alla egenvärden $\lambda$ med $\Re(\lambda) = 0$ är \emph{semisimple}
+(algebraiska multipliciteten är lika med geometriska multipliciteten).
+Då $\trace A < 0$ räcker det att $\det A > 0 \Leftrightarrow \nu < \frac1{\sqrt2}$
+för att alla egenvärden ska ha negativ realdel,
+Därför är $x^*$ stabil jämviktspunkt för \eqref{eq:competition_model}
+endast då $\nu \in (0, \frac12)$ enligt Grobman-Hartman,
+se figur~\ref{fig:phase_portrait1} där det tydligt syns
+hur, i fallet då $x^*$ är stabil, lösningar graviterar mot $x^*$,
+annars mot jämviktspunkterna på koordinataxlarna.
+Ökning av $\nu$ innebär samtidigt en ökning av tillväxthastigheten
+och maxkapaciteten av populationen $x_2$ och hastigheten
+med vilken den minskar proportionellt med $x_1$.
+Därför är det också logistkt att systemet blir ber labilt
+i och med att $\nu$ blir större,
+då alla de ovannämnda faktorerna hjälper till att svänga systemet
+så att endast en art dominerar.
+
+\begin{figure}
+	\centering
+	\renewcommand{\figurescale}{0.2}
+	\subfloat[]{\input{mod1_stable.tex} \label{fig:mod1_stable}}
+	\subfloat[]{\input{mod1_unstable.tex} \label{fig:mod1_unstable}}
+	\caption{Fasporträtt för modell \eqref{eq:competition_model} med:
+	\protect\subref{fig:mod1_stable} $\nu=1/4$, $x^*$ stabil; och
+	\protect\subref{fig:mod1_unstable} $\nu=5/4$, $x^*$ instabil. \label{fig:phase_portrait1}}
+\end{figure}
+
+Att både x- och y\nobreakdash-axeln är nullclines gör den
+öppna första kvadranten (d.v.s. $x_1, x_2 > 0$) till en
+en positivt invariant mängd,
+då om en trajektoria korsade axlarna skulle det finnas
+två lösningar med samma begynnelsevärde,
+vilket bryter mot entydigheten av lösningar som
+garanteras av Picard-Lindelöfs sats.
+Vidare är varje lösning med $x_1(0), x_2(0) > 0$ begränsad,
+då planet delas upp av nullclinerna i områden där $x'$ har konstant tecken,
+se figur~\ref{fig:nullclines},
+då högerledet i \eqref{eq:competition_model} är kontinuerligt.
+I punkten $(1, 1)$ som för varje val av $\nu$ ligger i område $A$ är
+$$ x' \overset{(1,1)}= \begin{pmatrix}
+	-1 \\
+	\nu - 1 - 2\nu^2
+\end{pmatrix} < 0 $$
+och unionen av de resterande områdena i första kvadranten är begränsad.
+
+\subsection{Modell II}
+
+I likhet med behandlingen för den första modellen undersöker vi nullclines.
+Om $x_1' = 0$:
+$$ x_1 = 0 \quad rx_1 (1 - \frac{x_1}K) = \frac{x_1}{1+x_1} x_2 \overset{x_1 \ne 0}{\underset{1+x_1 \ne 0}\implies} x_2 = r (1 - \frac{x_1}K) (1 + x_1) $$
+Om $x_2' = 0$:
+$$ J \frac{x_2}{x_1} = 1 \overset{x\ne0}{\underset{J\ne0}\implies} x_2 = \frac1J x_1 $$
+För att hitta skärningen i första kvadranten löser vi
+$$ \left\{ \begin{aligned}
+	x_2 &= r (1 - \frac{x_1}K) (1 + x_1) \\
+	x_2 &= \frac1J x_1
+\end{aligned} \right. $$
+med två lösningar
+$$ x_1 = -\frac12 \left(K (\frac1{rJ}-1) + 1\right) \pm \sqrt{\left(\frac12 \left(K (\frac1{rJ}-1) + 1\right)\right)^2 + K} $$
+av olika tecken.
+Jämviktspunkten i första kvadranten är då
+$$ x^* = \begin{pmatrix}
+	-\frac12 \left(K (\frac1{rJ}-1) + 1\right) + \sqrt{\left(\frac12 \left(K (\frac1{rJ}-1) + 1\right)\right)^2 + K} \\
+	\frac1J \left(-\frac12 \left(K (\frac1{rJ}-1) + 1\right) + \sqrt{\left(\frac12 \left(K (\frac1{rJ}-1) + 1\right)\right)^2 + K} \right)
+\end{pmatrix} $$
+Kan flytta fritt i $x_2$\nobreakdash-led genom att ändra $r$ och $J$.
+
+$$ \left. Df = \begin{pmatrix}
+	r \left(1 - \frac2K x_1\right) - \frac{x_2}{(1+x_1)^2} & -\frac{x_1}{1+x_1} \\
+	J x_2 \frac1{x_1^2} & -J \frac1{x_1}
+\end{pmatrix} \right\vert_{x^*} \eqqcolon A = \begin{pmatrix}
+	r \left(1 - \frac2K x_1\right) - \frac{x_1}{J(1+x_1)^2} & -\frac{x_1}{1+x_1} \\
+	\frac1{x_1} & -J \frac1{x_1}
+\end{pmatrix} $$
+med
+$$ \trace A = r (1 - \frac2K x_1) - \frac{x_1}{J (1+x_1)^2} - J \frac1{x_1}, \quad \det A = rJ (\frac2K - \frac1{x_1}) + \frac1{(J(1+x_1))^2} + \frac1{1+x_1} $$
+På samma sett som ovan kan vi, om $\nexists \lambda : \Re(\lambda) = 0$,
+säga med hjälp av Grobman-Hartman att för \emph{asympotiskt stabil} behöver
+$$ \trace A < 0 \text{\, och \,} \det A > 0 $$
+Genom att numeriskt testa ett antal möjliga värden på $(r,K,J)$ hittas att
+till exempel $(10, 6.7, 3.4)$ ger att $x^*$ är asymptotiskt stabil
+och $(10, 6.7, 0.1)$, instabil.
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+				view = {0}{90},
+				xmin=-0.5, xmax=1.5, ymin=-0.5, ymax=1.5,
+				domain=-0.5:1.5, y domain=-0.5:1.5,
+				thick,
+				]
+				\draw[pattern=checkerboard, pattern color=Dark2-F, opacity=0.2] (0,0) -- (5,0) -- (5,-5) -- (-5,-5) -- (-5,5) -- (0,5) -- cycle;
+
+				\def\r{1}
+				\def\K{1}
+				\def\J{0.5}
+
+				\addplot[Dark2-A] coordinates {(0,-5)(0,5)};
+				\addplot[Dark2-B, samples=2] {x / \J};
+				\addplot[Dark2-A] {\r * (1 - x / \K) * (1 + x)};
+				\legend{$x_1'=0$, $x_2'=0$}
+
+				\addplot3 [gray, quiver={u={\r * x * (1 - x / \K) - x / (1 + x) * y}, v={1 - \J * y / x}, scale arrows=0.005, every arrow/.append style={-latex}}, samples=20] (x,y,0);
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Nullclines för systemet \eqref{eq:predator_prey_model} med riktningsfält för $r=1, K=1, J=1/2$. \label{fig:nullclines_2}}
+\end{figure}
+
+Med en nullcline på y\nobreakdash-axeln och det faktum att
+flödet går uppåt längs x\nobreakdash-axeln då
+$$ \left. \begin{pmatrix} 0 \\ 1 \end{pmatrix} \cdot x' \right\vert_{x = (x_1, 0)^T \ne 0} = 1 > 0 $$
+kan vi, som för den första modellen, säga att
+den öppna första kvadranten är positivt invariant.
+Dessutom kan för varje val av $x(0)>0$ linjer $x_1=X_1$ och $x_2=X_2$
+parallela med y- respektive x\nobreakdash-axeln väljas
+sådana att
+\begin{gather*}
+	x_1(0) \le X_1, \quad K < X_1 \\
+	x_2(0) \le X_2, \quad  \frac{X_1}J < X_2
+\end{gather*}
+för att få
+$$ x_1' \overset{x_1 = X_1}< 0 \quad \text{och} \quad x_2' \overset{x_2 = X_2}< 0 $$
+så att $R = \{x_1, x_2 > 0 \vert x_1 \le X_1, x_2 \le X_2\}$
+är en positivt invariant mängd.
+Det visar att varje lösning till \eqref{eq:predator_prey_model} med
+$x(0)>0$ är begränsad, då $R$ är begränsad.
+
+I fallet då jämviktspunkten $x^*$ i den öppna första kvadranten
+är instabil existerar det en omgivning $U$ till $x^*$ sådan att
+gränsvärdesmängden av en lösning som startar i $G \coloneqq R \setminus U$
+inte innehåller $x^*$.
+Då, enligt ovan, tillsammans med att jämviktspunkten i $x=0$ är instabil,
+gör att alla positiva banor är begränsade med slutet hölje i $G$,
+och då $G$ ej innehåller några jämviktspunkter
+så finns det en periodisk lösning till \eqref{eq:predator_prey_model}
+i $G$ enligt Poincaré-Bendixsons sats,
+se figur~\ref{fig:phase_portrait2}.
+Parametern $1/J$ bestämmer hur stor bytesdjurspopulationen behöver
+vara för att försörja rovdjuren: Om $x_1/J < x_2$ kommer $x_2' < 0$.
+Med ett för litet värde, som i figur~\ref{fig:phase_portrait2}.\subref{fig:mod2_unstable},
+minskar rovdjurspopulationen snabbt när antalet bytesdjur blir litet,
+och bytesdjuren tillåtes återhämta sig,
+vilket speglas i att det blir cykler.
+
+\begin{figure}
+	\centering
+	\renewcommand{\figurescale}{0.2}
+	\subfloat[]{\input{mod2_astable.tex} \label{fig:mod2_astable}}
+	\subfloat[]{\input{mod2_unstable.tex} \label{fig:mod2_unstable}}
+	\caption{Fasporträtt för modell \eqref{eq:predator_prey_model} med:
+	\protect\subref{fig:mod2_astable} $r=10, K=6.7, J=3.4$, $x^*$ asymptotiskt stabil; och
+	\protect\subref{fig:mod2_unstable} $r=10, K=6.7, J=0.1$, $x^*$ instabil. \label{fig:phase_portrait2}}
+\end{figure}
+
+\appendix
+\section{MATLAB kod}
+\lstinputlisting[language=MATLAB]{ass2.m}
+
+\printbibliography
+
+\end{document}
