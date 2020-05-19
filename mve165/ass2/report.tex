@@ -43,16 +43,16 @@ with the following sets, parameters and variables
     \item $N = \text{the set of components in the system}$
     \item $T = \text{the number of time steps in the planning period}$
     \item $T_i = \text{the life of a new component of type } i \in N $
-    \item $c_{it} = \text{the cost a spare component of type } i \in N \text{at time } t$
+    \item $c_{it} = \text{the cost a spare component of type } i \in N \text{ at time } t$
     \item $d_t = \text{the cost for a maintenance occation at time } t$ 
-    \item $x_{it} = \begin{cases} 1, \text{if component \,} i \text{\, is replaced at time} \, t, \\ 0, \text{otherwise}
+    \item $x_{it} = \begin{cases} 1, \quad \text{if component } i \text{ is replaced at time } t, \\ 0, \quad \text{otherwise}
     \end{cases}$
-\item $z_t = \begin{cases} 1, \text{if maintenance is made at time} \, t, \\ 0, \text{otherwise} \end{cases}$
+\item $z_t = \begin{cases} 1, \quad \text{if maintenance is made at time } t, \\ 0, \quad \text{otherwise} \end{cases}$
 \end{itemize}
 with the model being
 \begin{equation*}
 	\begin{aligned}
-        \text{minimize} \quad & \sum^T_{t=1} \left ( \sum_{i \in N} c_{it} x_{it} + d_t z_t \right ), \\
+        \text{minimize} \quad & \sum^T_{t=1} \left ( \sum_{i \in N} c_{it} x_{it} d_t z_t \right ), \\
         \text{subject to} \quad & \sum^{l+T_i}_{t=l+1} x^i_{st} \ge 1, \\
         & x_{it} \leq z_t, \\
         & \forall x_{it}, z_t \in \{0,1\}.
@@ -73,6 +73,14 @@ The solutions with the large data set are in table~\ref{tab:large_dataset}.
         \bottomrule 
     \end{tabular}
 \end{table}
+We see that the optimal values for the cases when no variables and only $z$ are relaxed
+are nearly identical,
+with their difference small enough to be the result of floating point inaccuracies.
+If we assume that the value of $z$ in optimum does not change between them,
+any change in $x$ would correspond to divvying up part replacements on the
+same set of occations,
+but with the lifetime requirement and the uniform cost per occation,
+this should not change the total cost much, if at all.
 The reason it takes longer for the integer problems is that the problem must be iterated many times, where we at each step make a cut in the set of solutions.
 The solutions with the large data set are in table~\ref{tab:small_dataset}.
 \begin{table}\centering
@@ -92,19 +100,19 @@ The function does not cut away any feasible solution, as will be proven, and the
 \begin{proof}
 Proof by contradiction.
 Suppose the model augmented with
-$$ z_1 + x_{12} + x_{22} + x_{13} + x_{23} + z_4 \le 1 $$
+$$ z_1 x_{12} + x_{22} + x_{13} + x_{23} + z_4 \le 1 $$
 has a feasible solution,
-for which only one of $z_1,x_{12},x_{22},x_{13},x_{23},z_4$ can be one,
-the others zero, or they are all zero.
-Only six possible combinations: Consider them each exhaustively.
-If $z_1$ is true all maintenance has to be done on time unit,
+for which either all, or all but one, of $z_1,x_{12},x_{22},x_{13},x_{23},z_4$
+need to be zero.
+Only seven possible combinations: Consider each exhaustively.
+If all are zero then no maintenance can be performed on any day.
+If $z_1$ is true all maintenance has to be done on that time unit,
 but life of component 1 is 3, so impossible.
-Similairily for $z_4$.
+Similarly for $z_4$.
 If any one of $x_{12},x_{22},x_{13},x_{23}$ is true,
 say maintenance is done for component 1 at time unit 2,
 then no maintenance may be done for the other component,
 but its life is 4, thus impossible.
-If all are zero then no maintenance can be performed on any day.
 \end{proof}
 
 \section{Solve times}
@@ -174,7 +182,7 @@ Next, we will consider the generalized model given in
 \autocite{gustavsson14}
 \begin{equation*}
 	\begin{aligned}
-        \text{minimize} \quad & \sum_{t \in T} d_t z_t + \sum_{i \in N} \sum_{(s,t) \in I} c^i_{st} x^i_{st}. \\
+        \text{minimize} \quad & \sum_{t \in T} d_t z_t \sum_{i \in N} \sum_{(s,t) \in I} c^i_{st} x^i_{st}. \\
         \text{subject to} \quad & \sum^{t-1}_{s=0} x^i_{st} \le z_t, \\
         & \sum^{t-1}_{s=0} x^i_{st} = \sum^{T+1}_{r=t+1} x^i_{tr}, \\
         & \sum^{T+1}_{t=1} x^i_{0t} = 1, \\
@@ -182,7 +190,7 @@ Next, we will consider the generalized model given in
     \end{aligned}
 \end{equation*}
 where
-$I \coloneqq \{(s,t): 0 \le s < t \le T + 1; (s,t), \in Z\}$
+$I \coloneqq \{(s,t): 0 \le s < t \le T 1; (s,t), \in Z\}$
 is a set of intervals and
 $$ x^i_{st} = 
 \begin{cases} 
@@ -192,6 +200,18 @@ $$ x^i_{st} =
 with $z$ as before.
 The model can be interpreted as a network flow with the
 time steps as nodes, and $x_{st}$ as edges.
+To make the results from the two models comparable we define
+$$ c_{st}^i = \begin{cases}
+    0, \quad t > T \\
+    \infty, \quad t - s > T_i \\
+    c_{it}, \quad \text{otherwise}
+\end{cases} $$
+where $c_{it}$ is the cost of a spare component of type $i$ at time $t$
+as in the previous model;
+the maximum life requirement is effectively encoded in giving
+any infringing solutions unviably large costs.
+Times $t>T$ refer to times after the planning period;
+any expenses there are ignored and treated as free.
 
 % Compare the outcomes from the two models and make relevant conclusions. Illustrate with suitable graphs.
 The two models seem to have approximately the same level of complexity,
@@ -288,7 +308,7 @@ that requires that all components have remaining lifes,
 at the end of the planning period ($t=T$),
 that are at least $r \ge 0$,
 \begin{equation}\tag{MinRemLife}
-\sum_{t = T + r - T_i + 1}^T x_{it} \ge 1, \quad \forall i \in \mathcal N
+\sum_{t = T r - T_i + 1}^T x_{it} \ge 1, \quad \forall i \in \mathcal N
 \end{equation}
 Note that for $r=0$ this is a valid inequality,
 since it is just the constraints for the last time stretch shifted by $r$.
