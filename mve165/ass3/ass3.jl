@@ -108,9 +108,7 @@ function build_model(p::Params)
 
 	if p.obj == maxAvgRevenue
 		@objective(m, Max, electricityPrice * avgProd)
-
-		# Max n turbines
-		@constraint(m, sum(x) <= p.n)
+		@constraint(m, sum(x) <= p.n) # Max n turbines
 	elseif p.obj == minInvestmentCost
 		@objective(m, Min, investmentCost)
 		# Resulting energy production may not be lower than
@@ -172,6 +170,7 @@ optimize!(model)
 @show solve_time(model) # Seconds?
 @show chosenLocations(x)
 
+# 5.
 if false
 	# Maximize production revenue under varying limits for investment
 	df = map(range(0, 271, length = 100)) do eps

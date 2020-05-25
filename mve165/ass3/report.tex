@@ -3,20 +3,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
 \usepackage[english]{babel}
-% \usepackage[backend=biber]{biblatex}
-\usepackage{amsmath, amsfonts, mathtools, amsthm}
+\usepackage{amsmath, amsfonts, mathtools}
 \usepackage{booktabs}
 \usepackage{siunitx}
-\usepackage{eurosym}
 \usepackage{listings}
 \usepackage{pgfplots, pgfplotstable}
-\usepackage[caption=false]{subfig}
-\usepackage{tikz}
-\usepackage{pgfplots}
 \usepackage{lmodern, microtype}
 \usepackage{enumitem}
 
-% \bibliography{sources}
 \pgfplotsset{
 	compat=1.15,
 }
@@ -71,8 +65,8 @@ with the uncertainty in wind speed and direction integrated out, and
 	+ &(1 - \text{relPowerLevel}(d, -e, b)) \, \text{AE}(d, a), \\
 	& d \in \text{Directions}, e \in \mathcal E, \; a,b \in \mathcal B
 \end{align*}
-are the average wake effects for direction $d$ associated with
-two turbines across the edge $e$ with blades $a$ and $b$ respectively.
+is the average wake effects for direction $d$ associated with two turbines
+across the edge $e$, equipped with blades $a$ and $b$ respectively.
 
 \begin{figure}
 	\centering
@@ -111,7 +105,7 @@ The CPU times of all optimization runs were negligible.
 	(c) Any blade per turbine,
 	and with/without wake effects. \label{tab:2_res}}
 	\renewcommand{\arraystretch}{1.2}
-	\begin{tabular}{l ccc c ccc}
+	\begin{tabular}{@{}l ccc c ccc@{}}
 		\toprule
 		& \multicolumn{3}{c}{Wake effects} && \multicolumn{3}{c}{No wake effects} \\
 		\cmidrule{2-4} \cmidrule{6-8}
@@ -146,7 +140,7 @@ $$ f_\text{inv} = \text{locationCost} \, \sum x + \sum_{l \in \mathcal L, b} \te
 
 If we try to minimize the investment costs with the added requirement
 that the average production does not fall below
-the best value obtained in \ref{sec:prod_revenue}(a) for $n=4$
+the best value obtained in 2(a) for $n=4$
 (\num[round-mode=places,round-precision=2]{979.8336445553704})
 we obtain as the optimal solution
 $$ \text{Obj} = 80.0, \quad \text{Loc} = \verb+_LL____+ $$
@@ -185,7 +179,7 @@ the first solution with $f_\text{rev} \ne 0$ uses large blades for example.
 				]
 				\addplot[Set1-A, no marks] table[col sep=comma, x=InvestmentCost, y=ProductionRevenue] {5_pareto_front.csv};
 				\addplot[Set1-B, only marks] table[col sep=comma, x=InvestmentCost, y=ProductionRevenue] {5_multi_obj.csv};
-				\legend{Pareto frontier, Solution}
+				\legend{Pareto frontier, Weak Pareto-optimal}
 		\end{axis}
 	\end{tikzpicture}
 	\caption{Objective plane with Pareto front. \label{fig:pareto_front}}
@@ -219,8 +213,6 @@ where the turbines are installed on both sides yet $y_e=0$.
 
 \appendix
 \section{Julia code}\label{app:code}
-% \lstinputlisting{ass3.jl}
-
-% \printbibliography
+\lstinputlisting{ass3.jl}
 
 \end{document}
