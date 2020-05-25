@@ -1,0 +1,226 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[english]{babel}
+% \usepackage[backend=biber]{biblatex}
+\usepackage{amsmath, amsfonts, mathtools, amsthm}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{eurosym}
+\usepackage{listings}
+\usepackage{pgfplots, pgfplotstable}
+\usepackage[caption=false]{subfig}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{lmodern, microtype}
+\usepackage{enumitem}
+
+% \bibliography{sources}
+\pgfplotsset{
+	compat=1.15,
+}
+\usepgfplotslibrary{colorbrewer}
+\lstset{
+	breaklines=true,
+	postbreak=\mbox{$\hookrightarrow$\space},
+	breakindent = 5pt,
+	breakautoindent = false,
+}
+\newtheorem{prop}{Proposition}
+\renewcommand{\arraystretch}{1.2}
+
+\title{Windmills och shit}
+\author{Axel Forsman, Jonas Lauri}
+
+\begin{document}
+\maketitle
+Collectively approximately 25 hours were spent on this assignment.
+
+\section{Production revenue}\label{sec:prod_revenue}
+
+We assign indices $\mathcal L = \{1, \ldots 7\}$ to the tentative locations,
+see figure~\ref{fig:loc_numbering}, with the two distinct groups being
+$ \mathcal G_1 = \{1, 2, 3\}, \mathcal G_2 = \{4, 5, 6, 7\}$.
+Define $\mathcal E$ as the set of directed possible wind wake edges,
+chosen so that for $(c, d) \in \mathcal E$ the angle between $c$ and $d$
+is between west and east, exlusively and inclusively respectively.
+The set of possible blade lengths is denoted
+$$ \mathcal B = \{\text{long}, \text{medium}, \text{short}\} $$
+Let $x_l^b$ be a logical toggle whether
+a turbine is installed at location $l \in \mathcal L$
+with blade $b \in \mathcal B$,
+and for all $(c, d) = e \in \mathcal E$ let $y_e^{ab}, \, a, b \in \mathcal B$
+whether turbines with blades $a$ and $b$ are installed at $c$ and $d$ respectively.
+Then the objective is
+\begin{equation*}
+	\begin{aligned}
+		\max_{x, y} \quad & f_\text{rev} \coloneqq p_\text{el}\sum_{\mathclap{d \in \text{Directions}}} \frac{\text{freq}(d)}{100} \left( \sum_{\substack{l \in \mathcal L \\ b \in \mathcal B}} \text{AE}(d, b) \, x_l^b - \sum_{\substack{e \in \mathcal E \\ a,b \in \mathcal B}} \text{WE}(d, e, a, b) y_e^{ab} \right) \\
+        \text{s.t.} \quad & x, y \in \mathbb B \\
+		& \sum_b x_l^b \le 1 \; \forall l \in \mathcal L, \quad \sum_{l, b} x_l^b \le n \\
+& x_c^a + x_d^b \le 1 + y_e^{ab}, \quad \forall (c, d) = e \in \mathcal E, \; a, b \in \mathcal B
+    \end{aligned}
+\end{equation*}
+where $p_\text{el}$ is the price of electricity,
+$$ \text{AE}(d, b) = \sum_{\mathclap{v \in \text{WindSpeeds}}} \mathbb P(v \vert \text{mws}(d)) \, \text{effect}(v, b), \quad b \in \mathcal B $$
+is the average effect from wind in direction $d \in \text{Directions}$
+from a turbine with blade $b$,
+with the uncertainty in wind speed and direction integrated out, and
+\begin{align*}
+	\text{WE}(d, e, a, b) = &(1 - \text{relPowerLevel}(d, e, a)) \, \text{AE}(d, b) \\
+	+ &(1 - \text{relPowerLevel}(d, -e, b)) \, \text{AE}(d, a), \\
+	& d \in \text{Directions}, e \in \mathcal E, \; a,b \in \mathcal B
+\end{align*}
+are the average wake effects for direction $d$ associated with
+two turbines across the edge $e$ with blades $a$ and $b$ respectively.
+
+\begin{figure}
+	\centering
+	\def\svgwidth{0.6\textwidth}
+	\input{loc_numbering.pdf_tex}
+	\caption{The numbering scheme used in defining the location node index set $\mathcal L$, and direction of the edges in $\mathcal E$. \label{fig:loc_numbering}}
+\end{figure}
+
+We consider three distinct policies for choosing blade sizes:
+\begin{enumerate}[label=(\alph*)]
+	\item Only medium blades: Add constraints
+		$$ x_l^{[\text{long}, \text{short}]} = 0 \quad \forall l \in \mathcal L $$
+	\item One type of blade for each group:
+		Add variables $h_i^b, i = 1, 2; b \in \mathcal B$ and constraints
+		$$ x_l^b \le h_i^b \; \forall l \in \mathcal G_i, i = 1,2 \quad \sum_b h_i^b = 1 \forall i $$
+	\item Any blade per turbine.
+\end{enumerate}
+The results are shown in table~\ref{tab:2_res}.
+A turbine placed at location $l$ is represented
+by the letter \texttt L, \texttt M, or \texttt S,
+corresponding to the type of blade, or,
+in the absence of a turbine, \texttt \_.
+Looking at the objective values we can conclude that
+the cases (a), (b), and (c) are in order of restrictiveness
+since the costs are increasing.
+We see that for the case where no consideration was
+given to wake effects there is no incentive to spread out turbines,
+and in fact they are all adjacent.
+The CPU times of all optimization runs were negligible.
+
+\begin{table}
+	\centering
+	\caption{Results of the model in section~\ref{sec:prod_revenue} for $n=3,4,5$ and the three cases:
+	(a) Only medium blades;
+	(b) One type of blade for each group;
+	(c) Any blade per turbine,
+	and with/without wake effects. \label{tab:2_res}}
+	\renewcommand{\arraystretch}{1.2}
+	\begin{tabular}{l ccc c ccc}
+		\toprule
+		& \multicolumn{3}{c}{Wake effects} && \multicolumn{3}{c}{No wake effects} \\
+		\cmidrule{2-4} \cmidrule{6-8}
+		& a & b & c && a & b & c \\ \midrule
+		$n=3$ \\
+		Obj & 203823.0 & 430823.0 & 430823.0 && 205078.0 & 434740.0 & 434740.0 \\
+		Loc & \verb+_M_M_M_+ & \verb+L__L_L_+ & \verb+L__L_L_+ &&
+		\verb+MMM____+ & \verb+___LLL_+ & \verb+LLL____+ \\
+
+		$n=4$ \\
+		Obj & 268474.0 & 564805.0 & 564805.0 && 273437.0 & 579653.0 & 579653.0 \\
+		Loc & \verb+_MMM_M_+ & \verb+LL_L_L_+ & \verb+LL_L_L_+ &&
+		\verb+MMMM___+ & \verb+___LLLL+ & \verb+LLLL___+ \\
+
+		$n=5$ \\
+		Obj & 329098.0 & 687070.0 & 687070.0 && 341797.0 & 724566.0 & 724566.0 \\
+		Loc & \verb+_MMMMM_+ & \verb+LL_LLL_+ & \verb+LL_LLL_+ &&
+		\verb+MMMMM__+ & \verb+LLLLL__+ & \verb+LLLLL__+ \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Investment costs}
+We add variables $g_{1,2}$ corresponding to whether each of the two groups
+have been exploited,
+and relate them to $x$ through the added constraints
+$$ x_l^b \le g_i \quad \forall l \in \mathcal G_i, b \in \mathcal B, \quad i=1,2$$
+where $\mathcal G_i$ contains the indices of the locations
+in the respective group.
+Then the investment costs become
+$$ f_\text{inv} = \text{locationCost} \, \sum x + \sum_{l \in \mathcal L, b} \text{bladeCost}(b) \, x_l^b + \text{groupCost} \, \sum g $$
+
+If we try to minimize the investment costs with the added requirement
+that the average production does not fall below
+the best value obtained in \ref{sec:prod_revenue}(a) for $n=4$
+(\num[round-mode=places,round-precision=2]{979.8336445553704})
+we obtain as the optimal solution
+$$ \text{Obj} = 80.0, \quad \text{Loc} = \verb+_LL____+ $$
+As expected only one group is exploited.
+
+\section{Multi-objective optimization}
+We use the $\epsilon$\nobreakdash-constraint method,
+and maximize the average revenue with
+a variable cap $\epsilon$ on the maximum investment costs.
+By minimizing and maximizing the investment costs in isolation
+we can conclude that
+$$ \epsilon \in [0, 271] $$
+See figure~\ref{fig:pareto_front} which shows the objective plane
+together with the Pareto front.
+We find that it is approximately linear.
+Since the production revenue is directly proportional to the
+price of electricity any change to that quantity
+would only alter the slope.
+The placement of sampled solutions that are weak Pareto-optimal
+follows a step function save for a few points,
+as there is a minimum cost for the next production improvement,
+i.e. new turbine or better blade.
+The points in-between the larger steps are from additions of turbines
+with blade other than the largest ones.
+It is worth noting that a higher sample count would yield
+more variety in production revenue -
+the first solution with $f_\text{rev} \ne 0$ uses large blades for example.
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+				xlabel={$f_\text{inv}$, Investment costs}, ylabel = {$f_\text{rev}$, Production revenue},
+				xmin=0, xmax=271,
+				legend style={at={(0.02,0.98)}, anchor=north west},
+				]
+				\addplot[Set1-A, no marks] table[col sep=comma, x=InvestmentCost, y=ProductionRevenue] {5_pareto_front.csv};
+				\addplot[Set1-B, only marks] table[col sep=comma, x=InvestmentCost, y=ProductionRevenue] {5_multi_obj.csv};
+				\legend{Pareto frontier, Solution}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Objective plane with Pareto front. \label{fig:pareto_front}}
+\end{figure}
+
+\section{Lagrangian relaxation}
+For the model presented in section~\ref{sec:prod_revenue}
+we Lagrangian relax the constraints on the $y$ variables,
+$$ \underbrace{x_c^a + x_d^b - y_e^{ab}}_{\eqqcolon g_i(x, y)} \le \underbrace1_{\eqqcolon b_i} \forall e, a, b \implies b_i - g_i \ge 0 \, \forall i$$
+that model the wake effects.
+The Lagrangian subproblem becomes
+\begin{align*}
+	h(v) \coloneqq& \max_{x,y} f_\text{rev} + \sum v_i (b_i - g_i) \\
+	=& \sum_i v_i + \max_x \sum_{l, b} (c_l^b - \sum_{\deg l} v_j) x_l^b + \sum \max (v_i - c_y^e) y_e
+\end{align*}
+where we have omitted repeating the other constraints,
+interpolated $f_\text{rev}$ and simplified,
+separated the problems of the $x$ and $y$ variables
+and moved the maximum of the $y$ variables in under the sum,
+since constraints are only on individual $y$:s.
+If we start with initial value $v=0$ as is often done,
+then for the first iteration all $y^{(0)}=0, x^{(0)}=1$,
+which leads to the production of each turbine being unrealistically large
+since no wake effects are taken into account.
+In such situations, if we choose to update $v$ by means of gradient descent,
+since the partial derivaties are
+$$ h_i^{(k)} = \frac{\partial h}{\partial v_i} = 1 - \sum_{l \in \text{adj}(e), b} x_l^b + y_e $$
+where the sum is over all locations adjacent to the edge $e$,
+we will increase $v_i$ corresponding to the edges
+where the turbines are installed on both sides yet $y_e=0$.
+
+\appendix
+\section{Julia code}\label{app:code}
+% \lstinputlisting{ass3.jl}
+
+% \printbibliography
+
+\end{document}
