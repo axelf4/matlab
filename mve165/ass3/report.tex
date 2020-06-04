@@ -23,17 +23,37 @@
 }
 \newtheorem{prop}{Proposition}
 \renewcommand{\arraystretch}{1.2}
+\sisetup{
+	round-precision = 7,
+	round-mode = figures,
+}
 
 \title{Windmills och shit}
 \author{Axel Forsman, Jonas Lauri}
 
 \begin{document}
 \maketitle
-Collectively approximately 25 hours were spent on this assignment.
+Collectively approximately 27 hours were spent on this assignment.
+
+We have seven locations that we want to consider for
+the construction of offshore wind turbines.
+To complicate matters, we will take the wake effects into consideration;
+upstream wind turbines cause downstream wind speeds to decrease
+as illustrated in figure~\ref{fig:wake_effects}.
+With the data given in the assignment specification we will put together
+a binary linear programming model for maximizing the power production,
+and in turn, production revenue,
+but, later, while also keeping the investment costs down.
+
+\begin{figure}
+	\centering
+	\def\svgwidth{0.7\textwidth}
+	\input{turbines.pdf_tex}
+	\caption{Wake effects caused by an upstream wind turbine for the depicted wind direction. \label{fig:wake_effects}}
+\end{figure}
 
 \section{Production revenue}\label{sec:prod_revenue}
-
-We assign indices $\mathcal L = \{1, \ldots 7\}$ to the tentative locations,
+We assign indices $\mathcal L = \{1, \ldots, 7\}$ to the tentative locations,
 see figure~\ref{fig:loc_numbering}, with the two distinct groups being
 $ \mathcal G_1 = \{1, 2, 3\}, \mathcal G_2 = \{4, 5, 6, 7\}$.
 Define $\mathcal E$ as the set of directed possible wind wake edges,
@@ -41,20 +61,18 @@ chosen so that for $(c, d) \in \mathcal E$ the angle between $c$ and $d$
 is between west and east, exlusively and inclusively respectively.
 The set of possible blade lengths is denoted
 $$ \mathcal B = \{\text{long}, \text{medium}, \text{short}\} $$
-Let $x_l^b$ be a logical toggle whether
+Let $x_l^b$ be a logical variable whether
 a turbine is installed at location $l \in \mathcal L$
 with blade $b \in \mathcal B$,
 and for all $(c, d) = e \in \mathcal E$ let $y_e^{ab}, \, a, b \in \mathcal B$
 whether turbines with blades $a$ and $b$ are installed at $c$ and $d$ respectively.
 Then the objective is
-\begin{equation*}
-	\begin{aligned}
-		\max_{x, y} \quad & f_\text{rev} \coloneqq p_\text{el}\sum_{\mathclap{d \in \text{Directions}}} \frac{\text{freq}(d)}{100} \left( \sum_{\substack{l \in \mathcal L \\ b \in \mathcal B}} \text{AE}(d, b) \, x_l^b - \sum_{\substack{e \in \mathcal E \\ a,b \in \mathcal B}} \text{WE}(d, e, a, b) y_e^{ab} \right) \\
-        \text{s.t.} \quad & x, y \in \mathbb B \\
-		& \sum_b x_l^b \le 1 \; \forall l \in \mathcal L, \quad \sum_{l, b} x_l^b \le n \\
-& x_c^a + x_d^b \le 1 + y_e^{ab}, \quad \forall (c, d) = e \in \mathcal E, \; a, b \in \mathcal B
-    \end{aligned}
-\end{equation*}
+\begin{align*}
+	\max_{x, y} \quad & f_\text{rev} \coloneqq p_\text{el}\sum_{\mathclap{d \in \text{Directions}}} \frac{\text{freq}(d)}{100} \left( \sum_{\substack{l \in \mathcal L \\ b \in \mathcal B}} \text{AE}(d, b) \, x_l^b - \sum_{\substack{e \in \mathcal E \\ a,b \in \mathcal B}} \text{WE}(d, e, a, b) y_e^{ab} \right) \\
+	\text{s.t.} \quad & x, y \in \mathbb B \\
+	& \sum_b x_l^b \le 1 \; \forall l \in \mathcal L, \quad \sum_{l, b} x_l^b \le n \\
+	& x_c^a + x_d^b \le 1 + y_e^{ab}, \quad \forall (c, d) = e \in \mathcal E, \; a, b \in \mathcal B
+\end{align*}
 where $p_\text{el}$ is the price of electricity,
 $$ \text{AE}(d, b) = \sum_{\mathclap{v \in \text{WindSpeeds}}} \mathbb P(v \vert \text{mws}(d)) \, \text{effect}(v, b), \quad b \in \mathcal B $$
 is the average effect from wind in direction $d \in \text{Directions}$
@@ -80,7 +98,10 @@ We consider three distinct policies for choosing blade sizes:
 	\item Only medium blades: Add constraints
 		$$ x_l^{[\text{long}, \text{short}]} = 0 \quad \forall l \in \mathcal L $$
 	\item One type of blade for each group:
-		Add variables $h_i^b, i = 1, 2; b \in \mathcal B$ and constraints
+		Add variables $h_i^b, i = 1, 2; b \in \mathcal B$
+		controlling what type of blade is allowed by turbines
+		in each of the two groups,
+		with constraints
 		$$ x_l^b \le h_i^b \; \forall l \in \mathcal G_i, i = 1,2 \quad \sum_b h_i^b = 1 \forall i $$
 	\item Any blade per turbine.
 \end{enumerate}
@@ -92,6 +113,8 @@ in the absence of a turbine, \texttt \_.
 Looking at the objective values we can conclude that
 the cases (a), (b), and (c) are in order of restrictiveness
 since the costs are increasing.
+We also see that large blades are used whenever possible. 
+This as the increased production easily eclipses any losses due to increased wake effects.  
 We see that for the case where no consideration was
 given to wake effects there is no incentive to spread out turbines,
 and in fact they are all adjacent.
@@ -99,11 +122,13 @@ The CPU times of all optimization runs were negligible.
 
 \begin{table}
 	\centering
-	\caption{Results of the model in section~\ref{sec:prod_revenue} for $n=3,4,5$ and the three cases:
+	\caption{Results of the model in section~\ref{sec:prod_revenue},
+	optimizing power production, for $n=3,4,5$ and the three cases:
 	(a) Only medium blades;
 	(b) One type of blade for each group;
 	(c) Any blade per turbine,
-	and with/without wake effects. \label{tab:2_res}}
+	and with/without wake effects.
+	The objective value is in \si{\kilo\watt}. \label{tab:2_res}}
 	\renewcommand{\arraystretch}{1.2}
 	\begin{tabular}{@{}l ccc c ccc@{}}
 		\toprule
@@ -111,17 +136,17 @@ The CPU times of all optimization runs were negligible.
 		\cmidrule{2-4} \cmidrule{6-8}
 		& a & b & c && a & b & c \\ \midrule
 		$n=3$ \\
-		Obj & 203823.0 & 430823.0 & 430823.0 && 205078.0 & 434740.0 & 434740.0 \\
+		Obj & \num{743.879562} & \num{1572.346715} & \num{1572.346715} && \num{748.459854} & \num{1586.642336} & \num{1586.642336} \\
 		Loc & \verb+_M_M_M_+ & \verb+L__L_L_+ & \verb+L__L_L_+ &&
 		\verb+MMM____+ & \verb+___LLL_+ & \verb+LLL____+ \\
 
 		$n=4$ \\
-		Obj & 268474.0 & 564805.0 & 564805.0 && 273437.0 & 579653.0 & 579653.0 \\
+		Obj & \num{979.832117} & \num{2061.332117} & \num{2061.332117} && \num{997.945255} & \num{2115.521898} & \num{2115.521898} \\
 		Loc & \verb+_MMM_M_+ & \verb+LL_L_L_+ & \verb+LL_L_L_+ &&
 		\verb+MMMM___+ & \verb+___LLLL+ & \verb+LLLL___+ \\
 
 		$n=5$ \\
-		Obj & 329098.0 & 687070.0 & 687070.0 && 341797.0 & 724566.0 & 724566.0 \\
+		Obj & \num{1201.087591} & \num{2507.554745} & \num{2507.554745} && \num{1247.434307} & \num{2644.40146} & \num{2644.40146} \\
 		Loc & \verb+_MMMMM_+ & \verb+LL_LLL_+ & \verb+LL_LLL_+ &&
 		\verb+MMMMM__+ & \verb+LLLLL__+ & \verb+LLLLL__+ \\
 		\bottomrule
@@ -129,14 +154,14 @@ The CPU times of all optimization runs were negligible.
 \end{table}
 
 \section{Investment costs}
-We add variables $g_{1,2}$ corresponding to whether each of the two groups
-have been exploited,
+We add variables $g_1,g_2$ corresponding to whether
+each of the two groups have been exploited,
 and relate them to $x$ through the added constraints
 $$ x_l^b \le g_i \quad \forall l \in \mathcal G_i, b \in \mathcal B, \quad i=1,2$$
 where $\mathcal G_i$ contains the indices of the locations
 in the respective group.
 Then the investment costs become
-$$ f_\text{inv} = \text{locationCost} \, \sum x + \sum_{l \in \mathcal L, b} \text{bladeCost}(b) \, x_l^b + \text{groupCost} \, \sum g $$
+$$ f_\text{inv} \coloneqq \sum_{l \in \mathcal L, b \in \mathcal B} (\text{locationCost} + \text{bladeCost}(b)) \, x_l^b + \text{groupCost} \, \sum_{i=1,2} g_i $$
 
 If we try to minimize the investment costs with the added requirement
 that the average production does not fall below
