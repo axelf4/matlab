@@ -15,8 +15,13 @@ V = linspace(1.3 * N * b, 10 * Vc, 500);
 
 %% Plot the isotherm
 figure
-T = 100;
-plot(V, P(V, T))
+hold on
+for T = linspace(82, Tc, 15)
+    plot(V, P(V, T))
+end
+hold off
+title('Isotermer för N_2')
+xlabel('Volume [m^3]'), ylabel('Pressure [Pa]')
 
 %% Plot phase diagram
 figure
