@@ -1,0 +1,21 @@
+@startditaa
+       /-------------\                 /-------------\
+       | Controller  |                 |    View     |
+       |             | View messages   | Display     |
+-----_>| User input  +---------------->| layout and  +------->
+User   | device      |                 | interaction | Display
+input  | interaction |                 | views       | output
+sensors\-----------+-/    Model        \-+-----------/
+                ^  |      access and     |  ^
+     Dependents |  |      editing        |  | Dependents
+     change     |  \----\ messages  /----/  | change
+     messages   |       |           |       | messages
+                |       v           v       |
+                |      /-------------\      |
+                \------+    Model    +------/
+                       | Application |
+                       | domain      |
+                       | state and   |
+                       | behavior    |
+                       \-------------/
+@endditaa
