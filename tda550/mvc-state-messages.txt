@@ -1,8 +1,8 @@
 @startditaa
        /-------------\                 /-------------\
        | Controller  |                 |    View     |
-       |             | View messages   | Display     |
------_>| User input  +---------------->| layout and  +------->
+       |             |  View messages  | Display     |
+------>| User input  +---------------->| layout and  +------->
 User   | device      |                 | interaction | Display
 input  | interaction |                 | views       | output
 sensors\-----------+-/    Model        \-+-----------/
