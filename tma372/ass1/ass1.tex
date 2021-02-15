@@ -1,0 +1,184 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts}
+\usepackage{pgf}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{listings}
+
+\author{Axel Forsman}
+\title{TMA372 Assignment 1}
+
+\begin{document}
+\maketitle
+
+\section{Question 1 and 2}\label{sec:question1}
+
+\begin{figure}
+  \begin{center}
+  \input{1-2-cG-bvp.pgf}
+  \end{center}
+  \caption{The exact solution to the BVP in section~\ref{sec:question1},
+    together with the $cG(1)$ and $cG(2)$ approximations
+    with three inner nodes. \label{fig:1-2-cG-bvp}}
+\end{figure}
+
+Implementation is exactly as outlined in lectures.
+For the $cG(2)$ approximation, in order to construct the
+trial space of continuous piecewise quadratic functions on the partition of $[0,1]$,
+the 2nd degree Lagrange polynomials are considered.
+In order to ensure continuity they are extended,
+similar to the hat functions,
+while making sure that they are quadratic or zero on every subinterval of the partition.
+
+See figure~\ref{fig:1-2-cG-bvp} for the results.
+We see that the $cG(2)$ approximation is able to
+match the curvature of the exact solution
+a bit better than the $cG(1)$ approximation.
+
+\section{Question 3}\label{sec:question3}
+
+Denote the interval $[0, 1]$ by $I$.
+First we find the variational formulation.
+Define the space $V^0 = \{ v : I \to \mathbb R : v \in H^1(I), v(0) = v(1) = 0 \}$
+of test functions.
+We multiply the DE with some test function $v \in V^0$, and integrate
+$$ \int_I -\epsilon u'' v + u' v \, dx = 0 $$
+Using partial integration, and noting that $v$ is zero on the boundary,
+we get the variational formulation
+\begin{equation*}
+  \text{Find $u \in V$ st. } \epsilon (u', v')_{L^2} + (u', v)_{L^2} = 0
+  \quad \forall v \in V^0 \tag{VF3}
+\end{equation*}
+Next, for a uniform partition $T_h$ of $I$ with mesh function $h = 1 / (M + 1)$,
+define the space
+$V_h^0 = \{ v : I \to \mathbb R : v \text{ is cont. pw. linear on } T_h, v(0) = v(1) = 0 \}$,
+$V_h = span(\varphi_0, \ldots, \varphi_m)$
+The FE problem is then
+\begin{equation*}\label{eq:FE3}
+  \text{Find $u_h \in V_h$ st. } \epsilon (u_h', \chi')_{L^2} + (u_h', \chi)_{L^2} = 0
+  \quad \forall \chi \in V_h^0 \tag{FE3}
+\end{equation*}
+Letting $\chi = \varphi_i$, $u_h(x) = \sum_{j=0}^M \zeta_j \varphi_j(x)$,
+we note that the boundary condition $u(0) = 1$ specifies $\zeta_0 = 1$.
+and inserting into \eqref{eq:FE3}, $i = 1,\ldots,M$, we get the linear system
+$$ (\epsilon S + C) \chi = b $$
+where $b_i = -(\epsilon (\varphi_0', \varphi_i') + (\varphi_0', \varphi_i))$.
+
+\begin{figure}
+  \begin{center}
+    \input{3-cG1-bvp.pgf}
+  \end{center}
+  \caption{Results from the $cG(1)$ method for the BVP in section~\ref{sec:question3},
+    for three different values of $m$, the number of inner nodes,
+    together with the exact solution, $u$. \label{fig:3-cG1-bvp}}
+\end{figure}
+
+The results are given in figure~\ref{fig:3-cG1-bvp}.
+There is a visible improvement when going from $m=10$ to $m=11$,
+in that the peaks get smaller.
+Also, we see that using $m=100$ gives a very good approximation
+of the solution.
+
+\section{Question 4}\label{sec:question4}
+
+\subsection{4.(a)}
+
+Start by finding the homogeneous solution $u_h$
+by multiplying the DE by the integrating factor $e^{at}$
+$$ \frac d {dt} \left(e^{at} u_h\right) = 0 $$
+and integrating
+$$ e^{at} u_h - \left. e^{at} u_h \right\vert_{t=0} = 0 $$
+which gives
+$$ u_h = u_h(0) e^{-at} $$
+Next, for the particular solution write $u_p = C(t) e^{-at}$ and put into the DE
+$$ C' e^{-at} - a C e^{at} + a C e^{-at} = t^2 $$
+We see that the two terms cancel, and solve for $C$ by integrating
+$$ C = \int_0^t e^{at} t^2 \, dt + \text{const} = e^{at} \left( \frac1a t^2 - \frac2{a^2} t + \frac2{a^3} \right) $$
+where the second equality follows from partial integration.
+Therefore
+$$ u_p = C e^{-at} = \frac1a t^2 - \frac2{a^2} t + \frac2{a^3} $$
+Finally, plugging in the given values of the parameters,
+and finding $u_h(0)$ from the IC we get the solution
+$$ u = u_h + u_p = \frac{31}{32} e^{-4t} + \left( \frac14 t^2 - \frac18 t + \frac1{32} \right) $$
+
+\subsection{4.(b)}
+
+For the $cG(1)$ approximation, $U$,
+we consider a uniform partition of the interval $I=[0, T]$
+$$ 0 = t_0 < t_1 < \cdots < t_N = T $$
+and iterate from $j = 0, \ldots, N-1 $.
+On every small interval $[t_j, t_{j+1}]$ we take $U$ to be
+a polynomial of degree one
+$$ U(t) = U_j \frac{t_{j+1} - t}{t_{j+1} - t_j} + U_{j+1} \frac{t - t_j}{t_{j+1} - t_j} $$
+where $U_j$ is given by the previous iteration, $U_0 = u_0$.
+Testing the DE with some $v \in \mathbb P^{(0)}(t_j, t_{j+1})$ specifies $U_{j+1}$
+$$ \int_{t_j}^{t_{j+1}} (\dot U(t) + a U(t)) v(t) \, dt = \int_{t_j}^{t_{j+1}} f(t) v(t) \, dt $$
+Taking $v \equiv 1$ to be the basis function and solving for $U_{j+1}$ we get
+$$ U_{j+1} = \frac{U_j \left( 1 + \frac12 a h \right) + \int_{t_j}^{t_{j+1}} f(t) \, dt}{1 - \frac12 a h} $$
+where $h = t_{j+1} - t_j$.
+
+\begin{figure}
+  \begin{center}
+  \input{4b-cG1-ivp.pgf}
+  \end{center}
+  \caption{The exact solution together with results of the continuous Galerkin $cG(1)$ method,
+    with two choices of numbers of nodes, for the IVP in section~\ref{sec:question4}. \label{fig:4b-cG1-ivp}}
+\end{figure}
+
+The results are shown in figure~\ref{fig:4b-cG1-ivp}.
+We see that the $cG(1)$ closely approximates the exact solution
+even with only three inner nodes.
+
+\subsection{4.(c)}\label{sec:question4c}
+
+The exact solution in this case is given by only the homogeneous part from above,
+with the correct initial value
+$$ u(t) = e^{-at} $$
+where $t \in [0, 1]$.
+
+The approximations from the three numerical methods for the IVP
+are shown in figure~\ref{fig:4c-ivp}.
+We see that Crank-Nicolson performs the best,
+and that explicit Euler blows up and starts oscillating in three out of the four cases.
+Indeed, if we solve the difference equation of the explicit Euler step function we get
+$$ u_n = (1 - k a)^n u_0 \quad n \ge 0 $$
+Here if $1-ka < 0$ then the approximation will look nothing like
+the exact solution $u = e^{-at}$
+and instead we end up the observered oscillating behavior,
+i.e. explicit Euler will be unstable.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{.49\linewidth}
+      \includegraphics[scale=.4]{4c-ivp-a10-k0-1.png}
+      \caption{$a=10, k=0.1$}
+  \end{subfigure}
+  \begin{subfigure}[b]{.49\linewidth}
+      \includegraphics[scale=.4]{4c-ivp-a10-k0-2.png}
+      \caption{$a=10, k=0.2$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{.49\linewidth}
+      \includegraphics[scale=.4]{4c-ivp-a100-k0-1.png}
+      \caption{$a=100, k=0.1$}
+  \end{subfigure}
+  \begin{subfigure}[b]{.49\linewidth}
+      \includegraphics[scale=.4]{4c-ivp-a100-k0-2.png}
+      \caption{$a=100, k=0.2$}
+  \end{subfigure}
+
+  \caption{Results for the different numerical schemes for the IVP in section~\ref{sec:question4c},
+    for different values of $a$ and $k$.
+    The exact solution is shown in blue. \label{fig:4c-ivp}}
+\end{figure}
+
+\appendix
+\section{Source Code}
+\lstinputlisting[language=Python]{ass1.py}
+
+\end{document}
