@@ -1,0 +1,216 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+\usepackage[backend=biber]{biblatex}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{crimson, microtype}
+
+\bibliography{sources}
+\sisetup{
+  locale = DE,
+  range-phrase = { till },
+  per-mode = symbol,
+}
+\title{Inlämningsuppgift om hållbar utveckling\\ i kursen Miljö och matematisk modellering (MVE346), VT2021}
+\author{Axel Forsman}
+
+\begin{document}
+\maketitle
+
+De globala målen för hållbar utveckling är mål uppsatta av FN
+för att mäta förbättring i levnadsstandard
+som spänner tre huvudsakliga dimensioner: Den ekonomiska, ekologiska och sociala.
+Här utvärderar vi de målen på tre sorters fordonsbränsle som används
+för ändamålet persontransporter.
+
+\section{Negativ påverkan för hållbar utveckling från utvalda drivmedel}
+
+Vi identifier den negativa påverkan för hållbar utveckling
+som uppkommer från användning för markburna persontransporter av
+(I) bensin/diesel; (II) biodrivmedel; samt (III) el,
+och möjliga åtgärder för att minska denna.
+
+\subsection{Bensin/diesel}
+
+Transportsektorn är nästan helt beroende av olja vilket kritiskt nog är
+en icke-förnybar resurs \autocite{gudmundsson96}.
+Därför leder det fortsatta bruket av bensin och diesel till att
+de naturliga oljeresurserna minskar för kommande generationer.
+I och med att en oljekris är på horisonten, och det faktum att
+transportefterfrågan ökar till västerländska standarder även i utvecklingsländer
+i takt med att deras ekonomiska ställning nödvändigtvis förbättras \autocite{edenhofer15},
+riskerar en fördröjning med att investera i ny infrastruktur för
+fordon med alternativa bränslen
+att inte bara ekonomiska utan även sociala och kulturella mål
+för hållbar utveckling inte kan uppnås.
+
+Utsläppen från avgaser vid förbränning av bensin och diesel
+blir en sorts baslinje vid jämförelser med biodrivmedel och eldrivna fordon.
+Det är underförstått att dessa utsläpp har negativa ekologiska påverkningar
+i att naturen används som en sänka med biodiversiteten som offer \autocite{gudmundsson96}.
+
+\subsection{Biodrivmedel}
+
+Vad gäller biodrivmedel är den bakomliggande tanken
+att grödorna som används för framställningen har absorberat
+just den mängd koldioxid som sedan frigörs vid förbränning.
+På så sätt bör nettoutsläppet bli litet och
+endast bestå av bidragen från produktionen och transporten av drivmedlet.
+Enligt Energimyndigheten minskade all biodrivmedelsanvändning i Sverige år 2014
+utsläppningen av koldioxidekvivalenter minst 46\% (för FAME)
+jämfört med motsvarande fossila drivmedel \autocite{energimyndigheten15},
+där andra typer av biobränslen var ännu bättre.
+Dessa växthusgasutsläppsberäkningar tar i hänsyn hela biodrivmedelslivscykeln.
+Dock visar senare studier på att siffrorna under moderna förhållanden
+ser sämre ut, se tabell~\ref{tab:biodiesel_emissions},
+vilket skapar tvivel om hur biodrivmedel verkligen är så pass bra.
+
+\begin{table}
+  \centering
+  \caption{Procentuell ökning av avgasutsläpp för biodieseln B20
+    jämfört med petroleumdiesel under moderna förhållanden.
+    Data från Internationella rådet för ren transport (ICCT) \autocite{omalley21}.
+    \label{tab:biodiesel_emissions}}
+  \begin{tabular*}{\textwidth}{@{} l @{\extracolsep{\fill}} r r @{}}
+    \toprule
+    \multicolumn{1}{c}{\textbf{Förorening}} & \multicolumn{1}{c}{\textbf{All data}} & \multicolumn{1}{c}{\textbf{Moderna förhållanden}} \\
+    \midrule
+    NO$_x$ & \SI{2}{\percent} & \SI{4}{\percent} \\
+    PM & \SI{-6}{\percent} & \multicolumn{1}{l}{Obetydlig} \\
+    HC & \SI{-4}{\percent} & \SI{7}{\percent} \\
+    CO & \multicolumn{1}{l}{Obetydlig} & \SI{10}{\percent} \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+
+En studie om inverkan från biodiesel och bioethanol
+på hållbar utveckling i den Europeiska unionen
+fann att bioetanol haft en negativ påverkan på ekonomisk tillväxt
+\autocite{simionescu17},
+möjligen på grund av höga priser på jordbruksprodukter för några av grödorna
+som ingår i bioetanoltillverkningen.
+Detta specifika problem kan åtgärdas genom att
+fokusera på tillverkning av biodiesel,
+alternativt kanske på någon av de sorters biodrivmedel som inte beaktades.
+
+Smil uppskattade att den genomsnittliga landkonsumptionen för produktionen
+av biodrivmedel är högre än för förnybara energikällor såsom vind, vatten och solkraft
+på \SIlist[list-final-separator = { respektive }]{0.30; 1; 3; 5}{\watt\per\meter\squared}
+\autocite{smil15}.
+Förbränning av solid biomassa från till exempel majsplantager
+är mer effektivt än biobränslen där vätska extraherats,
+då hela plantan går till användning.
+Dessutom har tropiska plantager möjlighet att ge större skördar per hektar
+än i andra klimat.
+Den ökade uppbrukningen av landyta har negativ påverkan vad gäller hållbar utveckling
+då habitatförstörelse leder till försämrad biodiversitet och ekologi
+och mer ekonomiskt gynnsamma satsningar utesluts.
+
+\subsection{Elektricitet}
+
+Mer än de två kategorierna ovan är miljöpåverkningen från bränslet till elektriska fordon
+direkt kopplat till det har framställts,
+eftersom själva körningen av elektriska fordon sker utan att avgaser avges
+\autocite{persson18}.
+Därför hänger huruvida en övergång till elektriska fordon skulle leda till
+lägre nivåer av utsläpp på om respektive lands energiproduktion är ``ren'' nog.
+Till exempel uppfyller för närvarande inte Kinas eltillverkning inte det kravet
+då den huvudsakligen består av att elda kol.
+Alltså behövs det att fler länder övergår till renare el för ett övergripande byte till elfordon
+med nettominskning av utsläpp.
+
+För konsumenter är det dyrt att köpa ett elektriskt fordon.
+En stor andel existerande fordon drivs med bensin, diesel eller biodrivmedel
+och skulle i så fall behöva bytas ut.
+Subventioner, skattebefrielser och andra incitament vilka är vanliga i europeiska länder
+kan hjälpa till med att göra kostnaden för gemene man mindre.
+Priset kan också antas sjunka i och med att massproduktion tar fart.
+
+Utvinningen av litium som är huvudkomponenten i de batterier som ingår i dagens elektriska fordon
+är inte utan problem.
+När föroreningen vid gruvområdena tas i beaktning är det inte uppenbart huruvida
+litiumbatterier minskar föroreningar globalt.
+En sak är dock säker---om det skulle vara fallet skulle det ske på bekostning
+av levnadsstandarderna för de bosatta runt gruvorna \autocite{persson18}.
+Det är en väldigt vattenkrävande process som förorenar både luft och vatten
+med giftiga kemikalier och avfall.
+Konsekvenser kan uppstå för den lokala ekonomin på grund av minskad ekoturism.
+Litium är även en icke-förnybar resurs.
+Återvinning av litium sker i dagsläget i princip inte alls,
+då priset på återvunnen litium är tre gånger högre än för nyutvunnen.
+Istället återvinner en del företag bara de mer värdefulla metallerna kobalt och nickel
+i batterierna medan litium endast ``downcyclas''.
+Standardisering av batteriritningar kan göra återvinning mer lönsamt.
+Vidare, till priset av dyrare elbilar, kan subventioner för återvinningsändamålet
+göra att de ekologiska negativa påverkningarna minskas.
+
+\section{Argumentation för framtida inriktning}
+
+% Inledning
+Transportsektorn står idag för \SI{27}{\percent} av den globala energiåtgången
+och släpper ut \num{6.7} gigaton CO$_2$ \autocite{edenhofer15}.
+Som det ser ut kommer CO$_2$ utsläppen att dubbleras till år 2050.
+Med knappheten av oljan
+vilken är en nödvändig ingrediens i varje soppa som är de fordonsdrivmedel idag i bruk,
+ser jag det som mest lämpligt att satsa på elektriska fordon för framtiden.
+
+% Argument för
+Olja är en begränsad resurs vars reserver håller på att ta slut redan nu.
+Vid någon punkt i framtiden om det inte investeras i alternativa bränslen
+kommer oljeprisökningen vara så stor att det varit lönsammare att byta helt
+till elektriska fordon idag.
+Att späda ut med biodrivmedel är bara att töja ut på tidshorisonten.
+Då det ändå kommer behövs ske tids nog är det lika bra att börja lägga grunden idag.
+Medan kostnaden för ett nätverk av uppladdningsstationer för elektriska fordon
+är hög är det en bra investering för framtiden.
+På detta sätt blir också till exempel de finansiella nackdelarna med
+bland annat litiumbatterier mindre avgörande då
+mer pengar naturligt kommer läggas åt batteritekniksforskning.
+
+% Motargument
+Möjligheten till använda ordinarie elnät så som det ser ut idag
+väger ej upp för föroreningarna associerade med litiumbatterier,
+vilket kan vara en orsak till att inte investera i elektriska fordon.
+Situationen är dock sådan att det även utan en elektrifierad transportsektor
+kommer behöva göras satsningar för en förhöjd grad förnybar energi.
+International Renewable Energy Agency uppskattar i sin senaste analys från 2019 \autocite{gielen19}
+att \SI{27e12}[\$]{} kommer behövas investeras under perioden \numrange{2016}{2050}
+för att ha en möjlighet att nå målen med Parisöverenskommelsen.
+Parisöverenskommelsen, så klart, är ett beslut som försöker se till att
+temperaturökningen från den globala uppvärmningen
+inte orsakar oåterkalleliga skador på naturen,
+vilket både skulle vara skadligt för naturens egenvärde
+samt kunna ske inom så kort tidsspan att människan ej har tid
+att undgå ett ogynnsamt öde.
+Danmark är ett praktiskt exempel på att det är möjligt,
+där \SI{60}{\percent} av den inhemska energitillförseln år 2018 genererades av förnybar energi
+\autocite{energyindenmark2018}.
+
+Argument mot den omedelbara nöden av ett elbilsskifte är att vi kan
+fortsätta använda förbränningsmotorer med fossila bränslen
+så länge vardera hushåll ser till att ta sitt ansvar och
+reducera deras körvanor.
+Förenta nationernas klimatpanel rapporterar \autocite{edenhofer15} (med högt förtroende)
+att allmänhetens acceptans av beslut ämnade att begränsa global uppvärmning
+beror på den upplevda rättvisan gällande beslutsprocessen och konsekvenserna därav.
+Att se [...] företag förorena utan straffa eller `freeloading'
+kan bidra kraftigt till cynism och apati.
+Alltså är konsumenterna villiga att göra uppoffringar för att nå hållbar utveckling,
+och vad som saknas är företagens vilja att presentera mer hållbara alternativ.
+Därav kan vi säga att det krävs politiska lösningar utöver individuellt ansvar
+livsstilsförändringar inte kan väga upp.
+Från ett historiskt perspektiv ser vi att företag, utan statlig reglering,
+kommer fortsätta att förbruka finita resurser för att maximera vinst.
+Det är då gemene man som sedan får ta smällen när han tvingas handla
+oljebaserat drivmedel till skyhöga priser.
+En proaktiv övergång till elektriska fordon förhindrar detta.
+
+% Slutsats
+Sammantaget utser dessa argument elektriska fordon som det bästa alternativet
+för en övergripande transportsektorssatsning.
+
+\printbibliography
+
+\end{document}
