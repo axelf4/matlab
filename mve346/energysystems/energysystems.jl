@@ -1,3 +1,4 @@
+using Printf, Plots
 using JuMP, Gurobi
 
 using CSV
@@ -32,12 +33,6 @@ m = Model()
 # x[e, c] - investment of energy type e in country c measured in kW
 @variable(m, 0 <= x[e = instances(EnergyType), c = instances(Country)])
 
-totalInvestmentCosts = @expression(
-    m,
-    sum(x[e, c] * annualizedCost(lifetime[e], investmentCosts[e])
-        for e in instances(EnergyType), c in instances(Country))
-)
-
 Time = 1:24 * 365
 
 windEfficiency = Dict(sweden => timeSeries.Wind_SE,
@@ -64,7 +59,7 @@ end
 # Hydro
 @variables(m, begin
                0 <= r[c = instances(Country), t = Time] # Reservoir size in kWh
-               0 <= o[c = instances(Country), t = Time]
+               0 <= o[c = instances(Country), t = Time] # Outward flow
            end)
 @constraints(m, begin
                  x[hydro, sweden] <= 14 * 1e6 # Installed capacity is 14 GW
@@ -87,6 +82,12 @@ for t in first(Time):last(Time) - 1
 end
 
 M2k = 1e-3 # Conversion factor from MW to kW
+
+totalInvestmentCosts = @expression(
+    m,
+    sum(x[e, c] * annualizedCost(lifetime[e], investmentCosts[e])
+        for e in instances(EnergyType), c in instances(Country))
+)
 
 totalVariableCosts = @expression(
     m,
@@ -116,7 +117,7 @@ co2Emissions = @expression(
         for c in instances(Country), t in Time)
 )
 
-@objective(m, Min, totalInvestmentCosts + totalVariableCosts)
+costs = @objective(m, Min, totalInvestmentCosts + totalVariableCosts)
 
 windCapacity = Dict(sweden => 280, denmark => 90, germany => 180)
 for c in instances(Country)
@@ -132,14 +133,27 @@ load = Dict(sweden => timeSeries.Load_SE,
             germany => timeSeries.Load_DE,
             denmark => timeSeries.Load_DK)
 
+@expression(m, production[c = instances(Country), t = Time],
+            windProd(c, t)
+            + pvProd(c, t)
+            + g[c, t] # Gas
+            + o[c, t] # Hydro
+            )
+
 # Load balance condition
 for c in instances(Country), t in Time
-    @constraint(m, windProd(c, t)
-                + pvProd(c, t)
-                + g[c, t] # Gas
-                + o[c, t] # Hydro
-                >= load[c][t])
+    @constraint(m, production[c, t] >= load[c][t])
 end
 
 set_optimizer(m, Gurobi.Optimizer)
 optimize!(m)
+
+@show value.(x.data)
+@printf "Total emissions: %e" value(co2Emissions.data)
+
+for c in 1:3
+    @printf "total production in country %i: %e\n" c sum(value(production.data[c, t]) for t in Time)
+end
+
+firstWeekTimes = 1:168
+plot(firstWeekTimes, value.(view(production.data, 3, firstWeekTimes)))
