@@ -81,12 +81,56 @@ for t in first(Time):last(Time) - 1
                 r[sweden, t] + timeSeries.Hydro_inflow[t] - o[sweden, t] == r[sweden, t + 1])
 end
 
+# Batteries
+@variables(m, begin
+               0 <= b[c = instances(Country), t = Time] # Stored energy in batteries
+               0 <= bc[c = instances(Country), t = Time] # Battery charge per the hour
+               0 <= bd[c = instances(Country), t = Time] # Battery discharge for each hour
+           end)
+for c in instances(Country)
+    @constraints(m, begin
+                     b[c, first(Time)] == 0 # Stored energy starts at zero
+                     b[c, first(Time)] == b[c, last(Time)] # Continuity condition
+                     end)
+    for t in Time
+        @constraints(m, begin
+                         b[c, t] <= x[batteries, c] # Cannot store more energy than max capacity
+                     end)
+    end
+
+    # Flow balance condition
+    for t in first(Time):last(Time) - 1
+        @constraint(m,
+                    b[c, t] + bc[c, t] - bd[c, t] == b[c, t + 1])
+    end
+end
+
+# Transmission
+# transmitted[c1, c2, t] is transmission from c1 to c2 at time t
+@variable(m, 0 <= transmitted[c1 = instances(Country), c2 = instances(Country), t = Time])
+@variable(m, 0 <= transmission_capacity[c1 = instances(Country), c2 = instances(Country)])
+for c1 in instances(Country)
+    @constraint(m, transmission_capacity[c1, c1] == 0) # Cannot transmit to itself
+
+    for c2 in instances(Country)
+        if c1 < c2
+            @constraint(m, transmission_capacity[c1, c2] == transmission_capacity[c2, c1])
+        end
+
+        for t in Time
+            @constraint(m, transmitted[c1, c2, t] <= transmission_capacity[c1, c2])
+        end
+    end
+end
+
 M2k = 1e-3 # Conversion factor from MW to kW
 
 totalInvestmentCosts = @expression(
     m,
     sum(x[e, c] * annualizedCost(lifetime[e], investmentCosts[e])
         for e in instances(EnergyType), c in instances(Country))
+    + 1/2 * sum(transmission_capacity[c1, c2]
+                for c1 in instances(Country), c2 in instances(Country))
 )
 
 totalVariableCosts = @expression(
@@ -105,6 +149,9 @@ totalVariableCosts = @expression(
 
         # Running costs for hydro
         + 1e-3 * runningCost[hydro] * o[c, t]
+
+        # Running costs for batteries
+        + 1e-3 * runningCost[batteries] * bd[c, t]
 
         for c in instances(Country), t in Time)
 )
@@ -142,18 +189,25 @@ load = Dict(sweden => timeSeries.Load_SE,
 
 # Load balance condition
 for c in instances(Country), t in Time
-    @constraint(m, production[c, t] >= load[c][t])
+    @constraint(m, production[c, t]
+                + batteryEfficiency * bd[c, t] # Batteries (90% round-trip efficiency)
+                + sum(0.98 * transmitted[c2, c, t] - transmitted[c, c2, t] for c2 in instances(Country))
+                >= load[c][t]
+                + bc[c, t])
 end
+
+originalCo2Emissions = 1.3384324011991399e11
+@constraint(m, co2Emissions <= 0.1 * originalCo2Emissions)
 
 set_optimizer(m, Gurobi.Optimizer)
 optimize!(m)
 
 @show value.(x.data)
-@printf "Total emissions: %e" value(co2Emissions.data)
+@printf "Total emissions: %e\n" value(co2Emissions)
 
 for c in 1:3
     @printf "total production in country %i: %e\n" c sum(value(production.data[c, t]) for t in Time)
 end
 
-firstWeekTimes = 1:168
-plot(firstWeekTimes, value.(view(production.data, 3, firstWeekTimes)))
+# firstWeekTimes = 1:168
+# plot(firstWeekTimes, value.(view(production.data, 3, firstWeekTimes)))
