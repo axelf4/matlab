@@ -4,6 +4,8 @@ using JuMP, Gurobi
 using CSV
 using DataFrames
 
+G2M = 1e3
+
 @enum EnergyType wind pv gas hydro batteries transmission nuclear
 
 investmentCosts = Dict(wind => 1100, pv => 600, gas => 550, hydro => 0,
@@ -30,7 +32,7 @@ annualizedCost(lt, ic) = ic * discountRate / (1 - 1 / (1 + discountRate)^lt)
 @enum Country sweden denmark germany
 
 m = Model()
-# x[e, c] - investment of energy type e in country c measured in kW
+# x[e, c] - investment of energy type e in country c measured in MW
 @variable(m, 0 <= x[e = instances(EnergyType), c = instances(Country)])
 
 Time = 1:24 * 365
@@ -48,8 +50,8 @@ pvEfficiency = Dict(sweden => timeSeries.PV_SE,
 pvProd(c, t) = pvEfficiency[c][t] * x[pv, c]
 
 # Gas
-gasFuelCost = 1e-3 * 22
-# The actual amount of gas in kW that we use at any given time
+gasFuelCost = 22
+# The actual amount of gas in MW that we use at any given time
 @variable(m, 0 <= g[c = instances(Country), t = Time])
 # Cannot use more gas than we have facilities for
 for c in instances(Country), t in Time
@@ -58,11 +60,11 @@ end
 
 # Hydro
 @variables(m, begin
-               0 <= r[c = instances(Country), t = Time] # Reservoir size in kWh
+               0 <= r[c = instances(Country), t = Time] # Reservoir size in MWh
                0 <= o[c = instances(Country), t = Time] # Outward flow
            end)
 @constraints(m, begin
-                 x[hydro, sweden] <= 14 * 1e6 # Installed capacity is 14 GW
+                 x[hydro, sweden] <= G2M * 14 # Installed capacity is 14 GW
                  x[hydro, germany] == 0
                  x[hydro, denmark] == 0
              end)
@@ -70,7 +72,7 @@ for c in instances(Country)
     @constraint(m, r[c, first(Time)] == r[c, last(Time)]) # Continuity condition
     for t in Time
         @constraints(m, begin
-                         r[c, t] <= 33 * 1e9 # Capped reservoir storage size
+                         r[c, t] <= 33e6 # Capped reservoir storage size
                          o[c, t] <= x[hydro, c]
                      end)
     end
@@ -89,7 +91,7 @@ end
            end)
 for c in instances(Country)
     @constraints(m, begin
-                     b[c, first(Time)] == 0 # Stored energy starts at zero
+                     # b[c, first(Time)] == 0 # Stored energy starts at zero
                      b[c, first(Time)] == b[c, last(Time)] # Continuity condition
                      end)
     for t in Time
@@ -123,13 +125,12 @@ for c1 in instances(Country)
     end
 end
 
-M2k = 1e-3 # Conversion factor from MW to kW
-
 totalInvestmentCosts = @expression(
     m,
-    sum(x[e, c] * annualizedCost(lifetime[e], investmentCosts[e])
+    sum(x[e, c] * annualizedCost(lifetime[e], 1e3 * investmentCosts[e])
         for e in instances(EnergyType), c in instances(Country))
     + 1/2 * sum(transmission_capacity[c1, c2]
+                * annualizedCost(lifetime[transmission], 1e3 * investmentCosts[transmission])
                 for c1 in instances(Country), c2 in instances(Country))
 )
 
@@ -137,21 +138,21 @@ totalVariableCosts = @expression(
     m,
     sum(
         # Running costs for wind power
-        1e-3 * runningCost[wind] * windProd(c, t)
+        runningCost[wind] * windProd(c, t)
 
         # Running costs for solar
-        + 1e-3 * runningCost[pv] * pvProd(c, t)
+        + runningCost[pv] * pvProd(c, t)
 
         # Running costs for gas
-        + 1e-3 * runningCost[gas] * g[c, t]
+        + runningCost[gas] * g[c, t]
         # Fuel costs for gas
         + gasFuelCost * g[c, t] / gasEfficiency
 
         # Running costs for hydro
-        + 1e-3 * runningCost[hydro] * o[c, t]
+        + runningCost[hydro] * o[c, t]
 
         # Running costs for batteries
-        + 1e-3 * runningCost[batteries] * bd[c, t]
+        + runningCost[batteries] * bd[c, t]
 
         for c in instances(Country), t in Time)
 )
@@ -159,8 +160,7 @@ totalVariableCosts = @expression(
 # Ton CO₂
 co2Emissions = @expression(
     m,
-    sum(
-        0.202 / M2k * g[c, t] / gasEfficiency
+    sum(0.202 * g[c, t] / gasEfficiency
         for c in instances(Country), t in Time)
 )
 
@@ -168,12 +168,12 @@ costs = @objective(m, Min, totalInvestmentCosts + totalVariableCosts)
 
 windCapacity = Dict(sweden => 280, denmark => 90, germany => 180)
 for c in instances(Country)
-    @constraint(m, 1e-6 * x[wind, c] <= windCapacity[c])
+    @constraint(m, x[wind, c] <= G2M * windCapacity[c])
 end
 
 pvCapacity = Dict(sweden => 75, denmark => 60, germany => 460)
 for c in instances(Country)
-    @constraint(m, 1e-6 * x[pv, c] <= pvCapacity[c])
+    @constraint(m, x[pv, c] <= G2M * pvCapacity[c])
 end
 
 load = Dict(sweden => timeSeries.Load_SE,
@@ -193,10 +193,11 @@ for c in instances(Country), t in Time
                 + batteryEfficiency * bd[c, t] # Batteries (90% round-trip efficiency)
                 + sum(0.98 * transmitted[c2, c, t] - transmitted[c, c2, t] for c2 in instances(Country))
                 >= load[c][t]
-                + bc[c, t])
+                + bc[c, t]
+                )
 end
 
-originalCo2Emissions = 1.3384324011991399e11
+originalCo2Emissions = 1.388215e+08
 @constraint(m, co2Emissions <= 0.1 * originalCo2Emissions)
 
 set_optimizer(m, Gurobi.Optimizer)
