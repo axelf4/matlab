@@ -41,13 +41,15 @@ windEfficiency = Dict(sweden => timeSeries.Wind_SE,
                       germany => timeSeries.Wind_DE,
                       denmark => timeSeries.Wind_DK)
 
-windProd(c, t) = windEfficiency[c][t] * x[wind, c]
+@expression(m, windProduction[c = instances(Country), t = Time],
+            windEfficiency[c][t] * x[wind, c])
 
 pvEfficiency = Dict(sweden => timeSeries.PV_SE,
                     germany => timeSeries.PV_DE,
                     denmark => timeSeries.PV_DK)
 
-pvProd(c, t) = pvEfficiency[c][t] * x[pv, c]
+@expression(m, pvProduction[c = instances(Country), t = Time],
+            pvEfficiency[c][t] * x[pv, c])
 
 # Gas
 gasFuelCost = 22
@@ -138,10 +140,10 @@ totalVariableCosts = @expression(
     m,
     sum(
         # Running costs for wind power
-        runningCost[wind] * windProd(c, t)
+        runningCost[wind] * windProduction[c, t]
 
         # Running costs for solar
-        + runningCost[pv] * pvProd(c, t)
+        + runningCost[pv] * pvProduction[c, t]
 
         # Running costs for gas
         + runningCost[gas] * g[c, t]
@@ -181,8 +183,8 @@ load = Dict(sweden => timeSeries.Load_SE,
             denmark => timeSeries.Load_DK)
 
 @expression(m, production[c = instances(Country), t = Time],
-            windProd(c, t)
-            + pvProd(c, t)
+            windProduction[c, t]
+            + pvProduction[c, t]
             + g[c, t] # Gas
             + o[c, t] # Hydro
             )
@@ -212,3 +214,10 @@ end
 
 # firstWeekTimes = 1:168
 # plot(firstWeekTimes, value.(view(production.data, 3, firstWeekTimes)))
+
+data = DataFrame(windProduction = value.(view(windProduction.data, 3, firstWeekTimes)),
+                 pvProduction = value.(view(pvProduction.data, 3, firstWeekTimes)),
+                 gasProduction = value.(view(g.data, 3, firstWeekTimes)),
+                 batteryIn = value.(batteryEfficiency * view(bd.data, 3, firstWeekTimes)),
+                 transmissionIn = sum(0.98 * value.(view(transmitted.data, c2, 3, firstWeekTimes)) for c2 in 1:3),
+                 )
