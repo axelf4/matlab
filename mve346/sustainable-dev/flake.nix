@@ -11,7 +11,7 @@
           buildInputs = with pkgs; let
             latex = texlive.combine {
               inherit (texlive) scheme-basic latexmk
-                babel-swedish biblatex biber
+                babel-swedish hyphen-swedish biblatex biber
                 collection-fontsrecommended microtype crimson xkeyval fontaxes
                 siunitx
                 booktabs
