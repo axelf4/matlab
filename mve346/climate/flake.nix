@@ -14,7 +14,7 @@
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
             (python3.withPackages (python-packages: with python-packages; [
-              numpy pandas matplotlib
+              numpy pandas matplotlib numba
             ]))
           ];
         };

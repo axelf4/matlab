@@ -4,6 +4,7 @@ import math
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from numba import jit, vectorize, int32, float32, float64
 
 hsum = partial(np.sum, axis=1)
 hsum.__doc__ = 'Horizontal sum'
@@ -37,6 +38,7 @@ F120 = 60; F210 = 15; F230 = 45; F310 = 45
 # (1) 𝑑𝐵1/𝑑𝑡=𝛼31𝐵3+𝛼21𝐵2−𝑁𝑃𝑃+𝑈
 # (2) 𝑑𝐵2/𝑑𝑡=𝑁𝑃𝑃−𝛼23𝐵2−𝛼21𝐵2
 # (3) 𝑑𝐵3/𝑑𝑡=𝛼23𝐵2−𝛼31𝐵3
+@jit(nopython=True)
 def calc_dB(B, x, *, β):
     _, U = x
     NPP0 = F120
@@ -73,13 +75,7 @@ resCByβ = pd.DataFrame(np.array([*map(sampleβ, βs)]), index=βs,
                    columns=["Atmospheric CO2Conc", "C in Biomass", "C in Ground"])
 
 # The sea
-A = [0.113, 0.213, 0.258, 0.273, 0.1430]
-τ0 = [2.0, 12.2, 50.4, 243.3, math.inf]
 k = 3.06e-3
-def getI(U, *, k = k):
-    τ = np.vectorize(lambda i, t: τ0[i] * (1 + k * sum(U[s] for s in range(t-1+1))))
-    I = lambda t: sum(A[i] * np.exp(-t / τ(i, t)) for i in range(5))
-    return I
 
 # # Exercise 3:
 # x = np.fromiter(range(500), int)
@@ -96,17 +92,28 @@ def getI(U, *, k = k):
 # ax.set_ylabel('Andel kvar i atmosfären')
 # ax.legend()
 
-ts = np.fromiter(range(concentrations.CO2ConcRCP45.shape[0]), int)
-def getM(U, *, k = k):
-    Is = getI(U, k = k)(ts[:U.shape[0]])
+@jit(float64(int32, float64[:], float32), nopython=True)
+def calc_M(t, U, *, k = k):
+    A = [0.113, 0.213, 0.258, 0.273, 0.1430]
+    τ0 = [2.0, 12.2, 50.4, 243.3, math.inf]
+
+    def τ(i):
+        return τ0[i] * (1 + k * np.sum(U[0:t-1+1]))
+
     M0 = B0[1-1]
-    M = np.vectorize(lambda t: M0 + sum(Is[t - s] * U[s] for s in range(t+1)))
+    M = M0
+    for s in range(t+1):
+        for i in range(5):
+            M += (A[i] * np.exp(-(t - s) / τ(i))) * U[s]
+
     return M
 
 # # Exercise 4:
 # fig, ax = plt.subplots()
+# ts = np.fromiter(range(concentrations.CO2ConcRCP45.shape[0]), int)
 # x = 1765 + ts
-# ax.plot(x, ppmCO2perGtonC * M(t), label='Atmosphere with sea absorption')
+# M = getM(U.no_numpy(), k = k)
+# ax.plot(x, ppmCO2perGtonC * M(ts), label='Atmosphere with sea absorption')
 # ax.plot(x, concentrations.CO2ConcRCP45, label='RCP45')
 # ax.set_xlabel('Year')
 # ax.set_ylabel('CO_2 concentration in atmosphere')
@@ -120,70 +127,69 @@ def get_calc_dB_with_sea(*, k = k):
         dB = calc_dB(B, x, β = β)
 
         dB1s[t] = dB[1-1]
-        M = getM(dB1s[:t+1], k = k)
+        M = calc_M(t, dB1s[:t+1], k = k)
 
-        dB[1-1] = M(t) - B[1-1]
+        dB[1-1] = M - B[1-1]
 
         return dB
     
     return f
 
-# Exercise 6:
-# seaBs = modelBs(β = 0.15, calc_dB = get_calc_dB_with_sea())
+# # Exercise 6:
+# seaBs = modelBs(β = 0.32, calc_dB = get_calc_dB_with_sea())
 # fig, ax = plt.subplots()
 # x = 1765 + np.fromiter(range(concentrations.CO2ConcRCP45.shape[0]), int)
 # ax.plot(x, ppmCO2perGtonC * seaBs[:, 0], label='Model')
 # ax.plot(x, concentrations.CO2ConcRCP45, label='RCP45')
 # ax.legend()
 
-# # Exercise 7:
-# # Higher values of beta means more carbon gets bound into biomass and
-# # the ground, which is taken from the carbon in atmosphere. This also
-# # leads to less carbon in the sea.
-# # Higher values of k means less carbon gets bound into the sea from
-# # the atmosphere. There is a small increase in the amount of carbon in
-# # biomass and the ground from the increased carbon in the atmosphere.
-# # This change is very small however.
-# ks = [0.4 * k, k, 1.6 * k]
-# params = [*product(βs, ks)]
-# def sampleβk(β, k):
-    # altSeaBs = modelBs(β = β, calc_dB = get_calc_dB_with_sea(k = k))
-    # bsYear2100 = altSeaBs[2100 - 1765, :]
-    # inSea = cumU[2100 - 1765] - (sum(bsYear2100) - sum(B0))
-    # return (*bsYear2100, inSea)
-# exercise7Results = pd.DataFrame([sampleβk(*param) for param in params],
-                                # index=params,
-                                # columns=['Atmos', 'Biomass', 'Ground', 'Sea'])
+# Exercise 7:
+# Higher values of beta means more carbon gets bound into biomass and
+# the ground, which is taken from the carbon in atmosphere. This also
+# leads to less carbon in the sea.
+# Higher values of k means less carbon gets bound into the sea from
+# the atmosphere. There is a small increase in the amount of carbon in
+# biomass and the ground from the increased carbon in the atmosphere.
+ks = [0.4 * k, k, 1.6 * k]
+params = [*product(βs, ks)]
+def sampleβk(β, k):
+    altSeaBs = modelBs(β = β, calc_dB = get_calc_dB_with_sea(k = k))
+    bsYear2100 = altSeaBs[2100 - 1765, :]
+    inSea = cumU[2100 - 1765] - (sum(bsYear2100) - sum(B0))
+    return (*bsYear2100, inSea)
+exercise7Results = pd.DataFrame([sampleβk(*param) for param in params],
+                                index=params,
+                                columns=['Atmos', 'Biomass', 'Ground', 'Sea'])
 
-# Exercise 8:
+# # Exercise 8:
 pCO2 = concentrations.CO2ConcRCP45
 pCO20 = concentrations.CO2ConcRCP45[0]
 RFCO2 = lambda pCO2: 5.35 * np.log(pCO2 / pCO20)
-fig, ax = plt.subplots()
-x = 1765 + np.fromiter(range(concentrations.CO2ConcRCP45.shape[0]), int)
-ax.plot(x, RFCO2(pCO2), label='Model')
-ax.plot(x, radiativeForcing.CO2RadForc, label='RCP45')
-ax.set_title('Radiative Forcing for CO_2')
-ax.set_xlabel('Year')
-ax.set_ylabel('RF')
-ax.legend()
+
+# fig, ax = plt.subplots()
+# x = 1765 + np.fromiter(range(concentrations.CO2ConcRCP45.shape[0]), int)
+# ax.plot(x, RFCO2(pCO2), label='Model')
+# ax.plot(x, radiativeForcing.CO2RadForc, label='RCP45')
+# ax.set_title('Radiative Forcing for CO_2')
+# ax.set_xlabel('Year')
+# ax.set_ylabel('RF')
+# ax.legend()
 
 # Exercise 9:
 s = 1 # Standard value for aerosol RF scale factor
 totRadForcExclCO2 = radiativeForcing.totRadForcExclCO2AndAerosols + s * radiativeForcing.totRadForcAerosols
 
 # Exercise 10:
-def solveΔT(RF = hsum(radiativeForcing)):
+totRadForc = radiativeForcing.CO2RadForc + totRadForcExclCO2
+def solveΔT(RF = totRadForc, *, λ = 0.8, κ = 0.5):
     WyrPerKm2ToJmkgPerKkgm3 = 31556952
-    λ = 0.8
-    κ = 0.5
     c = 4186
     ρ = 1020
     h = 50
     C1 = c * h * ρ / WyrPerKm2ToJmkgPerKkgm3
     d = 2000
     C2 = c * d * ρ / WyrPerKm2ToJmkgPerKkgm3
-    
+
     def dΔT(ΔT, RF):
         return np.array([
             (RF - ΔT[1-1]/λ - κ * (ΔT[1-1] - ΔT[2-1])) / C1,
@@ -195,7 +201,33 @@ def solveΔT(RF = hsum(radiativeForcing)):
                                initial=np.zeros(2))])
     return ΔT
 
-# a) Note that RF are cumulative values
-testSolution = solveΔT(RF = 1 * np.ones(50000))
+# Returns the value of ΔT1 and ΔT2 at equilibrium.
+def equilibrium_temp(*, RF, λ):
+    return RF * λ
 
-# plt.show()
+# a) Note that RF are cumulative values
+# testSolution = solveΔT(RF = 1 * np.ones(50000))
+
+# b)
+def calc_efolding_time(*, RF, λ, κ):
+    ΔT = solveΔT(RF, λ = λ, κ = κ)
+    
+    def efolding_time(ΔT):
+        return next(i for i, v in enumerate(ΔT)
+                    if v > (1 - 1/math.e) * equilibrium_temp(RF = RF[i], λ = λ))
+
+    return [efolding_time(ΔT[:, 0]), efolding_time(ΔT[:, 1])]
+
+params = [*product(np.linspace(0.5, 1.3, num=5), np.linspace(0.2, 1, num=5))]
+exercise10Results = pd.DataFrame([calc_efolding_time(RF = totRadForc, λ = λ, κ = κ)
+                                  for (λ, κ) in params],
+                                 index=params,
+                                 columns=['ΔT1', 'ΔT2'])
+
+# plt.plot(range(len(totRadForc)), solveΔT()[1:, 0])
+# plt.plot(range(len(totRadForc)), solveΔT()[1:, 1])
+# plt.plot(range(len(totRadForc)), solveΔT(κ = 0.2)[1:, 0])
+# plt.plot(range(len(totRadForc)), solveΔT(κ = 0.2)[1:, 1])
+# plt.grid()
+
+plt.show()
