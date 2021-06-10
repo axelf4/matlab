@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[swedish]{babel}
 \usepackage[backend=biber]{biblatex}
+\usepackage{hyperref}
 \usepackage{siunitx}
 \usepackage{booktabs}
 \usepackage{crimson, microtype}
@@ -53,6 +54,10 @@ Utsläppen från avgaser vid förbränning av bensin och diesel
 blir en sorts baslinje vid jämförelser med biodrivmedel och eldrivna fordon.
 Det är underförstått att dessa utsläpp har negativa ekologiska påverkningar
 i att naturen används som en sänka med biodiversiteten som offer \autocite{gudmundsson96}.
+Koldioxidutsläppen framförallt bidrar till global uppvärmning \autocite{edenhofer15, xu19} genom växthuseffekten.
+Detta kan försökas åtgärdas med hjälp av \emph{Carbon Capture and Storage}-tekniker,
+som fångar in CO2 antingen före eller efter förbränning.
+Utöver det innehåller utsläppen hälsofarliga föroreningar.
 
 \subsection{Biodrivmedel}
 
@@ -66,9 +71,16 @@ utsläppningen av koldioxidekvivalenter minst 46\% (för FAME)
 jämfört med motsvarande fossila drivmedel \autocite{energimyndigheten15},
 där andra typer av biobränslen var ännu bättre.
 Dessa växthusgasutsläppsberäkningar tar i hänsyn hela biodrivmedelslivscykeln.
-Dock visar senare studier på att siffrorna under moderna förhållanden
-ser sämre ut, se tabell~\ref{tab:biodiesel_emissions},
-vilket skapar tvivel om huruvida biodrivmedel verkligen är så pass bra.
+
+En studie från Internationella rådet för ren transport (ICCT) \autocite{omalley21}
+fann att dagens biodieselblandningar försämrar luftkvaliteten jämfört med ren diesel,
+med högre utsläpp av föroreningarna NO$_x$, HC och CO, se tabell~\ref{tab:biodiesel_emissions}.
+Detta har negativ påverkan på dels sociala och ekologiska aspekter i försämrad hälsa.
+Ökning av andelen biobränsle kan möjligen minska denna påverkan
+då biobränsle har högre syreinnehåll vilket ökar förbränningseffektiviteten,
+och då ökningen av NO$_x$ korrelerade med införandet av \emph{ultra-low sulfur diesel}.
+Dessutom kan man optimera för lägre föroreningar i produktionen och motorns driftsförhållanden;
+till exempel ger högre viskositet hos bränslet ökning av NO$_x$, HC och CO.
 
 \begin{table}
   \centering
@@ -76,14 +88,14 @@ vilket skapar tvivel om huruvida biodrivmedel verkligen är så pass bra.
     jämfört med petroleumdiesel under moderna förhållanden.
     Data från Internationella rådet för ren transport (ICCT) \autocite{omalley21}.
     \label{tab:biodiesel_emissions}}
-  \begin{tabular*}{\textwidth}{@{} l @{\extracolsep{\fill}} r r @{}}
+  \begin{tabular*}{0.5\textwidth}{@{} l @{\extracolsep{\fill}} r @{}}
     \toprule
-    \multicolumn{1}{c}{\textbf{Förorening}} & \multicolumn{1}{c}{\textbf{All data}} & \multicolumn{1}{c}{\textbf{Moderna förhållanden}} \\
+    \multicolumn{1}{c}{\textbf{Förorening}} & \multicolumn{1}{c}{\textbf{Ökning}} \\
     \midrule
-    NO$_x$ & \SI{2}{\percent} & \SI{4}{\percent} \\
-    PM & \SI{-6}{\percent} & \multicolumn{1}{l}{Obetydlig} \\
-    HC & \SI{-4}{\percent} & \SI{7}{\percent} \\
-    CO & \multicolumn{1}{l}{Obetydlig} & \SI{10}{\percent} \\
+    NO$_x$ & \SI{4}{\percent} \\
+    PM & \multicolumn{1}{c}{obetydlig} \\
+    HC & \SI{7}{\percent} \\
+    CO & \SI{10}{\percent} \\
     \bottomrule
   \end{tabular*}
 \end{table}
@@ -112,6 +124,12 @@ Den ökade uppbrukningen av landyta har negativ påverkan vad gäller hållbar u
 då habitatförstörelse leder till försämrad biodiversitet och ekologi
 och mer ekonomiskt gynnsamma satsningar utesluts.
 
+Vidare så leder skövling av skog till att CO2 tidigare bunden i vegetationen
+eventuellt kommer hitta sin väg till atmosfären.
+Jämförelse mellan CO2 utsläpp för olika biodieselblandningar,
+rent biobränsle och diesel inkluderade,
+måste därför beakta den areal som krävs för tillverkningen av biobränslet.
+
 \subsection{Elektricitet}
 
 Mer än de två kategorierna ovan är miljöpåverkningen från bränslet till elektriska fordon
@@ -121,8 +139,8 @@ Därför hänger huruvida en övergång till elektriska fordon skulle leda till
 lägre nivåer av utsläpp på om respektive lands energiproduktion är ``ren'' nog.
 Till exempel uppfyller för närvarande inte Kinas eltillverkning inte det kravet
 då den huvudsakligen består av att elda kol.
-Alltså behövs det att fler länder övergår till renare el för ett övergripande byte till elfordon
-med nettominskning av utsläpp.
+Alltså behövs det att fler länder övergår till renare el
+för ett övergripande byte till elfordon med nettominskning av utsläpp.
 
 För konsumenter är det dyrt att köpa ett elektriskt fordon.
 En stor andel existerande fordon drivs med bensin, diesel eller biodrivmedel
@@ -193,6 +211,10 @@ så kommer naturkapital att bli den begränsande faktorn i framtiden om inte åt
 Danmark är ett praktiskt exempel på att det är möjligt,
 där \SI{60}{\percent} av den inhemska energitillförseln år 2018 genererades av förnybar energi
 \autocite{energyindenmark2018}.
+Alltså kan elektriska fordon ge en minskning i koldioxidutsläpp
+betingad på en ökad andel förnybar elproduktion,
+vilket är en icke-fråga då detta är en förutsättning för hållbar utveckling
+oavsett val av fordonsbränsle.
 
 Argument mot den omedelbara nöden av ett elbilsskifte är att vi kan
 fortsätta använda förbränningsmotorer med fossila bränslen
@@ -200,7 +222,7 @@ så länge vardera hushåll ser till att ta sitt ansvar och
 reducera deras körvanor.
 Förenta nationernas klimatpanel rapporterar \autocite{edenhofer15} (med högt förtroende)
 att allmänhetens acceptans av beslut ämnade att begränsa global uppvärmning
-beror på den upplevda rättvisan gällande beslutsprocessen och konsekvenserna därav.
+beror på den upplevda rättvisan gällande beslutsprocessen och konsekvenserna därav:
 Att se [...] företag förorena utan straffa eller `freeloading'
 kan bidra kraftigt till cynism och apati.
 Alltså är konsumenterna villiga att göra uppoffringar för att nå hållbar utveckling,
@@ -216,6 +238,10 @@ En proaktiv övergång till elektriska fordon förhindrar detta.
 % Slutsats
 Sammantaget utser dessa argument elektriska fordon som det bästa alternativet
 för en övergripande transportsektorssatsning.
+Detta kräver dock åtgärder på politisk nivå för att öka andelen förnybar energi.
+Individen kan försöka se till att sin nästa bil blir en elbil,
+och här kan till exempel politiska beslut för elbilssubventioner
+och skatteökningar för förbränningsmotorer underlätta.
 
 \printbibliography
 
